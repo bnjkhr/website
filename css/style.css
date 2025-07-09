@@ -5,6 +5,7 @@
   --accent-blue: #7aa2f7;
   --accent-cyan: #7dcfff;
   --accent-magenta: #bb9af7;
+  --accent-yellow: #e0af68; /* NEU: Gelb für mehr Farbvielfalt */
   --text-primary: #c0caf5; /* Main Text */
   --text-secondary: #a9b1d6; /* Secondary Text */
   --border-color: #3b4261;
@@ -98,17 +99,51 @@ a:hover {
   color: var(--accent-cyan);
 }
 .cta-button:hover {
-  background-color: #3b4261;
+  background-color: var(--border-color);
   color: #ffffff;
   border-color: var(--accent-cyan);
   text-decoration: none;
+  /* NEU: Subtiler Glow-Effekt */
+  box-shadow: 0 0 15px rgba(125, 207, 255, 0.5);
 }
 
 /* --- Hero Sektion --- */
 .hero-section {
   text-align: center;
   padding: 6rem 0;
+  position: relative; /* Wichtig für die Positionierung des Pseudo-Elements */
+  overflow: hidden; /* Verhindert, dass der animierte Verlauf ausbricht */
 }
+
+/* NEU: Animierter Neon-Verlauf im Hintergrund */
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* NEU: Bunterer Verlauf von Pink/Magenta über Cyan zu Gelb */
+  background: linear-gradient(
+    120deg,
+    var(--accent-magenta),
+    var(--accent-cyan),
+    var(--accent-yellow),
+    var(--accent-magenta)
+  );
+  background-size: 400% 400%; /* Größerer Hintergrund für sanfte Animation */
+  z-index: 0; /* Hinter dem Inhalt */
+  opacity: 0.45; /* Etwas stärkerer Effekt für mehr Leuchtkraft */
+  filter: blur(90px); /* Weichzeichner für den "Glow"-Effekt */
+  animation: animated-gradient 20s ease-in-out infinite;
+}
+
+/* Stellt sicher, dass der Inhalt über dem Verlauf liegt */
+.hero-section .container {
+  position: relative;
+  z-index: 1;
+}
+
 .profile-image {
   width: 150px;
   height: 150px;
@@ -217,6 +252,8 @@ a:hover {
 }
 .offer-footer .cta-button:hover {
   border-color: var(--accent-magenta);
+  /* NEU: Passender Glow-Effekt für diesen Button */
+  box-shadow: 0 0 15px rgba(187, 154, 247, 0.5);
 }
 
 /* --- Rescue Services Sektion --- */
@@ -231,6 +268,24 @@ a:hover {
   border: 1px solid var(--border-color);
   padding: 2rem;
   border-radius: 4px;
+  /* NEU: Vorbereitung für die Einblend-Animation */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* NEU: Klasse, die durch JS hinzugefügt wird, um die Animation auszulösen */
+.service-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* NEU: Verzögerung für die nachfolgenden Karten für den "nacheinander" Effekt */
+.services-grid .service-card:nth-child(2) {
+  transition-delay: 0.2s;
+}
+.services-grid .service-card:nth-child(3) {
+  transition-delay: 0.4s;
 }
 .service-card .icon {
   font-size: 2.5rem;
@@ -310,8 +365,8 @@ a:hover {
   position: fixed;
   bottom: 30px;
   right: 30px;
-  background-color: var(--accent-blue);
-  color: var(--background-dark);
+  background-color: var(--background-secondary);
+  color: var(--accent-cyan);
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -320,13 +375,14 @@ a:hover {
   justify-content: center;
   font-size: 24px;
   text-decoration: none;
-  border: none;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--accent-cyan);
+  box-shadow: 0 0 15px rgba(125, 207, 255, 0.4);
   z-index: 999;
   opacity: 0;
   visibility: hidden;
   transform: translateY(100px);
-  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+  /* Transition erweitert für sanften Glow-Wechsel */
+  transition: all 0.3s ease;
 }
 .back-to-top-btn.show {
   opacity: 1;
@@ -335,7 +391,23 @@ a:hover {
 }
 .back-to-top-btn:hover {
   background-color: var(--accent-cyan);
+  color: var(--background-dark);
   text-decoration: none;
+  /* Glow-Effekt verstärken */
+  box-shadow: 0 0 25px rgba(125, 207, 255, 0.8);
+}
+
+/* NEU: Keyframes für die Hintergrundanimation */
+@keyframes animated-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* --- Responsive Anpassungen --- */

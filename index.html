@@ -192,5 +192,27 @@
         }
       });
     </script>
+
+    <!-- NEU: JAVASCRIPT für Scroll-Animationen (Intersection Observer) -->
+    <script>
+      const animatedElements = document.querySelectorAll(".service-card");
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              // Animation nur einmal ausführen
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.1, // Animation startet, wenn 10% des Elements sichtbar sind
+        }
+      );
+
+      animatedElements.forEach((el) => observer.observe(el));
+    </script>
   </body>
 </html>
