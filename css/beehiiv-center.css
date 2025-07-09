@@ -1,0 +1,13 @@
+.beehiiv-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 2rem 0;
+}
+
+.beehiiv-center iframe {
+  max-width: 100%;
+  height: 316px;
+}
