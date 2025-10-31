@@ -358,6 +358,11 @@ p {
     cursor: default;
 }
 
+/* Entferne Pfeil für Coming Soon und In Entwicklung */
+.coming-soon::after {
+    display: none;
+}
+
 .pill-grid {
     display: flex;
     flex-wrap: wrap;
