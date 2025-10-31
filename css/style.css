@@ -424,6 +424,109 @@ p {
     font-weight: 600;
 }
 
+/* Threads Profile Card */
+.threads-profile {
+    margin-top: 2.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.threads-profile__card {
+    max-width: 360px;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.threads-profile__header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    text-align: left;
+}
+
+.threads-profile__avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.threads-profile__avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.threads-profile__info h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+}
+
+.threads-profile__info p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.threads-profile__bio {
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: var(--text-secondary);
+}
+
+.threads-profile__stats {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1.5rem;
+    padding: 1rem 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.threads-profile__button {
+    display: inline-block;
+    background: linear-gradient(135deg, #000000 0%, #333333 100%);
+    color: #ffffff;
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.threads-profile__button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+}
+
 .legal-links {
     margin-top: 3rem;
     font-size: 0.95rem;
