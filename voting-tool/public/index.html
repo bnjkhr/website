@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#6366F1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Feature Voting">
+    <title>App Feature Voting</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Feature Voting</h1>
+            <p>Schlage neue Features vor oder vote für bestehende Ideen</p>
+        </header>
+
+        <main class="main">
+            <!-- App Selection -->
+            <section class="app-selection" id="appSelection">
+                <h2>App auswählen</h2>
+                <div class="app-grid" id="appGrid">
+                    <div class="loading">Apps werden geladen...</div>
+                </div>
+            </section>
+
+            <!-- Suggestions View -->
+            <section class="suggestions-view hidden" id="suggestionsView">
+                <div class="view-header">
+                    <button class="back-btn" id="backBtn" title="Zurück"></button>
+                    <h2 id="currentAppName">App Name</h2>
+                </div>
+
+                <!-- Floating Action Button will replace this -->
+                <button class="fab" id="fabBtn" title="Neuen Vorschlag einreichen">+</button>
+
+                <div class="suggestions-list" id="suggestionsList">
+                    <div class="loading">Vorschläge werden geladen...</div>
+                </div>
+            </section>
+
+            <!-- New Suggestion Form -->
+            <section class="suggestion-form hidden" id="suggestionForm">
+                <div class="view-header">
+                    <button class="back-btn" id="formBackBtn" title="Zurück"></button>
+                    <h2>Neuen Vorschlag einreichen</h2>
+                </div>
+
+                <form id="newSuggestionForm">
+                    <div class="form-group">
+                        <label for="suggestionTitle">Titel</label>
+                        <input type="text" id="suggestionTitle" required maxlength="100"
+                               placeholder="Kurzer, aussagekräftiger Titel">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="suggestionDescription">Beschreibung</label>
+                        <textarea id="suggestionDescription" required maxlength="500"
+                                  placeholder="Detaillierte Beschreibung des Features..." rows="4"></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="secondary-btn" id="cancelBtn">Abbrechen</button>
+                        <button type="submit" class="primary-btn">Vorschlag einreichen</button>
+                    </div>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Success Overlay -->
+    <div class="overlay" id="successOverlay" style="display: none;">
+        <div class="overlay-content">
+            <div class="overlay-icon">✓</div>
+            <h2 style="margin: 0 0 12px 0; color: var(--text-primary);">Vorschlag eingereicht!</h2>
+            <p style="margin: 0 0 24px 0; color: var(--text-secondary); text-align: center; line-height: 1.6;">
+                Dein Vorschlag wurde erfolgreich eingereicht und wartet nun auf Freigabe durch einen Administrator.
+            </p>
+            <button class="primary-btn" onclick="app.closeSuccessOverlay()" style="width: 100%;">
+                Verstanden
+            </button>
+        </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div class="overlay" id="imageModal" style="display: none;" onclick="app.closeImageModal()">
+        <div style="position: relative; max-width: 90vw; max-height: 90vh; display: flex; align-items: center; justify-content: center;" onclick="event.stopPropagation()">
+            <img id="modalImage" src="" alt="Screenshot" style="max-width: 100%; max-height: 90vh; border-radius: 12px; box-shadow: var(--shadow-floating);">
+            <button
+                onclick="app.closeImageModal()"
+                style="position: absolute; top: -15px; right: -15px; background: white; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 24px; cursor: pointer; box-shadow: var(--shadow-lg); display: flex; align-items: center; justify-content: center; color: var(--text-primary);"
+            >×</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

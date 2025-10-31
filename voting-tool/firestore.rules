@@ -1,0 +1,28 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Apps - Public read access, server-side writes via Admin SDK
+    match /apps/{appId} {
+      allow read: if true;
+      // Admin SDK bypasses these rules automatically
+    }
+
+    // Suggestions - Public read access, server-side writes via Admin SDK
+    match /suggestions/{suggestionId} {
+      allow read: if true;
+      // Admin SDK bypasses these rules automatically
+    }
+
+    // Votes - No direct client access, server-side only
+    match /votes/{voteId} {
+      allow read, write: if false;
+      // Admin SDK bypasses these rules automatically
+    }
+
+
+    // Block all other direct access
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

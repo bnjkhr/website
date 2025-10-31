@@ -1,0 +1,16 @@
+{
+  "name": "voting-tool",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "init-firebase": "node init-firebase.js",
+    "start": "node api/index.js",
+    "dev": "node api/index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "firebase-admin": "^13.5.0",
+    "nodemailer": "^7.0.6"
+  }
+}
