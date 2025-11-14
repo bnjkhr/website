@@ -23,13 +23,54 @@
         />
         <title>Ben Kohler // Indie Apps</title>
 
-        <!-- Google Fonts -->
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://benkohler.de/" />
+        <meta property="og:title" content="Ben Kohler // Indie Apps" />
+        <meta
+            property="og:description"
+            content="Apps, die mein Leben einfacher machen. Und vielleicht auch deins. Indie iOS & macOS Apps von Ben Kohler."
+        />
+        <meta
+            property="og:image"
+            content="https://benkohler.de/images/ben.webp"
+        />
+        <meta property="og:locale" content="de_DE" />
+
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://benkohler.de/" />
+        <meta property="twitter:title" content="Ben Kohler // Indie Apps" />
+        <meta
+            property="twitter:description"
+            content="Apps, die mein Leben einfacher machen. Und vielleicht auch deins. Indie iOS & macOS Apps von Ben Kohler."
+        />
+        <meta
+            property="twitter:image"
+            content="https://benkohler.de/images/ben.webp"
+        />
+        <meta name="twitter:creator" content="@ben.kohler_" />
+
+        <!-- Google Fonts - Optimized -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap"
-            rel="stylesheet"
+            rel="preload"
+            as="style"
+            href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap"
         />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+            media="print"
+            onload="this.media='all'"
+        />
+        <noscript>
+            <link
+                href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap"
+                rel="stylesheet"
+            />
+        </noscript>
 
         <!-- Stylesheet -->
         <link rel="stylesheet" href="css/style.css" />
@@ -55,6 +96,63 @@
         <link rel="manifest" href="site.webmanifest" />
         <meta name="msapplication-TileColor" content="#f5f7fb" />
         <meta name="theme-color" content="#f5f7fb" />
+
+        <!-- JSON-LD Structured Data -->
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "Person",
+                "name": "Ben Kohler",
+                "url": "https://benkohler.de",
+                "image": "https://benkohler.de/images/ben.webp",
+                "jobTitle": "Indie App Developer",
+                "description": "IT-Projektmanager, Papa und Indie-Entwickler. Entwickelt iOS und macOS Apps mit Fokus auf klare UX und technische Präzision.",
+                "sameAs": ["https://www.threads.com/@ben.kohler_"],
+                "knowsAbout": [
+                    "iOS Development",
+                    "macOS Development",
+                    "SwiftUI",
+                    "UIKit",
+                    "App Development"
+                ],
+                "makesOffer": [
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "SoftwareApplication",
+                            "name": "GymBo",
+                            "applicationCategory": "HealthApplication",
+                            "operatingSystem": "iOS",
+                            "url": "https://gymbo.benkohler.de/"
+                        }
+                    },
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "SoftwareApplication",
+                            "name": "StarTune",
+                            "applicationCategory": "MultimediaApplication",
+                            "operatingSystem": "macOS",
+                            "url": "https://testflight.apple.com/join/CtC8eePq"
+                        }
+                    }
+                ]
+            }
+        </script>
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                "name": "Ben Kohler - Indie Apps",
+                "url": "https://benkohler.de",
+                "description": "Portfolio von Ben Kohler, Indie App Developer. Apps, die das Leben einfacher machen.",
+                "author": {
+                    "@type": "Person",
+                    "name": "Ben Kohler"
+                },
+                "inLanguage": "de-DE"
+            }
+        </script>
     </head>
     <body>
         <header class="hero section" id="home">
@@ -303,6 +401,9 @@
                                     <img
                                         src="images/ben.webp"
                                         alt="Ben Kohler"
+                                        loading="lazy"
+                                        width="40"
+                                        height="40"
                                     />
                                 </div>
                                 <div class="threads-profile__info">
@@ -355,18 +456,7 @@
             >&uarr;</a
         >
 
-        <script>
-            const backToTopButton = document.getElementById("back-to-top");
-
-            window.addEventListener("scroll", () => {
-                if (window.scrollY > 300) {
-                    backToTopButton.classList.add("show");
-                } else {
-                    backToTopButton.classList.remove("show");
-                }
-            });
-        </script>
-
+        <script src="js/main.js" defer></script>
         <script async src="https://www.threads.net/embed.js"></script>
     </body>
 </html>
