@@ -374,6 +374,7 @@ p {
     gap: 0.45rem;
     font-weight: 600;
     color: var(--accent);
+    white-space: nowrap;
 }
 
 .app-card__link::after {
