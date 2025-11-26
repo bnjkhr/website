@@ -337,6 +337,62 @@
                                 >In Entwicklung</span
                             >
                         </article>
+
+                        <article class="app-card glass-panel" id="contact">
+                            <div class="app-card__meta">
+                                <span class="app-card__tag platform-web"
+                                    >Kontakt</span
+                                >
+                            </div>
+                            <h3>Schnelle Mail</h3>
+                            <p>
+                                Du hast eine Frage, ein Feedback oder möchtest über eine App sprechen? 
+                                Schick mir eine kurze Nachricht – ich freue mich von dir zu hören.
+                            </p>
+                            <form class="contact-form" action="https://formsubmit.co/ben@benkohler.de" method="POST" id="contact-form">
+                                <div class="form-group">
+                                    <input 
+                                        type="text" 
+                                        id="name" 
+                                        name="name" 
+                                        placeholder="Dein Name" 
+                                        required
+                                        class="form-input"
+                                    >
+                                </div>
+                                <div class="form-group">
+                                    <input 
+                                        type="email" 
+                                        id="email" 
+                                        name="email" 
+                                        placeholder="Deine E-Mail-Adresse" 
+                                        required
+                                        class="form-input"
+                                    >
+                                </div>
+                                <div class="form-group">
+                                    <textarea 
+                                        id="message" 
+                                        name="message" 
+                                        placeholder="Deine Nachricht..." 
+                                        rows="4" 
+                                        required
+                                        class="form-textarea"
+                                    ></textarea>
+                                </div>
+                                
+                                <!-- FormSubmit configuration -->
+                                <input type="hidden" name="_subject" value="Kontakt von Website">
+                                <input type="hidden" name="_template" value="box">
+                                <input type="hidden" name="_captcha" value="false">
+                                <input type="hidden" name="_next" value="">
+                                
+                                <button type="submit" class="form-submit">
+                                    Nachricht senden
+                                </button>
+                                <div class="form-status" id="form-status"></div>
+                            </form>
+                        </article>
                     </div>
                 </div>
             </section>
@@ -450,6 +506,66 @@
                 } else {
                     backToTopButton.classList.remove("show");
                 }
+            });
+        </script>
+
+        <script>
+            // Contact form handling with direct submission
+            document.getElementById('contact-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const form = this;
+                const submitButton = form.querySelector('.form-submit');
+                const statusDiv = document.getElementById('form-status');
+                
+                // Disable submit button and show loading state
+                submitButton.disabled = true;
+                submitButton.textContent = 'Wird gesendet...';
+                statusDiv.textContent = '';
+                statusDiv.className = 'form-status';
+                
+                // Create form data
+                const formData = new FormData(form);
+                
+                // Send form data via fetch API
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // Success
+                        statusDiv.textContent = '✓ Nachricht erfolgreich gesendet! Ich melde mich bald bei dir.';
+                        statusDiv.className = 'form-status success';
+                        
+                        // Reset form
+                        form.reset();
+                        
+                        // Reset button after delay
+                        setTimeout(() => {
+                            submitButton.disabled = false;
+                            submitButton.textContent = 'Nachricht senden';
+                            statusDiv.textContent = '';
+                            statusDiv.className = 'form-status';
+                        }, 4000);
+                    } else {
+                        throw new Error('Network response was not ok');
+                    }
+                })
+                .catch(error => {
+                    // Error
+                    statusDiv.textContent = '✗ Fehler beim Senden. Bitte versuche es erneut oder sende mir direkt eine E-Mail.';
+                    statusDiv.className = 'form-status error';
+                    
+                    // Reset button
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Nachricht senden';
+                    
+                    console.error('Form submission error:', error);
+                });
             });
         </script>
 
