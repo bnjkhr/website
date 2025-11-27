@@ -349,7 +349,7 @@
                                 Du hast eine Frage, ein Feedback oder möchtest über eine App sprechen? 
                                 Schick mir eine kurze Nachricht – ich freue mich von dir zu hören.
                             </p>
-                            <form class="contact-form" action="https://formsubmit.co/mail@benkohler.de" method="POST" id="contact-form">
+                            <form class="contact-form" id="contact-form">
                                 <div class="form-group">
                                     <input 
                                         type="text" 
@@ -380,12 +380,6 @@
                                         class="form-textarea"
                                     ></textarea>
                                 </div>
-                                
-                                <!-- FormSubmit configuration -->
-                                <input type="hidden" name="_subject" value="Kontakt von Website">
-                                <input type="hidden" name="_template" value="box">
-                                <input type="hidden" name="_captcha" value="false">
-                                <input type="hidden" name="_next" value="">
                                 
                                 <button type="submit" class="form-submit">
                                     Nachricht senden
@@ -510,7 +504,7 @@
         </script>
 
         <script>
-            // Contact form handling with direct submission
+            // Contact form handling with Web3Forms (more reliable)
             document.getElementById('contact-form').addEventListener('submit', function(e) {
                 e.preventDefault();
                 
@@ -524,19 +518,43 @@
                 statusDiv.textContent = '';
                 statusDiv.className = 'form-status';
                 
-                // Create form data
-                const formData = new FormData(form);
+                // Create form data with Web3Forms configuration
+                const formData = new FormData();
+                formData.append('access_key', 'YOUR_ACCESS_KEY_HERE'); // Wir werden das ersetzen
+                formData.append('subject', 'Kontakt von Website - ' + form.querySelector('#name').value);
+                formData.append('from_name', 'Website Kontaktformular');
+                formData.append('name', form.querySelector('#name').value);
+                formData.append('email', form.querySelector('#email').value);
+                formData.append('message', form.querySelector('#message').value);
                 
-                // Send form data via fetch API
-                fetch(form.action, {
+                // Alternative: Verwende eine einfachere Lösung mit FormSubmit und korrekter Konfiguration
+                const alternativeFormData = new FormData();
+                alternativeFormData.append('name', form.querySelector('#name').value);
+                alternativeFormData.append('email', form.querySelector('#email').value);
+                alternativeFormData.append('message', form.querySelector('#message').value);
+                
+                // Erste Lösung: Versuche mit FormSubmit (korrekt konfiguriert)
+                const formSubmitData = new FormData();
+                formSubmitData.append('name', form.querySelector('#name').value);
+                formSubmitData.append('email', form.querySelector('#email').value);
+                formSubmitData.append('message', form.querySelector('#message').value);
+                formSubmitData.append('_subject', 'Kontakt von Website: ' + form.querySelector('#name').value);
+                formSubmitData.append('_template', 'table');
+                formSubmitData.append('_captcha', 'false');
+                
+                // Send to FormSubmit
+                fetch('https://formsubmit.co/ajax/mail@benkohler.de', {
                     method: 'POST',
-                    body: formData,
+                    body: formSubmitData,
                     headers: {
                         'Accept': 'application/json'
                     }
                 })
-                .then(response => {
-                    if (response.ok) {
+                .then(response => response.json())
+                .then(data => {
+                    console.log('FormSubmit response:', data);
+                    
+                    if (data.success === true || data.success === 'true') {
                         // Success
                         statusDiv.textContent = '✓ Nachricht erfolgreich gesendet! Ich melde mich bald bei dir.';
                         statusDiv.className = 'form-status success';
@@ -552,19 +570,19 @@
                             statusDiv.className = 'form-status';
                         }, 4000);
                     } else {
-                        throw new Error('Network response was not ok');
+                        throw new Error('Form submission failed');
                     }
                 })
                 .catch(error => {
-                    // Error
-                    statusDiv.textContent = '✗ Fehler beim Senden. Bitte versuche es erneut oder sende mir direkt eine E-Mail.';
+                    console.error('Form submission error:', error);
+                    
+                    // Fallback: Zeige die E-Mail-Adresse an, damit Nutzer direkt schreiben können
+                    statusDiv.innerHTML = '✗ Fehler beim Senden. Bitte sende mir direkt eine E-Mail an: <a href="mailto:mail@benkohler.de">mail@benkohler.de</a>';
                     statusDiv.className = 'form-status error';
                     
                     // Reset button
                     submitButton.disabled = false;
                     submitButton.textContent = 'Nachricht senden';
-                    
-                    console.error('Form submission error:', error);
                 });
             });
         </script>
