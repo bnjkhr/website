@@ -504,7 +504,7 @@
         </script>
 
         <script>
-            // Contact form handling with Web3Forms (reliable email service)
+            // Simple and reliable mailto solution
             document.getElementById('contact-form').addEventListener('submit', function(e) {
                 e.preventDefault();
                 
@@ -518,57 +518,63 @@
                 statusDiv.textContent = '';
                 statusDiv.className = 'form-status';
                 
-                // Create form data for Web3Forms
-                const formData = new FormData();
-                formData.append('access_key', 'f1c38c3e-fc9f-4e3d-9d3c-3f1b2e5a4b6c'); // Kostenloser Web3Forms API-Key
-                formData.append('subject', 'Kontakt von Website: ' + form.querySelector('#name').value);
-                formData.append('from_name', 'Website Kontaktformular');
-                formData.append('name', form.querySelector('#name').value);
-                formData.append('email', form.querySelector('#email').value);
-                formData.append('message', form.querySelector('#message').value);
+                // Get form values
+                const name = form.querySelector('#name').value;
+                const email = form.querySelector('#email').value;
+                const message = form.querySelector('#message').value;
                 
-                // Send to Web3Forms
-                fetch('https://api.web3forms.com/submit', {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Web3Forms response:', data);
+                console.log('Form data:', { name, email, message });
+                
+                // Create mailto link with pre-filled content
+                const subject = `Kontakt von ${name} - Website`;
+                const body = `Hallo Ben,
+
+${message}
+
+---
+Name: ${name}
+E-Mail: ${email}
+
+Diese Nachricht wurde über deine Website gesendet.`;
+                
+                const mailtoLink = `mailto:mail@benkohler.de?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                
+                console.log('Opening mailto link:', mailtoLink);
+                
+                // Try to open mail client
+                try {
+                    // Create a temporary link element and click it
+                    const tempLink = document.createElement('a');
+                    tempLink.href = mailtoLink;
+                    tempLink.style.display = 'none';
+                    document.body.appendChild(tempLink);
+                    tempLink.click();
+                    document.body.removeChild(tempLink);
                     
-                    if (data.success) {
-                        // Success
-                        statusDiv.textContent = '✓ Nachricht erfolgreich gesendet! Ich melde mich bald bei dir.';
-                        statusDiv.className = 'form-status success';
-                        
-                        // Reset form
+                    // Show success message
+                    statusDiv.textContent = '✓ E-Mail-Client wurde geöffnet. Bitte sende die Nachricht ab.';
+                    statusDiv.className = 'form-status success';
+                    
+                    // Reset form after delay
+                    setTimeout(() => {
                         form.reset();
-                        
-                        // Reset button after delay
-                        setTimeout(() => {
-                            submitButton.disabled = false;
-                            submitButton.textContent = 'Nachricht senden';
-                            statusDiv.textContent = '';
-                            statusDiv.className = 'form-status';
-                        }, 4000);
-                    } else {
-                        throw new Error(data.message || 'Form submission failed');
-                    }
-                })
-                .catch(error => {
-                    console.error('Form submission error:', error);
+                        submitButton.disabled = false;
+                        submitButton.textContent = 'Nachricht senden';
+                        statusDiv.textContent = '';
+                        statusDiv.className = 'form-status';
+                    }, 3000);
                     
-                    // Fallback: Zeige die E-Mail-Adresse an, damit Nutzer direkt schreiben können
-                    statusDiv.innerHTML = '✗ Fehler beim Senden. Bitte sende mir direkt eine E-Mail an: <a href="mailto:mail@benkohler.de">mail@benkohler.de</a>';
+                } catch (error) {
+                    console.error('Mailto error:', error);
+                    
+                    // Show error message with manual copy option
+                    statusDiv.innerHTML = `✗ E-Mail-Client konnte nicht geöffnet werden. Bitte sende mir direkt eine E-Mail an: <a href="mailto:mail@benkohler.de" onclick="navigator.clipboard.writeText('mail@benkohler.de'); alert('E-Mail-Adresse wurde kopiert!');">mail@benkohler.de</a>`;
                     statusDiv.className = 'form-status error';
                     
                     // Reset button
                     submitButton.disabled = false;
                     submitButton.textContent = 'Nachricht senden';
-                });
+                }
             });
         </script>
 
