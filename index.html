@@ -504,7 +504,7 @@
         </script>
 
         <script>
-            // Simple and reliable mailto solution
+            // PHP-Lösung für direkten E-Mail-Versand
             document.getElementById('contact-form').addEventListener('submit', function(e) {
                 e.preventDefault();
                 
@@ -525,56 +525,62 @@
                 
                 console.log('Form data:', { name, email, message });
                 
-                // Create mailto link with pre-filled content
-                const subject = `Kontakt von ${name} - Website`;
-                const body = `Hallo Ben,
-
-${message}
-
----
-Name: ${name}
-E-Mail: ${email}
-
-Diese Nachricht wurde über deine Website gesendet.`;
+                // Erstelle Formulardaten für PHP-Skript
+                const formData = new FormData();
+                formData.append('name', name);
+                formData.append('email', email);
+                formData.append('message', message);
                 
-                const mailtoLink = `mailto:mail@benkohler.de?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-                
-                console.log('Opening mailto link:', mailtoLink);
-                
-                // Try to open mail client
-                try {
-                    // Create a temporary link element and click it
-                    const tempLink = document.createElement('a');
-                    tempLink.href = mailtoLink;
-                    tempLink.style.display = 'none';
-                    document.body.appendChild(tempLink);
-                    tempLink.click();
-                    document.body.removeChild(tempLink);
+                // Sende an lokales PHP-Skript
+                fetch('send-email.php', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    console.log('PHP response status:', response.status);
                     
-                    // Show success message
-                    statusDiv.textContent = '✓ E-Mail-Client wurde geöffnet. Bitte sende die Nachricht ab.';
-                    statusDiv.className = 'form-status success';
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                })
+                .then(data => {
+                    console.log('Success:', data);
                     
-                    // Reset form after delay
-                    setTimeout(() => {
+                    if (data.success) {
+                        // Success
+                        statusDiv.textContent = '✓ Nachricht erfolgreich gesendet! Ich melde mich bald bei dir.';
+                        statusDiv.className = 'form-status success';
+                        
+                        // Reset form
                         form.reset();
-                        submitButton.disabled = false;
-                        submitButton.textContent = 'Nachricht senden';
-                        statusDiv.textContent = '';
-                        statusDiv.className = 'form-status';
-                    }, 3000);
+                        
+                        // Reset button after delay
+                        setTimeout(() => {
+                            submitButton.disabled = false;
+                            submitButton.textContent = 'Nachricht senden';
+                            statusDiv.textContent = '';
+                            statusDiv.className = 'form-status';
+                        }, 4000);
+                    } else {
+                        throw new Error(data.message || 'Form submission failed');
+                    }
+                })
+                .catch(error => {
+                    console.error('PHP error:', error);
                     
-                } catch (error) {
-                    console.error('Mailto error:', error);
-                    
-                    // Show error message with manual copy option
-                    statusDiv.innerHTML = `✗ E-Mail-Client konnte nicht geöffnet werden. Bitte sende mir direkt eine E-Mail an: <a href="mailto:mail@benkohler.de" onclick="navigator.clipboard.writeText('mail@benkohler.de'); alert('E-Mail-Adresse wurde kopiert!');">mail@benkohler.de</a>`;
+                    // Zeige Fehlermeldung mit manueller Option
+                    statusDiv.innerHTML = `✗ Fehler beim Senden. Bitte sende mir direkt eine E-Mail an: <a href="mailto:mail@benkohler.de">mail@benkohler.de</a>`;
                     statusDiv.className = 'form-status error';
                     
                     // Reset button
                     submitButton.disabled = false;
                     submitButton.textContent = 'Nachricht senden';
-                }
+                });
             });
         </script>
 
