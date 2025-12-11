@@ -322,6 +322,7 @@ p {
    ============================================ */
 .section {
     padding: 5rem 0;
+    overflow-x: hidden;
 }
 
 .section__title {
@@ -487,27 +488,33 @@ p {
     .apps-coverflow {
         height: 420px;
         margin: 1rem 0 5rem;
+        overflow: hidden;
+    }
+    
+    .apps-coverflow__container {
+        overflow: hidden;
     }
     
     .apps-coverflow .app-card {
-        width: 280px;
-        height: 340px;
+        width: 260px;
+        height: 320px;
     }
     
     .apps-coverflow .app-card.prev {
-        transform: translateX(calc(-50% - 240px)) translateY(-50%) translateZ(-80px) rotateY(35deg) scale(0.85);
-        opacity: 0.5;
+        transform: translateX(calc(-50% - 180px)) translateY(-50%) translateZ(-80px) rotateY(35deg) scale(0.8);
+        opacity: 0.4;
     }
     
     .apps-coverflow .app-card.next {
-        transform: translateX(calc(-50% + 240px)) translateY(-50%) translateZ(-80px) rotateY(-35deg) scale(0.85);
-        opacity: 0.5;
+        transform: translateX(calc(-50% + 180px)) translateY(-50%) translateZ(-80px) rotateY(-35deg) scale(0.8);
+        opacity: 0.4;
     }
     
     .apps-coverflow .app-card.prev-2,
     .apps-coverflow .app-card.next-2 {
         opacity: 0;
         pointer-events: none;
+        transform: translateX(-50%) translateY(-50%) translateZ(-300px) scale(0.5);
     }
     
     .coverflow-nav {
