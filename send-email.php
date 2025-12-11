@@ -4,7 +4,7 @@ header('Content-Type: application/json');
 // Resend API Konfiguration
 // API Key muss als Umgebungsvariable auf dem Server gesetzt werden
 $resend_api_key = getenv('RESEND_API_KEY');
-$to = 'mail@benkohler.de';
+$to = 'ben.kohler@me.com';
 $from = 'website@benkohler.de';
 
 // Prüfen ob API Key vorhanden
