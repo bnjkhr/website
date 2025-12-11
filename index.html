@@ -41,16 +41,27 @@
     </button>
 
     <header class="hero" id="home">
+        <div class="orb orb--1"></div>
+        <div class="orb orb--2"></div>
         <div class="container">
-            <p class="hero__label">Indie App Developer</p>
-            <h1 class="hero__title">Apps die funktionieren.<br>Ohne Kompromisse.</h1>
-            <p class="hero__description">
-                Ich entwickle Apps, die echte Probleme lösen. Von der Idee bis zum Launch.
-                Pragmatisch, schnell und mit Fokus auf das Wesentliche.
-            </p>
-            <div class="hero__actions">
-                <a class="btn btn--primary" href="#apps">Meine Apps</a>
-                <a class="btn btn--secondary" href="#contact">Kontakt</a>
+            <div class="hero__layout">
+                <div class="hero__content">
+                    <p class="hero__label">Indie App Developer</p>
+                    <h1 class="hero__title">Apps die funktionieren.<br>Ohne Kompromisse.</h1>
+                    <p class="hero__description">
+                        Ich entwickle Apps, die echte Probleme lösen. Von der Idee bis zum Launch.
+                        Pragmatisch, schnell und mit Fokus auf das Wesentliche.
+                    </p>
+                    <div class="hero__actions">
+                        <a class="btn btn--primary" href="#apps">Meine Apps</a>
+                        <a class="btn btn--secondary" href="#contact">Kontakt</a>
+                    </div>
+                </div>
+                <div class="hero__visual">
+                    <div class="hero__image-wrapper">
+                        <img src="images/ben-profile.webp" alt="Ben Kohler" class="hero__image" width="320" height="320">
+                    </div>
+                </div>
             </div>
         </div>
     </header>
@@ -58,23 +69,14 @@
     <main>
         <section class="section" id="apps">
             <div class="container">
-                <h2 class="section__title">Projekte</h2>
-                <p class="section__description">Apps die echte Probleme lösen.</p>
+                <h2 class="section__title fade-in">Projekte</h2>
+                <p class="section__description fade-in">Apps die echte Probleme lösen.</p>
+            </div>
 
-                <div class="apps-grid">
-                    <article class="app-card">
-                        <div class="app-card__header">
-                            <span class="app-card__platform">macOS</span>
-                            <span class="app-card__status app-card__status--live">Live</span>
-                        </div>
-                        <h3 class="app-card__title">StarTune</h3>
-                        <p class="app-card__description">
-                            Die schnellste Art, Songs zu favorisieren. Ein Klick auf den Menüleisten-Stern und der Song ist gespeichert.
-                        </p>
-                        <a class="app-card__link" href="https://startune.benkohler.de/" target="_blank" rel="noopener">Mehr erfahren</a>
-                    </article>
-
-                    <article class="app-card">
+            <div class="apps-coverflow" id="apps-coverflow">
+                <div class="apps-coverflow__container">
+                    <!-- GymBo -->
+                    <article class="app-card" data-index="0">
                         <div class="app-card__header">
                             <span class="app-card__platform">iOS</span>
                             <span class="app-card__status app-card__status--live">Live</span>
@@ -86,31 +88,8 @@
                         <a class="app-card__link" href="https://gymbo.benkohler.de/" target="_blank" rel="noopener">Mehr erfahren</a>
                     </article>
 
-                    <article class="app-card">
-                        <div class="app-card__header">
-                            <span class="app-card__platform">macOS</span>
-                            <span class="app-card__status app-card__status--dev">In Entwicklung</span>
-                        </div>
-                        <h3 class="app-card__title">WritingFlow</h3>
-                        <p class="app-card__description">
-                            Dein kreativer Schreibraum für macOS. Apple Intelligence analysiert deine Inhalte lokal.
-                        </p>
-                        <a class="app-card__link" href="https://writingflow.benkohler.de/" target="_blank" rel="noopener">Mehr erfahren</a>
-                    </article>
-
-                    <article class="app-card">
-                        <div class="app-card__header">
-                            <span class="app-card__platform">Chrome</span>
-                            <span class="app-card__status app-card__status--live">Live</span>
-                        </div>
-                        <h3 class="app-card__title">Chrome AI Filter</h3>
-                        <p class="app-card__description">
-                            Markiert KI-generierte Inhalte und "Broetry" auf Social Media.
-                        </p>
-                        <a class="app-card__link" href="https://github.com/bnjkhr/Chrome_AI_filter" target="_blank" rel="noopener">GitHub</a>
-                    </article>
-
-                    <article class="app-card">
+                    <!-- CLI-Chat -->
+                    <article class="app-card" data-index="1">
                         <div class="app-card__header">
                             <span class="app-card__platform">Terminal</span>
                             <span class="app-card__status app-card__status--live">Live</span>
@@ -122,7 +101,47 @@
                         <a class="app-card__link" href="https://cli-chat.benkohler.de/" target="_blank" rel="noopener">Ausprobieren</a>
                     </article>
 
-                    <article class="app-card">
+                    <!-- StarTune -->
+                    <article class="app-card" data-index="2">
+                        <div class="app-card__header">
+                            <span class="app-card__platform">macOS</span>
+                            <span class="app-card__status app-card__status--live">Live</span>
+                        </div>
+                        <h3 class="app-card__title">StarTune</h3>
+                        <p class="app-card__description">
+                            Die schnellste Art, Songs zu favorisieren. Ein Klick auf den Menüleisten-Stern und der Song ist gespeichert.
+                        </p>
+                        <a class="app-card__link" href="https://startune.benkohler.de/" target="_blank" rel="noopener">Mehr erfahren</a>
+                    </article>
+
+                    <!-- WritingFlow -->
+                    <article class="app-card" data-index="3">
+                        <div class="app-card__header">
+                            <span class="app-card__platform">macOS</span>
+                            <span class="app-card__status app-card__status--dev">In Entwicklung</span>
+                        </div>
+                        <h3 class="app-card__title">WritingFlow</h3>
+                        <p class="app-card__description">
+                            Dein kreativer Schreibraum für macOS. Apple Intelligence analysiert deine Inhalte lokal.
+                        </p>
+                        <a class="app-card__link" href="https://writingflow.benkohler.de/" target="_blank" rel="noopener">Mehr erfahren</a>
+                    </article>
+
+                    <!-- Chrome AI Filter -->
+                    <article class="app-card" data-index="4">
+                        <div class="app-card__header">
+                            <span class="app-card__platform">Chrome</span>
+                            <span class="app-card__status app-card__status--live">Live</span>
+                        </div>
+                        <h3 class="app-card__title">Chrome AI Filter</h3>
+                        <p class="app-card__description">
+                            Markiert KI-generierte Inhalte und "Broetry" auf Social Media.
+                        </p>
+                        <a class="app-card__link" href="https://github.com/bnjkhr/Chrome_AI_filter" target="_blank" rel="noopener">GitHub</a>
+                    </article>
+
+                    <!-- Voting Tool -->
+                    <article class="app-card" data-index="5">
                         <div class="app-card__header">
                             <span class="app-card__platform">Web</span>
                             <span class="app-card__status app-card__status--live">Live</span>
@@ -134,7 +153,8 @@
                         <a class="app-card__link" href="https://voting-tool-seven.vercel.app/" target="_blank" rel="noopener">Ausprobieren</a>
                     </article>
 
-                    <article class="app-card">
+                    <!-- NaturSupps -->
+                    <article class="app-card" data-index="6">
                         <div class="app-card__header">
                             <span class="app-card__platform">iOS / Web</span>
                             <span class="app-card__status app-card__status--dev">In Entwicklung</span>
@@ -146,7 +166,8 @@
                         <span class="app-card__link app-card__link--disabled">In Entwicklung</span>
                     </article>
 
-                    <article class="app-card">
+                    <!-- FamilyManager -->
+                    <article class="app-card" data-index="7">
                         <div class="app-card__header">
                             <span class="app-card__platform">iOS</span>
                             <span class="app-card__status app-card__status--planned">In Planung</span>
@@ -158,37 +179,43 @@
                         <span class="app-card__link app-card__link--disabled">In Planung</span>
                     </article>
                 </div>
+
+                <div class="coverflow-nav">
+                    <button class="coverflow-btn coverflow-btn--prev" aria-label="Vorherige App">&larr;</button>
+                    <div class="coverflow-dots" id="coverflow-dots"></div>
+                    <button class="coverflow-btn coverflow-btn--next" aria-label="Nächste App">&rarr;</button>
+                </div>
             </div>
         </section>
 
         <section class="section" id="process">
             <div class="container">
-                <h2 class="section__title">Prozess</h2>
-                <p class="section__description">Von der Idee bis zum Launch.</p>
+                <h2 class="section__title fade-in">Prozess</h2>
+                <p class="section__description fade-in">Von der Idee bis zum Launch.</p>
 
                 <div class="process-list">
-                    <div class="process-item">
+                    <div class="process-item fade-in-stagger">
                         <span class="process-item__number">01</span>
                         <div class="process-item__content">
                             <h3>Problem entdecken</h3>
                             <p>Echte Probleme aus dem Alltag identifizieren. Was nervt mich wirklich?</p>
                         </div>
                     </div>
-                    <div class="process-item">
+                    <div class="process-item fade-in-stagger">
                         <span class="process-item__number">02</span>
                         <div class="process-item__content">
                             <h3>Konzept entwickeln</h3>
                             <p>Lösung skizzieren, Prototyp bauen. Weniger Features, mehr Fokus.</p>
                         </div>
                     </div>
-                    <div class="process-item">
+                    <div class="process-item fade-in-stagger">
                         <span class="process-item__number">03</span>
                         <div class="process-item__content">
                             <h3>Perfektionieren</h3>
                             <p>Iteration basierend auf echtem Nutzer-Feedback. UX optimieren.</p>
                         </div>
                     </div>
-                    <div class="process-item">
+                    <div class="process-item fade-in-stagger">
                         <span class="process-item__number">04</span>
                         <div class="process-item__content">
                             <h3>Launch</h3>
@@ -201,8 +228,8 @@
 
         <section class="section" id="contact">
             <div class="container">
-                <h2 class="section__title">Kontakt</h2>
-                <p class="section__description">Schreib mir eine Nachricht.</p>
+                <h2 class="section__title fade-in">Kontakt</h2>
+                <p class="section__description fade-in">Schreib mir eine Nachricht.</p>
 
                 <div class="contact-grid">
                     <div class="contact-info">
@@ -278,6 +305,137 @@
             const scrolled = (winScroll / height) * 100;
             scrollProgress.style.width = scrolled + "%";
         });
+
+        // Scroll Animations (Intersection Observer)
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in, .fade-in-stagger').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Coverflow Carousel
+        (function() {
+            const coverflow = document.getElementById('apps-coverflow');
+            if (!coverflow) return;
+
+            const cards = coverflow.querySelectorAll('.app-card');
+            const dotsContainer = document.getElementById('coverflow-dots');
+            const prevBtn = coverflow.querySelector('.coverflow-btn--prev');
+            const nextBtn = coverflow.querySelector('.coverflow-btn--next');
+            
+            let currentIndex = 0;
+            const totalCards = cards.length;
+
+            // Create dots
+            cards.forEach((_, i) => {
+                const dot = document.createElement('button');
+                dot.className = 'coverflow-dot' + (i === 0 ? ' active' : '');
+                dot.setAttribute('aria-label', `Gehe zu App ${i + 1}`);
+                dot.addEventListener('click', () => goTo(i));
+                dotsContainer.appendChild(dot);
+            });
+
+            const dots = dotsContainer.querySelectorAll('.coverflow-dot');
+
+            function updateCoverflow() {
+                cards.forEach((card, i) => {
+                    card.classList.remove('active', 'prev', 'prev-2', 'next', 'next-2', 'hidden');
+                    
+                    const diff = i - currentIndex;
+                    
+                    if (diff === 0) {
+                        card.classList.add('active');
+                    } else if (diff === -1) {
+                        card.classList.add('prev');
+                    } else if (diff === -2) {
+                        card.classList.add('prev-2');
+                    } else if (diff === 1) {
+                        card.classList.add('next');
+                    } else if (diff === 2) {
+                        card.classList.add('next-2');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === currentIndex);
+                });
+
+                prevBtn.disabled = currentIndex === 0;
+                nextBtn.disabled = currentIndex === totalCards - 1;
+            }
+
+            function goTo(index) {
+                currentIndex = Math.max(0, Math.min(index, totalCards - 1));
+                updateCoverflow();
+            }
+
+            function prev() {
+                if (currentIndex > 0) goTo(currentIndex - 1);
+            }
+
+            function next() {
+                if (currentIndex < totalCards - 1) goTo(currentIndex + 1);
+            }
+
+            prevBtn.addEventListener('click', prev);
+            nextBtn.addEventListener('click', next);
+
+            // Click on card to select
+            cards.forEach((card, i) => {
+                card.addEventListener('click', (e) => {
+                    if (!card.classList.contains('active')) {
+                        e.preventDefault();
+                        goTo(i);
+                    }
+                });
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                const coverflowRect = coverflow.getBoundingClientRect();
+                const isVisible = coverflowRect.top < window.innerHeight && coverflowRect.bottom > 0;
+                
+                if (isVisible) {
+                    if (e.key === 'ArrowLeft') prev();
+                    if (e.key === 'ArrowRight') next();
+                }
+            });
+
+            // Touch/Swipe support
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            coverflow.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            coverflow.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                const diff = touchStartX - touchEndX;
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) next();
+                    else prev();
+                }
+            }, { passive: true });
+
+            // Initialize
+            updateCoverflow();
+        })();
 
         // Contact Form
         document.getElementById('contact-form').addEventListener('submit', function(e) {
