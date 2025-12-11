@@ -1,10 +1,19 @@
 <?php
 header('Content-Type: application/json');
 
-// Konfiguration
+// Resend API Konfiguration
+// API Key muss als Umgebungsvariable auf dem Server gesetzt werden
+$resend_api_key = getenv('RESEND_API_KEY');
 $to = 'mail@benkohler.de';
 $from = 'website@benkohler.de';
-$subject_prefix = 'Kontakt von Website';
+
+// Prüfen ob API Key vorhanden
+if (empty($resend_api_key)) {
+    http_response_code(500);
+    error_log('RESEND_API_KEY environment variable not set');
+    echo json_encode(['success' => false, 'message' => 'Server-Konfigurationsfehler']);
+    exit;
+}
 
 // Formulardaten abrufen
 $name = $_POST['name'] ?? '';
@@ -24,24 +33,47 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     exit;
 }
 
-// E-Mail vorbereiten
-$subject = $subject_prefix . ': ' . $name;
-$email_body = "Name: $name\n";
-$email_body .= "E-Mail: $email\n\n";
-$email_body .= "Nachricht:\n$message\n\n";
-$email_body .= "---\n";
-$email_body .= "Gesendet am: " . date('d.m.Y H:i:s');
+// E-Mail Inhalt
+$subject = 'Kontakt von Website: ' . $name;
+$html_body = "
+<h2>Neue Kontaktanfrage</h2>
+<p><strong>Name:</strong> {$name}</p>
+<p><strong>E-Mail:</strong> <a href='mailto:{$email}'>{$email}</a></p>
+<p><strong>Nachricht:</strong></p>
+<p>" . nl2br(htmlspecialchars($message)) . "</p>
+<hr>
+<p style='color: #666; font-size: 12px;'>Gesendet am: " . date('d.m.Y H:i:s') . "</p>
+";
 
-// E-Mail Header
-$headers = "From: $from\r\n";
-$headers .= "Reply-To: $email\r\n";
-$headers .= "X-Mailer: PHP/" . phpversion();
+// Resend API Request
+$data = [
+    'from' => "Ben Kohler Website <{$from}>",
+    'to' => [$to],
+    'reply_to' => $email,
+    'subject' => $subject,
+    'html' => $html_body
+];
 
-// E-Mail senden
-if (mail($to, $subject, $email_body, $headers)) {
+$ch = curl_init('https://api.resend.com/emails');
+curl_setopt_array($ch, [
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_POST => true,
+    CURLOPT_HTTPHEADER => [
+        'Authorization: Bearer ' . $resend_api_key,
+        'Content-Type: application/json'
+    ],
+    CURLOPT_POSTFIELDS => json_encode($data)
+]);
+
+$response = curl_exec($ch);
+$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+// Response auswerten
+if ($http_code === 200) {
     echo json_encode(['success' => true, 'message' => 'E-Mail erfolgreich gesendet']);
 } else {
     http_response_code(500);
+    error_log('Resend Error: ' . $response);
     echo json_encode(['success' => false, 'message' => 'Fehler beim Senden der E-Mail']);
 }
 ?>
