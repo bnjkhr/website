@@ -1,20 +1,21 @@
 /* Critical CSS - Above the Fold */
+/* Tokyo Night Light Theme */
 :root {
-    --bg-primary: #ffffff;
-    --bg-secondary: #fafafa;
-    --bg-tertiary: #f5f5f5;
-    --text-primary: #111111;
-    --text-secondary: #666666;
-    --text-muted: #999999;
-    --border: rgba(0, 0, 0, 0.1);
-    --border-light: rgba(0, 0, 0, 0.05);
-    --accent: #0d9488;
-    --accent-hover: #0f766e;
-    --accent-light: rgba(13, 148, 136, 0.1);
-    --accent-glow: rgba(13, 148, 136, 0.15);
-    --glass: rgba(255, 255, 255, 0.7);
-    --glass-border: rgba(255, 255, 255, 0.5);
-    --glass-shadow: rgba(0, 0, 0, 0.08);
+    --bg-primary: #d5d6db;
+    --bg-secondary: #cbccd1;
+    --bg-tertiary: #c0c1c6;
+    --text-primary: #343b58;
+    --text-secondary: #4c505e;
+    --text-muted: #6e7282;
+    --border: rgba(52, 59, 88, 0.15);
+    --border-light: rgba(52, 59, 88, 0.08);
+    --accent: #166775;
+    --accent-hover: #0f5561;
+    --accent-light: rgba(22, 103, 117, 0.15);
+    --accent-glow: rgba(22, 103, 117, 0.2);
+    --glass: rgba(213, 214, 219, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.4);
+    --glass-shadow: rgba(52, 59, 88, 0.1);
 }
 
 [data-theme="dark"] {
@@ -63,7 +64,7 @@ body {
 
 h1, h2, h3, h4 {
     margin: 0;
-    font-family: "Stack Sans Notch", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: "IBM Plex Mono", "SF Mono", "Consolas", monospace;
     letter-spacing: -0.02em;
     line-height: 1.2;
 }
@@ -176,6 +177,92 @@ p {
     background: radial-gradient(circle, rgba(13, 148, 136, 0.08) 0%, transparent 70%);
     bottom: -100px;
     left: -150px;
+}
+
+/* Terminal Critical */
+.hero__terminal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.hero--terminal .hero__layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+}
+
+@media (min-width: 900px) {
+    .hero--terminal .hero__layout {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+    }
+}
+
+.terminal-window {
+    background: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    overflow: hidden;
+    max-width: 700px;
+    width: 100%;
+}
+
+.terminal-header {
+    background: linear-gradient(180deg, #2d333b 0%, #22272e 100%);
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 1px solid #30363d;
+}
+
+.terminal-btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.terminal-btn--close { background: #ff5f57; }
+.terminal-btn--minimize { background: #febc2e; }
+.terminal-btn--maximize { background: #28c840; }
+
+.terminal-title {
+    flex: 1;
+    text-align: center;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 0.75rem;
+    color: #8b949e;
+}
+
+.terminal-body {
+    padding: 1.5rem;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.terminal-ascii {
+    color: #39ff14;
+    white-space: pre;
+    font-size: 0.65rem;
+    line-height: 1.2;
+    margin: 1rem 0;
+}
+
+.terminal-prompt {
+    color: #00fff5;
+}
+
+.terminal-command {
+    color: #c9d1d9;
+}
+
+.terminal-output {
+    color: #8b949e;
+    padding-left: 1.5rem;
+    margin-bottom: 0.75rem;
 }
 
 /* Buttons Critical */
@@ -291,5 +378,33 @@ p {
         right: 1rem;
         width: 40px;
         height: 40px;
+    }
+
+    /* Terminal Mobile */
+    .hero__terminal {
+        order: -1;
+        margin-bottom: 1rem;
+    }
+
+    .terminal-window {
+        border-radius: 8px;
+    }
+
+    .terminal-body {
+        padding: 1rem;
+        font-size: 0.75rem;
+    }
+
+    .terminal-ascii {
+        font-size: 0.4rem;
+    }
+
+    .terminal-header {
+        padding: 0.5rem 0.75rem;
+    }
+
+    .terminal-btn {
+        width: 10px;
+        height: 10px;
     }
 }

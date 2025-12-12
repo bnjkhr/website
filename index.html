@@ -22,9 +22,10 @@
     <meta name="description" content="Ben Kohler entwickelt Indie Apps mit Fokus auf klare UX, technische Präzision und nachhaltige Produktstrategie." />
     <title>Ben Kohler // Indie Apps</title>
 
-    <!-- Local Fonts -->
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="fonts/Inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="fonts/StackSansNotch-regular.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="fonts/fonts.css" />
     <link rel="stylesheet" href="css/style.css" />
 
@@ -40,14 +41,15 @@
         <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
     </button>
 
-    <header class="hero" id="home">
+    <header class="hero hero--terminal" id="home">
         <div class="orb orb--1"></div>
         <div class="orb orb--2"></div>
         <div class="container">
             <div class="hero__layout">
                 <div class="hero__content">
-                    <p class="hero__label">Indie App Developer</p>
-                    <h1 class="hero__title">Apps die funktionieren.<br>Ohne Kompromisse.</h1>
+                    <h1 class="hero__title">
+                        <span class="typewriter" data-text="Apps, die funktionieren."></span>
+                    </h1>
                     <p class="hero__description">
                         Ich entwickle Apps, die echte Probleme lösen. Von der Idee bis zum Launch.
                         Pragmatisch, schnell und mit Fokus auf das Wesentliche.
@@ -58,9 +60,48 @@
                         <a class="btn btn--secondary" href="#contact">Kontakt</a>
                     </div>
                 </div>
-                <div class="hero__visual">
-                    <div class="hero__image-wrapper">
-                        <img src="images/ben-profile.webp" alt="Ben Kohler" class="hero__image" width="320" height="320">
+                <div class="hero__terminal">
+                    <div class="terminal-window">
+                        <div class="terminal-header">
+                            <span class="terminal-btn terminal-btn--close"></span>
+                            <span class="terminal-btn terminal-btn--minimize"></span>
+                            <span class="terminal-btn terminal-btn--maximize"></span>
+                            <span class="terminal-title">ben@macbook ~ zsh</span>
+                        </div>
+                        <div class="terminal-body">
+                            <div class="terminal-ascii">
+ ██████╗ ███████╗███╗   ██╗
+ ██╔══██╗██╔════╝████╗  ██║
+ ██████╔╝█████╗  ██╔██╗ ██║
+ ██╔══██╗██╔══╝  ██║╚██╗██║
+ ██████╔╝███████╗██║ ╚████║
+ ╚═════╝ ╚══════╝╚═╝  ╚═══╝
+                            </div>
+                            <div class="terminal-line">
+                                <span class="terminal-prompt">~</span>
+                                <span class="terminal-command">whoami</span>
+                            </div>
+                            <div class="terminal-output">indie app developer // ulm, germany</div>
+                            <div class="terminal-line">
+                                <span class="terminal-prompt">~</span>
+                                <span class="terminal-command">cat skills.txt</span>
+                            </div>
+                            <div class="terminal-output">
+                                <span class="terminal-accent">swift</span> ·
+                                <span class="terminal-highlight">react</span> ·
+                                <span class="terminal-accent">node</span> ·
+                                <span class="terminal-highlight">figma</span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="terminal-prompt">~</span>
+                                <span class="terminal-command">echo $VIBE</span>
+                            </div>
+                            <div class="terminal-output">80s kid · cli lover · pixel perfectionist</div>
+                            <div class="terminal-line">
+                                <span class="terminal-prompt">~</span>
+                                <span class="terminal-command"><span class="terminal-cursor"></span></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -288,8 +329,8 @@
 
         <section class="section" id="contact">
             <div class="container">
-                <h2 class="section__title fade-in">Kontakt</h2>
-                <p class="section__description fade-in">Schreib mir eine Nachricht.</p>
+                <h2 class="section__title fade-in">Bock auf eine Zusammenarbeit?</h2>
+                <p class="section__description fade-in">Schreib mir!</p>
 
                 <div class="contact-grid">
                     <div class="contact-info">
@@ -341,6 +382,63 @@
     <a href="#home" id="back-to-top" class="back-to-top" title="Nach oben">&uarr;</a>
 
     <script>
+        // Typewriter Effect
+        (function() {
+            const typewriter = document.querySelector('.typewriter');
+            const cursor = document.querySelector('.typewriter-cursor');
+            if (!typewriter) return;
+
+            const lines = typewriter.dataset.text.split('|');
+            let lineIndex = 0;
+            let charIndex = 0;
+            let displayText = '';
+            const speed = 50;
+            const lineDelay = 300;
+
+            function parseLine(line) {
+                return line
+                    .replace(/\[b\]/g, '<span class="typewriter-bold">')
+                    .replace(/\[\/b\]/g, '</span>');
+            }
+
+            function stripTags(line) {
+                return line.replace(/\[b\]|\[\/b\]/g, '');
+            }
+
+            function type() {
+                if (lineIndex < lines.length) {
+                    const cleanLine = stripTags(lines[lineIndex]);
+                    if (charIndex < cleanLine.length) {
+                        charIndex++;
+                        let output = '';
+                        for (let i = 0; i < lineIndex; i++) {
+                            output += parseLine(lines[i]) + '<br>';
+                        }
+                        const currentLineClean = cleanLine.substring(0, charIndex);
+                        const currentLineParsed = parseLine(lines[lineIndex]);
+                        // Find position in parsed line
+                        let shown = 0, result = '', inTag = false;
+                        for (let c of currentLineParsed) {
+                            if (c === '<') inTag = true;
+                            if (inTag) { result += c; if (c === '>') inTag = false; }
+                            else if (shown < charIndex) { result += c; shown++; }
+                        }
+                        output += result;
+                        typewriter.innerHTML = output;
+                        setTimeout(type, speed);
+                    } else {
+                        lineIndex++;
+                        if (lineIndex < lines.length) {
+                            charIndex = 0;
+                            setTimeout(type, lineDelay);
+                        }
+                    }
+                }
+            }
+
+            setTimeout(type, 500);
+        })();
+
         // Theme Toggle
         const themeToggle = document.getElementById('theme-toggle');
         themeToggle.addEventListener('click', () => {

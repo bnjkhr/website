@@ -2,23 +2,23 @@
    Ben Kohler - Minimalist Design
    ============================================ */
 
-/* CSS Variables */
+/* CSS Variables - Tokyo Night Light Theme */
 :root {
-    --bg-primary: #ffffff;
-    --bg-secondary: #fafafa;
-    --bg-tertiary: #f5f5f5;
-    --text-primary: #111111;
-    --text-secondary: #666666;
-    --text-muted: #999999;
-    --border: rgba(0, 0, 0, 0.1);
-    --border-light: rgba(0, 0, 0, 0.05);
-    --accent: #0d9488;
-    --accent-hover: #0f766e;
-    --accent-light: rgba(13, 148, 136, 0.1);
-    --accent-glow: rgba(13, 148, 136, 0.15);
-    --glass: rgba(255, 255, 255, 0.7);
-    --glass-border: rgba(255, 255, 255, 0.5);
-    --glass-shadow: rgba(0, 0, 0, 0.08);
+    --bg-primary: #d5d6db;
+    --bg-secondary: #cbccd1;
+    --bg-tertiary: #c0c1c6;
+    --text-primary: #343b58;
+    --text-secondary: #4c505e;
+    --text-muted: #6e7282;
+    --border: rgba(52, 59, 88, 0.15);
+    --border-light: rgba(52, 59, 88, 0.08);
+    --accent: #166775;
+    --accent-hover: #0f5561;
+    --accent-light: rgba(22, 103, 117, 0.15);
+    --accent-glow: rgba(22, 103, 117, 0.2);
+    --glass: rgba(213, 214, 219, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.4);
+    --glass-shadow: rgba(52, 59, 88, 0.1);
     /* Status Colors */
     --status-live: #10b981;
     --status-live-glow: rgba(16, 185, 129, 0.15);
@@ -28,6 +28,13 @@
     --status-dev-glow: rgba(245, 158, 11, 0.12);
     --status-planned: #6b7280;
     --status-planned-glow: rgba(107, 114, 128, 0.1);
+    /* Retro Terminal Colors */
+    --terminal-bg: #0d1117;
+    --terminal-border: #30363d;
+    --neon-cyan: #00fff5;
+    --neon-magenta: #ff00ff;
+    --neon-green: #39ff14;
+    --scanline-opacity: 0.03;
 }
 
 [data-theme="dark"] {
@@ -55,6 +62,13 @@
     --status-dev-glow: rgba(251, 191, 36, 0.2);
     --status-planned: #9ca3af;
     --status-planned-glow: rgba(156, 163, 175, 0.15);
+    /* Retro Terminal Colors */
+    --terminal-bg: #0d1117;
+    --terminal-border: #30363d;
+    --neon-cyan: #00fff5;
+    --neon-magenta: #ff00ff;
+    --neon-green: #39ff14;
+    --scanline-opacity: 0.05;
 }
 
 /* Dark mode glass adjustments */
@@ -173,7 +187,7 @@ a:hover {
 
 h1, h2, h3, h4, h5, h6 {
     margin: 0;
-    font-family: "Stack Sans Notch", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: "IBM Plex Mono", "SF Mono", "Consolas", monospace;
     font-weight: 600;
     letter-spacing: -0.02em;
     line-height: 1.2;
@@ -365,6 +379,258 @@ p {
 [data-theme="dark"] .orb--2 {
     background: radial-gradient(circle, rgba(20, 184, 166, 0.1) 0%, transparent 70%);
     opacity: 0.3;
+}
+
+/* ============================================
+   Retro Terminal Header
+   ============================================ */
+.terminal-window {
+    background: var(--terminal-bg);
+    border: 1px solid var(--terminal-border);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow:
+        0 25px 50px -12px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    position: relative;
+    max-width: 700px;
+}
+
+/* CRT Scanlines Effect */
+.terminal-window::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, var(--scanline-opacity)) 0px,
+        rgba(0, 0, 0, var(--scanline-opacity)) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* CRT Glow Effect */
+.terminal-window::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    right: -50%;
+    bottom: -50%;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(0, 255, 245, 0.03) 0%,
+        transparent 70%
+    );
+    pointer-events: none;
+    z-index: 1;
+}
+
+.terminal-header {
+    background: linear-gradient(180deg, #2d333b 0%, #22272e 100%);
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 1px solid var(--terminal-border);
+}
+
+.terminal-btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: none;
+}
+
+.terminal-btn--close { background: #ff5f57; }
+.terminal-btn--minimize { background: #febc2e; }
+.terminal-btn--maximize { background: #28c840; }
+
+.terminal-title {
+    flex: 1;
+    text-align: center;
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 0.75rem;
+    color: #8b949e;
+    letter-spacing: 0.02em;
+}
+
+.terminal-body {
+    padding: 1.5rem;
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    position: relative;
+    z-index: 5;
+}
+
+.terminal-line {
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+.terminal-prompt {
+    color: var(--neon-cyan);
+    text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan);
+    flex-shrink: 0;
+}
+
+.terminal-command {
+    color: #c9d1d9;
+}
+
+.terminal-output {
+    color: #8b949e;
+    padding-left: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.terminal-ascii {
+    color: var(--neon-green);
+    text-shadow: 0 0 5px var(--neon-green);
+    white-space: pre;
+    font-size: 0.65rem;
+    line-height: 1.2;
+    margin: 1rem 0;
+    letter-spacing: 0.05em;
+}
+
+.terminal-highlight {
+    color: var(--neon-magenta);
+    text-shadow: 0 0 10px var(--neon-magenta);
+}
+
+.terminal-accent {
+    color: var(--neon-cyan);
+    text-shadow: 0 0 8px var(--neon-cyan);
+}
+
+.terminal-cursor {
+    display: inline-block;
+    width: 0.6em;
+    height: 1.1em;
+    background: var(--neon-cyan);
+    animation: cursor-blink 1s step-end infinite;
+    vertical-align: text-bottom;
+    box-shadow: 0 0 8px var(--neon-cyan);
+}
+
+@keyframes cursor-blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+/* Typewriter Effect for Hero Title */
+.typewriter {
+    display: inline;
+}
+
+.typewriter-cursor {
+    display: inline-block;
+    color: var(--accent);
+    font-weight: 400;
+    animation: typewriter-blink 0.8s step-end infinite;
+    margin-left: 2px;
+}
+
+@keyframes typewriter-blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+.hero__title {
+    min-height: 2.4em;
+}
+
+.typewriter-bold {
+    font-weight: 700;
+    display: block;
+}
+
+/* Typing animation */
+.typing-text {
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typing 2s steps(30) forwards;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+/* Neon glow for specific elements */
+.neon-text {
+    text-shadow:
+        0 0 5px currentColor,
+        0 0 10px currentColor,
+        0 0 20px currentColor;
+}
+
+/* Hero with terminal - adjust layout */
+.hero--terminal .hero__layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+}
+
+@media (min-width: 900px) {
+    .hero--terminal .hero__layout {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+    }
+}
+
+.hero--terminal .hero__content {
+    order: 2;
+}
+
+.hero--terminal .hero__terminal {
+    order: 1;
+}
+
+@media (min-width: 900px) {
+    .hero--terminal .hero__content {
+        order: 1;
+    }
+    .hero--terminal .hero__terminal {
+        order: 2;
+    }
+}
+
+/* Mobile terminal adjustments */
+@media (max-width: 640px) {
+    .terminal-window {
+        border-radius: 8px;
+    }
+
+    .terminal-body {
+        padding: 1rem;
+        font-size: 0.75rem;
+    }
+
+    .terminal-ascii {
+        font-size: 0.45rem;
+        overflow-x: auto;
+    }
+
+    .terminal-header {
+        padding: 0.5rem 0.75rem;
+    }
+
+    .terminal-btn {
+        width: 10px;
+        height: 10px;
+    }
 }
 
 /* ============================================
@@ -1218,7 +1484,7 @@ p {
 }
 
 .footer__brand {
-    font-family: "Stack Sans Notch", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: "IBM Plex Mono", "SF Mono", "Consolas", monospace;
     font-size: 1.125rem;
     font-weight: 600;
     margin: 0;
