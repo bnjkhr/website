@@ -54,6 +54,7 @@
                     </p>
                     <div class="hero__actions">
                         <a class="btn btn--primary" href="#apps">Meine Apps</a>
+                        <a class="btn btn--secondary" href="#pricing">Preise</a>
                         <a class="btn btn--secondary" href="#contact">Kontakt</a>
                     </div>
                 </div>
@@ -73,10 +74,10 @@
                 <p class="section__description fade-in">Apps die echte Probleme lösen.</p>
             </div>
 
-            <div class="apps-coverflow" id="apps-coverflow">
-                <div class="apps-coverflow__container">
-                    <!-- GymBo -->
-                    <article class="app-card" data-index="0">
+            <div class="container">
+                <div class="apps-grid">
+                    <!-- GymBo - Featured -->
+                    <article class="app-card app-card--featured">
                         <div class="app-card__header">
                             <span class="app-card__platform">iOS</span>
                             <span class="app-card__status app-card__status--live">Live</span>
@@ -88,11 +89,11 @@
                         <a class="app-card__link" href="https://gymbo.benkohler.de/" target="_blank" rel="noopener">Mehr erfahren</a>
                     </article>
 
-                    <!-- CLI-Chat -->
-                    <article class="app-card" data-index="1">
+                    <!-- Beta Apps - Large -->
+                    <article class="app-card app-card--large">
                         <div class="app-card__header">
                             <span class="app-card__platform">Terminal</span>
-                            <span class="app-card__status app-card__status--live">Live</span>
+                            <span class="app-card__status app-card__status--beta">Beta</span>
                         </div>
                         <h3 class="app-card__title">CLI-Chat</h3>
                         <p class="app-card__description">
@@ -101,8 +102,7 @@
                         <a class="app-card__link" href="https://cli-chat.benkohler.de/" target="_blank" rel="noopener">Ausprobieren</a>
                     </article>
 
-                    <!-- StarTune -->
-                    <article class="app-card" data-index="2">
+                    <article class="app-card app-card--large">
                         <div class="app-card__header">
                             <span class="app-card__platform">macOS</span>
                             <span class="app-card__status app-card__status--live">Live</span>
@@ -114,8 +114,32 @@
                         <a class="app-card__link" href="https://startune.benkohler.de/" target="_blank" rel="noopener">Mehr erfahren</a>
                     </article>
 
-                    <!-- WritingFlow -->
-                    <article class="app-card" data-index="3">
+                    <article class="app-card app-card--large">
+                        <div class="app-card__header">
+                            <span class="app-card__platform">Chrome</span>
+                            <span class="app-card__status app-card__status--beta">Beta</span>
+                        </div>
+                        <h3 class="app-card__title">Chrome AI Filter</h3>
+                        <p class="app-card__description">
+                            Markiert KI-generierte Inhalte und "Broetry" auf Social Media.
+                        </p>
+                        <a class="app-card__link" href="https://github.com/bnjkhr/Chrome_AI_filter" target="_blank" rel="noopener">GitHub</a>
+                    </article>
+
+                    <article class="app-card app-card--large">
+                        <div class="app-card__header">
+                            <span class="app-card__platform">Web</span>
+                            <span class="app-card__status app-card__status--beta">Beta</span>
+                        </div>
+                        <h3 class="app-card__title">Voting Tool</h3>
+                        <p class="app-card__description">
+                            Ein Tool, um sich App-Funktionen zu wünschen und zu voten.
+                        </p>
+                        <a class="app-card__link" href="https://voting-tool-seven.vercel.app/" target="_blank" rel="noopener">Ausprobieren</a>
+                    </article>
+
+                    <!-- In Development - Medium -->
+                    <article class="app-card app-card--medium">
                         <div class="app-card__header">
                             <span class="app-card__platform">macOS</span>
                             <span class="app-card__status app-card__status--dev">In Entwicklung</span>
@@ -127,47 +151,20 @@
                         <a class="app-card__link" href="https://writingflow.benkohler.de/" target="_blank" rel="noopener">Mehr erfahren</a>
                     </article>
 
-                    <!-- Chrome AI Filter -->
-                    <article class="app-card" data-index="4">
-                        <div class="app-card__header">
-                            <span class="app-card__platform">Chrome</span>
-                            <span class="app-card__status app-card__status--live">Live</span>
-                        </div>
-                        <h3 class="app-card__title">Chrome AI Filter</h3>
-                        <p class="app-card__description">
-                            Markiert KI-generierte Inhalte und "Broetry" auf Social Media.
-                        </p>
-                        <a class="app-card__link" href="https://github.com/bnjkhr/Chrome_AI_filter" target="_blank" rel="noopener">GitHub</a>
-                    </article>
-
-                    <!-- Voting Tool -->
-                    <article class="app-card" data-index="5">
-                        <div class="app-card__header">
-                            <span class="app-card__platform">Web</span>
-                            <span class="app-card__status app-card__status--live">Live</span>
-                        </div>
-                        <h3 class="app-card__title">Voting Tool</h3>
-                        <p class="app-card__description">
-                            Ein Tool, um sich App-Funktionen zu wünschen und zu voten.
-                        </p>
-                        <a class="app-card__link" href="https://voting-tool-seven.vercel.app/" target="_blank" rel="noopener">Ausprobieren</a>
-                    </article>
-
-                    <!-- NaturSupps -->
-                    <article class="app-card" data-index="6">
+                    <article class="app-card app-card--large">
                         <div class="app-card__header">
                             <span class="app-card__platform">iOS / Web</span>
-                            <span class="app-card__status app-card__status--dev">In Entwicklung</span>
+                            <span class="app-card__status app-card__status--beta">Beta</span>
                         </div>
                         <h3 class="app-card__title">NaturSupps</h3>
                         <p class="app-card__description">
                             Endlich Durchblick im Supplement-Dschungel. Klar, ehrlich und auf deine Ziele abgestimmt.
                         </p>
-                        <span class="app-card__link app-card__link--disabled">In Entwicklung</span>
+                        <a class="app-card__link" href="https://natur-supps.vercel.app/" target="_blank" rel="noopener">Ausprobieren</a>
                     </article>
 
-                    <!-- FamilyManager -->
-                    <article class="app-card" data-index="7">
+                    <!-- Planned - Small -->
+                    <article class="app-card app-card--small">
                         <div class="app-card__header">
                             <span class="app-card__platform">iOS</span>
                             <span class="app-card__status app-card__status--planned">In Planung</span>
@@ -179,11 +176,74 @@
                         <span class="app-card__link app-card__link--disabled">In Planung</span>
                     </article>
                 </div>
+            </div>
+        </section>
 
-                <div class="coverflow-nav">
-                    <button class="coverflow-btn coverflow-btn--prev" aria-label="Vorherige App">&larr;</button>
-                    <div class="coverflow-dots" id="coverflow-dots"></div>
-                    <button class="coverflow-btn coverflow-btn--next" aria-label="Nächste App">&rarr;</button>
+        <section class="section" id="pricing">
+            <div class="container">
+                <h2 class="section__title fade-in">Preise</h2>
+                <p class="section__description fade-in">Faire Preise, transparent erklärt.</p>
+
+                <div class="pricing-grid">
+                    <article class="pricing-card fade-in-stagger">
+                        <div class="pricing-card__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        </div>
+                        <h3 class="pricing-card__title">Einmalkauf</h3>
+                        <p class="pricing-card__description">
+                            Die meisten meiner Apps sind Einmalkäufe. Du zahlst einmal und die App gehört dir – ohne versteckte Kosten oder Abo-Fallen.
+                        </p>
+                    </article>
+
+                    <article class="pricing-card fade-in-stagger">
+                        <div class="pricing-card__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+                        </div>
+                        <h3 class="pricing-card__title">Faire Preise</h3>
+                        <p class="pricing-card__description">
+                            Die Preise spiegeln eine faire Balance zwischen dem Wert für dich und dem Aufwand für Entwicklung und Wartung wider.
+                        </p>
+                    </article>
+
+                    <article class="pricing-card fade-in-stagger">
+                        <div class="pricing-card__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg>
+                        </div>
+                        <h3 class="pricing-card__title">Keine Rabatte</h3>
+                        <p class="pricing-card__description">
+                            Die Preise im App Store sind immer die niedrigsten, die ich verantworten kann. Keine künstliche Verknappung, keine Fake-Deals.
+                        </p>
+                    </article>
+
+                    <article class="pricing-card fade-in-stagger">
+                        <div class="pricing-card__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                        </div>
+                        <h3 class="pricing-card__title">Regionale Anpassung</h3>
+                        <p class="pricing-card__description">
+                            Preise können je nach Region und Währung leicht variieren, um lokale Kaufkraft zu berücksichtigen.
+                        </p>
+                    </article>
+
+                    <article class="pricing-card fade-in-stagger">
+                        <div class="pricing-card__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+                        </div>
+                        <h3 class="pricing-card__title">Preisänderungen</h3>
+                        <p class="pricing-card__description">
+                            Wenn große neue Features hinzukommen und der Wert einer App wächst, können auch die Preise angepasst werden.
+                        </p>
+                    </article>
+
+                    <article class="pricing-card fade-in-stagger">
+                        <div class="pricing-card__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 12 2 2 4-4"/></svg>
+                        </div>
+                        <h3 class="pricing-card__title">Keine Testversionen</h3>
+                        <p class="pricing-card__description">
+                            Statt Testversionen gibt es detaillierte Beschreibungen und Demo-Videos, damit du genau weißt, was du bekommst.
+                        </p>
+                    </article>
                 </div>
             </div>
         </section>
@@ -325,117 +385,6 @@
         document.querySelectorAll('.fade-in, .fade-in-stagger').forEach(el => {
             observer.observe(el);
         });
-
-        // Coverflow Carousel
-        (function() {
-            const coverflow = document.getElementById('apps-coverflow');
-            if (!coverflow) return;
-
-            const cards = coverflow.querySelectorAll('.app-card');
-            const dotsContainer = document.getElementById('coverflow-dots');
-            const prevBtn = coverflow.querySelector('.coverflow-btn--prev');
-            const nextBtn = coverflow.querySelector('.coverflow-btn--next');
-            
-            let currentIndex = 0;
-            const totalCards = cards.length;
-
-            // Create dots
-            cards.forEach((_, i) => {
-                const dot = document.createElement('button');
-                dot.className = 'coverflow-dot' + (i === 0 ? ' active' : '');
-                dot.setAttribute('aria-label', `Gehe zu App ${i + 1}`);
-                dot.addEventListener('click', () => goTo(i));
-                dotsContainer.appendChild(dot);
-            });
-
-            const dots = dotsContainer.querySelectorAll('.coverflow-dot');
-
-            function updateCoverflow() {
-                cards.forEach((card, i) => {
-                    card.classList.remove('active', 'prev', 'prev-2', 'next', 'next-2', 'hidden');
-                    
-                    const diff = i - currentIndex;
-                    
-                    if (diff === 0) {
-                        card.classList.add('active');
-                    } else if (diff === -1) {
-                        card.classList.add('prev');
-                    } else if (diff === -2) {
-                        card.classList.add('prev-2');
-                    } else if (diff === 1) {
-                        card.classList.add('next');
-                    } else if (diff === 2) {
-                        card.classList.add('next-2');
-                    } else {
-                        card.classList.add('hidden');
-                    }
-                });
-
-                dots.forEach((dot, i) => {
-                    dot.classList.toggle('active', i === currentIndex);
-                });
-
-                prevBtn.disabled = currentIndex === 0;
-                nextBtn.disabled = currentIndex === totalCards - 1;
-            }
-
-            function goTo(index) {
-                currentIndex = Math.max(0, Math.min(index, totalCards - 1));
-                updateCoverflow();
-            }
-
-            function prev() {
-                if (currentIndex > 0) goTo(currentIndex - 1);
-            }
-
-            function next() {
-                if (currentIndex < totalCards - 1) goTo(currentIndex + 1);
-            }
-
-            prevBtn.addEventListener('click', prev);
-            nextBtn.addEventListener('click', next);
-
-            // Click on card to select
-            cards.forEach((card, i) => {
-                card.addEventListener('click', (e) => {
-                    if (!card.classList.contains('active')) {
-                        e.preventDefault();
-                        goTo(i);
-                    }
-                });
-            });
-
-            // Keyboard navigation
-            document.addEventListener('keydown', (e) => {
-                const coverflowRect = coverflow.getBoundingClientRect();
-                const isVisible = coverflowRect.top < window.innerHeight && coverflowRect.bottom > 0;
-                
-                if (isVisible) {
-                    if (e.key === 'ArrowLeft') prev();
-                    if (e.key === 'ArrowRight') next();
-                }
-            });
-
-            // Touch/Swipe support
-            let touchStartX = 0;
-            let touchEndX = 0;
-
-            coverflow.addEventListener('touchstart', (e) => {
-                touchStartX = e.changedTouches[0].screenX;
-            }, { passive: true });
-
-            coverflow.addEventListener('touchend', (e) => {
-                touchEndX = e.changedTouches[0].screenX;
-                const diff = touchStartX - touchEndX;
-                if (Math.abs(diff) > 50) {
-                    if (diff > 0) next();
-                    else prev();
-                }
-            }, { passive: true });
-
-            // Initialize
-            updateCoverflow();
-        })();
 
         // Contact Form
         document.getElementById('contact-form').addEventListener('submit', function(e) {
