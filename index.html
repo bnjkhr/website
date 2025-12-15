@@ -382,61 +382,47 @@
     <a href="#home" id="back-to-top" class="back-to-top" title="Nach oben">&uarr;</a>
 
     <script>
-        // Typewriter Effect
+        // Scramble/Decode Text Effect (like makingsoftware.com)
         (function() {
-            const typewriter = document.querySelector('.typewriter');
-            const cursor = document.querySelector('.typewriter-cursor');
-            if (!typewriter) return;
+            const element = document.querySelector('.typewriter');
+            if (!element) return;
 
-            const lines = typewriter.dataset.text.split('|');
-            let lineIndex = 0;
-            let charIndex = 0;
-            let displayText = '';
-            const speed = 50;
-            const lineDelay = 300;
+            const finalText = element.dataset.text;
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*';
+            const duration = 1500;
+            const frameRate = 30;
+            const totalFrames = duration / (1000 / frameRate);
+            let frame = 0;
 
-            function parseLine(line) {
-                return line
-                    .replace(/\[b\]/g, '<span class="typewriter-bold">')
-                    .replace(/\[\/b\]/g, '</span>');
-            }
+            function scramble() {
+                let output = '';
+                const progress = frame / totalFrames;
 
-            function stripTags(line) {
-                return line.replace(/\[b\]|\[\/b\]/g, '');
-            }
+                for (let i = 0; i < finalText.length; i++) {
+                    const charProgress = (progress * finalText.length - i) / 3;
 
-            function type() {
-                if (lineIndex < lines.length) {
-                    const cleanLine = stripTags(lines[lineIndex]);
-                    if (charIndex < cleanLine.length) {
-                        charIndex++;
-                        let output = '';
-                        for (let i = 0; i < lineIndex; i++) {
-                            output += parseLine(lines[i]) + '<br>';
-                        }
-                        const currentLineClean = cleanLine.substring(0, charIndex);
-                        const currentLineParsed = parseLine(lines[lineIndex]);
-                        // Find position in parsed line
-                        let shown = 0, result = '', inTag = false;
-                        for (let c of currentLineParsed) {
-                            if (c === '<') inTag = true;
-                            if (inTag) { result += c; if (c === '>') inTag = false; }
-                            else if (shown < charIndex) { result += c; shown++; }
-                        }
-                        output += result;
-                        typewriter.innerHTML = output;
-                        setTimeout(type, speed);
+                    if (finalText[i] === ' ') {
+                        output += ' ';
+                    } else if (charProgress >= 1) {
+                        output += finalText[i];
+                    } else if (charProgress > 0) {
+                        output += chars[Math.floor(Math.random() * chars.length)];
                     } else {
-                        lineIndex++;
-                        if (lineIndex < lines.length) {
-                            charIndex = 0;
-                            setTimeout(type, lineDelay);
-                        }
+                        output += chars[Math.floor(Math.random() * chars.length)];
                     }
+                }
+
+                element.textContent = output;
+                frame++;
+
+                if (frame <= totalFrames) {
+                    requestAnimationFrame(scramble);
+                } else {
+                    element.textContent = finalText;
                 }
             }
 
-            setTimeout(type, 500);
+            setTimeout(scramble, 400);
         })();
 
         // Theme Toggle
