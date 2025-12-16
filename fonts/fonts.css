@@ -1,5 +1,8 @@
 /* Local Font Definitions */
 
+/* Geist - Body Text */
+@import url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/style.css');
+
 /* Inter - Body Text (Variable Font) */
 @font-face {
   font-family: 'Inter';
