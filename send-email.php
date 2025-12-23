@@ -15,6 +15,14 @@ if (empty($resend_api_key)) {
     exit;
 }
 
+// Honeypot-Prüfung - wenn ausgefüllt, ist es ein Bot
+$honeypot = $_POST['website'] ?? '';
+if (!empty($honeypot)) {
+    // Stille Ablehnung - Bot soll denken, es hat funktioniert
+    echo json_encode(['success' => true, 'message' => 'E-Mail erfolgreich gesendet']);
+    exit;
+}
+
 // Formulardaten abrufen
 $name = $_POST['name'] ?? '';
 $email = $_POST['email'] ?? '';

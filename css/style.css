@@ -1414,6 +1414,15 @@ p {
     flex-direction: column;
 }
 
+/* Honeypot - versteckt für Menschen, sichtbar für Bots */
+.form-group--hp {
+    position: absolute;
+    left: -9999px;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+}
+
 .form-input,
 .form-textarea {
     width: 100%;
