@@ -209,8 +209,14 @@ p {
    ASCII Navigation
    ============================================ */
 .ascii-nav {
-    padding: 2rem 0 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    padding: 1.5rem 0 1rem;
     border-bottom: 1px solid var(--border-light);
+    background: var(--bg-primary);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 }
 
 .ascii-nav .container {
@@ -273,6 +279,10 @@ p {
 .ascii-nav__link:hover {
     color: var(--neon-cyan);
     text-shadow: 0 0 8px var(--neon-cyan);
+}
+
+[data-theme="dark"] .ascii-nav {
+    background: rgba(10, 10, 10, 0.85);
 }
 
 [data-theme="dark"] .ascii-logo {
