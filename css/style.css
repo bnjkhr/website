@@ -206,6 +206,86 @@ p {
 }
 
 /* ============================================
+   ASCII Navigation
+   ============================================ */
+.ascii-nav {
+    padding: 2rem 0 1rem;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.ascii-nav .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .ascii-nav .container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+.ascii-nav__header {
+    text-align: center;
+}
+
+.ascii-logo {
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 0.5rem;
+    line-height: 1.1;
+    color: var(--neon-magenta);
+    text-shadow: 0 0 5px var(--neon-magenta);
+    margin: 0;
+    letter-spacing: 0.02em;
+}
+
+@media (min-width: 768px) {
+    .ascii-logo {
+        font-size: 0.55rem;
+    }
+}
+
+.ascii-nav__menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem 1rem;
+}
+
+@media (min-width: 768px) {
+    .ascii-nav__menu {
+        gap: 1.5rem;
+    }
+}
+
+.ascii-nav__link {
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    padding: 0.5rem 0;
+}
+
+.ascii-nav__link:hover {
+    color: var(--neon-cyan);
+    text-shadow: 0 0 8px var(--neon-cyan);
+}
+
+[data-theme="dark"] .ascii-logo {
+    color: var(--neon-magenta);
+    text-shadow: 0 0 10px var(--neon-magenta), 0 0 20px var(--neon-magenta);
+}
+
+[data-theme="dark"] .ascii-nav__link:hover {
+    color: var(--neon-cyan);
+    text-shadow: 0 0 10px var(--neon-cyan);
+}
+
+/* ============================================
    Theme Toggle
    ============================================ */
 .theme-toggle {

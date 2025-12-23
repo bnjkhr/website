@@ -4,7 +4,9 @@
     <script>
         (function() {
             const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            if (savedTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+            } else {
                 document.documentElement.setAttribute('data-theme', 'dark');
             }
         })();
@@ -41,6 +43,27 @@
         <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
     </button>
 
+    <nav class="ascii-nav">
+        <div class="container">
+            <div class="ascii-nav__header">
+<pre class="ascii-logo">
+ ██████╗ ███████╗███╗   ██╗
+ ██╔══██╗██╔════╝████╗  ██║
+ ██████╔╝█████╗  ██╔██╗ ██║
+ ██╔══██╗██╔══╝  ██║╚██╗██║
+ ██████╔╝███████╗██║ ╚████║
+ ╚═════╝ ╚══════╝╚═╝  ╚═══╝
+</pre>
+            </div>
+            <div class="ascii-nav__menu">
+                <a href="#apps" class="ascii-nav__link">[Meine Apps]</a>
+                <a href="#tech" class="ascii-nav__link">[Technologie]</a>
+                <a href="#pricing" class="ascii-nav__link">[Preise]</a>
+                <a href="#contact" class="ascii-nav__link">[Kontakt]</a>
+            </div>
+        </div>
+    </nav>
+
     <header class="hero hero--terminal" id="home">
         <div class="orb orb--1"></div>
         <div class="orb orb--2"></div>
@@ -54,11 +77,6 @@
                         Ich entwickle Apps, die echte Probleme lösen. Von der Idee bis zum Launch.
                         Pragmatisch, schnell und mit Fokus auf das Wesentliche.
                     </p>
-                    <div class="hero__actions">
-                        <a class="btn btn--primary" href="#apps">Meine Apps</a>
-                        <a class="btn btn--secondary" href="#pricing">Preise</a>
-                        <a class="btn btn--secondary" href="#contact">Kontakt</a>
-                    </div>
                 </div>
                 <div class="hero__terminal">
                     <div class="terminal-window">
@@ -69,14 +87,6 @@
                             <span class="terminal-title">ben@macbook ~ zsh</span>
                         </div>
                         <div class="terminal-body">
-                            <div class="terminal-ascii">
- ██████╗ ███████╗███╗   ██╗
- ██╔══██╗██╔════╝████╗  ██║
- ██████╔╝█████╗  ██╔██╗ ██║
- ██╔══██╗██╔══╝  ██║╚██╗██║
- ██████╔╝███████╗██║ ╚████║
- ╚═════╝ ╚══════╝╚═╝  ╚═══╝
-                            </div>
                             <div class="terminal-line">
                                 <span class="terminal-prompt">~</span>
                                 <span class="terminal-command">whoami</span>
@@ -323,6 +333,79 @@
                             <p>Veröffentlichen und kontinuierlich verbessern.</p>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="tech">
+            <div class="container">
+                <h2 class="section__title fade-in">Technologien</h2>
+                <p class="section__description fade-in">Tools und Sprachen die ich bei der Entwicklung einsetze.</p>
+
+                <div class="pricing-grid">
+                    <article class="pricing-card fade-in-stagger">
+                        <div class="pricing-card__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+                        </div>
+                        <h3 class="pricing-card__title">Mobile & Desktop</h3>
+                        <p class="pricing-card__description">
+                            <strong>Swift</strong> und <strong>SwiftUI</strong> fuer native iOS und macOS Apps.
+                            <strong>Apple Intelligence API</strong> fuer KI-Features.
+                        </p>
+                    </article>
+
+                    <article class="pricing-card fade-in-stagger">
+                        <div class="pricing-card__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                        </div>
+                        <h3 class="pricing-card__title">Web Frontend</h3>
+                        <p class="pricing-card__description">
+                            <strong>HTML5</strong>, <strong>CSS3</strong> mit Custom Properties.
+                            <strong>JavaScript</strong>, <strong>TypeScript</strong> und <strong>React</strong>.
+                        </p>
+                    </article>
+
+                    <article class="pricing-card fade-in-stagger">
+                        <div class="pricing-card__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></svg>
+                        </div>
+                        <h3 class="pricing-card__title">Backend & Server</h3>
+                        <p class="pricing-card__description">
+                            <strong>Node.js</strong>, <strong>PHP</strong>, <strong>Python</strong>.
+                            <strong>Firebase</strong>, <strong>Supabase</strong>. <strong>Resend</strong> fuer E-Mails.
+                        </p>
+                    </article>
+
+                    <article class="pricing-card fade-in-stagger">
+                        <div class="pricing-card__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="4.93" x2="9.17" y1="4.93" y2="9.17"/><line x1="14.83" x2="19.07" y1="14.83" y2="19.07"/><line x1="14.83" x2="19.07" y1="9.17" y2="4.93"/><line x1="14.83" x2="18.36" y1="9.17" y2="5.64"/><line x1="4.93" x2="9.17" y1="19.07" y2="14.83"/></svg>
+                        </div>
+                        <h3 class="pricing-card__title">Browser Extensions</h3>
+                        <p class="pricing-card__description">
+                            <strong>Chrome Extensions API</strong> mit Manifest V3 fuer Browser-Erweiterungen.
+                        </p>
+                    </article>
+
+                    <article class="pricing-card fade-in-stagger">
+                        <div class="pricing-card__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r="0.5" fill="currentColor"/><circle cx="17.5" cy="10.5" r="0.5" fill="currentColor"/><circle cx="8.5" cy="7.5" r="0.5" fill="currentColor"/><circle cx="6.5" cy="12.5" r="0.5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.555C21.965 6.012 17.461 2 12 2z"/></svg>
+                        </div>
+                        <h3 class="pricing-card__title">Design & UI</h3>
+                        <p class="pricing-card__description">
+                            <strong>Figma</strong> fuer Prototyping. <strong>Departure Mono</strong> und <strong>Geist Sans</strong> Typografie. Glassmorphism und Dark Mode.
+                        </p>
+                    </article>
+
+                    <article class="pricing-card fade-in-stagger">
+                        <div class="pricing-card__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
+                        </div>
+                        <h3 class="pricing-card__title">Hosting & DevOps</h3>
+                        <p class="pricing-card__description">
+                            <strong>GitHub</strong> fuer Versionskontrolle.
+                            <strong>Vercel</strong> und <strong>Railway</strong> fuer Deployments.
+                        </p>
+                    </article>
                 </div>
             </div>
         </section>
