@@ -33,7 +33,7 @@
           Deutschland<br />
         </p>
         <h4>Kontakt:</h4>
-        <p>E-Mail: mail@benkohler.de</p>
+        <p>E-Mail: <a id="impressum-email" href="#"></a></p>
         <h4>Haftungsausschluss:</h4>
         <p>
           Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung
@@ -46,5 +46,15 @@
     <footer class="legal-footer">
       <p>&copy; 2025 Ben Kohler // System Online</p>
     </footer>
+    <script>
+      (function() {
+        const el = document.getElementById('impressum-email');
+        if (!el) return;
+        const u = 'mail';
+        const d = 'benkohler.de';
+        el.href = 'mai' + 'lto:' + u + '@' + d;
+        el.textContent = u + '@' + d;
+      })();
+    </script>
   </body>
 </html>
