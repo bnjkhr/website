@@ -3,7 +3,8 @@
 <head>
     <script>
         (function() {
-            const savedTheme = localStorage.getItem('theme');
+            let savedTheme = null;
+            try { savedTheme = localStorage.getItem('theme'); } catch (e) {}
             if (savedTheme === 'light') {
                 document.documentElement.setAttribute('data-theme', 'light');
             } else {
@@ -11,13 +12,35 @@
             }
         })();
     </script>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QEZ1E49VPK"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag("js", new Date());
-        gtag("config", "G-QEZ1E49VPK");
+        (function() {
+            const ANALYTICS_MEASUREMENT_ID = 'G-QEZ1E49VPK';
+            function loadAnalytics() {
+                if (window.__analyticsLoaded) return;
+                window.__analyticsLoaded = true;
+
+                const s = document.createElement('script');
+                s.async = true;
+                s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(ANALYTICS_MEASUREMENT_ID);
+                document.head.appendChild(s);
+
+                window.dataLayer = window.dataLayer || [];
+                function gtag() { window.dataLayer.push(arguments); }
+                window.gtag = gtag;
+                gtag('js', new Date());
+                gtag('config', ANALYTICS_MEASUREMENT_ID);
+            }
+
+            // Only load analytics after consent (DSGVO/TTDSG).
+            let consent = null;
+            try { consent = localStorage.getItem('consent_analytics'); } catch (e) {}
+            if (consent === 'granted') {
+                loadAnalytics();
+            }
+
+            // Expose a tiny hook for the consent banner.
+            window.__loadAnalytics = loadAnalytics;
+        })();
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -25,8 +48,6 @@
     <title>Ben Kohler // Indie Apps</title>
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="fonts/Inter-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="fonts/fonts.css" />
     <link rel="stylesheet" href="css/style.css" />
@@ -290,7 +311,7 @@
                         </div>
                         <h3 class="pricing-card__title">Design & UI</h3>
                         <p class="pricing-card__description">
-                            <strong>Figma</strong> fuer Prototyping. <strong>Departure Mono</strong> und <strong>Geist Sans</strong> Typografie. Glassmorphism und Dark Mode.
+                            <strong>Figma</strong> fuer Prototyping. <strong>Inter</strong> Typografie mit Monospace-Akzenten. Glassmorphism und Dark Mode.
                         </p>
                     </article>
 
@@ -361,14 +382,29 @@
                 <div class="footer__links">
                     <a href="impressum.html">Impressum</a>
                     <a href="datenschutz.html">Datenschutz</a>
+                    <a href="#" id="open-cookie-settings">Cookie-Einstellungen</a>
                 </div>
             </div>
-            <p class="footer__copyright">&copy; 2025 Ben Kohler</p>
+            <p class="footer__copyright">&copy; 2026 Ben Kohler</p>
         </div>
     </footer>
 
     <div class="scroll-progress" id="scroll-progress"></div>
     <a href="#home" id="back-to-top" class="back-to-top" title="Nach oben">&uarr;</a>
+
+    <div class="consent-banner" id="consent-banner" role="dialog" aria-label="Cookie-Einstellungen" aria-live="polite">
+        <div class="consent-banner__inner">
+            <p class="consent-banner__text">
+                Diese Website nutzt optionale Statistik (Google Analytics), um Inhalte zu verbessern.
+                Du kannst zustimmen oder ablehnen. Details findest du in der Datenschutzerklärung.
+            </p>
+            <div class="consent-banner__actions">
+                <button type="button" class="btn btn--primary consent-banner__btn" id="consent-accept">Akzeptieren</button>
+                <button type="button" class="btn btn--secondary consent-banner__btn" id="consent-decline">Ablehnen</button>
+                <a class="consent-banner__link" href="datenschutz.html">Mehr erfahren</a>
+            </div>
+        </div>
+    </div>
 
     <script>
         // E-Mail Obfuscation - Schutz vor Spam-Bots
@@ -431,7 +467,7 @@
             const currentTheme = document.documentElement.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
+            try { localStorage.setItem('theme', newTheme); } catch (e) {}
         });
 
         // Scroll Progress & Back to Top
@@ -482,15 +518,17 @@
             statusDiv.textContent = '';
             statusDiv.className = 'form-status';
             
-            const formData = new FormData();
-            formData.append('name', form.querySelector('#name').value);
-            formData.append('email', form.querySelector('#email').value);
-            formData.append('message', form.querySelector('#message').value);
+            const payload = {
+                website: (form.querySelector('input[name="website"]')?.value || ''),
+                name: form.querySelector('#name').value,
+                email: form.querySelector('#email').value,
+                message: form.querySelector('#message').value
+            };
             
-            fetch('send-email.php', {
+            fetch('/api/send-email', {
                 method: 'POST',
-                body: formData,
-                headers: { 'Accept': 'application/json' }
+                body: JSON.stringify(payload),
+                headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
             })
             .then(response => response.ok ? response.json() : Promise.reject('Network error'))
             .then(data => {
@@ -515,6 +553,50 @@
                 submitButton.textContent = 'Senden';
             });
         });
+
+        // Consent Banner (Analytics)
+        (function() {
+            const banner = document.getElementById('consent-banner');
+            if (!banner) return;
+
+            const acceptBtn = document.getElementById('consent-accept');
+            const declineBtn = document.getElementById('consent-decline');
+            const openSettings = document.getElementById('open-cookie-settings');
+
+            function show() { banner.classList.add('consent-banner--show'); }
+            function hide() { banner.classList.remove('consent-banner--show'); }
+
+            let current = null;
+            try { current = localStorage.getItem('consent_analytics'); } catch (e) {}
+            if (current !== 'granted' && current !== 'denied') {
+                show();
+            }
+
+            if (acceptBtn) {
+                acceptBtn.addEventListener('click', () => {
+                    try { localStorage.setItem('consent_analytics', 'granted'); } catch (e) {}
+                    if (typeof window.__loadAnalytics === 'function') window.__loadAnalytics();
+                    hide();
+                });
+            }
+            if (declineBtn) {
+                declineBtn.addEventListener('click', () => {
+                    try { localStorage.setItem('consent_analytics', 'denied'); } catch (e) {}
+                    // If analytics was already loaded, a reload is the simplest way to stop further tracking.
+                    if (window.__analyticsLoaded) {
+                        location.reload();
+                        return;
+                    }
+                    hide();
+                });
+            }
+            if (openSettings) {
+                openSettings.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    show();
+                });
+            }
+        })();
     </script>
 </body>
 </html>
