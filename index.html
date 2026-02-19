@@ -5,10 +5,10 @@
         (function() {
             let savedTheme = null;
             try { savedTheme = localStorage.getItem('theme'); } catch (e) {}
-            if (savedTheme === 'light') {
-                document.documentElement.setAttribute('data-theme', 'light');
-            } else {
+            if (savedTheme === 'dark') {
                 document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
             }
         })();
     </script>
@@ -51,12 +51,15 @@
     <link rel="preload" href="fonts/Inter-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="fonts/fonts.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-96x96.png" />
     <link rel="manifest" href="site.webmanifest" />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#f7f8fc" />
 </head>
 <body>
     <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark Mode">
@@ -70,61 +73,26 @@
 <span class="header-text">Hey, it's Ben.</span>
             </div>
             <div class="ascii-nav__menu">
-                <a href="#apps" class="ascii-nav__link">[Meine Apps]</a>
-                <a href="#tech" class="ascii-nav__link">[Technologie]</a>
-                <a href="#contact" class="ascii-nav__link">[Kontakt]</a>
+                <a href="#apps" class="ascii-nav__link">Projekte</a>
+                <a href="#contact" class="ascii-nav__link">Kontakt</a>
             </div>
         </div>
     </nav>
 
-    <header class="hero hero--terminal" id="home">
-        <div class="orb orb--1"></div>
-        <div class="orb orb--2"></div>
+    <header class="hero" id="home">
         <div class="container">
             <div class="hero__layout">
                 <div class="hero__content">
                     <h1 class="hero__title">
-                        <span class="typewriter" data-text="Apps, die funktionieren."></span>
+                        <span class="typewriter" data-text="Apps, die einfach funktionieren."></span>
                     </h1>
                     <p class="hero__description">
-                        Ich entwickle Apps, die echte Probleme lösen. Von der Idee bis zum Launch.
-                        Pragmatisch, schnell und mit Fokus auf das Wesentliche.
+                        Ich baue digitale Produkte mit klarem Fokus auf Nutzen, Tempo und exzellente UX.
+                        Von der Idee bis zum Release.
                     </p>
-                </div>
-                <div class="hero__terminal">
-                    <div class="terminal-window">
-                        <div class="terminal-header">
-                            <span class="terminal-btn terminal-btn--close"></span>
-                            <span class="terminal-btn terminal-btn--minimize"></span>
-                            <span class="terminal-btn terminal-btn--maximize"></span>
-                            <span class="terminal-title">ben@macbook ~ zsh</span>
-                        </div>
-                        <div class="terminal-body">
-                            <div class="terminal-line">
-                                <span class="terminal-prompt">~</span>
-                                <span class="terminal-command">whoami</span>
-                            </div>
-                            <div class="terminal-output">indie app developer // ulm, germany</div>
-                            <div class="terminal-line">
-                                <span class="terminal-prompt">~</span>
-                                <span class="terminal-command">cat skills.txt</span>
-                            </div>
-                            <div class="terminal-output">
-                                <span class="terminal-accent">swift</span> ·
-                                <span class="terminal-highlight">react</span> ·
-                                <span class="terminal-accent">node</span> ·
-                                <span class="terminal-highlight">figma</span>
-                            </div>
-                            <div class="terminal-line">
-                                <span class="terminal-prompt">~</span>
-                                <span class="terminal-command">echo $VIBE</span>
-                            </div>
-                            <div class="terminal-output">80s kid · cli lover · pixel perfectionist</div>
-                            <div class="terminal-line">
-                                <span class="terminal-prompt">~</span>
-                                <span class="terminal-command"><span class="terminal-cursor"></span></span>
-                            </div>
-                        </div>
+                    <div class="hero__actions">
+                        <a href="#apps" class="btn btn--primary">Projekte ansehen</a>
+                        <a href="#contact" class="btn btn--secondary">Kontakt aufnehmen</a>
                     </div>
                 </div>
             </div>
@@ -135,7 +103,7 @@
         <section class="section" id="apps">
             <div class="container">
                 <h2 class="section__title fade-in">Projekte</h2>
-                <p class="section__description fade-in">Apps die echte Probleme lösen.</p>
+                <p class="section__description fade-in">Eine Auswahl aktueller Produkte und Experimente.</p>
             </div>
 
             <div class="container">
@@ -218,121 +186,18 @@
             </div>
         </section>
 
-        <section class="section" id="process">
-            <div class="container">
-                <h2 class="section__title fade-in">Prozess</h2>
-                <p class="section__description fade-in">Von der Idee bis zum Launch.</p>
 
-                <div class="process-list">
-                    <div class="process-item fade-in-stagger">
-                        <span class="process-item__number">01</span>
-                        <div class="process-item__content">
-                            <h3>Problem entdecken</h3>
-                            <p>Echte Probleme aus dem Alltag identifizieren. Was nervt mich wirklich?</p>
-                        </div>
-                    </div>
-                    <div class="process-item fade-in-stagger">
-                        <span class="process-item__number">02</span>
-                        <div class="process-item__content">
-                            <h3>Konzept entwickeln</h3>
-                            <p>Lösung skizzieren, Prototyp bauen. Weniger Features, mehr Fokus.</p>
-                        </div>
-                    </div>
-                    <div class="process-item fade-in-stagger">
-                        <span class="process-item__number">03</span>
-                        <div class="process-item__content">
-                            <h3>Perfektionieren</h3>
-                            <p>Iteration basierend auf echtem Nutzer-Feedback. UX optimieren.</p>
-                        </div>
-                    </div>
-                    <div class="process-item fade-in-stagger">
-                        <span class="process-item__number">04</span>
-                        <div class="process-item__content">
-                            <h3>Launch</h3>
-                            <p>Veröffentlichen und kontinuierlich verbessern.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <section class="section" id="tech">
-            <div class="container">
-                <h2 class="section__title fade-in">Technologien</h2>
-                <p class="section__description fade-in">Tools und Sprachen die ich bei der Entwicklung einsetze.</p>
-
-                <div class="pricing-grid">
-                    <article class="pricing-card fade-in-stagger">
-                        <div class="pricing-card__icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
-                        </div>
-                        <h3 class="pricing-card__title">Mobile & Desktop</h3>
-                        <p class="pricing-card__description">
-                            <strong>Swift</strong> und <strong>SwiftUI</strong> fuer native iOS und macOS Apps.
-                            <strong>Apple Intelligence API</strong> fuer KI-Features.
-                        </p>
-                    </article>
-
-                    <article class="pricing-card fade-in-stagger">
-                        <div class="pricing-card__icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-                        </div>
-                        <h3 class="pricing-card__title">Web Frontend</h3>
-                        <p class="pricing-card__description">
-                            <strong>HTML5</strong>, <strong>CSS3</strong> mit Custom Properties.
-                            <strong>JavaScript</strong>, <strong>TypeScript</strong> und <strong>React</strong>.
-                        </p>
-                    </article>
-
-                    <article class="pricing-card fade-in-stagger">
-                        <div class="pricing-card__icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></svg>
-                        </div>
-                        <h3 class="pricing-card__title">Backend & Server</h3>
-                        <p class="pricing-card__description">
-                            <strong>Node.js</strong>, <strong>PHP</strong>, <strong>Python</strong>.
-                            <strong>Firebase</strong>, <strong>Supabase</strong>. <strong>Resend</strong> fuer E-Mails.
-                        </p>
-                    </article>
-
-                    <article class="pricing-card fade-in-stagger">
-                        <div class="pricing-card__icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="4.93" x2="9.17" y1="4.93" y2="9.17"/><line x1="14.83" x2="19.07" y1="14.83" y2="19.07"/><line x1="14.83" x2="19.07" y1="9.17" y2="4.93"/><line x1="14.83" x2="18.36" y1="9.17" y2="5.64"/><line x1="4.93" x2="9.17" y1="19.07" y2="14.83"/></svg>
-                        </div>
-                        <h3 class="pricing-card__title">Browser Extensions</h3>
-                        <p class="pricing-card__description">
-                            <strong>Chrome Extensions API</strong> mit Manifest V3 fuer Browser-Erweiterungen.
-                        </p>
-                    </article>
-
-                    <article class="pricing-card fade-in-stagger">
-                        <div class="pricing-card__icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r="0.5" fill="currentColor"/><circle cx="17.5" cy="10.5" r="0.5" fill="currentColor"/><circle cx="8.5" cy="7.5" r="0.5" fill="currentColor"/><circle cx="6.5" cy="12.5" r="0.5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.555C21.965 6.012 17.461 2 12 2z"/></svg>
-                        </div>
-                        <h3 class="pricing-card__title">Design & UI</h3>
-                        <p class="pricing-card__description">
-                            <strong>Figma</strong> fuer Prototyping. <strong>Inter</strong> Typografie mit Monospace-Akzenten. Glassmorphism und Dark Mode.
-                        </p>
-                    </article>
-
-                    <article class="pricing-card fade-in-stagger">
-                        <div class="pricing-card__icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
-                        </div>
-                        <h3 class="pricing-card__title">Hosting & DevOps</h3>
-                        <p class="pricing-card__description">
-                            <strong>GitHub</strong> fuer Versionskontrolle.
-                            <strong>Vercel</strong> und <strong>Railway</strong> fuer Deployments.
-                        </p>
-                    </article>
-                </div>
-            </div>
-        </section>
+    <div class="about-block">
+        <div class="container">
+            <p>Ich bin Ben – Indie-Entwickler, der Apps baut, die er selbst vermisst hat. Keine aufgeblähten Feature-Listen, kein Schnickschnack. Nur Dinge, die wirklich funktionieren.</p>
+        </div>
+    </div>
 
         <section class="section" id="contact">
             <div class="container">
-                <h2 class="section__title fade-in">Bock auf eine Zusammenarbeit?</h2>
-                <p class="section__description fade-in">Schreib mir!</p>
+                <h2 class="section__title fade-in">Lass uns etwas bauen.</h2>
+                <p class="section__description fade-in">Kurz schreiben, schnell abstimmen, direkt starten.</p>
 
                 <div class="contact-grid">
                     <div class="contact-info">
@@ -418,47 +283,11 @@
         }
         initEmail('contact-email');
 
-        // Scramble/Decode Text Effect (like makingsoftware.com)
+        // Hero headline render
         (function() {
             const element = document.querySelector('.typewriter');
             if (!element) return;
-
-            const finalText = element.dataset.text;
-            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*';
-            const duration = 1500;
-            const frameRate = 30;
-            const totalFrames = duration / (1000 / frameRate);
-            let frame = 0;
-
-            function scramble() {
-                let output = '';
-                const progress = frame / totalFrames;
-
-                for (let i = 0; i < finalText.length; i++) {
-                    const charProgress = (progress * finalText.length - i) / 3;
-
-                    if (finalText[i] === ' ') {
-                        output += ' ';
-                    } else if (charProgress >= 1) {
-                        output += finalText[i];
-                    } else if (charProgress > 0) {
-                        output += chars[Math.floor(Math.random() * chars.length)];
-                    } else {
-                        output += chars[Math.floor(Math.random() * chars.length)];
-                    }
-                }
-
-                element.textContent = output;
-                frame++;
-
-                if (frame <= totalFrames) {
-                    requestAnimationFrame(scramble);
-                } else {
-                    element.textContent = finalText;
-                }
-            }
-
-            setTimeout(scramble, 400);
+            element.textContent = element.dataset.text || '';
         })();
 
         // Theme Toggle
