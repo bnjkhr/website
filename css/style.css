@@ -28,7 +28,7 @@
     --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.03);
     --shadow-lg: 0 16px 50px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.03);
     --container: 1060px;
-    --font-display: "Instrument Serif", Georgia, serif;
+    --font-display: "Archivo Black", "Arial Black", sans-serif;
     --font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
     --font-mono: "JetBrains Mono", monospace;
 }
@@ -112,9 +112,11 @@ a {
 
 h1, h2, h3, h4 {
     margin: 0;
-    font-weight: 600;
+    font-family: var(--font-display);
+    font-weight: 400;
     line-height: 1.1;
     letter-spacing: -0.03em;
+    text-transform: uppercase;
 }
 
 p {
@@ -271,21 +273,14 @@ p {
 }
 
 .hero__title {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-style: italic;
-    font-size: clamp(3rem, 10vw, 6rem);
-    letter-spacing: -0.02em;
-    line-height: 1.0;
+    font-size: clamp(2.75rem, 9vw, 5.5rem);
+    line-height: 0.95;
     margin-bottom: 1.75rem;
     color: var(--text);
 }
 
 [data-theme="dark"] .hero__title {
-    background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--text);
 }
 
 .hero__description {
@@ -556,8 +551,8 @@ p {
 }
 
 .about-block p {
-    font-family: var(--font-display);
-    font-style: italic;
+    font-family: var(--font-body);
+    font-style: normal;
     font-size: clamp(1.2rem, 3vw, 1.5rem);
     color: var(--text-soft);
     line-height: 1.55;
