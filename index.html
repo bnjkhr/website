@@ -53,7 +53,7 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
@@ -62,198 +62,153 @@
     <meta name="theme-color" content="#f8f7f4" />
 </head>
 <body>
-    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark Mode">
-        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-    </button>
 
-    <nav class="ascii-nav">
-        <div class="container">
-            <div class="ascii-nav__header">
-<span class="header-text">Hey, it's Ben.</span>
-            </div>
-            <div class="ascii-nav__menu">
-                <a href="#apps" class="ascii-nav__link">Projekte</a>
-                <a href="#contact" class="ascii-nav__link">Kontakt</a>
-            </div>
-        </div>
-    </nav>
-
-    <header class="hero" id="home">
-        <div class="container">
-            <div class="hero__layout">
-                <div class="hero__content">
-                    <h1 class="hero__title">
-                        <span class="typewriter" data-text="Apps made in Ulm with 🖤"></span>
-                    </h1>
-                    <p class="hero__description">
-                        Ich baue digitale Produkte mit klarem Fokus auf Nutzen, Tempo und exzellente UX.
-                        Von der Idee bis zum Release.
-                    </p>
-                    <div class="hero__actions">
-                        <a href="#apps" class="btn btn--primary">Projekte ansehen</a>
-                        <a href="#contact" class="btn btn--secondary">Kontakt aufnehmen</a>
-                    </div>
-                </div>
-            </div>
+    <header class="topbar">
+        <div class="wrap topbar__inner">
+            <a class="topbar__brand" href="#home">Ben Kohler <span>· Indie Apps</span></a>
+            <nav class="topbar__nav">
+                <a href="#apps">Projekte</a>
+                <a href="#contact">Kontakt</a>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Dark Mode umschalten">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </button>
+            </nav>
         </div>
     </header>
 
-    <main>
-        <section class="section" id="apps">
-            <div class="container">
-                <h2 class="section__title fade-in">Projekte</h2>
-                <p class="section__description fade-in">Eine Auswahl aktueller Produkte und Experimente.</p>
+    <main class="wrap">
+
+        <header class="masthead" id="home">
+            <p class="masthead__kicker">Indie App Developer</p>
+            <h1 class="masthead__name">BEN<br>KOHLER<em>.</em></h1>
+            <p class="masthead__lead">Ich baue Apps, die ich selbst vermisst habe.</p>
+            <p class="masthead__sub">Digitale Produkte mit klarem Fokus auf Nutzen, Tempo und exzellente UX. Von der ersten Idee bis zum Release im Store.</p>
+        </header>
+
+        <section id="apps">
+            <div class="label fade-in">
+                <span class="label__no">01</span>
+                <span class="label__txt">Ausgewählte Projekte</span>
+                <span class="label__count">06 Einträge</span>
             </div>
 
-            <div class="container">
-                <div class="apps-highlight-grid">
-                    <!-- GymBo - Featured -->
-                    <article class="app-card app-card--featured">
-                        <div class="app-card__header">
-                            <span class="app-card__platform">iOS</span>
-                            <span class="app-card__status app-card__status--live">Live</span>
-                        </div>
-                        <h3 class="app-card__title">GymBo</h3>
-                        <p class="app-card__description">
-                            Dein entspannter Trainingsbegleiter im Gym. Schnell, smart und ohne Ablenkung.
-                        </p>
-                        <a class="app-card__link" href="https://gymbo.benkohler.de/" target="_blank" rel="noopener">Mehr erfahren</a>
-                    </article>
+            <ul class="ledger">
+                <li><a class="row fade-in" href="https://gymbo.benkohler.de/" target="_blank" rel="noopener">
+                    <span class="row__no">01</span>
+                    <span class="row__name">GymBo</span>
+                    <span class="row__desc">Dein entspannter Trainingsbegleiter im Gym. Schnell, smart und ohne Ablenkung.</span>
+                    <span class="row__tail"><span class="tag">iOS</span><span class="status status--live">Live</span></span>
+                </a></li>
+                <li><a class="row fade-in" href="https://familymanager.pro/landing" target="_blank" rel="noopener">
+                    <span class="row__no">02</span>
+                    <span class="row__name">FamilyManager</span>
+                    <span class="row__desc">Die digitale Familienorganisation: Aufgaben, Credits und Kalender an einem Ort.</span>
+                    <span class="row__tail"><span class="tag">iOS · Android · Web</span><span class="status status--beta">Beta</span></span>
+                </a></li>
+                <li><a class="row fade-in" href="https://startune.benkohler.de/" target="_blank" rel="noopener">
+                    <span class="row__no">03</span>
+                    <span class="row__name">StarTune</span>
+                    <span class="row__desc">Die schnellste Art, Songs zu favorisieren. Ein Klick auf den Menüleisten-Stern, gespeichert.</span>
+                    <span class="row__tail"><span class="tag">macOS</span><span class="status status--live">Live</span></span>
+                </a></li>
+                <li><a class="row fade-in" href="https://github.com/bnjkhr/Chrome_AI_filter" target="_blank" rel="noopener">
+                    <span class="row__no">04</span>
+                    <span class="row__name">Chrome AI Filter</span>
+                    <span class="row__desc">Markiert KI-generierte Inhalte und „Broetry" auf Social Media.</span>
+                    <span class="row__tail"><span class="tag">Chrome</span><span class="status status--beta">Beta</span></span>
+                </a></li>
+                <li><a class="row fade-in" href="https://voting-tool-seven.vercel.app/" target="_blank" rel="noopener">
+                    <span class="row__no">05</span>
+                    <span class="row__name">Voting Tool</span>
+                    <span class="row__desc">Ein Tool, um sich App-Funktionen zu wünschen und darüber abzustimmen.</span>
+                    <span class="row__tail"><span class="tag">Web</span><span class="status status--beta">Beta</span></span>
+                </a></li>
+                <li><a class="row fade-in" href="https://natursupps.benkohler.de/" target="_blank" rel="noopener">
+                    <span class="row__no">06</span>
+                    <span class="row__name">NaturSupps</span>
+                    <span class="row__desc">Endlich Durchblick im Supplement-Dschungel. Klar, ehrlich, auf deine Ziele abgestimmt.</span>
+                    <span class="row__tail"><span class="tag">iOS · Web</span><span class="status status--beta">Beta</span></span>
+                </a></li>
+            </ul>
+        </section>
 
-                    <!-- FamilyManager - Featured -->
-                    <article class="app-card app-card--featured app-card--featured-family">
-                        <div class="app-card__header">
-                            <span class="app-card__platform">iOS, Android, Web</span>
-                            <span class="app-card__status app-card__status--beta">Beta</span>
-                        </div>
-                        <h3 class="app-card__title">FamilyManager</h3>
-                        <p class="app-card__description">
-                            Die digitale Familienorganisation: Aufgaben, Credits und Kalender.
-                        </p>
-                        <a class="app-card__link" href="https://familymanager.pro/landing" target="_blank" rel="noopener">Mehr erfahren</a>
-                    </article>
+        <section id="about">
+            <div class="label fade-in">
+                <span class="label__no">02</span>
+                <span class="label__txt">Über Ben</span>
+                <span class="label__count">Ulm, seit 2000</span>
+            </div>
+
+            <div class="about fade-in">
+                <div class="about__statement">
+                    <p>Apps, die ich selbst <em>vermisst</em> habe. Kein Schnickschnack, nur Dinge, die wirklich funktionieren.</p>
                 </div>
-
-                <div class="apps-grid">
-                    <article class="app-card app-card--large">
-                        <div class="app-card__header">
-                            <span class="app-card__platform">macOS</span>
-                            <span class="app-card__status app-card__status--live">Live</span>
-                        </div>
-                        <h3 class="app-card__title">StarTune</h3>
-                        <p class="app-card__description">
-                            Die schnellste Art, Songs zu favorisieren. Ein Klick auf den Menüleisten-Stern und der Song ist gespeichert.
-                        </p>
-                        <a class="app-card__link" href="https://startune.benkohler.de/" target="_blank" rel="noopener">Mehr erfahren</a>
-                    </article>
-
-                    <article class="app-card app-card--large">
-                        <div class="app-card__header">
-                            <span class="app-card__platform">Chrome</span>
-                            <span class="app-card__status app-card__status--beta">Beta</span>
-                        </div>
-                        <h3 class="app-card__title">Chrome AI Filter</h3>
-                        <p class="app-card__description">
-                            Markiert KI-generierte Inhalte und "Broetry" auf Social Media.
-                        </p>
-                        <a class="app-card__link" href="https://github.com/bnjkhr/Chrome_AI_filter" target="_blank" rel="noopener">GitHub</a>
-                    </article>
-
-                    <article class="app-card app-card--large">
-                        <div class="app-card__header">
-                            <span class="app-card__platform">Web</span>
-                            <span class="app-card__status app-card__status--beta">Beta</span>
-                        </div>
-                        <h3 class="app-card__title">Voting Tool</h3>
-                        <p class="app-card__description">
-                            Ein Tool, um sich App-Funktionen zu wünschen und zu voten.
-                        </p>
-                        <a class="app-card__link" href="https://voting-tool-seven.vercel.app/" target="_blank" rel="noopener">Ausprobieren</a>
-                    </article>
-
-                    <article class="app-card app-card--large">
-                        <div class="app-card__header">
-                            <span class="app-card__platform">iOS / Web</span>
-                            <span class="app-card__status app-card__status--beta">Beta</span>
-                        </div>
-                        <h3 class="app-card__title">NaturSupps</h3>
-                        <p class="app-card__description">
-                            Endlich Durchblick im Supplement-Dschungel. Klar, ehrlich und auf deine Ziele abgestimmt.
-                        </p>
-                        <a class="app-card__link" href="https://natursupps.benkohler.de/" target="_blank" rel="noopener">Ausprobieren</a>
-                    </article>
-
+                <div class="about__detail">
+                    <p class="about__bio">Ich bin Ben, Indie-Entwickler aus Ulm. Von der ersten Idee über Design und Code bis zum Release im Store mache ich alles selbst. Statt aufgeblähter Feature-Listen baue ich Produkte, die eine Sache richtig gut können.</p>
+                    <dl class="facts">
+                        <div><dt>Standort</dt><dd>Ulm, Deutschland</dd></div>
+                        <div><dt>Aktiv seit</dt><dd>2000</dd></div>
+                        <div><dt>Fokus</dt><dd>iOS · macOS · Web</dd></div>
+                        <div><dt>Projekte</dt><dd>6 live &amp; in Beta</dd></div>
+                    </dl>
                 </div>
             </div>
         </section>
 
+        <section id="contact">
+            <div class="label fade-in">
+                <span class="label__no">03</span>
+                <span class="label__txt">Kontakt</span>
+                <span class="label__count">Antwort meist binnen 24 h</span>
+            </div>
 
-
-    <div class="about-block">
-        <div class="container">
-            <p>Ich bin Ben – Indie-Entwickler, der Apps baut, die er selbst vermisst hat. Keine aufgeblähten Feature-Listen, kein Schnickschnack. Nur Dinge, die wirklich funktionieren.</p>
-        </div>
-    </div>
-
-        <section class="section" id="contact">
-            <div class="container">
-                <h2 class="section__title fade-in">Lass uns etwas bauen.</h2>
-                <p class="section__description fade-in">Kurz schreiben, schnell abstimmen, direkt starten.</p>
-
-                <div class="contact-grid">
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <h3>E-Mail</h3>
-                            <a id="contact-email" href="#"></a>
-                        </div>
-                        <div class="contact-item">
-                            <h3>Threads</h3>
-                            <a href="https://www.threads.com/@ben.kohler_" target="_blank" rel="noopener">@ben.kohler_</a>
-                        </div>
-                        <div class="contact-item">
-                            <h3>Mastodon</h3>
-                            <a rel="me" href="https://mastodon.social/@bnjkhr" target="_blank">@bnjkhr</a>
-                        </div>
+            <div class="contact">
+                <div class="contact__left">
+                    <h2 class="contact__head">Lass uns etwas <em>bauen.</em></h2>
+                    <p class="contact__sub">Kurz schreiben, schnell abstimmen, direkt starten.</p>
+                    <div class="channels">
+                        <a class="channel" id="email-channel" href="#"><span class="channel__k">E-Mail</span><span class="channel__v" id="contact-email"></span></a>
+                        <a class="channel" href="https://www.threads.com/@ben.kohler_" target="_blank" rel="noopener"><span class="channel__k">Threads</span><span class="channel__v">@ben.kohler_</span></a>
+                        <a class="channel" href="https://www.instagram.com/ben.kohler_/" target="_blank" rel="noopener"><span class="channel__k">Instagram</span><span class="channel__v">@ben.kohler_</span></a>
                     </div>
-
-                    <form class="contact-form" id="contact-form">
-                        <!-- Honeypot - unsichtbar für Menschen, Bots füllen es aus -->
-                        <div class="form-group form-group--hp" aria-hidden="true">
-                            <input type="text" name="website" tabindex="-1" autocomplete="off" class="form-input">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="name" name="name" placeholder="Name" required class="form-input">
-                        </div>
-                        <div class="form-group">
-                            <input type="email" id="email" name="email" placeholder="E-Mail" required class="form-input">
-                        </div>
-                        <div class="form-group">
-                            <textarea id="message" name="message" placeholder="Nachricht" rows="4" required class="form-textarea"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn--primary form-submit">Senden</button>
-                        <div class="form-status" id="form-status"></div>
-                    </form>
                 </div>
+
+                <form class="contact-form" id="contact-form">
+                    <!-- Honeypot - unsichtbar für Menschen, Bots füllen es aus -->
+                    <div class="form-group form-group--hp" aria-hidden="true">
+                        <input type="text" name="website" tabindex="-1" autocomplete="off" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Name" required class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="E-Mail" required class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" placeholder="Nachricht" rows="4" required class="form-textarea"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn--primary form-submit">Senden</button>
+                    <div class="form-status" id="form-status"></div>
+                </form>
             </div>
         </section>
+
     </main>
 
     <footer class="footer">
-        <div class="container">
-            <div class="footer__content">
-                <div>
-                    <p class="footer__brand">Ben Kohler</p>
-                    <p class="footer__tagline">Indie App Developer</p>
-                </div>
-                <div class="footer__links">
-                    <a href="impressum.html">Impressum</a>
-                    <a href="datenschutz.html">Datenschutz</a>
-                    <a href="#" id="open-cookie-settings">Cookie-Einstellungen</a>
-                </div>
+        <div class="wrap footer__content">
+            <div>
+                <p class="footer__brand">Ben Kohler</p>
+                <p class="footer__tagline">Indie App Developer · Ulm</p>
             </div>
-            <p class="footer__copyright">&copy; 2026 Ben Kohler</p>
+            <div class="footer__links">
+                <a href="impressum.html">Impressum</a>
+                <a href="datenschutz.html">Datenschutz</a>
+                <a href="#" id="open-cookie-settings">Cookie-Einstellungen</a>
+            </div>
         </div>
+        <div class="wrap"><p class="footer__copyright">© 2026 Ben Kohler · Made in Ulm</p></div>
     </footer>
 
     <div class="scroll-progress" id="scroll-progress"></div>
@@ -283,13 +238,15 @@
             el.href = 'mai' + 'lto:' + u + '@' + d;
             el.textContent = u + '@' + d;
         }
-        initEmail('contact-email');
 
-        // Hero headline render
+        // E-Mail-Kanal (Anchor mit separatem Text-Span)
         (function() {
-            const element = document.querySelector('.typewriter');
-            if (!element) return;
-            element.textContent = element.dataset.text || '';
+            const a = document.getElementById('email-channel');
+            const span = document.getElementById('contact-email');
+            const u = 'mail';
+            const d = 'benkohler.de';
+            if (a) a.href = 'mai' + 'lto:' + u + '@' + d;
+            if (span) span.textContent = u + '@' + d;
         })();
 
         // Theme Toggle
@@ -318,12 +275,7 @@
         });
 
         // Scroll Animations (Intersection Observer)
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -332,10 +284,7 @@
                 }
             });
         }, observerOptions);
-
-        document.querySelectorAll('.fade-in, .fade-in-stagger').forEach(el => {
-            observer.observe(el);
-        });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
         // Contact Form
         document.getElementById('contact-form').addEventListener('submit', function(e) {
@@ -343,19 +292,19 @@
             const form = this;
             const submitButton = form.querySelector('.form-submit');
             const statusDiv = document.getElementById('form-status');
-            
+
             submitButton.disabled = true;
             submitButton.textContent = 'Wird gesendet...';
             statusDiv.textContent = '';
             statusDiv.className = 'form-status';
-            
+
             const payload = {
                 website: (form.querySelector('input[name="website"]')?.value || ''),
                 name: form.querySelector('#name').value,
                 email: form.querySelector('#email').value,
                 message: form.querySelector('#message').value
             };
-            
+
             fetch('/api/send-email', {
                 method: 'POST',
                 body: JSON.stringify(payload),
@@ -413,7 +362,6 @@
             if (declineBtn) {
                 declineBtn.addEventListener('click', () => {
                     try { localStorage.setItem('consent_analytics', 'denied'); } catch (e) {}
-                    // If analytics was already loaded, a reload is the simplest way to stop further tracking.
                     if (window.__analyticsLoaded) {
                         location.reload();
                         return;
