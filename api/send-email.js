@@ -1,3 +1,18 @@
+import nodemailer from "nodemailer";
+
+// SMTP-Versand über iCloud Mail (Custom Domain benkohler.de).
+// Auth braucht ein App-spezifisches Passwort von appleid.apple.com,
+// nicht das normale Apple-ID-Passwort.
+const transporter = nodemailer.createTransport({
+  host: process.env.SMTP_HOST || "smtp.mail.me.com",
+  port: Number(process.env.SMTP_PORT) || 587,
+  secure: false, // 587 nutzt STARTTLS
+  auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS,
+  },
+});
+
 export default async function handler(req, res) {
   res.setHeader("Content-Type", "application/json; charset=utf-8");
 
@@ -8,8 +23,7 @@ export default async function handler(req, res) {
     return;
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) {
+  if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
     res.statusCode = 500;
     res.end(JSON.stringify({ success: false, message: "Server configuration error" }));
     return;
@@ -42,7 +56,8 @@ export default async function handler(req, res) {
   }
 
   const to = "mail@benkohler.de";
-  const from = "Ben Kohler Website <website@benkohler.de>";
+  // Absender muss eine in iCloud konfigurierte Adresse der Domain sein.
+  const from = process.env.SMTP_FROM || "Ben Kohler Website <mail@benkohler.de>";
   const subject = `Kontakt von Website: ${name}`;
 
   // Escape minimal HTML. (Message is wrapped in <pre> to preserve newlines.)
@@ -65,33 +80,19 @@ export default async function handler(req, res) {
   ].join("");
 
   try {
-    const r = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        from,
-        to: [to],
-        reply_to: email,
-        subject,
-        html,
-      }),
+    await transporter.sendMail({
+      from,
+      to,
+      replyTo: email,
+      subject,
+      html,
     });
-
-    if (!r.ok) {
-      res.statusCode = 500;
-      res.end(JSON.stringify({ success: false, message: "Fehler beim Senden der E-Mail" }));
-      return;
-    }
 
     res.statusCode = 200;
     res.end(JSON.stringify({ success: true, message: "E-Mail erfolgreich gesendet" }));
   } catch (e) {
+    console.error("SMTP send failed:", e);
     res.statusCode = 500;
     res.end(JSON.stringify({ success: false, message: "Fehler beim Senden der E-Mail" }));
   }
 }
-
