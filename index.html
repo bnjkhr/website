@@ -3,6 +3,9 @@
 <head>
     <script>
         (function() {
+            // Markiert, dass JS aktiv ist – Scroll-Animationen blenden Inhalte
+            // nur dann initial aus. Ohne JS bleibt alles sichtbar (robust).
+            document.documentElement.classList.add('js');
             let savedTheme = null;
             try { savedTheme = localStorage.getItem('theme'); } catch (e) {}
             if (savedTheme === 'dark') {
@@ -80,10 +83,24 @@
     <main class="wrap">
 
         <header class="masthead" id="home">
-            <p class="masthead__kicker">Indie App Developer</p>
-            <h1 class="masthead__name">BEN<br>KOHLER<em>.</em></h1>
-            <p class="masthead__lead">Ich baue Apps, die ich selbst vermisst habe.</p>
-            <p class="masthead__sub">Digitale Produkte mit klarem Fokus auf Nutzen, Tempo und exzellente UX. Von der ersten Idee bis zum Release im Store.</p>
+            <div class="masthead__intro">
+                <p class="masthead__kicker"><span class="masthead__kicker-dot"></span>Indie App Developer</p>
+                <h1 class="masthead__name">BEN<br>KOHLER<em>.</em></h1>
+                <p class="masthead__lead">Ich baue Apps, die ich selbst vermisst habe.</p>
+                <p class="masthead__sub">Digitale Produkte mit klarem Fokus auf Nutzen, Tempo und exzellente UX. Von der ersten Idee bis zum Release im Store.</p>
+                <div class="masthead__actions">
+                    <a class="btn btn--primary" href="#apps">Projekte ansehen</a>
+                    <a class="btn btn--ghost" href="#contact">Kontakt aufnehmen</a>
+                </div>
+            </div>
+            <figure class="masthead__portrait">
+                <div class="portrait__frame">
+                    <img src="images/ben-profile.webp" width="600" height="800"
+                         alt="Ben Kohler, Indie App Developer aus Ulm"
+                         loading="eager" decoding="async" fetchpriority="high">
+                </div>
+                <figcaption class="portrait__caption"><span>Fig. 01</span>Ulm · seit 2000</figcaption>
+            </figure>
         </header>
 
         <section id="apps">
@@ -274,17 +291,21 @@
             scrollProgress.style.width = scrolled + "%";
         });
 
-        // Scroll Animations (Intersection Observer)
-        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        // Scroll Animations (Intersection Observer) – mit Fallback
+        const fadeEls = document.querySelectorAll('.fade-in');
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { root: null, rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+            fadeEls.forEach(el => observer.observe(el));
+        } else {
+            fadeEls.forEach(el => el.classList.add('visible'));
+        }
 
         // Contact Form
         document.getElementById('contact-form').addEventListener('submit', function(e) {
