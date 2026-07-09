@@ -5,27 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Datenschutz // Ben Kohler</title>
 
-    <!-- Fonts -->
-    <link rel="preload" href="fonts/Inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="fonts/fonts.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/legal.css" />
 
-    <link rel="stylesheet" href="css/style.css" />
-
-    <!-- NEU: Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-96x96.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-96x96.png" />
     <link rel="manifest" href="site.webmanifest" />
-    <meta name="msapplication-TileColor" content="#1a1b26" />
-    <meta name="theme-color" content="#1a1b26" />
+    <meta name="theme-color" content="#17181c" />
   </head>
   <body>
-    <main class="legal-section">
-      <div class="container">
-        <h2>Datenschutzerklärung</h2>
-        <p><strong>Stand:</strong> 05.02.2026</p>
+    <nav class="lnav">
+      <div class="lnav__inner">
+        <a class="lnav__brand" href="index.html">Ben Kohler<b>.</b></a>
+        <a class="lnav__back" href="index.html">← Startseite</a>
+      </div>
+    </nav>
 
-        <h4>1. Verantwortlicher</h4>
+    <main class="legal">
+      <div class="legal__wrap">
+        <p class="legal__kicker">Rechtliches</p>
+        <h1 class="legal__title">Datenschutzerklärung</h1>
+        <p class="legal__meta">Stand: 05.02.2026</p>
+
+        <h2 class="legal__h">1. Verantwortlicher</h2>
         <p>
           Verantwortlicher im Sinne der DSGVO ist:<br />
           Ben Kohler<br />
@@ -35,13 +39,13 @@
           E-Mail: mail@benkohler.de
         </p>
 
-        <h4>2. Allgemeine Hinweise</h4>
+        <h2 class="legal__h">2. Allgemeine Hinweise</h2>
         <p>
           Diese Datenschutzerklärung informiert darüber, welche personenbezogenen Daten bei der Nutzung dieser Website verarbeitet werden,
           zu welchen Zwecken dies geschieht und welche Rechte Ihnen zustehen.
         </p>
 
-        <h4>3. Hosting und Server-Logfiles</h4>
+        <h2 class="legal__h">3. Hosting und Server-Logfiles</h2>
         <p>
           Beim Aufruf dieser Website werden durch den Hostinganbieter automatisch Informationen in sogenannten Server-Logfiles verarbeitet.
           Dazu können gehören: IP-Adresse, Datum und Uhrzeit des Zugriffs, aufgerufene Seite/Datei, übertragene Datenmenge, Referrer-URL,
@@ -52,12 +56,9 @@
           sowie zur Fehleranalyse. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse).
         </p>
 
-        <h4>4. Lokale Speicherung (LocalStorage)</h4>
+        <h2 class="legal__h">4. Lokale Speicherung (LocalStorage)</h2>
         <p>
           Diese Website speichert bestimmte Einstellungen lokal in Ihrem Browser (LocalStorage):
-        </p>
-        <p>
-          <strong>Theme-Einstellung (Dark/Light Mode):</strong> Speicherung Ihrer Auswahl, um die Darstellung entsprechend bereitzustellen.
         </p>
         <p>
           <strong>Einwilligung Statistik:</strong> Speicherung Ihrer Entscheidung, ob optionale Statistik (Google Analytics) geladen werden darf.
@@ -66,7 +67,7 @@
           Rechtsgrundlage für technisch erforderliche Speicherungen ist § 25 Abs. 2 TTDSG. Soweit eine Einwilligung erforderlich ist, erfolgt die Speicherung auf Grundlage Ihrer Einwilligung (§ 25 Abs. 1 TTDSG i. V. m. Art. 6 Abs. 1 lit. a DSGVO).
         </p>
 
-        <h4>5. Kontaktaufnahme (E-Mail und Kontaktformular)</h4>
+        <h2 class="legal__h">5. Kontaktaufnahme (E-Mail und Kontaktformular)</h2>
         <p>
           Wenn Sie uns per E-Mail oder über das Kontaktformular kontaktieren, verarbeiten wir die von Ihnen übermittelten Daten
           (insbesondere Name, E-Mail-Adresse und Nachricht) zur Bearbeitung Ihrer Anfrage und für Anschlussfragen.
@@ -76,18 +77,18 @@
           Die Daten werden gelöscht, sobald sie für die Bearbeitung nicht mehr erforderlich sind und keine gesetzlichen Aufbewahrungspflichten entgegenstehen.
         </p>
 
-        <h4>6. E-Mail-Versanddienstleister (Resend)</h4>
+        <h2 class="legal__h">6. E-Mail-Versand (Kontaktformular)</h2>
         <p>
-          Für den Versand von E-Mails aus dem Kontaktformular nutzen wir einen technischen Dienstleister (Resend).
-          Dabei werden die von Ihnen eingegebenen Inhalte (Name, E-Mail-Adresse, Nachricht) an den Dienstleister übermittelt, um die E-Mail an uns zuzustellen.
+          Für den Versand von E-Mails aus dem Kontaktformular werden die von Ihnen eingegebenen Inhalte (Name, E-Mail-Adresse, Nachricht)
+          über einen E-Mail-Server (SMTP) zugestellt, um die Nachricht an uns zu übermitteln.
           Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO bzw. Art. 6 Abs. 1 lit. f DSGVO.
         </p>
         <p>
-          Je nach Standort/Infrastruktur des Dienstleisters kann eine Verarbeitung in Drittländern (z. B. USA) nicht ausgeschlossen werden.
+          Je nach Standort/Infrastruktur der beteiligten Dienste kann eine Verarbeitung in Drittländern nicht ausgeschlossen werden.
           In diesem Fall erfolgt die Übermittlung auf Grundlage geeigneter Garantien (z. B. EU-Standardvertragsklauseln), soweit erforderlich.
         </p>
 
-        <h4>7. Webanalyse (Google Analytics 4)</h4>
+        <h2 class="legal__h">7. Webanalyse (Google Analytics 4)</h2>
         <p>
           Soweit Sie eingewilligt haben, nutzt diese Website Google Analytics 4, einen Webanalysedienst.
           Anbieter ist Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland („Google“).
@@ -102,36 +103,44 @@
           Hinweis: Bei der Nutzung von Google-Diensten kann eine Übermittlung von Daten an Server in Drittländern (insb. USA) nicht ausgeschlossen werden.
         </p>
 
-        <h4>8. Externe Links</h4>
+        <h2 class="legal__h">8. Externe Links</h2>
         <p>
           Diese Website enthält Links zu externen Websites (z. B. zu Projekten oder Social-Media-Profilen). Beim Anklicken eines Links verlassen Sie diese Website.
           Für die Datenverarbeitung auf den verlinkten Seiten ist jeweils der dortige Anbieter verantwortlich.
         </p>
 
-        <h4>9. Ihre Rechte</h4>
+        <h2 class="legal__h">9. Ihre Rechte</h2>
         <p>
           Sie haben nach der DSGVO insbesondere das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18),
           Datenübertragbarkeit (Art. 20) sowie Widerspruch gegen die Verarbeitung (Art. 21). Soweit die Verarbeitung auf Ihrer Einwilligung beruht,
           können Sie diese jederzeit mit Wirkung für die Zukunft widerrufen (Art. 7 Abs. 3 DSGVO).
         </p>
 
-        <h4>10. Beschwerderecht bei der Aufsichtsbehörde</h4>
+        <h2 class="legal__h">10. Beschwerderecht bei der Aufsichtsbehörde</h2>
         <p>
           Sie haben das Recht, sich bei einer Datenschutzaufsichtsbehörde zu beschweren. Zuständig ist in der Regel die Aufsichtsbehörde Ihres üblichen Aufenthaltsortes,
           Ihres Arbeitsplatzes oder des Orts des mutmaßlichen Verstoßes. Für Baden-Württemberg ist dies der Landesbeauftragte für den Datenschutz und die Informationsfreiheit (LfDI BW).
         </p>
 
-        <h4>11. SSL-/TLS-Verschlüsselung</h4>
+        <h2 class="legal__h">11. SSL-/TLS-Verschlüsselung</h2>
         <p>
           Diese Website nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte eine SSL-/TLS-Verschlüsselung.
           Eine verschlüsselte Verbindung erkennen Sie an „https://“ in der Adresszeile Ihres Browsers.
         </p>
 
-        <a href="index.html" class="back-link">>> Zurück zur Hauptseite</a>
+        <a href="index.html" class="legal__back-bottom">← Zurück zur Startseite</a>
       </div>
     </main>
-    <footer class="legal-footer">
-      <p>&copy; 2026 Ben Kohler // System Online</p>
+
+    <footer class="lfooter">
+      <div class="lfooter__inner">
+        <span class="lfooter__brand">Ben Kohler<span>.</span></span>
+        <div class="lfooter__links">
+          <a href="impressum.html">Impressum</a>
+          <a href="index.html">Startseite</a>
+        </div>
+        <span class="lfooter__copy">© 2026 · Made in Ulm</span>
+      </div>
     </footer>
   </body>
 </html>

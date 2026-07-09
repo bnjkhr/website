@@ -5,45 +5,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Impressum // Ben Kohler</title>
 
-    <!-- Fonts -->
-    <link rel="preload" href="fonts/Inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="fonts/fonts.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/legal.css" />
 
-    <link rel="stylesheet" href="css/style.css" />
-
-    <!-- NEU: Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-96x96.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-96x96.png" />
     <link rel="manifest" href="site.webmanifest" />
-    <meta name="msapplication-TileColor" content="#1a1b26" />
-    <meta name="theme-color" content="#1a1b26" />
+    <meta name="theme-color" content="#17181c" />
   </head>
   <body>
-    <main class="legal-section">
-      <div class="container">
-        <h2>Impressum</h2>
-        <p>Angaben gemäß § 5 TMG</p>
-        <p>
-          Ben Kohler<br />
-          Auf dem Kreuz 32/1<br />
-          89073 Ulm<br />
-          Deutschland<br />
-        </p>
-        <h4>Kontakt:</h4>
+    <nav class="lnav">
+      <div class="lnav__inner">
+        <a class="lnav__brand" href="index.html">Ben Kohler<b>.</b></a>
+        <a class="lnav__back" href="index.html">← Startseite</a>
+      </div>
+    </nav>
+
+    <main class="legal">
+      <div class="legal__wrap">
+        <p class="legal__kicker">Rechtliches</p>
+        <h1 class="legal__title">Impressum</h1>
+        <p class="legal__meta">Angaben gemäß § 5 TMG</p>
+
+        <address>
+          <p>
+            Ben Kohler<br />
+            Auf dem Kreuz 32/1<br />
+            89073 Ulm<br />
+            Deutschland
+          </p>
+        </address>
+
+        <h2 class="legal__h">Kontakt</h2>
         <p>E-Mail: <a id="impressum-email" href="#"></a></p>
-        <h4>Haftungsausschluss:</h4>
+
+        <h2 class="legal__h">Haftungsausschluss</h2>
         <p>
           Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung
           für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten
           sind ausschließlich deren Betreiber verantwortlich.
         </p>
-        <a href="index.html" class="back-link">>> Zurück zur Hauptseite</a>
+
+        <a href="index.html" class="legal__back-bottom">← Zurück zur Startseite</a>
       </div>
     </main>
-    <footer class="legal-footer">
-      <p>&copy; 2026 Ben Kohler // System Online</p>
+
+    <footer class="lfooter">
+      <div class="lfooter__inner">
+        <span class="lfooter__brand">Ben Kohler<span>.</span></span>
+        <div class="lfooter__links">
+          <a href="datenschutz.html">Datenschutz</a>
+          <a href="index.html">Startseite</a>
+        </div>
+        <span class="lfooter__copy">© 2026 · Made in Ulm</span>
+      </div>
     </footer>
+
     <script>
       (function() {
         const el = document.getElementById('impressum-email');
