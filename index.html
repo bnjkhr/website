@@ -86,7 +86,12 @@
 
     *, *::before, *::after { box-sizing: border-box; }
 
-    html { scroll-behavior: smooth; }
+    html {
+        scroll-behavior: smooth;
+        /* overflow-x on <html> too: body-only is unreliable on iOS Safari */
+        overflow-x: hidden;
+        width: 100%;
+    }
 
     body {
         margin: 0;
@@ -98,6 +103,8 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         overflow-x: hidden;
+        width: 100%;
+        max-width: 100%;
     }
 
     /* fine film grain, behind content */
@@ -269,6 +276,8 @@
     @media (max-width: 880px) {
         .hero { grid-template-columns: 1fr; min-height: 0; gap: 2.5rem; }
         .hero__visual { order: -1; justify-self: start; max-width: 260px; }
+        /* keep the badge from poking past the viewport's left edge */
+        .hero__badge { left: 0; }
     }
 
     /* ---------- Marquee proof strip ---------- */
@@ -416,7 +425,9 @@
     .field input::placeholder, .field textarea::placeholder { color: var(--ink-faint); }
     .field input:focus, .field textarea:focus { border-color: var(--accent); }
     .field textarea { resize: vertical; min-height: 120px; }
-    .field--hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+    /* honeypot: visually hidden without a huge negative offset that can
+       trigger horizontal scroll on iOS (where body overflow-x is unreliable) */
+    .field--hp { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
     .form__status { font-size: 0.85rem; min-height: 1.2rem; }
     .form__status--ok { color: var(--accent); }
     .form__status--err { color: oklch(0.72 0.17 25); }
