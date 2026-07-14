@@ -25,7 +25,7 @@
         })();
     </script>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" content="Ben Kohler baut Indie-Apps, die eine Sache richtig gut koennen. Solo-Entwickler aus Ulm, iOS, macOS und Web." />
     <title>Ben Kohler // Indie App Studio</title>
 
@@ -131,7 +131,9 @@
     .wrap {
         max-width: var(--wrap);
         margin: 0 auto;
-        padding: 0 clamp(1.25rem, 4vw, 3rem);
+        /* comfortable side gutter + honour notch/rounded corners */
+        padding-left: max(clamp(1.5rem, 5vw, 3rem), env(safe-area-inset-left));
+        padding-right: max(clamp(1.5rem, 5vw, 3rem), env(safe-area-inset-right));
     }
 
     h1, h2, h3 { margin: 0; font-family: var(--font-display); font-weight: 600; letter-spacing: -0.02em; text-wrap: balance; }
@@ -150,7 +152,9 @@
         position: sticky;
         top: 0;
         z-index: var(--z-nav);
-        height: 68px;
+        /* keep nav content clear of the iOS status bar / notch */
+        min-height: 68px;
+        padding-top: env(safe-area-inset-top);
         display: flex;
         align-items: center;
         background: color-mix(in oklab, var(--bg) 80%, transparent);
@@ -200,7 +204,8 @@
         grid-template-columns: 1.25fr 0.75fr;
         align-items: center;
         gap: clamp(2rem, 5vw, 4.5rem);
-        padding: clamp(3rem, 7vw, 5.5rem) 0 clamp(3rem, 6vw, 5rem);
+        /* vertical only — keep the horizontal gutter from .wrap intact */
+        padding-block: clamp(3rem, 7vw, 5.5rem) clamp(3rem, 6vw, 5rem);
         min-height: min(88vh, 760px);
     }
     .hero__kicker {
@@ -275,9 +280,10 @@
 
     @media (max-width: 880px) {
         .hero { grid-template-columns: 1fr; min-height: 0; gap: 2.5rem; }
-        .hero__visual { order: -1; justify-self: start; max-width: 260px; }
-        /* keep the badge from poking past the viewport's left edge */
-        .hero__badge { left: 0; }
+        /* centre the portrait instead of pinning it left with a dead gap */
+        .hero__visual { order: -1; justify-self: center; width: 100%; max-width: 360px; }
+        /* keep the badge inside the card on mobile */
+        .hero__badge { left: 12px; }
     }
 
     /* ---------- Marquee proof strip ---------- */
@@ -445,7 +451,8 @@
     /* ---------- Consent banner (DSGVO) ---------- */
     .consent {
         position: fixed;
-        left: 1rem; right: 1rem; bottom: 1rem;
+        left: 1rem; right: 1rem;
+        bottom: calc(1rem + env(safe-area-inset-bottom));
         z-index: 100;
         opacity: 0;
         transform: translateY(12px);
