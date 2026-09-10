@@ -118,10 +118,10 @@
         .hero__proof strong { font-size: 1.1rem; }
         .hero__proof small { margin-top: 2px; color: var(--muted); font-size: .76rem; text-transform: uppercase; letter-spacing: .08em; }
 
-        .deck { position: relative; min-height: 520px; perspective: 1200px; }
+        .deck { --device-width: 220px; --device-half: 110px; --device-side: 0px; position: relative; min-height: 550px; perspective: 1200px; }
         .device {
             position: absolute;
-            width: 220px;
+            width: var(--device-width);
             aspect-ratio: .48;
             overflow: hidden;
             border: 7px solid var(--ink);
@@ -133,20 +133,21 @@
         }
         .device::after { content: ""; position: absolute; top: 9px; left: 50%; width: 72px; height: 20px; border-radius: 999px; background: #090b0a; transform: translateX(-50%); }
         .device img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
-        .device--family { left: 0; bottom: 24px; z-index: 1; transform: rotate(-8deg) translateY(20px); }
+        .device--family { left: var(--device-side); bottom: 24px; z-index: 1; transform: rotate(-8deg) translateY(20px); }
         .device--gym { left: 50%; bottom: 10px; z-index: 3; transform: translateX(-50%) rotate(1deg); }
-        .device--kids { right: 0; bottom: 24px; z-index: 2; transform: rotate(9deg) translateY(20px); }
+        .device--kids { right: var(--device-side); bottom: 24px; z-index: 2; transform: rotate(9deg) translateY(20px); }
         .deck:hover .device--family { transform: rotate(-11deg) translate(-10px, 8px); }
         .deck:hover .device--gym { transform: translateX(-50%) translateY(-14px); }
         .deck:hover .device--kids { transform: rotate(12deg) translate(10px, 8px); }
-        .deck__tag { position: absolute; z-index: 8; display: flex; align-items: center; gap: 9px; padding: 10px 13px; border: 1px solid var(--ink); border-radius: 999px; background: var(--paper); font-size: .78rem; font-weight: 770; box-shadow: 4px 5px 0 var(--ink); }
+        .deck__labels { position: absolute; inset: 0; z-index: 8; pointer-events: none; }
+        .deck__tag { position: absolute; top: 0; display: flex; align-items: center; gap: 9px; padding: 10px 13px; border: 1px solid var(--ink); border-radius: 999px; background: var(--paper); font-size: .78rem; font-weight: 770; white-space: nowrap; box-shadow: 4px 5px 0 var(--ink); }
         .deck__tag > img, .deck__app-mark { width: 23px; height: 23px; border-radius: 7px; object-fit: contain; }
         .deck__tag--kids > img { border-radius: 0; }
         .app-mark { display: grid; flex: 0 0 auto; place-items: center; overflow: hidden; background: #050505; }
         .app-mark img { width: 88%; height: 88%; object-fit: contain; filter: grayscale(1) brightness(0) invert(1); }
-        .deck__tag--family { left: -20px; top: 68px; transform: rotate(-5deg); }
-        .deck__tag--gym { left: 45%; top: 10px; transform: rotate(3deg); }
-        .deck__tag--kids { right: -22px; top: 102px; transform: rotate(7deg); }
+        .deck__tag--family { left: calc(var(--device-side) + var(--device-half)); transform: translateX(-50%); }
+        .deck__tag--gym { left: 50%; transform: translateX(-50%); }
+        .deck__tag--kids { right: calc(var(--device-side) + var(--device-half)); transform: translateX(50%); }
 
         .section { padding-block: clamp(84px, 10vw, 140px); }
         .section__head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 430px); align-items: end; gap: 40px; margin-bottom: 46px; }
@@ -262,16 +263,13 @@
             .hero__grid { min-height: auto; padding-block: 58px 48px; }
             .hero h1 { font-size: clamp(3rem, 15vw, 4.4rem); }
             .hero__lede { font-size: 1rem; }
-            .deck { min-height: 390px; }
-            .device { width: 145px; border-width: 4px; border-radius: 23px; }
+            .deck { --device-width: 145px; --device-half: 72.5px; --device-side: 3%; min-height: 390px; }
+            .device { border-width: 4px; border-radius: 23px; }
             .device::after { width: 45px; height: 12px; top: 6px; }
-            .device--family { left: 3%; bottom: 20px; }
-            .device--kids { right: 3%; bottom: 20px; }
-            .deck__tag { font-size: .67rem; padding: 7px 9px; }
-            .deck__tag img { width: 19px; height: 19px; }
-            .deck__tag--family { left: 0; top: 44px; }
-            .deck__tag--gym { top: 0; }
-            .deck__tag--kids { right: 0; top: 62px; }
+            .device--family { bottom: 20px; }
+            .device--kids { bottom: 20px; }
+            .deck__tag { gap: 6px; padding: 7px 8px; font-size: .62rem; box-shadow: 3px 4px 0 var(--ink); }
+            .deck__tag > img, .deck__app-mark { width: 18px; height: 18px; }
             .section__head { grid-template-columns: 1fr; gap: 18px; }
             .flagships { grid-template-columns: 1fr; }
             .product, .product--family { grid-column: auto; min-height: 600px; }
@@ -323,9 +321,11 @@
                 </div>
 
                 <div class="deck" aria-label="Einblicke in FamilyManager, GymBo und Track4Kids">
-                    <div class="deck__tag deck__tag--family"><img src="images/indie-preview/familymanager-icon.png" alt="">FamilyManager</div>
-                    <div class="deck__tag deck__tag--gym"><span class="deck__app-mark app-mark" aria-hidden="true"><img src="images/indie-preview/gymbo-symbol.png" alt=""></span>GymBo</div>
-                    <div class="deck__tag deck__tag--kids"><img src="images/indie-preview/track4kids-logo.webp" alt="">Track4Kids</div>
+                    <div class="deck__labels" aria-hidden="true">
+                        <div class="deck__tag deck__tag--family"><img src="images/indie-preview/familymanager-icon.png" alt="">FamilyManager</div>
+                        <div class="deck__tag deck__tag--gym"><span class="deck__app-mark app-mark"><img src="images/indie-preview/gymbo-symbol.png" alt=""></span>GymBo</div>
+                        <div class="deck__tag deck__tag--kids"><img src="images/indie-preview/track4kids-logo.webp" alt="">Track4Kids</div>
+                    </div>
                     <div class="device device--family"><img src="images/indie-preview/familymanager-heute.png" alt="FamilyManager: Heute-Ansicht mit Aufgaben"></div>
                     <div class="device device--gym"><img src="images/indie-preview/gymbo-aktivitaet.png" alt="GymBo: Aktivitätsansicht mit Trainingsfortschritt"></div>
                     <div class="device device--kids"><img src="images/indie-preview/track4kids-entdecken.png" alt="Track4Kids: Entdecken-Ansicht mit Lebensmittel-Karten"></div>
