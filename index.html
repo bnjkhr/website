@@ -236,6 +236,21 @@
             .flagships { grid-template-columns: 1fr 1fr; }
             .product--family { grid-column: span 2; }
             .product--family .product__screen { width: 36%; }
+            .product--gym, .product--kids { display: flex; flex-direction: column; }
+            .product--gym .product__screen, .product--kids .product__screen {
+                position: relative;
+                top: auto;
+                right: auto;
+                bottom: auto;
+                left: auto;
+                align-self: center;
+                margin: 24px auto -320px;
+                transform: rotate(-2deg);
+            }
+            .product--gym:hover .product__screen, .product--kids:hover .product__screen {
+                bottom: auto;
+                transform: rotate(0);
+            }
             .maker__grid, .about__grid { grid-template-columns: 1fr; }
             .portrait { width: min(420px, 80%); }
         }
