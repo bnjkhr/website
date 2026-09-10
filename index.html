@@ -168,6 +168,21 @@
         .product__link { display: inline-flex; align-items: center; gap: 8px; margin-top: 20px; font-weight: 780; text-decoration: underline; text-underline-offset: 5px; }
         .product__screen { position: absolute; z-index: 1; width: 70%; max-width: 310px; left: 50%; bottom: -240px; transform: translateX(-50%) rotate(-2deg); border: 6px solid currentColor; border-radius: 32px; box-shadow: 0 28px 55px rgba(23, 33, 28, .22); transition: transform .5s var(--ease), bottom .5s var(--ease); }
         .product:hover .product__screen { bottom: -220px; transform: translateX(-50%) rotate(0); }
+        .product--gym, .product--kids { display: flex; flex-direction: column; }
+        .product--gym .product__screen, .product--kids .product__screen {
+            position: relative;
+            top: auto;
+            right: auto;
+            bottom: auto;
+            left: auto;
+            align-self: center;
+            margin: 24px auto -320px;
+            transform: rotate(-2deg);
+        }
+        .product--gym:hover .product__screen, .product--kids:hover .product__screen {
+            bottom: auto;
+            transform: rotate(0);
+        }
         .product--family { background: #e6ebff; color: #172251; }
         .product--family::before { content: ""; position: absolute; width: 210px; height: 210px; right: -70px; bottom: -70px; border-radius: 50%; background: #aebcff; }
         .product--family .product__screen { top: 360px; bottom: auto; }
@@ -236,21 +251,6 @@
             .flagships { grid-template-columns: 1fr 1fr; }
             .product--family { grid-column: span 2; }
             .product--family .product__screen { width: 36%; }
-            .product--gym, .product--kids { display: flex; flex-direction: column; }
-            .product--gym .product__screen, .product--kids .product__screen {
-                position: relative;
-                top: auto;
-                right: auto;
-                bottom: auto;
-                left: auto;
-                align-self: center;
-                margin: 24px auto -320px;
-                transform: rotate(-2deg);
-            }
-            .product--gym:hover .product__screen, .product--kids:hover .product__screen {
-                bottom: auto;
-                transform: rotate(0);
-            }
             .maker__grid, .about__grid { grid-template-columns: 1fr; }
             .portrait { width: min(420px, 80%); }
         }
