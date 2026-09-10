@@ -139,8 +139,10 @@
         .deck:hover .device--family { transform: rotate(-11deg) translate(-10px, 8px); }
         .deck:hover .device--gym { transform: translateX(-50%) translateY(-14px); }
         .deck:hover .device--kids { transform: rotate(12deg) translate(10px, 8px); }
-        .deck__labels { position: absolute; inset: 0; z-index: 8; pointer-events: none; }
-        .deck__tag { position: absolute; top: 0; display: flex; align-items: center; gap: 9px; padding: 10px 13px; border: 1px solid var(--ink); border-radius: 999px; background: var(--paper); font-size: .78rem; font-weight: 770; white-space: nowrap; box-shadow: 4px 5px 0 var(--ink); }
+        .deck__labels { position: absolute; inset: 0; z-index: 8; }
+        .deck__tag { position: absolute; top: 0; display: flex; align-items: center; gap: 9px; padding: 10px 13px; border: 1px solid var(--ink); border-radius: 999px; background: var(--paper); font-size: .78rem; font-weight: 770; text-decoration: none; white-space: nowrap; box-shadow: 4px 5px 0 var(--ink); transition: top .2s var(--ease), box-shadow .2s var(--ease), background .2s var(--ease); }
+        .deck__tag:hover { top: -4px; background: #fff; box-shadow: 6px 7px 0 var(--ink); }
+        .deck__tag:active { top: 2px; box-shadow: 2px 2px 0 var(--ink); }
         .deck__tag > img, .deck__app-mark { width: 23px; height: 23px; border-radius: 7px; object-fit: contain; }
         .deck__tag--kids > img { border-radius: 0; }
         .app-mark { display: grid; flex: 0 0 auto; place-items: center; overflow: hidden; background: #050505; }
@@ -155,7 +157,7 @@
         .section__head p { color: var(--muted); font-size: 1.05rem; line-height: 1.65; }
 
         .flagships { display: grid; grid-template-columns: 1.12fr .88fr 1fr; gap: 16px; }
-        .product { position: relative; min-width: 0; min-height: 650px; overflow: hidden; border: 1px solid rgba(23, 33, 28, .18); border-radius: var(--radius); color: var(--ink); text-decoration: none; transition: transform .35s var(--ease), box-shadow .35s var(--ease); }
+        .product { position: relative; min-width: 0; min-height: 650px; scroll-margin-top: 100px; overflow: hidden; border: 1px solid rgba(23, 33, 28, .18); border-radius: var(--radius); color: var(--ink); text-decoration: none; transition: transform .35s var(--ease), box-shadow .35s var(--ease); }
         .product:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(23, 33, 28, .14); }
         .product__copy { position: relative; z-index: 3; padding: 28px; }
         .product__top { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
@@ -321,10 +323,10 @@
                 </div>
 
                 <div class="deck" aria-label="Einblicke in FamilyManager, GymBo und Track4Kids">
-                    <div class="deck__labels" aria-hidden="true">
-                        <div class="deck__tag deck__tag--family"><img src="images/indie-preview/familymanager-icon.png" alt="">FamilyManager</div>
-                        <div class="deck__tag deck__tag--gym"><span class="deck__app-mark app-mark"><img src="images/indie-preview/gymbo-symbol.png" alt=""></span>GymBo</div>
-                        <div class="deck__tag deck__tag--kids"><img src="images/indie-preview/track4kids-logo.webp" alt="">Track4Kids</div>
+                    <div class="deck__labels">
+                        <a class="deck__tag deck__tag--family" href="#familymanager"><img src="images/indie-preview/familymanager-icon.png" alt="">FamilyManager</a>
+                        <a class="deck__tag deck__tag--gym" href="#gymbo"><span class="deck__app-mark app-mark" aria-hidden="true"><img src="images/indie-preview/gymbo-symbol.png" alt=""></span>GymBo</a>
+                        <a class="deck__tag deck__tag--kids" href="#track4kids"><img src="images/indie-preview/track4kids-logo.webp" alt="">Track4Kids</a>
                     </div>
                     <div class="device device--family"><img src="images/indie-preview/familymanager-heute.png" alt="FamilyManager: Heute-Ansicht mit Aufgaben"></div>
                     <div class="device device--gym"><img src="images/indie-preview/gymbo-aktivitaet.png" alt="GymBo: Aktivitätsansicht mit Trainingsfortschritt"></div>
@@ -341,7 +343,7 @@
                 </div>
 
                 <div class="flagships">
-                    <a class="product product--family" href="https://familymanager.pro/landing" target="_blank" rel="noopener">
+                    <a class="product product--family" id="familymanager" href="https://familymanager.pro/landing" target="_blank" rel="noopener">
                         <div class="product__copy">
                             <div class="product__top">
                                 <img class="product__icon" src="images/indie-preview/familymanager-icon.png" alt="">
@@ -355,7 +357,7 @@
                         <img class="product__screen" src="images/indie-preview/familymanager-heute.png" alt="FamilyManager Heute-Ansicht">
                     </a>
 
-                    <a class="product product--gym" href="https://gymbo.benkohler.de/" target="_blank" rel="noopener">
+                    <a class="product product--gym" id="gymbo" href="https://gymbo.benkohler.de/" target="_blank" rel="noopener">
                         <div class="product__copy">
                             <div class="product__top">
                                 <span class="product__icon app-mark" aria-hidden="true"><img src="images/indie-preview/gymbo-symbol.png" alt=""></span>
@@ -369,7 +371,7 @@
                         <img class="product__screen" src="images/indie-preview/gymbo-aktivitaet.png" alt="GymBo Aktivitätsansicht">
                     </a>
 
-                    <a class="product product--kids" href="https://trackforkids.benkohler.de/" target="_blank" rel="noopener">
+                    <a class="product product--kids" id="track4kids" href="https://trackforkids.benkohler.de/" target="_blank" rel="noopener">
                         <div class="product__copy">
                             <div class="product__top">
                                 <img class="product__icon product__icon--logo" src="images/indie-preview/track4kids-logo.webp" alt="">
