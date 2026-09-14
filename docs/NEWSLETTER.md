@@ -16,17 +16,26 @@ Ein Deploy versendet grundsätzlich keine E-Mail.
 
 - Segment für bestätigte Website-Abonnenten anlegen und als `RESEND_NEWSLETTER_SEGMENT_ID` hinterlegen.
 - Optional ein öffentliches Topic anlegen. Die Standard-Einstellung muss `opt_out` sein, damit Kontakte erst nach expliziter Bestätigung mit `opt_in` eingetragen werden.
+- **Vor dem ersten Deploy:** `npm run newsletter:setup` ausführen. Das legt in Resend die Kontakt-Eigenschaften `consent_requested_at`, `consent_confirmed_at` und `consent_version` an und kann gefahrlos mehrfach laufen. Fehlen sie, lehnt Resend jede Bestätigung ab und Abonnenten sehen eine Fehlermeldung.
 - `NEWSLETTER_TOKEN_SECRET` als zufälligen, mindestens 32 Byte langen Wert setzen.
-- `RESEND_API_KEY`, `NEWSLETTER_TOKEN_SECRET` und die IDs in Vercel für Preview und Production konfigurieren.
+- `RESEND_API_KEY` und `NEWSLETTER_TOKEN_SECRET` in Vercel für Preview und Production konfigurieren.
+- **Preview bekommt ein eigenes Segment:** In Resend ein zweites Segment (und ggf. Topic) für Tests anlegen und dessen IDs in Vercel nur für die Umgebung *Preview* als `RESEND_NEWSLETTER_SEGMENT_ID` bzw. `RESEND_NEWSLETTER_TOPIC_ID` hinterlegen. Sonst landen bestätigte Test-Anmeldungen aus Preview-Deploys im echten Verteiler.
 - Versanddomain, DKIM/SPF und Absender in Resend prüfen.
 
 Für lokale Broadcast-Entwürfe lädt `npm run newsletter:draft` die Werte aus der nicht versionierten `.env.local`. Auf Vercel wird die URL für den Bestätigungslink automatisch aus der jeweiligen Preview- oder Production-URL ermittelt; `SITE_URL` ist dort nur ein optionaler Override.
 
+## Vercel einrichten
+
+- **Rate-Limit für die Anmeldung:** Im Vercel-Dashboard unter Firewall → Rules eine Regel anlegen: *Request Path* ist gleich `/api/newsletter-subscribe` und *Method* ist `POST`, Aktion *Rate Limit* mit 5 Anfragen pro 10 Minuten je IP (Antwort 429). Pro Adresse verschickt die Anmeldung ohnehin höchstens eine Bestätigungsmail pro Stunde; die Regel verhindert, dass jemand massenhaft fremde Adressen einträgt.
+- **Sicherheits-Header** (CSP, `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`) stehen in `vercel.json`. Wer neue externe Quellen einbindet (Bilder, Videos, Skripte), muss sie dort in der `Content-Security-Policy` ergänzen, sonst blockiert der Browser sie.
+
 ## Double-Opt-in
 
-`POST /api/newsletter-subscribe` verschickt einen 48 Stunden gültigen, signierten Bestätigungslink. Erst `GET /api/newsletter-confirm` legt den Kontakt im Newsletter-Segment an. Bestätigungen werden ohne Klartextadresse mit einem SHA-256-Hash im Vercel-Log protokolliert.
+1. `POST /api/newsletter-subscribe` verschickt einen 48 Stunden gültigen, signierten Bestätigungslink. Pro Adresse geht höchstens eine Mail pro Stunde raus; eine erneute Anmeldung in dieser Zeit gilt als bereits versendet.
+2. `GET /api/newsletter-confirm?token=…` prüft nur den Link und zeigt einen Button „Abo bestätigen“. Das Öffnen des Links ändert nichts, damit automatische Link-Scanner in Mail-Gateways kein Abo bestätigen können.
+3. Erst `POST /api/newsletter-confirm` legt den Kontakt im Newsletter-Segment an.
 
-Für eine dauerhafte, exportierbare Einwilligungshistorie sollte später ein eigener Consent-Store ergänzt werden. Die derzeitige Protokollierung hängt von der Aufbewahrungsdauer der Vercel-Logs ab.
+Als Einwilligungsnachweis werden am Resend-Kontakt `consent_requested_at`, `consent_confirmed_at` und `consent_version` gespeichert. Zusätzlich landet die Bestätigung ohne Klartextadresse mit einem SHA-256-Hash im Vercel-Log. Ändert sich der Einwilligungstext im Formular, `CONSENT_VERSION` in `lib/newsletter.js` anpassen.
 
 ## Substack-Migration
 

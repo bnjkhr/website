@@ -1,6 +1,7 @@
 import { Resend } from "resend";
 import {
   emailHash,
+  parseBody,
   sendStatus,
   verifyConfirmationToken,
 } from "../lib/newsletter.js";
@@ -14,8 +15,8 @@ function isAlreadyAssigned(error) {
 }
 
 export default async function handler(req, res) {
-  if (req.method !== "GET") {
-    res.setHeader("Allow", "GET");
+  if (req.method !== "GET" && req.method !== "POST") {
+    res.setHeader("Allow", "GET, POST");
     sendStatus(res, 405, { message: "Dieser Bestätigungslink ist ungültig." }, req);
     return;
   }
@@ -30,8 +31,9 @@ export default async function handler(req, res) {
     return;
   }
 
-  const token = req.query?.token
-    || new URL(req.url || "/api/newsletter-confirm", "http://localhost").searchParams.get("token");
+  const token = req.method === "POST"
+    ? parseBody(req.body).token
+    : req.query?.token || new URL(req.url || "/api/newsletter-confirm", "http://localhost").searchParams.get("token");
   const confirmation = verifyConfirmationToken(token, tokenSecret);
   if (!confirmation) {
     sendStatus(res, 400, {
@@ -41,59 +43,58 @@ export default async function handler(req, res) {
     return;
   }
 
-  const resend = new Resend(apiKey);
-  const existing = await resend.contacts.get({ email: confirmation.email });
-  if (existing.error && !isNotFound(existing.error)) {
-    console.error("Resend contact lookup failed", { name: existing.error.name, message: existing.error.message });
-    sendStatus(res, 502, { message: "Die Anmeldung konnte nicht bestätigt werden. Bitte versuche es später noch einmal." }, req);
+  // Mail gateways and link scanners open links automatically. Opening the link
+  // therefore only asks for confirmation; the subscription needs an explicit POST.
+  if (req.method === "GET") {
+    sendStatus(res, 200, {
+      title: "Abo bestätigen?",
+      message: `Ein Klick noch: Bestätige, dass ${confirmation.email} neue Beiträge per E-Mail erhalten soll.`,
+    }, req, { confirmToken: token });
     return;
   }
 
-  if (existing.data) {
-    const updated = await resend.contacts.update({ email: confirmation.email, unsubscribed: false });
-    if (updated.error) {
-      console.error("Resend contact update failed", { name: updated.error.name, message: updated.error.message });
-      sendStatus(res, 502, { message: "Die Anmeldung konnte nicht bestätigt werden. Bitte versuche es später noch einmal." }, req);
-      return;
-    }
-  } else {
-    const created = await resend.contacts.create({
-      email: confirmation.email,
-      unsubscribed: false,
-      segments: [{ id: segmentId }],
-      topics: topicId ? [{ id: topicId, subscription: "opt_in" }] : undefined,
-    });
-    if (created.error) {
-      console.error("Resend contact creation failed", { name: created.error.name, message: created.error.message });
-      sendStatus(res, 502, { message: "Die Anmeldung konnte nicht bestätigt werden. Bitte versuche es später noch einmal." }, req);
-      return;
-    }
-  }
+  const fail = (step, error) => {
+    console.error(`Resend ${step} failed`, { name: error.name, message: error.message });
+    sendStatus(res, 502, { message: "Die Anmeldung konnte nicht bestätigt werden. Bitte versuche es später noch einmal." }, req);
+  };
+
+  const confirmedAt = Date.now();
+  const contact = {
+    email: confirmation.email,
+    unsubscribed: false,
+    // Proof of consent (Art. 7 Abs. 1 DSGVO).
+    properties: {
+      consent_requested_at: new Date(confirmation.issuedAt * 1000).toISOString(),
+      consent_confirmed_at: new Date(confirmedAt).toISOString(),
+      consent_version: confirmation.consentVersion,
+    },
+  };
+  const topics = topicId ? [{ id: topicId, subscription: "opt_in" }] : undefined;
+
+  const resend = new Resend(apiKey);
+  const existing = await resend.contacts.get({ email: confirmation.email });
+  if (existing.error && !isNotFound(existing.error)) return fail("contact lookup", existing.error);
 
   if (existing.data) {
+    const updated = await resend.contacts.update(contact);
+    if (updated.error) return fail("contact update", updated.error);
+
     const segment = await resend.contacts.segments.add({ email: confirmation.email, segmentId });
-    if (segment.error && !isAlreadyAssigned(segment.error)) {
-      console.error("Resend segment assignment failed", { name: segment.error.name, message: segment.error.message });
-      sendStatus(res, 502, { message: "Die Anmeldung konnte nicht bestätigt werden. Bitte versuche es später noch einmal." }, req);
-      return;
+    if (segment.error && !isAlreadyAssigned(segment.error)) return fail("segment assignment", segment.error);
+
+    if (topics) {
+      const topic = await resend.contacts.topics.update({ email: confirmation.email, topics });
+      if (topic.error) return fail("topic opt-in", topic.error);
     }
-    if (topicId) {
-      const topic = await resend.contacts.topics.update({
-        email: confirmation.email,
-        topics: [{ id: topicId, subscription: "opt_in" }],
-      });
-      if (topic.error) {
-        console.error("Resend topic opt-in failed", { name: topic.error.name, message: topic.error.message });
-        sendStatus(res, 502, { message: "Die Anmeldung konnte nicht bestätigt werden. Bitte versuche es später noch einmal." }, req);
-        return;
-      }
-    }
+  } else {
+    const created = await resend.contacts.create({ ...contact, segments: [{ id: segmentId }], topics });
+    if (created.error) return fail("contact creation", created.error);
   }
 
   console.info("newsletter_consent_confirmed", {
     emailHash: emailHash(confirmation.email),
     issuedAt: confirmation.issuedAt,
-    confirmedAt: Math.floor(Date.now() / 1000),
+    confirmedAt: Math.floor(confirmedAt / 1000),
     consentVersion: confirmation.consentVersion,
   });
   sendStatus(res, 200, {

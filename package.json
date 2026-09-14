@@ -9,6 +9,7 @@
     "preview": "astro preview",
     "check": "astro check",
     "newsletter:draft": "node --env-file-if-exists=.env.local scripts/create-newsletter-draft.mjs",
+    "newsletter:setup": "node --env-file-if-exists=.env.local scripts/setup-newsletter.mjs",
     "test": "node --test tests/newsletter.test.mjs && npm run build && sh tests/site-build.sh"
   },
   "dependencies": {
