@@ -29,13 +29,13 @@ Daneben gab es mehrere konkrete Verbesserungen für den Alltag:
 - Face ID wird beim Öffnen der App nur noch einmal abgefragt.
 - Kontakte und Geburtstage werden verständlicher dargestellt.
 
-Besonders wichtig ist die Wiederherstellung von Kinderzugängen: 58 Konten, die zuvor nicht mehr erreichbar waren, haben dadurch wieder einen Weg zurück in die Familie. Gleichzeitig wird die Absicherung dieser Zugänge weiter verbessert. Sicherheit ist hier kein einzelner Haken auf einer Liste, sondern laufende Arbeit.
+Besonders wichtig ist die Wiederherstellung von Kinderzugängen: Familien, deren Kinder den Zugang verloren hatten, finden jetzt einfacher wieder zusammen.
 
 Weitere Verbesserungen sind bereits in Arbeit. Termine aus externen Kalendern sollen in der Wochenplanung deutlicher sichtbar werden. Kalenderfilter sollen sich in App und Widget gleich verhalten und Links innerhalb der App zuverlässiger öffnen.
 
 Version 2.2.5 wird seit dem 11. September von internen und externen Testern ausprobiert. Sie ist damit einen wichtigen Schritt weiter, aber noch nicht als reguläres Update im App Store erschienen.
 
-Vor dem nächsten öffentlichen Update bleibt noch Arbeit: Beim Löschen eines Kontos sollen wirklich alle zugehörigen Daten, Bilder und Kinderkonten vollständig berücksichtigt werden. Auch dieser Bereich wird deshalb weiter geprüft und ergänzt.
+Vor dem nächsten öffentlichen Update wird außerdem die Kontolöschung noch einmal gründlich geprüft.
 
 ## GymBo: Trainingspläne, die besser zu dir passen
 
@@ -73,7 +73,7 @@ Die Änderung wurde erfolgreich bereitgestellt. Für Nutzer bedeutet das schlich
 
 ## Was als Nächstes ansteht
 
-In der kommenden Woche soll Track4Kids den Schritt zu echten Betatestern machen. Beim FamilyManager stehen Sicherheit, Kinderzugänge und eine vollständige Datenlöschung im Mittelpunkt. GymBo soll eine neue Testversion erhalten, in der die Verbesserungen dieser Woche gemeinsam ausprobiert werden können.
+In der kommenden Woche soll Track4Kids den Schritt zu echten Betatestern machen. Beim FamilyManager geht es weiter mit Kinderzugängen und der Kontoverwaltung. GymBo soll eine neue Testversion erhalten, in der die Verbesserungen dieser Woche gemeinsam ausprobiert werden können.
 
 Es war keine Woche mit einer großen App-Store-Ankündigung. Aber eine Woche, in der die Apps im Alltag verlässlicher, verständlicher und näher an der nächsten Veröffentlichung geworden sind. Genau diese Arbeit entscheidet am Ende darüber, ob etwas nicht nur in einer Demo gut aussieht, sondern jeden Tag funktioniert.
 
