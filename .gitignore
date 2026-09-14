@@ -14,6 +14,8 @@ logs
 # Others
 .env
 .dist
+dist
+.astro
 .build
 .cache
 .output
@@ -23,3 +25,7 @@ logs
 
 .vercel
 .env*.local
+
+# Local tooling and design drafts
+.playwright-mcp/
+proposals/

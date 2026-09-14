@@ -1,0 +1,49 @@
+---
+import { getCollection } from "astro:content";
+import NewsletterForm from "../../components/NewsletterForm.astro";
+import BlogLayout from "../../layouts/BlogLayout.astro";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft))
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+const formatDate = (date: Date) => new Intl.DateTimeFormat("de-DE", {
+  day: "2-digit",
+  month: "long",
+  year: "numeric",
+}).format(date);
+---
+
+<BlogLayout title="Blog" description="Updates zu den Produkten von Ben Kohler und Einblicke in ihre Entwicklung.">
+  <header class="blog-hero">
+    <div class="shell blog-hero__grid">
+      <h1>Was zwischen den Releases passiert.</h1>
+      <div>
+        <p>Updates, Entscheidungen und Dinge, die ich beim Entwickeln meiner Produkte lerne.</p>
+        <div class="blog-hero__links">
+          <a href="#newsletter">Per E-Mail abonnieren</a>
+          <a href="/rss.xml">RSS-Feed</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="post-list" aria-label="Blogbeiträge">
+    <div class="shell">
+      {posts.length > 0 ? posts.map((post) => (
+        <a class="post-card" href={`/blog/${post.id}/`}>
+          <span class="post-card__meta">{formatDate(post.data.publishedAt)}</span>
+          <span>
+            <h2>{post.data.title}</h2>
+            <p>{post.data.description}</p>
+          </span>
+          <span class="post-card__arrow" aria-hidden="true">→</span>
+        </a>
+      )) : (
+        <p class="empty-state">Der erste Beitrag ist in Arbeit.</p>
+      )}
+    </div>
+  </section>
+
+  <div class="shell newsletter-wrap">
+    <NewsletterForm />
+  </div>
+</BlogLayout>

@@ -1,0 +1,70 @@
+---
+import { getCollection, render } from "astro:content";
+import NewsletterForm from "../../components/NewsletterForm.astro";
+import BlogLayout from "../../layouts/BlogLayout.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { id: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const formatDate = (date: Date) => new Intl.DateTimeFormat("de-DE", {
+  day: "2-digit",
+  month: "long",
+  year: "numeric",
+}).format(date);
+---
+
+<BlogLayout
+  title={post.data.title}
+  description={post.data.description}
+  canonicalPath={`/blog/${post.id}/`}
+  type="article"
+  publishedAt={post.data.publishedAt}
+  updatedAt={post.data.updatedAt}
+  heroImage={post.data.heroImage}
+>
+  <header class="article-header">
+    <div class="shell article-header__inner">
+      <a class="article-header__back" href="/blog/">← Alle Beiträge</a>
+      <h1>{post.data.title}</h1>
+      <p class="article-header__description">{post.data.description}</p>
+      <div class="article-meta">
+        <time datetime={post.data.publishedAt.toISOString()}>{formatDate(post.data.publishedAt)}</time>
+        {post.data.tags.length > 0 && (
+          <span class="article-meta__tags">{post.data.tags.map((tag: string) => <span>{tag}</span>)}</span>
+        )}
+      </div>
+    </div>
+  </header>
+
+  {post.data.heroImage && (
+    <figure class="article-hero shell">
+      <img
+        src={post.data.heroImage}
+        alt={post.data.heroImageAlt || ""}
+        width="2000"
+        height="1125"
+        loading="eager"
+        fetchpriority="high"
+      />
+      {post.data.heroImageCredit && (
+        <figcaption>
+          {post.data.heroImageCreditUrl ? (
+            <a href={post.data.heroImageCreditUrl} rel="noopener noreferrer">{post.data.heroImageCredit}</a>
+          ) : post.data.heroImageCredit}
+        </figcaption>
+      )}
+    </figure>
+  )}
+
+  <article class="article-body">
+    <Content />
+  </article>
+
+  <div class="shell article-newsletter">
+    <NewsletterForm compact heading="Den nächsten Beitrag nicht verpassen" />
+  </div>
+</BlogLayout>

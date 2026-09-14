@@ -3,7 +3,25 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "newsletter:draft": "node --env-file-if-exists=.env.local scripts/create-newsletter-draft.mjs",
+    "test": "node --test tests/newsletter.test.mjs && npm run build && sh tests/site-build.sh"
+  },
   "dependencies": {
-    "nodemailer": "^9.0.3"
+    "@astrojs/rss": "^4.0.19",
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.3.2",
+    "gray-matter": "^4.0.3",
+    "marked": "^18.0.13",
+    "nodemailer": "^9.0.3",
+    "resend": "^6.28.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "typescript": "^6.0.3"
   }
 }

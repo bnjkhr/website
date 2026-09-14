@@ -1,0 +1,134 @@
+---
+interface Props {
+  compact?: boolean;
+  heading?: string;
+}
+
+const {
+  compact = false,
+  heading = "Neue Beiträge per E-Mail",
+} = Astro.props;
+---
+
+<aside class:list={["newsletter", { "newsletter--compact": compact }]} id="newsletter" aria-labelledby="newsletter-title">
+  <div class="newsletter__copy">
+    <h2 id="newsletter-title">{heading}</h2>
+    <p>Unregelmäßige Updates zu meinen Produkten und dem, was beim Entwickeln dahinter passiert.</p>
+  </div>
+  <form class="newsletter__form" action="/api/newsletter-subscribe" method="post" data-newsletter-form>
+    <div class="newsletter__field">
+      <label for={`newsletter-email-${compact ? "compact" : "full"}`}>E-Mail-Adresse</label>
+      <div class="newsletter__controls">
+        <input
+          id={`newsletter-email-${compact ? "compact" : "full"}`}
+          name="email"
+          type="email"
+          inputmode="email"
+          autocomplete="email"
+          placeholder="du@beispiel.de"
+          maxlength="254"
+          required
+        />
+        <button type="submit">Updates abonnieren</button>
+      </div>
+    </div>
+    <div class="newsletter__trap" aria-hidden="true">
+      <label>Website <input name="website" type="text" tabindex="-1" autocomplete="off" /></label>
+    </div>
+    <p class="newsletter__legal">Nach der Anmeldung erhältst du eine Bestätigungsmail. Abmeldung jederzeit. Details im <a href="/datenschutz.html">Datenschutz</a>.</p>
+    <p class="newsletter__status" role="status" aria-live="polite" data-newsletter-status></p>
+  </form>
+</aside>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>("[data-newsletter-form]").forEach((form) => {
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const button = form.querySelector<HTMLButtonElement>("button[type='submit']");
+      const status = form.querySelector<HTMLElement>("[data-newsletter-status]");
+      if (!button || !status) return;
+
+      button.disabled = true;
+      status.dataset.state = "pending";
+      status.textContent = "Anmeldung wird gesendet …";
+
+      try {
+        const formData = new FormData(form);
+        const response = await fetch(form.action, {
+          method: "POST",
+          headers: { Accept: "application/json", "Content-Type": "application/json" },
+          body: JSON.stringify(Object.fromEntries(formData)),
+        });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.message || "Die Anmeldung konnte nicht gesendet werden.");
+        form.reset();
+        status.dataset.state = "success";
+        status.textContent = "Fast geschafft: Bitte bestätige die Anmeldung über die E-Mail in deinem Postfach.";
+      } catch (error) {
+        status.dataset.state = "error";
+        status.textContent = error instanceof Error ? error.message : "Die Anmeldung konnte nicht gesendet werden.";
+      } finally {
+        button.disabled = false;
+      }
+    });
+  });
+</script>
+
+<style>
+  .newsletter {
+    display: grid;
+    grid-template-columns: minmax(0, .85fr) minmax(360px, 1.15fr);
+    gap: clamp(32px, 6vw, 84px);
+    padding: clamp(32px, 5vw, 64px);
+    border: 1px solid var(--ink);
+    border-radius: 30px;
+    background: var(--acid);
+    color: var(--ink);
+    box-shadow: 12px 14px 0 rgba(22, 32, 25, .1);
+  }
+  .newsletter--compact { box-shadow: none; }
+  .newsletter h2 { font-size: clamp(2rem, 4vw, 4rem); text-wrap: balance; }
+  .newsletter__copy > p { max-width: 510px; margin-top: 15px; color: #455238; }
+  .newsletter__field label { display: block; margin-bottom: 9px; font-size: .82rem; font-weight: 740; }
+  .newsletter__controls { display: flex; gap: 9px; }
+  .newsletter input {
+    min-width: 0;
+    min-height: 52px;
+    flex: 1;
+    padding: 0 16px;
+    border: 1px solid var(--ink);
+    border-radius: 14px;
+    background: var(--paper);
+    color: var(--ink);
+    font: inherit;
+  }
+  .newsletter button {
+    min-height: 52px;
+    padding: 0 19px;
+    border: 1px solid var(--ink);
+    border-radius: 14px;
+    background: var(--ink);
+    color: #fff;
+    font: inherit;
+    font-weight: 760;
+    cursor: pointer;
+  }
+  .newsletter button:hover { background: #2b382f; }
+  .newsletter button:disabled { cursor: wait; opacity: .65; }
+  .newsletter__legal, .newsletter__status { margin: 10px 0 0; font-size: .76rem; line-height: 1.5; }
+  .newsletter__legal { color: #4e5d41; }
+  .newsletter__legal a { font-weight: 700; }
+  .newsletter__status:empty { display: none; }
+  .newsletter__status[data-state="success"] { font-weight: 720; }
+  .newsletter__status[data-state="error"] { color: #8c2817; font-weight: 720; }
+  .newsletter__trap { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+
+  @media (max-width: 820px) {
+    .newsletter { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .newsletter { padding: 26px 20px; border-radius: 22px; }
+    .newsletter__controls { flex-direction: column; }
+    .newsletter button { width: 100%; }
+  }
+</style>
