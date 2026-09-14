@@ -17,9 +17,9 @@
     --accent-deep: oklch(0.78 0.18 128);
     --on-accent:   oklch(0.18 0.02 150);
 
-    --font-display: "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-display: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
     --font-body:    "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-mono:    "JetBrains Mono", ui-monospace, monospace;
+    --font-mono:    ui-monospace, "SF Mono", Menlo, monospace;
 
     --ease: cubic-bezier(0.16, 1, 0.3, 1);
     --wrap: 760px;

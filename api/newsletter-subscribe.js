@@ -5,18 +5,14 @@ import {
   escapeHtml,
   isValidEmail,
   normalizeEmail,
+  parseBody,
   sendStatus,
 } from "../lib/newsletter.js";
 
-function parseBody(body) {
-  if (!body) return {};
-  if (typeof body === "object") return body;
-  try {
-    return JSON.parse(body);
-  } catch {
-    return Object.fromEntries(new URLSearchParams(body));
-  }
-}
+// The idempotency key allows one confirmation mail per address per hour. A repeated
+// signup carries a fresh token, so Resend rejects the reused key – the earlier mail
+// from this hour is still valid, so the signup counts as sent.
+const ALREADY_SENT_ERRORS = new Set(["invalid_idempotent_request", "concurrent_idempotent_requests"]);
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -72,7 +68,7 @@ export default async function handler(req, res) {
     idempotencyKey: `newsletter-confirm-${emailHash(email)}-${Math.floor(Date.now() / 3_600_000)}`,
   });
 
-  if (error) {
+  if (error && !ALREADY_SENT_ERRORS.has(error.name)) {
     console.error("Newsletter confirmation email failed", { name: error.name, message: error.message });
     sendStatus(res, 502, { message: "Die Bestätigungsmail konnte nicht gesendet werden. Bitte versuche es später noch einmal." }, req);
     return;

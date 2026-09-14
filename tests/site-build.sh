@@ -15,6 +15,13 @@ assert_contains() {
   fi
 }
 
+assert_not_contains() {
+  if rg -qF "$2" "$1"; then
+    echo "FAIL: $3"
+    exit 1
+  fi
+}
+
 assert_file "dist/index.html"
 assert_file "dist/blog/index.html"
 assert_file "dist/blog/ein-eigener-ort-fuer-updates/index.html"
@@ -32,5 +39,8 @@ assert_contains "dist/rss.xml" 'ein-eigener-ort-fuer-updates' "article is missin
 assert_contains "api/newsletter-subscribe.js" 'createConfirmationToken' "double-opt-in start is missing"
 assert_contains "api/newsletter-confirm.js" 'subscription: "opt_in"' "confirmed subscribers are not opted in"
 assert_contains "scripts/create-newsletter-draft.mjs" 'send: false' "broadcast drafts must not send automatically"
+
+assert_contains "vercel.json" "frame-ancestors" "security headers are missing"
+assert_not_contains "dist" "fonts.googleapis.com" "pages must not load Google Fonts"
 
 echo "PASS: Astro blog, RSS and newsletter safeguards are configured"
