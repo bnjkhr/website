@@ -16,10 +16,12 @@ Ein Deploy versendet grundsätzlich keine E-Mail.
 
 - Segment für bestätigte Website-Abonnenten anlegen und als `RESEND_NEWSLETTER_SEGMENT_ID` hinterlegen.
 - Optional ein öffentliches Topic anlegen. Die Standard-Einstellung muss `opt_out` sein, damit Kontakte erst nach expliziter Bestätigung mit `opt_in` eingetragen werden.
-- **Vor dem ersten Deploy:** `npm run newsletter:setup` ausführen. Das legt in Resend die Kontakt-Eigenschaften `consent_requested_at`, `consent_confirmed_at` und `consent_version` an und kann gefahrlos mehrfach laufen. Fehlen sie, lehnt Resend jede Bestätigung ab und Abonnenten sehen eine Fehlermeldung.
+- **Kontakt-Eigenschaften – eingerichtet am 14.09.2026:** `consent_requested_at`, `consent_confirmed_at` und `consent_version` (Typ `string`) existieren im Resend-Konto. Für ein neues Konto `npm run newsletter:setup` ausführen; das Skript legt fehlende Eigenschaften an und kann gefahrlos mehrfach laufen. Fehlen sie, lehnt Resend jede Bestätigung ab und Abonnenten sehen eine Fehlermeldung.
 - `NEWSLETTER_TOKEN_SECRET` als zufälligen, mindestens 32 Byte langen Wert setzen.
 - `RESEND_API_KEY` und `NEWSLETTER_TOKEN_SECRET` in Vercel für Preview und Production konfigurieren.
-- **Preview bekommt ein eigenes Segment:** In Resend ein zweites Segment (und ggf. Topic) für Tests anlegen und dessen IDs in Vercel nur für die Umgebung *Preview* als `RESEND_NEWSLETTER_SEGMENT_ID` bzw. `RESEND_NEWSLETTER_TOPIC_ID` hinterlegen. Sonst landen bestätigte Test-Anmeldungen aus Preview-Deploys im echten Verteiler.
+- **Preview hat ein eigenes Segment – eingerichtet:** In Resend gibt es das Segment „BenKohler.de Blog (Preview)“ (angelegt am 14.09.2026). In Vercel sind nur für die Umgebung *Preview* `RESEND_NEWSLETTER_SEGMENT_ID` (dieses Segment) und `RESEND_NEWSLETTER_TOPIC_ID` („Blog-Updates“) gesetzt (15.09.2026). So landen Test-Anmeldungen aus Preview-Deploys nicht im echten Verteiler.
+  - **Noch offen:** `RESEND_API_KEY` und ein eigenes `NEWSLETTER_TOKEN_SECRET` für *Preview*. Bis dahin antwortet die Anmeldung auf Preview-Deploys mit 503. Neue Variablen gelten erst ab dem nächsten Preview-Build.
+  - Zum Testen eine eigene Adresse nehmen (z. B. mit `+preview`): Resend-Kontakte gelten kontoweit, eine bereits abonnierte Adresse würde sonst verändert.
 - Versanddomain, DKIM/SPF und Absender in Resend prüfen.
 
 Für lokale Broadcast-Entwürfe lädt `npm run newsletter:draft` die Werte aus der nicht versionierten `.env.local`. Auf Vercel wird die URL für den Bestätigungslink automatisch aus der jeweiligen Preview- oder Production-URL ermittelt; `SITE_URL` ist dort nur ein optionaler Override.
