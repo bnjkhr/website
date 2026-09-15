@@ -26,7 +26,8 @@ Für lokale Broadcast-Entwürfe lädt `npm run newsletter:draft` die Werte aus d
 
 ## Vercel einrichten
 
-- **Rate-Limit für die Anmeldung:** Im Vercel-Dashboard unter Firewall → Rules eine Regel anlegen: *Request Path* ist gleich `/api/newsletter-subscribe` und *Method* ist `POST`, Aktion *Rate Limit* mit 5 Anfragen pro 10 Minuten je IP (Antwort 429). Pro Adresse verschickt die Anmeldung ohnehin höchstens eine Bestätigungsmail pro Stunde; die Regel verhindert, dass jemand massenhaft fremde Adressen einträgt.
+- **Rate-Limit für die Anmeldung – eingerichtet am 15.09.2026:** Firewall-Regel „Newsletter-Anmeldung begrenzen“. Sie greift, wenn *Request Path* gleich `/api/newsletter-subscribe` und *Method* `POST` ist, und erlaubt 5 Anfragen pro 10 Minuten je IP (Fixed Window); darüber antwortet Vercel mit 429. Angelegt über `vercel api` (`PATCH /v1/security/firewall/config`), sichtbar und änderbar im Vercel-Dashboard unter Firewall → Rules. Pro Adresse verschickt die Anmeldung ohnehin höchstens eine Bestätigungsmail pro Stunde; die Regel verhindert, dass jemand massenhaft fremde Adressen einträgt.
+  - **Prüfen:** Sechsmal `POST` mit einer ungültigen Adresse an `/api/newsletter-subscribe` schicken. Die ersten fünf Antworten sind 400, danach kommt 429. Ungültige Adressen werden vor jedem Resend-Aufruf abgelehnt, es geht also keine Mail raus. Das eigene Netz ist danach bis zu 10 Minuten für Anmeldungen gesperrt.
 - **Sicherheits-Header** (CSP, `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`) stehen in `vercel.json`. Wer neue externe Quellen einbindet (Bilder, Videos, Skripte), muss sie dort in der `Content-Security-Policy` ergänzen, sonst blockiert der Browser sie.
 
 ## Double-Opt-in
