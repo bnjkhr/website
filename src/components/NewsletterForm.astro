@@ -81,13 +81,13 @@ const {
     gap: clamp(32px, 6vw, 84px);
     padding: clamp(32px, 5vw, 64px);
     border: 1px solid var(--ink);
-    border-radius: 30px;
+    border-radius: var(--radius, 28px);
     background: var(--acid);
     color: var(--ink);
     box-shadow: 12px 14px 0 rgba(22, 32, 25, .1);
   }
   .newsletter--compact { box-shadow: none; }
-  .newsletter h2 { font-size: clamp(2rem, 4vw, 4rem); text-wrap: balance; }
+  .newsletter h2 { font-size: var(--type-h2-small, clamp(2rem, 3.2vw, 3.2rem)); text-wrap: balance; }
   .newsletter__copy > p { max-width: 510px; margin-top: 15px; color: #455238; }
   .newsletter__field label { display: block; margin-bottom: 9px; font-size: .82rem; font-weight: 740; }
   .newsletter__controls { display: flex; gap: 9px; }

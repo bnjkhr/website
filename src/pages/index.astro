@@ -57,6 +57,10 @@ const formatDate = (date: Date) => new Intl.DateTimeFormat("de-DE", {
             --wrap: 1320px;
             --radius: 28px;
             --ease: cubic-bezier(.2, .8, .2, 1);
+            --type-display: clamp(3.4rem, 6vw, 6.2rem);
+            --type-h2: clamp(2.7rem, 4.6vw, 4.6rem);
+            --type-h2-small: clamp(2.1rem, 3.2vw, 3.2rem);
+            --gutter: clamp(26px, 3vw, 40px);
         }
 
         * { box-sizing: border-box; }
@@ -131,7 +135,7 @@ const formatDate = (date: Date) => new Intl.DateTimeFormat("de-DE", {
             gap: clamp(40px, 4.5vw, 68px);
             padding-block: clamp(56px, 6vw, 88px);
         }
-        .hero h1 { max-width: 770px; margin-top: 0; font-size: clamp(4rem, 6.1vw, 6.4rem); text-wrap: balance; }
+        .hero h1 { max-width: 770px; margin-top: 0; font-size: var(--type-display); text-wrap: balance; }
         .hero__lede { max-width: 630px; margin-top: 28px; color: var(--muted); font-size: clamp(1.08rem, 1.6vw, 1.3rem); line-height: 1.62; }
         .hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
         .button { min-height: 52px; display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 0 21px; border: 1px solid var(--ink); border-radius: 999px; text-decoration: none; font-weight: 760; transition: transform .25s var(--ease), box-shadow .25s var(--ease); }
@@ -162,62 +166,66 @@ const formatDate = (date: Date) => new Intl.DateTimeFormat("de-DE", {
         .atlas__care .maison-video { position: absolute; inset: 0; }
 
         .section { padding-block: clamp(90px, 10vw, 145px); }
-        .section__head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(290px, 430px); align-items: end; gap: 44px; margin-bottom: 50px; }
-        .section__head h2 { max-width: 800px; font-size: clamp(3.2rem, 6vw, 6.2rem); text-wrap: balance; }
-        .section__head p { color: var(--muted); font-size: 1.07rem; line-height: 1.7; }
+        .section__head { max-width: 720px; margin-bottom: clamp(36px, 4vw, 56px); }
+        .section__head h2 { font-size: var(--type-h2); text-wrap: balance; }
+        .section__head p { max-width: 58ch; margin-top: 20px; color: var(--muted); font-size: 1.12rem; line-height: 1.65; }
 
         .worlds { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; }
-        .world { container-type: inline-size; position: relative; min-height: 560px; overflow: hidden; border: 1px solid rgba(22, 32, 25, .22); border-radius: var(--radius); color: var(--ink); text-decoration: none; }
+        .world { container-type: inline-size; position: relative; display: flex; flex-direction: column; min-height: 560px; overflow: hidden; border: 1px solid rgba(22, 32, 25, .22); border-radius: var(--radius); color: var(--ink); text-decoration: none; }
         .world--family, .world--care { grid-column: span 7; }
         .world--kids, .world--gym { grid-column: span 5; }
-        .world__copy { position: relative; z-index: 5; max-width: 560px; padding: clamp(26px, 3vw, 40px); }
-        .world__area { display: block; margin-bottom: 22px; font-size: .86rem; font-weight: 720; }
-        .world h3 { max-width: 100%; font-size: clamp(1.75rem, 9.2cqi, 5rem); }
-        .world__claim { max-width: 510px; margin-top: 18px; font-size: 1.12rem; font-weight: 650; line-height: 1.48; }
-        .world__desc { max-width: 480px; margin-top: 9px; color: color-mix(in srgb, currentColor 80%, transparent); }
-        .world__link { position: absolute; z-index: 7; left: clamp(26px, 3vw, 40px); bottom: 30px; display: inline-flex; align-items: center; gap: 8px; padding-bottom: 4px; border-bottom: 2px solid currentColor; font-weight: 780; }
-        .world__visual { position: absolute; z-index: 2; pointer-events: none; }
-        .world--family, .world--kids, .world--gym { display: flex; flex-direction: column; }
-        .world--family .world__copy, .world--kids .world__copy, .world--gym .world__copy { flex: 0 0 auto; max-width: none; padding-bottom: 18px; }
-        .world--family .world__link, .world--kids .world__link, .world--gym .world__link { position: static; align-self: flex-start; flex: 0 0 auto; margin: 0 clamp(26px, 3vw, 40px) 16px; }
-        .world__media { position: relative; z-index: 2; flex: 1 1 auto; min-height: 230px; overflow: hidden; }
+        .world__copy { position: relative; z-index: 5; flex: 0 0 auto; padding: var(--gutter) var(--gutter) 0; }
+        .world__area { display: block; margin-bottom: 20px; font-size: .86rem; font-weight: 720; }
+        .world h3 { font-size: clamp(1.9rem, 8.5cqi, 4.4rem); }
+        .world__claim { max-width: 30ch; margin-top: 18px; font-size: 1.12rem; font-weight: 650; line-height: 1.45; }
+        .world__desc { max-width: 46ch; margin-top: 10px; color: color-mix(in srgb, currentColor 78%, transparent); }
+        .world__link { position: relative; z-index: 5; display: inline-flex; flex: 0 0 auto; align-self: flex-start; align-items: center; gap: 8px; margin: 22px var(--gutter) 0; padding-bottom: 4px; border-bottom: 2px solid currentColor; font-weight: 780; }
+        .world__media { position: relative; z-index: 2; flex: 1 1 auto; min-height: 250px; margin-top: 24px; pointer-events: none; }
+        .world__visual { position: absolute; top: 0; right: 8%; width: min(58%, 260px); border: 7px solid; border-radius: 34px; transition: transform .45s var(--ease); }
+
+        /* Breite Karten: Text links, Motiv rechts. Schmale Karten: Text oben, Motiv unten. */
+        .world--family .world__copy, .world--care .world__copy { max-width: 56%; }
+        .world--family .world__link, .world--care .world__link { margin: auto var(--gutter) var(--gutter); }
+        .world--family .world__media { position: absolute; inset: 0 0 0 auto; width: 44%; min-height: 0; margin: 0; }
+        .world--family .world__visual { top: 84px; right: 12%; width: min(80%, 280px); }
 
         .world--family { background: var(--family-soft); color: #182352; }
-        .world--family::before { content: ""; position: absolute; width: 340px; height: 340px; right: -100px; bottom: -100px; border-radius: 50%; background: #b4c0ff; }
-        .world--family .world__visual { width: 245px; right: 7%; top: 18px; border: 7px solid #192044; border-radius: 34px; box-shadow: 0 30px 50px rgba(30, 46, 125, .24); transform: rotate(5deg); transition: transform .45s var(--ease); }
+        .world--family::before { content: ""; position: absolute; width: 360px; height: 360px; right: -90px; bottom: -120px; border-radius: 50%; background: #b4c0ff; }
+        .world--family .world__visual { border-color: #192044; box-shadow: 0 30px 50px rgba(30, 46, 125, .24); transform: rotate(4deg); }
         .world--family:hover .world__visual { transform: rotate(2deg) translateY(-6px); }
 
         .world--kids { background: var(--kids); color: #123772; }
-        .world--kids::before { content: ""; position: absolute; width: 250px; height: 250px; right: -70px; bottom: -60px; border-radius: 50%; background: var(--kids-blue); }
-        .world--kids .world__visual { width: 218px; right: 8%; top: 18px; border: 7px solid #102b59; border-radius: 34px; box-shadow: 0 28px 45px rgba(11, 59, 145, .25); transform: rotate(-5deg); transition: transform .45s var(--ease); }
+        .world--kids::before { content: ""; position: absolute; width: 260px; height: 260px; right: -70px; bottom: -70px; border-radius: 50%; background: var(--kids-blue); }
+        .world--kids .world__visual { border-color: #102b59; box-shadow: 0 28px 45px rgba(11, 59, 145, .25); transform: rotate(-4deg); }
         .world--kids:hover .world__visual { transform: rotate(-2deg) translateY(-6px); }
 
         .world--gym { background: var(--gym); color: #f7f5f2; }
-        .world--gym::before { content: ""; position: absolute; width: 260px; height: 260px; right: -76px; bottom: -60px; border-radius: 50%; background: var(--gym-purple); filter: blur(2px); }
+        .world--gym::before { content: ""; position: absolute; width: 260px; height: 260px; right: -70px; bottom: -70px; border-radius: 50%; background: var(--gym-purple); filter: blur(2px); }
         .world--gym .world__desc { color: #bdb9c1; }
-        .world--gym .world__visual { width: 218px; right: 8%; top: 18px; border: 7px solid #050505; border-radius: 34px; box-shadow: 0 28px 48px #0009; transform: rotate(5deg); transition: transform .45s var(--ease); }
+        .world--gym .world__visual { border-color: #050505; box-shadow: 0 28px 48px #0009; transform: rotate(4deg); }
         .world--gym:hover .world__visual { transform: rotate(2deg) translateY(-6px); }
 
-        .world--care { display: flex; flex-direction: column; background: var(--care); color: var(--care-ink); }
-        .world--care::before { content: ""; position: absolute; inset: 0 0 0 auto; width: 42%; background: linear-gradient(130deg, rgba(255,255,255,.14), rgba(128,83,70,.15)); }
-        .world--care .world__copy { max-width: 55%; }
-        .world--care h3 { font-size: clamp(1.75rem, 7.3cqi, 3.8rem); }
-        .world--care .world__link { position: relative; left: auto; bottom: auto; align-self: flex-start; max-width: calc(55% - 52px); margin: auto 0 30px clamp(26px, 3vw, 40px); }
-        .maison-film { position: absolute; inset: 0 0 0 55%; overflow: hidden; }
+        .world--care { background: var(--care); color: var(--care-ink); }
+        .world--care::before { content: ""; position: absolute; inset: 0 0 0 auto; width: 44%; background: linear-gradient(130deg, rgba(255,255,255,.14), rgba(128,83,70,.15)); }
+        .world--care h3 { font-size: clamp(1.9rem, 6.4cqi, 3.6rem); }
+        .world--family h3 { font-size: clamp(1.9rem, 6.4cqi, 3.6rem); }
+        .maison-film { position: absolute; inset: 0 0 0 56%; overflow: hidden; }
 
         .credo { background: var(--ink); color: #f5f7f2; }
-        .credo__sentence { max-width: 1120px; font-family: "Stack Sans Notch", "Inter", sans-serif; font-size: clamp(3.2rem, 7vw, 7.3rem); line-height: .98; letter-spacing: -.04em; text-wrap: balance; }
+        .credo__sentence { max-width: 1120px; font-family: "Stack Sans Notch", "Inter", sans-serif; font-size: var(--type-display); line-height: .98; letter-spacing: -.04em; text-wrap: balance; }
         .credo__sentence span { color: var(--acid); }
-        .credo__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: clamp(60px, 8vw, 100px); border-top: 1px solid #4a564f; }
+        .credo__lead { max-width: 640px; margin-top: 28px; color: #b8c2bc; font-size: 1.15rem; line-height: 1.65; }
+        .credo__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: clamp(56px, 7vw, 96px); border-top: 1px solid #4a564f; }
         .credo__item { padding: 28px 28px 0 0; }
         .credo__item + .credo__item { padding-left: 28px; border-left: 1px solid #4a564f; }
         .credo__item strong { display: block; color: var(--acid); font-size: 1.06rem; }
-        .credo__item p { max-width: 330px; margin-top: 9px; color: #b8c2bc; }
+        .credo__item p { max-width: 300px; margin-top: 9px; color: #b8c2bc; }
+        .credo__outro { max-width: 640px; margin-top: clamp(48px, 6vw, 80px); font-family: "Stack Sans Notch", "Inter", sans-serif; font-size: var(--type-h2-small); line-height: 1.02; letter-spacing: -.03em; text-wrap: balance; }
 
         .extras { padding-block: clamp(74px, 8vw, 110px); border-bottom: 1px solid var(--rule); }
-        .extras__head { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 28px; }
-        .extras h2 { font-size: clamp(2.4rem, 4vw, 4rem); }
-        .extras__head p { max-width: 470px; color: var(--muted); }
+        .extras__head { max-width: 720px; margin-bottom: 32px; }
+        .extras h2 { font-size: var(--type-h2-small); }
+        .extras__head p { max-width: 58ch; margin-top: 14px; color: var(--muted); }
         .more { border-top: 1px solid var(--ink); }
         .more__row { min-height: 88px; display: grid; grid-template-columns: minmax(170px, .8fr) minmax(0, 1.2fr) 155px 36px; align-items: center; gap: 22px; border-bottom: 1px solid var(--rule); text-decoration: none; transition: background .25s var(--ease); }
         .more__row:hover { background: rgba(251, 252, 248, .72); }
@@ -228,11 +236,11 @@ const formatDate = (date: Date) => new Intl.DateTimeFormat("de-DE", {
 
         .journal { border-bottom: 1px solid var(--rule); }
         .journal__head { display: flex; align-items: end; justify-content: space-between; gap: 28px; margin-bottom: 34px; }
-        .journal__head h2 { max-width: 840px; font-size: clamp(3rem, 6vw, 6rem); text-wrap: balance; }
+        .journal__head h2 { max-width: 840px; font-size: var(--type-h2); text-wrap: balance; }
         .journal__all { flex: 0 0 auto; padding-bottom: 7px; color: #a7351a; font-weight: 760; }
         .journal__post { display: grid; grid-template-columns: 170px minmax(0, 1fr) 38px; gap: clamp(22px, 5vw, 66px); align-items: start; padding: 30px 0; border-block: 1px solid var(--ink); text-decoration: none; }
-        .journal__date { color: var(--muted); font-size: .8rem; font-weight: 680; }
-        .journal__post h3 { margin-bottom: 10px; font-size: clamp(2rem, 4vw, 4.2rem); transition: color .2s var(--ease); }
+        .journal__date { padding-top: 6px; color: var(--muted); font-size: .8rem; font-weight: 680; }
+        .journal__post h3 { margin-bottom: 10px; font-size: clamp(1.8rem, 3vw, 2.8rem); transition: color .2s var(--ease); }
         .journal__post p { max-width: 650px; color: var(--muted); }
         .journal__arrow { padding-top: 5px; color: var(--signal); font-size: 1.55rem; transition: transform .2s var(--ease); }
         .journal__post:hover h3 { color: #a7351a; }
@@ -243,8 +251,7 @@ const formatDate = (date: Date) => new Intl.DateTimeFormat("de-DE", {
         .portrait { position: relative; width: min(100%, 400px); }
         .portrait img { width: 100%; height: auto; border: 1px solid var(--ink); border-radius: 20px; box-shadow: 15px 17px 0 #d7ded5; }
         .portrait figcaption { position: absolute; right: -16px; bottom: 22px; padding: 9px 14px; border: 1px solid var(--ink); border-radius: 999px; background: var(--acid); font-size: .79rem; font-weight: 760; }
-        .about__label { margin-bottom: 22px; color: #a7351a; font-weight: 750; }
-        .about h2 { max-width: 830px; font-size: clamp(3.1rem, 5.5vw, 5.8rem); text-wrap: balance; }
+        .about h2 { max-width: 830px; font-size: var(--type-h2); text-wrap: balance; }
         .about__text { max-width: 700px; margin-top: 25px; color: var(--muted); font-size: 1.1rem; line-height: 1.72; }
         .press { margin-top: 34px; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 20px 0; border-block: 1px solid var(--rule); text-decoration: none; }
         .press:hover { color: #a7351a; }
@@ -253,7 +260,7 @@ const formatDate = (date: Date) => new Intl.DateTimeFormat("de-DE", {
 
         .contact { padding-block: 78px; border-top: 1px solid var(--ink); background: var(--acid); }
         .contact__inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
-        .contact h2 { max-width: 790px; font-size: clamp(2.7rem, 5vw, 5.2rem); }
+        .contact h2 { max-width: 790px; font-size: var(--type-h2-small); }
         .contact p { max-width: 620px; margin-top: 14px; color: #455238; }
         .contact .button { flex: 0 0 auto; background: var(--ink); color: #fff; }
         .footer { padding-block: 28px; background: var(--ink); color: #aeb9b2; }
@@ -271,12 +278,14 @@ const formatDate = (date: Date) => new Intl.DateTimeFormat("de-DE", {
             .hero__grid { grid-template-columns: 1fr; }
             .hero__copy { max-width: 850px; }
             .atlas { width: min(720px, 100%); min-height: 610px; }
+            .credo__grid { grid-template-columns: 1fr 1fr; }
+            .credo__item:nth-child(3) { padding-left: 0; border-left: 0; }
+            .credo__item:nth-child(-n+2) { padding-bottom: 28px; border-bottom: 1px solid #4a564f; }
         }
 
         @media (max-width: 900px) {
             .worlds { grid-template-columns: 1fr; }
             .world--family, .world--care, .world--kids, .world--gym { grid-column: auto; }
-            .world__copy { max-width: 66%; }
         }
 
         @media (max-width: 760px) {
@@ -289,15 +298,15 @@ const formatDate = (date: Date) => new Intl.DateTimeFormat("de-DE", {
             .atlas__label small { font-size: .73rem; }
             .atlas__family img, .atlas__gym img { width: 60%; top: 24px; }
             .atlas__kids img { width: 70%; top: 30px; left: 15%; }
-            .section__head { grid-template-columns: 1fr; gap: 20px; }
-            .world--family, .world--care, .world--kids, .world--gym { grid-column: auto; min-height: 570px; }
-            .world__copy { max-width: none; }
-            .world__copy { padding: 25px; }
-            .world__link { left: 25px; }
-            .world--family .world__visual, .world--kids .world__visual, .world--gym .world__visual { right: 7%; }
+            .world { min-height: 0; }
+            .world__copy, .world--family .world__copy, .world--care .world__copy { max-width: none; }
+            .world__link, .world--family .world__link, .world--care .world__link { margin: 22px var(--gutter) 0; }
+            .world--family .world__media { position: relative; inset: auto; width: auto; min-height: 250px; margin-top: 24px; }
+            .world--family .world__visual { top: 0; right: 8%; width: min(58%, 260px); }
+            .world__media { min-height: 260px; }
             .credo__grid { grid-template-columns: 1fr; }
             .credo__item, .credo__item + .credo__item { padding: 22px 0; border-left: 0; border-bottom: 1px solid #4a564f; }
-            .extras__head { align-items: flex-start; flex-direction: column; }
+            .credo__item p { max-width: none; }
             .more__row { grid-template-columns: 1fr auto; gap: 7px 18px; padding-block: 18px; }
             .more__desc, .more__meta { grid-column: 1; }
             .more__arrow { grid-column: 2; grid-row: 1 / 4; align-self: center; }
@@ -314,15 +323,13 @@ const formatDate = (date: Date) => new Intl.DateTimeFormat("de-DE", {
             .atlas { min-height: 430px; }
             .atlas__label { padding: 10px; font-size: .78rem; }
             .atlas__family img, .atlas__gym img { border-width: 3px; border-radius: 16px; }
-            .world--family .world__visual, .world--kids .world__visual, .world--gym .world__visual { width: 195px; }
+            .world__visual, .world--family .world__visual { width: min(62%, 220px); border-width: 5px; border-radius: 26px; }
         }
 
         @media (max-width: 760px) {
-            .world--care { display: flex; flex-direction: column; }
-            .world--care .world__copy { max-width: none; }
-            .world--care h3 { font-size: clamp(1.75rem, 9.2cqi, 3.8rem); }
-            .world--care .world__link { position: static; align-self: flex-start; max-width: calc(100% - 50px); margin: 0 25px 25px; }
-            .maison-film { position: relative; inset: auto; width: 100%; aspect-ratio: 4 / 5; }
+            .world--care h3, .world--family h3 { font-size: clamp(1.9rem, 8.5cqi, 4.4rem); }
+            .world--care::before { display: none; }
+            .maison-film { position: relative; inset: auto; width: 100%; aspect-ratio: 4 / 5; margin-top: 24px; }
             .maison-film .maison-video { position: absolute; inset: 0; }
         }
 
@@ -339,7 +346,7 @@ const formatDate = (date: Date) => new Intl.DateTimeFormat("de-DE", {
         <div class="shell nav__inner">
             <a class="brand" href="#top"><span class="brand__mark" aria-hidden="true"></span>Ben Kohler</a>
             <div class="nav__links">
-                <a href="#produkte">Produkte</a>
+                <a href="#produkte">Projekte</a>
                 <a href="#haltung">Die Idee dahinter</a>
                 <a href="/blog/">Blog</a>
                 <a href="#about">Über mich</a>
@@ -353,7 +360,7 @@ const formatDate = (date: Date) => new Intl.DateTimeFormat("de-DE", {
             <div class="shell hero__grid">
                 <div class="hero__copy">
                     <h1>Ich bin Ben. Und das mache ich.</h1>
-                    <p class="hero__lede">Ich entwickle Apps für Familien, für Kinder und fürs Training. Gerade kommt eine Hautpflegemarke dazu. Ziemlich verschiedene Projekte. Dachte ich jedenfalls.</p>
+                    <p class="hero__lede">Ich entwickle Apps für Familien, für Kinder und fürs Training. Gerade kommt eine Hautpflegemarke dazu. Vier ziemlich verschiedene Projekte. Dachte ich jedenfalls.</p>
                     <div class="hero__actions">
                         <a class="button button--primary" href="#produkte">Projekte ansehen <span aria-hidden="true">↓</span></a>
                         <a class="button button--quiet" href="#haltung">Was sie verbindet</a>
@@ -367,11 +374,11 @@ const formatDate = (date: Date) => new Intl.DateTimeFormat("de-DE", {
                     </a>
                     <a class="atlas__tile atlas__kids" href="#track4kids">
                         <div class="atlas__media"><img decoding="async" width="1024" height="1024" src="/images/indie-preview/track4kids-logo.webp" alt=""></div>
-                        <span class="atlas__label">Track4Kids <small>Ernährung</small></span>
+                        <span class="atlas__label">Track4Kids <small>Essen</small></span>
                     </a>
                     <a class="atlas__tile atlas__gym" href="#gymbo">
                         <div class="atlas__media"><img decoding="async" width="1260" height="2736" src="/images/indie-preview/gymbo-heute.png" alt=""></div>
-                        <span class="atlas__label">GymBo <small>Bewegung</small></span>
+                        <span class="atlas__label">GymBo <small>Training</small></span>
                     </a>
                     <a class="atlas__tile atlas__care" href="#maison-benchris">
                         <div class="atlas__media"><video class="maison-video" src="https://maison-benchris.de/mbc/hero.mp4" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
@@ -385,13 +392,13 @@ const formatDate = (date: Date) => new Intl.DateTimeFormat("de-DE", {
             <div class="shell">
                 <div class="section__head">
                     <h2>Daran arbeite ich.</h2>
-                    <p>Bei diesen vier Projekten geht es um Dinge, die mich selbst beschäftigen: Familie, Essen, Sport und Hautpflege.</p>
+                    <p>Vier Projekte zu Dingen, die mich selbst beschäftigen: Familie, Essen, Training und Pflege.</p>
                 </div>
 
                 <div class="worlds">
                     <a class="world world--family" id="familymanager" href="https://familymanager.pro/landing" rel="noopener">
                         <div class="world__copy">
-                            <span class="world__area">Familienalltag</span>
+                            <span class="world__area">Familie</span>
                             <h3>FamilyManager</h3>
                             <p class="world__claim">Termine, Aufgaben und Einkäufe gemeinsam organisieren.</p>
                             <p class="world__desc">Mit FamilyManager arbeite ich daran, den Überblick im Familienalltag zu erleichtern. Auch dann, wenn die Familie in mehreren Haushalten lebt.</p>
@@ -402,7 +409,7 @@ const formatDate = (date: Date) => new Intl.DateTimeFormat("de-DE", {
 
                     <a class="world world--kids" id="track4kids" href="https://track4kids.de/" rel="noopener">
                         <div class="world__copy">
-                            <span class="world__area">Essen entdecken</span>
+                            <span class="world__area">Essen</span>
                             <h3>Track4Kids</h3>
                             <p class="world__claim">Ich will Kindern Lust machen, Lebensmittel zu entdecken.</p>
                             <p class="world__desc">Track4Kids ist für Kinder von 9 bis 12 Jahren. Mit Karten und Arenen lernen sie Lebensmittel kennen. Kalorienzählen gehört nicht dazu.</p>
@@ -424,7 +431,7 @@ const formatDate = (date: Date) => new Intl.DateTimeFormat("de-DE", {
 
                     <a class="world world--care" id="maison-benchris" href="https://maison-benchris.de/" rel="noopener">
                         <div class="world__copy">
-                            <span class="world__area">Hautpflege</span>
+                            <span class="world__area">Pflege</span>
                             <h3>MAISON BENCHRIS</h3>
                             <p class="world__claim">Mein nächstes Projekt geht über Software hinaus.</p>
                             <p class="world__desc">Mit MAISON BENCHRIS arbeite ich an einer Hautpflegemarke. Sie ist noch in Vorbereitung. Mein Ziel ist Pflege, die sich einfach in den Alltag einbauen lässt.</p>
@@ -438,12 +445,15 @@ const formatDate = (date: Date) => new Intl.DateTimeFormat("de-DE", {
 
         <section class="section credo" id="haltung">
             <div class="shell">
-                <h2 class="credo__sentence">Das wurde mir erst später klar.</h2>
+                <h2 class="credo__sentence">Das wurde mir erst später klar: <span>Es geht immer um den Alltag.</span></h2>
+                <p class="credo__lead">Lange habe ich vor allem gesehen, wie unterschiedlich die Projekte sind. Erst mit der Hautpflegemarke fiel mir auf, dass sie alle vom selben Ort handeln. Von dem, was wir jeden Tag tun.</p>
                 <div class="credo__grid">
-                    <div class="credo__item"><strong>Erst mal einzelne Projekte</strong><p>FamilyManager für die Familie. Track4Kids fürs Essen. GymBo fürs Training. Lange habe ich vor allem gesehen, wie unterschiedlich diese Projekte sind.</p></div>
-                    <div class="credo__item"><strong>Dann fiel mir etwas auf</strong><p>Mit MAISON BENCHRIS kommt Hautpflege dazu. Und plötzlich war für mich klar: Bei all diesen Themen geht es um unseren Alltag. Wie wir zusammenleben, essen, uns bewegen und um uns selbst kümmern.</p></div>
-                    <div class="credo__item"><strong>Deshalb stehen sie hier zusammen</strong><p>Ich habe sie lange als einzelne Projekte betrachtet. Inzwischen sehe ich auch, was sie verbindet. Deshalb zeige ich sie hier gemeinsam und erzähle, woran ich arbeite.</p></div>
+                    <div class="credo__item"><strong>Zusammenleben</strong><p>Wie eine Familie ihren Tag organisiert. Auch dann, wenn sie in mehreren Haushalten lebt.</p></div>
+                    <div class="credo__item"><strong>Essen</strong><p>Wie Kinder Lebensmittel kennenlernen. Mit Neugier, nicht mit Kalorien.</p></div>
+                    <div class="credo__item"><strong>Bewegen</strong><p>Wie man beim Training dranbleibt, weil man sieht, was beim letzten Mal ging.</p></div>
+                    <div class="credo__item"><strong>Sich kümmern</strong><p>Wie Pflege in den Tag passt, ohne zur zusätzlichen Aufgabe zu werden.</p></div>
                 </div>
+                <p class="credo__outro">Deshalb stehen die vier hier zusammen.</p>
             </div>
         </section>
 
@@ -451,7 +461,7 @@ const formatDate = (date: Date) => new Intl.DateTimeFormat("de-DE", {
             <div class="shell">
                 <div class="extras__head">
                     <h2 id="extras-title">Weitere Projekte</h2>
-                    <p>Daneben gibt es noch andere Projekte von mir: rund um Musik, Nahrungsergänzung, Produktfeedback und Inhalte im Netz.</p>
+                    <p>Daneben gibt es kleinere Projekte rund um Musik, Nahrungsergänzung, Produktfeedback und Inhalte im Netz.</p>
                 </div>
                 <div class="more">
                     <a class="more__row" href="https://startune.benkohler.de/" rel="noopener"><span class="more__name">StarTune</span><span class="more__desc">Songs schneller favorisieren.</span><span class="more__meta">macOS · Live</span><span class="more__arrow">↗</span></a>
@@ -491,7 +501,6 @@ const formatDate = (date: Date) => new Intl.DateTimeFormat("de-DE", {
                     <figcaption>Ben · Ulm</figcaption>
                 </figure>
                 <div>
-                    <p class="about__label">Über mich</p>
                     <h2>Ein bisschen mehr über mich.</h2>
                     <p class="about__text">Ich lebe in Ulm und entwickle seit vielen Jahren Software. An FamilyManager arbeite ich neben meinem Vollzeitjob. Wie das zusammenpasst und wie die App entstanden ist, erzähle ich im Podcast Happy Bootstrapping.</p>
                     <a class="press" href="https://happy-bootstrapping.de/ben-kohler-familymanager-familien-app-neben-dem-vollzeitjob-184/" rel="noopener">
@@ -504,7 +513,7 @@ const formatDate = (date: Date) => new Intl.DateTimeFormat("de-DE", {
 
         <section class="contact">
             <div class="shell contact__inner">
-                <div><h2>Schreib mir.</h2><p>Du nutzt eines meiner Produkte oder willst mir etwas dazu sagen? Schreib mir.</p></div>
+                <div><h2>Schreib mir.</h2><p>Du nutzt eines meiner Projekte, hast eine Frage oder Feedback dazu? Ich freue mich über jede Mail.</p></div>
                 <a class="button" href="mailto:mail@benkohler.de">mail@benkohler.de <span aria-hidden="true">↗</span></a>
             </div>
         </section>
