@@ -5,13 +5,6 @@ const mailto = "mailto:mail@benkohler.de?subject=App-Projekt";
 
 const offers = [
     {
-        name: "App-Check",
-        claim: "Für eine App, die es schon gibt.",
-        text: "Ich lese den Code, baue die App und probiere sie aus. Danach bekommst du einen Bericht: was nicht stimmt, was davon dringend ist und was ich an deiner Stelle zuerst angehen würde.",
-        duration: "etwa eine Woche",
-        price: "Festpreis ab 1.500 €",
-    },
-    {
         name: "Erste Version",
         claim: "Für eine Idee, die noch keine App ist.",
         text: "Wir legen zusammen fest, was in die erste Version muss und was warten kann. Dann baue ich sie. Jede Woche landet ein neuer Stand über TestFlight auf deinem iPhone.",
@@ -53,7 +46,7 @@ const faqs = [
 
 <BlogLayout
     title="App entwickeln lassen"
-    description="Ben Kohler aus Ulm baut iPhone-Apps im Auftrag: App-Check, erste Version bis in den App Store und Weiterentwicklung."
+    description="Ben Kohler aus Ulm baut iPhone-Apps im Auftrag: von der ersten Version bis in den App Store und danach weiter."
 >
     <header class="hire-hero">
         <div class="shell">
@@ -70,7 +63,7 @@ const faqs = [
         <div class="shell">
             <div class="hire-head">
                 <h2 id="angebot-title">Was ich anbiete.</h2>
-                <p>Drei Pakete mit festem Preis. Wie viel es genau kostet, bekommst du nach dem ersten Gespräch schriftlich, bevor irgendetwas losgeht.</p>
+                <p>Zwei Pakete mit festem Preis. Wie viel es genau kostet, bekommst du nach dem ersten Gespräch schriftlich, bevor irgendetwas losgeht.</p>
             </div>
             <div class="offers">
                 {offers.map((offer) => (
@@ -161,7 +154,7 @@ const faqs = [
     .hire-head p { max-width: 58ch; margin: 20px 0 0; color: var(--muted); font-size: 1.08rem; }
     .hire-head a { color: #a7351a; font-weight: 700; }
 
-    .offers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .offers { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
     .offer { display: flex; flex-direction: column; padding: clamp(26px, 3vw, 36px); border: 1px solid rgba(22, 32, 25, .22); border-radius: 28px; background: var(--paper); }
     .offer--featured { border-color: var(--ink); background: var(--acid); box-shadow: 12px 14px 0 rgba(22, 32, 25, .09); }
     .offer h3 { margin-bottom: 18px; font-size: clamp(2rem, 3vw, 2.7rem); }
@@ -182,9 +175,8 @@ const faqs = [
     .proof__meta { font-size: .82rem; font-weight: 700; }
     .proof__arrow { font-size: 1.3rem; text-align: right; }
 
-    .steps { display: grid; grid-template-columns: repeat(4, 1fr); margin: 0; padding: 0; border-top: 1px solid var(--ink); list-style: none; counter-reset: step; }
-    .step { padding: 28px 28px 0 0; counter-increment: step; }
-    .step + .step { padding-left: 28px; border-left: 1px solid var(--rule); }
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 36px 28px; margin: 0; padding: 0; list-style: none; counter-reset: step; }
+    .step { padding-top: 24px; border-top: 1px solid var(--ink); counter-increment: step; }
     .step::before { content: "0" counter(step); display: block; margin-bottom: 14px; color: var(--signal); font-weight: 790; }
     .step h3 { margin-bottom: 10px; font-size: 1.7rem; }
     .step p { margin: 0; color: var(--muted); }
@@ -209,8 +201,6 @@ const faqs = [
     @media (max-width: 1020px) {
         .offers { grid-template-columns: 1fr; }
         .steps { grid-template-columns: 1fr 1fr; }
-        .step:nth-child(3) { padding-left: 0; border-left: 0; }
-        .step:nth-child(-n+2) { padding-bottom: 28px; border-bottom: 1px solid var(--rule); }
     }
 
     @media (max-width: 760px) {
@@ -218,7 +208,6 @@ const faqs = [
         .proof__text, .proof__meta { grid-column: 1; }
         .proof__arrow { grid-column: 2; grid-row: 1 / 4; align-self: center; }
         .steps { grid-template-columns: 1fr; }
-        .step, .step + .step { padding: 22px 0; border-left: 0; border-bottom: 1px solid var(--rule); }
         .faq { grid-template-columns: 1fr; }
         .hire-contact__inner { align-items: flex-start; flex-direction: column; }
     }
