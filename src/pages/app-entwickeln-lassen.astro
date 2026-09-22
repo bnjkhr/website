@@ -1,0 +1,214 @@
+---
+import BlogLayout from "../layouts/BlogLayout.astro";
+
+const mailto = "mailto:mail@benkohler.de?subject=App-Projekt";
+
+const offers = [
+    {
+        name: "Erste Version",
+        claim: "Für eine Idee, die noch keine App ist.",
+        text: "Wir legen zusammen fest, was in die erste Version muss und was warten kann. Dann baue ich sie. Jede Woche landet ein neuer Stand über TestFlight auf deinem iPhone.",
+        duration: "meist 8 bis 12 Wochen",
+        price: "Festpreis nach Absprache, meist ab 15.000 €",
+        featured: true,
+    },
+    {
+        name: "Weiterentwicklung",
+        claim: "Für eine App, die schon im Store ist.",
+        text: "Ich reserviere dir feste Tage im Monat. Darin baue ich neue Funktionen, passe die App an neue iOS-Versionen an und kümmere mich um das, was deine Nutzer melden.",
+        duration: "monatlich kündbar",
+        price: "ab 2.500 € im Monat",
+    },
+];
+
+const proofs = [
+    { name: "FamilyManager", text: "Termine, Aufgaben und Einkäufe für Familien, auch über mehrere Haushalte hinweg.", meta: "iPhone", href: "https://familymanager.pro/landing" },
+    { name: "GymBo", text: "Trainingstagebuch fürs iPhone.", meta: "iPhone", href: "https://gymbo.benkohler.de/" },
+    { name: "Track4Kids", text: "Kinder entdecken Lebensmittel mit Karten und Arenen.", meta: "iPhone · Beta", href: "https://track4kids.de/" },
+    { name: "StarTune", text: "Songs schneller favorisieren.", meta: "macOS · Live", href: "https://startune.benkohler.de/" },
+];
+
+const steps = [
+    { title: "Erstes Gespräch", text: "Wir telefonieren eine halbe Stunde. Du erzählst von deiner App, ich stelle Fragen. Das Gespräch kostet nichts." },
+    { title: "Angebot", text: "Du bekommst schriftlich, was ich baue, was es kostet und wann es fertig ist." },
+    { title: "Entwicklung", text: "Jede Woche ein neuer Stand auf deinem iPhone. Wenn dir etwas nicht gefällt, merken wir das früh." },
+    { title: "Übergabe", text: "Die App läuft in deinem App-Store-Konto. Du bekommst den Code und eine Beschreibung, wie alles zusammenhängt." },
+];
+
+const faqs = [
+    { q: "Wann kannst du anfangen?", a: "Das hängt davon ab, ob gerade ein anderes Projekt läuft. Ich sage es dir im ersten Gespräch." },
+    { q: "Baust du auch für Android?", a: "Ich baue vor allem fürs iPhone, mit Swift und SwiftUI. Ob Android dazukommt, besprechen wir im ersten Gespräch." },
+    { q: "Welche Apps passen zu dir?", a: "Apps für den Alltag: Familie, Organisation, Gesundheit, Training. An diesen Themen arbeite ich auch bei meinen eigenen Apps." },
+    { q: "Was machst du nicht?", a: "Spiele. Und Projekte, die in zwei Wochen fertig sein müssen." },
+    { q: "Wo sitzt du?", a: "In Ulm. Das meiste läuft über Video und Mail. Wenn du in der Nähe bist, können wir uns auch treffen." },
+];
+---
+
+<BlogLayout
+    title="App entwickeln lassen"
+    description="Ben Kohler aus Ulm baut iPhone-Apps im Auftrag: von der ersten Version bis in den App Store und danach weiter."
+>
+    <header class="hire-hero">
+        <div class="shell">
+            <h1>Ich baue auch Apps für andere.</h1>
+            <p class="hire-hero__lede">Bisher habe ich Apps vor allem für mich selbst gebaut. Jetzt nehme ich auch Aufträge an: iPhone-Apps, vom ersten Entwurf bis in den App Store. Ich arbeite dabei immer nur an einem Projekt gleichzeitig.</p>
+            <div class="actions">
+                <a class="button button--primary" href={mailto}>Projekt anfragen <span aria-hidden="true">↗</span></a>
+                <a class="button button--quiet" href="#angebot">Was ich anbiete <span aria-hidden="true">↓</span></a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hire-section" id="angebot" aria-labelledby="angebot-title">
+        <div class="shell">
+            <div class="hire-head">
+                <h2 id="angebot-title">Was ich anbiete.</h2>
+                <p>Zwei Pakete mit festem Preis. Wie viel es genau kostet, bekommst du nach dem ersten Gespräch schriftlich, bevor irgendetwas losgeht.</p>
+            </div>
+            <div class="offers">
+                {offers.map((offer) => (
+                    <article class:list={["offer", { "offer--featured": offer.featured }]}>
+                        <h3>{offer.name}</h3>
+                        <p class="offer__claim">{offer.claim}</p>
+                        <p class="offer__text">{offer.text}</p>
+                        <dl class="offer__facts">
+                            <div><dt>Dauer</dt><dd>{offer.duration}</dd></div>
+                            <div><dt>Preis</dt><dd>{offer.price}</dd></div>
+                        </dl>
+                    </article>
+                ))}
+            </div>
+            <p class="note">Alle Preise netto.</p>
+        </div>
+    </section>
+
+    <section class="hire-section" aria-labelledby="proof-title">
+        <div class="shell">
+            <div class="hire-head">
+                <h2 id="proof-title">Meine eigenen Apps.</h2>
+                <p>An ihnen kannst du sehen, wie ich arbeite. Was sich an ihnen jede Woche ändert, schreibe ich <a href="/blog/">im Blog</a> auf.</p>
+            </div>
+            <div class="proofs">
+                {proofs.map((proof) => (
+                    <a class="proof" href={proof.href} rel="noopener">
+                        <span class="proof__name">{proof.name}</span>
+                        <span class="proof__text">{proof.text}</span>
+                        <span class="proof__meta">{proof.meta}</span>
+                        <span class="proof__arrow" aria-hidden="true">↗</span>
+                    </a>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <section class="hire-section" aria-labelledby="ablauf-title">
+        <div class="shell">
+            <div class="hire-head">
+                <h2 id="ablauf-title">So läuft es ab.</h2>
+            </div>
+            <ol class="steps">
+                {steps.map((step) => (
+                    <li class="step">
+                        <h3>{step.title}</h3>
+                        <p>{step.text}</p>
+                    </li>
+                ))}
+            </ol>
+        </div>
+    </section>
+
+    <section class="hire-section hire-section--faq" aria-labelledby="faq-title">
+        <div class="shell faq">
+            <h2 id="faq-title">Fragen und Antworten.</h2>
+            <div>
+                {faqs.map((faq) => (
+                    <details class="faq__item">
+                        <summary>{faq.q}</summary>
+                        <p>{faq.a}</p>
+                    </details>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <section class="hire-contact">
+        <div class="shell hire-contact__inner">
+            <div>
+                <h2>Erzähl mir von deiner App.</h2>
+                <p>Schreib mir ein paar Sätze: was die App können soll, für wen sie ist und bis wann du sie brauchst. Ich antworte innerhalb von zwei Werktagen.</p>
+            </div>
+            <a class="button button--primary" href={mailto}>mail@benkohler.de <span aria-hidden="true">↗</span></a>
+        </div>
+    </section>
+</BlogLayout>
+
+<style>
+    .hire-hero { padding: clamp(72px, 10vw, 130px) 0 clamp(58px, 8vw, 100px); border-bottom: 1px solid var(--rule); }
+    .hire-hero h1 { max-width: 980px; margin-bottom: 0; font-size: clamp(3rem, 6.6vw, 6.4rem); text-wrap: balance; }
+    .hire-hero__lede { max-width: 640px; margin: 28px 0 0; color: var(--muted); font-size: clamp(1.08rem, 1.6vw, 1.27rem); }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+
+    .hire-section { padding: clamp(80px, 9vw, 130px) 0; border-bottom: 1px solid var(--rule); }
+    .hire-head { max-width: 720px; margin-bottom: clamp(34px, 4vw, 52px); }
+    .hire-head h2, .faq h2 { margin-bottom: 0; font-size: clamp(2.4rem, 4.4vw, 4.2rem); text-wrap: balance; }
+    .hire-head p { max-width: 58ch; margin: 20px 0 0; color: var(--muted); font-size: 1.08rem; }
+    .hire-head a { color: #a7351a; font-weight: 700; }
+
+    .offers { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .offer { display: flex; flex-direction: column; padding: clamp(26px, 3vw, 36px); border: 1px solid rgba(22, 32, 25, .22); border-radius: 28px; background: var(--paper); }
+    .offer--featured { border-color: var(--ink); background: var(--acid); box-shadow: 12px 14px 0 rgba(22, 32, 25, .09); }
+    .offer h3 { margin-bottom: 18px; font-size: clamp(2rem, 3vw, 2.7rem); }
+    .offer__claim { margin-bottom: 10px; font-weight: 700; line-height: 1.45; }
+    .offer__text { margin-bottom: 26px; color: var(--muted); }
+    .offer__facts { margin: auto 0 0; border-top: 1px solid currentColor; }
+    .offer__facts div { display: flex; justify-content: space-between; gap: 16px; padding-top: 12px; font-size: .9rem; }
+    .offer__facts dt { color: var(--muted); font-weight: 650; }
+    .offer--featured .offer__text, .offer--featured .offer__facts dt { color: #455238; }
+    .offer__facts dd { margin: 0; font-weight: 760; text-align: right; }
+    .note { margin: 22px 0 0; color: var(--muted); font-size: .86rem; }
+
+    .proofs { border-top: 1px solid var(--ink); }
+    .proof { min-height: 88px; display: grid; grid-template-columns: minmax(170px, .8fr) minmax(0, 1.2fr) 140px 36px; align-items: center; gap: 22px; border-bottom: 1px solid var(--rule); text-decoration: none; transition: background .25s var(--ease); }
+    .proof:hover { background: rgba(251, 252, 248, .72); }
+    .proof__name { font-size: 1.3rem; font-weight: 790; letter-spacing: -.03em; }
+    .proof__text, .proof__meta { color: var(--muted); }
+    .proof__meta { font-size: .82rem; font-weight: 700; }
+    .proof__arrow { font-size: 1.3rem; text-align: right; }
+
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 36px 28px; margin: 0; padding: 0; list-style: none; counter-reset: step; }
+    .step { padding-top: 24px; border-top: 1px solid var(--ink); counter-increment: step; }
+    .step::before { content: "0" counter(step); display: block; margin-bottom: 14px; color: var(--signal); font-weight: 790; }
+    .step h3 { margin-bottom: 10px; font-size: 1.7rem; }
+    .step p { margin: 0; color: var(--muted); }
+
+    .hire-section--faq { background: var(--ink); color: #f5f7f2; }
+    .faq { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(36px, 6vw, 90px); }
+    .faq h2 { color: #f5f7f2; }
+    .faq__item { border-bottom: 1px solid #4a564f; }
+    .faq__item:first-child { border-top: 1px solid #4a564f; }
+    .faq__item summary { min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 18px; cursor: pointer; font-weight: 720; list-style: none; }
+    .faq__item summary::-webkit-details-marker { display: none; }
+    .faq__item summary::after { content: "+"; color: var(--acid); font-size: 1.5rem; font-weight: 400; transition: transform .2s var(--ease); }
+    .faq__item[open] summary::after { transform: rotate(45deg); }
+    .faq__item p { max-width: 60ch; margin: 0 0 22px; color: #b8c2bc; }
+
+    .hire-contact { padding-block: 78px; border-top: 1px solid var(--ink); background: var(--acid); }
+    .hire-contact__inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+    .hire-contact h2 { max-width: 790px; margin-bottom: 0; font-size: clamp(2.1rem, 3.2vw, 3.2rem); }
+    .hire-contact p { max-width: 620px; margin: 14px 0 0; color: #455238; }
+    .hire-contact .button { flex: 0 0 auto; }
+
+    @media (max-width: 1020px) {
+        .offers { grid-template-columns: 1fr; }
+        .steps { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 760px) {
+        .proof { grid-template-columns: 1fr auto; gap: 7px 18px; padding-block: 18px; }
+        .proof__text, .proof__meta { grid-column: 1; }
+        .proof__arrow { grid-column: 2; grid-row: 1 / 4; align-self: center; }
+        .steps { grid-template-columns: 1fr; }
+        .faq { grid-template-columns: 1fr; }
+        .hire-contact__inner { align-items: flex-start; flex-direction: column; }
+    }
+</style>

@@ -21,6 +21,7 @@ const {
   heroImage,
 } = Astro.props;
 const canonical = new URL(canonicalPath, Astro.site);
+const current = (href: string) => (Astro.url.pathname.startsWith(href) ? "page" : undefined);
 const socialImage = heroImage ? new URL(heroImage, Astro.site) : undefined;
 const pageTitle = title === "Blog" ? "Blog · Ben Kohler" : `${title} · Ben Kohler`;
 ---
@@ -53,7 +54,8 @@ const pageTitle = title === "Blog" ? "Blog · Ben Kohler" : `${title} · Ben Koh
         <a class="brand" href="/"><span class="brand__mark" aria-hidden="true"></span>Ben Kohler</a>
         <div class="nav__links">
           <a href="/#produkte">Projekte</a>
-          <a href="/blog/" aria-current="page">Blog</a>
+          <a href="/blog/" aria-current={current("/blog/")}>Blog</a>
+          <a href="/app-entwickeln-lassen/" aria-current={current("/app-entwickeln-lassen/")}>Zusammenarbeit</a>
           <a href="/#about">Über mich</a>
           <a class="nav__mail" href="mailto:mail@benkohler.de">Schreib mir</a>
         </div>

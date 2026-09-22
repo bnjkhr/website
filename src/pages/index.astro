@@ -262,6 +262,7 @@ const formatDate = (date: Date) => new Intl.DateTimeFormat("de-DE", {
         .contact__inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
         .contact h2 { max-width: 790px; font-size: var(--type-h2-small); }
         .contact p { max-width: 620px; margin-top: 14px; color: #455238; }
+        .contact__hire a { color: var(--ink); font-weight: 760; }
         .contact .button { flex: 0 0 auto; background: var(--ink); color: #fff; }
         .footer { padding-block: 28px; background: var(--ink); color: #aeb9b2; }
         .footer__inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; font-size: .82rem; }
@@ -349,6 +350,7 @@ const formatDate = (date: Date) => new Intl.DateTimeFormat("de-DE", {
                 <a href="#produkte">Projekte</a>
                 <a href="#haltung">Die Idee dahinter</a>
                 <a href="/blog/">Blog</a>
+                <a href="/app-entwickeln-lassen/">Zusammenarbeit</a>
                 <a href="#about">Über mich</a>
                 <a class="nav__mail" href="mailto:mail@benkohler.de">Schreib mir</a>
             </div>
@@ -513,7 +515,7 @@ const formatDate = (date: Date) => new Intl.DateTimeFormat("de-DE", {
 
         <section class="contact">
             <div class="shell contact__inner">
-                <div><h2>Schreib mir.</h2><p>Du nutzt eines meiner Projekte, hast eine Frage oder Feedback dazu? Ich freue mich über jede Mail.</p></div>
+                <div><h2>Schreib mir.</h2><p>Du nutzt eines meiner Projekte, hast eine Frage oder Feedback dazu? Ich freue mich über jede Mail.</p><p class="contact__hire">Du brauchst eine App? <a href="/app-entwickeln-lassen/">Ich nehme auch Aufträge an →</a></p></div>
                 <a class="button" href="mailto:mail@benkohler.de">mail@benkohler.de <span aria-hidden="true">↗</span></a>
             </div>
         </section>
