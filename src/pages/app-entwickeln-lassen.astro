@@ -9,7 +9,6 @@ const offers = [
         claim: "Für eine Idee, die noch keine App ist.",
         text: "Wir legen zusammen fest, was in die erste Version muss und was warten kann. Dann baue ich sie. Jede Woche landet ein neuer Stand über TestFlight auf deinem iPhone.",
         duration: "meist 8 bis 12 Wochen",
-        price: "Festpreis nach Absprache, meist ab 15.000 €",
         featured: true,
     },
     {
@@ -17,7 +16,6 @@ const offers = [
         claim: "Für eine App, die schon im Store ist.",
         text: "Ich reserviere dir feste Tage im Monat. Darin baue ich neue Funktionen, passe die App an neue iOS-Versionen an und kümmere mich um das, was deine Nutzer melden.",
         duration: "monatlich kündbar",
-        price: "ab 2.500 € im Monat",
     },
 ];
 
@@ -63,7 +61,7 @@ const faqs = [
         <div class="shell">
             <div class="hire-head">
                 <h2 id="angebot-title">Was ich anbiete.</h2>
-                <p>Zwei Pakete mit festem Preis. Wie viel es genau kostet, bekommst du nach dem ersten Gespräch schriftlich, bevor irgendetwas losgeht.</p>
+                <p>Zwei Pakete. Was sie kosten, hängt davon ab, was die App können soll. Den Preis bekommst du nach dem ersten Gespräch schriftlich, bevor irgendetwas losgeht.</p>
             </div>
             <div class="offers">
                 {offers.map((offer) => (
@@ -73,12 +71,10 @@ const faqs = [
                         <p class="offer__text">{offer.text}</p>
                         <dl class="offer__facts">
                             <div><dt>Dauer</dt><dd>{offer.duration}</dd></div>
-                            <div><dt>Preis</dt><dd>{offer.price}</dd></div>
                         </dl>
                     </article>
                 ))}
             </div>
-            <p class="note">Alle Preise netto.</p>
         </div>
     </section>
 
@@ -165,7 +161,6 @@ const faqs = [
     .offer__facts dt { color: var(--muted); font-weight: 650; }
     .offer--featured .offer__text, .offer--featured .offer__facts dt { color: #455238; }
     .offer__facts dd { margin: 0; font-weight: 760; text-align: right; }
-    .note { margin: 22px 0 0; color: var(--muted); font-size: .86rem; }
 
     .proofs { border-top: 1px solid var(--ink); }
     .proof { min-height: 88px; display: grid; grid-template-columns: minmax(170px, .8fr) minmax(0, 1.2fr) 140px 36px; align-items: center; gap: 22px; border-bottom: 1px solid var(--rule); text-decoration: none; transition: background .25s var(--ease); }
