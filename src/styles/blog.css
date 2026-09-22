@@ -92,6 +92,12 @@ h1, h2, h3 {
 .nav__links a[aria-current="page"] { text-decoration: underline; text-decoration-color: var(--signal); text-decoration-thickness: 3px; text-underline-offset: 7px; }
 .nav__links .nav__mail { margin-left: 8px; border: 1px solid var(--ink); border-radius: 999px; color: var(--ink); }
 
+.button { min-height: 52px; display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 0 21px; border: 1px solid var(--ink); border-radius: 999px; text-decoration: none; font-weight: 760; transition: transform .25s var(--ease), box-shadow .25s var(--ease); }
+.button:hover { transform: translateY(-3px); box-shadow: 0 8px 18px rgba(22, 32, 25, .14); }
+.button:active { transform: translateY(0); box-shadow: none; }
+.button--primary { background: var(--ink); color: #fff; }
+.button--quiet { background: rgba(251, 252, 248, .65); }
+
 .blog-main { min-height: calc(100vh - 165px); }
 .blog-hero { padding: clamp(72px, 10vw, 130px) 0 clamp(58px, 8vw, 100px); border-bottom: 1px solid var(--rule); }
 .blog-hero__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, 390px); gap: clamp(40px, 8vw, 110px); align-items: end; }
