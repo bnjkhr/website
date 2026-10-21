@@ -8,6 +8,8 @@ const {
   compact = false,
   heading = "Neue Beiträge per E-Mail",
 } = Astro.props;
+// Optional Cloudflare Turnstile. Without the public site key no script and no widget are added.
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
 ---
 
 <aside class:list={["newsletter", { "newsletter--compact": compact }]} id="newsletter" aria-labelledby="newsletter-title">
@@ -15,7 +17,7 @@ const {
     <h2 id="newsletter-title">{heading}</h2>
     <p>Unregelmäßige Updates zu meinen Produkten und dem, was beim Entwickeln dahinter passiert.</p>
   </div>
-  <form class="newsletter__form" action="/api/newsletter-subscribe" method="post" data-newsletter-form>
+  <form class="newsletter__form" action="/api/newsletter-subscribe" method="post" data-newsletter-form data-turnstile-sitekey={turnstileSiteKey || undefined}>
     <div class="newsletter__field">
       <label for={`newsletter-email-${compact ? "compact" : "full"}`}>E-Mail-Adresse</label>
       <div class="newsletter__controls">
@@ -35,13 +37,76 @@ const {
     <div class="newsletter__trap" aria-hidden="true">
       <label>Website <input name="website" type="text" tabindex="-1" autocomplete="off" /></label>
     </div>
+    {turnstileSiteKey && <div data-turnstile-container></div>}
     <p class="newsletter__legal">Nach der Anmeldung erhältst du eine Bestätigungsmail. Klicks auf Links in den E-Mails werden ausgewertet. Abmeldung jederzeit. Details im <a href="/datenschutz.html">Datenschutz</a>.</p>
     <p class="newsletter__status" role="status" aria-live="polite" data-newsletter-status></p>
   </form>
 </aside>
 
 <script>
-  document.querySelectorAll<HTMLFormElement>("[data-newsletter-form]").forEach((form) => {
+  type TurnstileApi = {
+    render(container: HTMLElement, options: Record<string, unknown>): string;
+    reset(widgetId: string): void;
+  };
+
+  const MIN_TOKEN_AGE_MS = 3_250; // the server requires 3 s; the margin covers clock rounding
+  const MAX_TOKEN_AGE_MS = 100 * 60 * 1000; // the server accepts 2 h; renew well before that
+  const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+  const turnstile = () => (window as unknown as { turnstile?: TurnstileApi }).turnstile;
+
+  // One form token per page is enough: it is not bound to an address, so all forms share it.
+  let formToken: { value: string; fetchedAt: number } | null = null;
+  let pendingToken: Promise<void> | null = null;
+
+  function refreshFormToken() {
+    pendingToken ??= fetch("/api/newsletter-token", { headers: { Accept: "application/json" }, cache: "no-store" })
+      .then((response) => (response.ok ? response.json() : Promise.reject(new Error("token"))))
+      .then(({ token }) => { formToken = { value: token, fetchedAt: Date.now() }; })
+      .catch(() => { formToken = null; })
+      .finally(() => { pendingToken = null; });
+    return pendingToken;
+  }
+
+  // Resolves with a token that is old enough to be accepted, waiting for it if necessary.
+  async function readyFormToken() {
+    if (!formToken || Date.now() - formToken.fetchedAt > MAX_TOKEN_AGE_MS) await refreshFormToken();
+    if (!formToken) return "";
+    await wait(formToken.fetchedAt + MIN_TOKEN_AGE_MS - Date.now());
+    return formToken.value;
+  }
+
+  const forms = document.querySelectorAll<HTMLFormElement>("[data-newsletter-form]");
+  if (forms.length) void refreshFormToken();
+
+  const siteKey = forms[0]?.dataset.turnstileSitekey;
+  if (siteKey) {
+    const loader = document.createElement("script");
+    loader.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+    loader.async = true;
+    document.head.append(loader);
+  }
+
+  forms.forEach((form) => {
+    const container = form.querySelector<HTMLElement>("[data-turnstile-container]");
+    let widgetId: string | undefined;
+    let turnstileResponse = "";
+
+    async function mountTurnstile() {
+      while (!turnstile()) await wait(100);
+      widgetId = turnstile()!.render(container!, {
+        sitekey: siteKey,
+        appearance: "interaction-only",
+        callback: (response: string) => { turnstileResponse = response; },
+        "expired-callback": () => { turnstileResponse = ""; },
+      });
+    }
+    if (container && siteKey) void mountTurnstile();
+
+    async function readyTurnstileResponse() {
+      for (let i = 0; i < 100 && !turnstileResponse; i++) await wait(100);
+      return turnstileResponse;
+    }
+
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
       const button = form.querySelector<HTMLButtonElement>("button[type='submit']");
@@ -53,11 +118,16 @@ const {
       status.textContent = "Anmeldung wird gesendet …";
 
       try {
-        const formData = new FormData(form);
+        const [formTokenValue, turnstileValue] = await Promise.all([
+          readyFormToken(),
+          container ? readyTurnstileResponse() : "",
+        ]);
+        const payload: Record<string, unknown> = { ...Object.fromEntries(new FormData(form)), formToken: formTokenValue };
+        if (container) payload["cf-turnstile-response"] = turnstileValue;
         const response = await fetch(form.action, {
           method: "POST",
           headers: { Accept: "application/json", "Content-Type": "application/json" },
-          body: JSON.stringify(Object.fromEntries(formData)),
+          body: JSON.stringify(payload),
         });
         const result = await response.json();
         if (!response.ok) throw new Error(result.message || "Die Anmeldung konnte nicht gesendet werden.");
@@ -65,9 +135,15 @@ const {
         status.dataset.state = "success";
         status.textContent = "Fast geschafft: Bitte bestätige die Anmeldung über die E-Mail in deinem Postfach.";
       } catch (error) {
+        formToken = null; // a rejected or expired token must not be reused
+        void refreshFormToken();
         status.dataset.state = "error";
         status.textContent = error instanceof Error ? error.message : "Die Anmeldung konnte nicht gesendet werden.";
       } finally {
+        if (widgetId) {
+          turnstileResponse = ""; // Turnstile responses are single-use
+          turnstile()?.reset(widgetId);
+        }
         button.disabled = false;
       }
     });
