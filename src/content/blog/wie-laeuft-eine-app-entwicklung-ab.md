@@ -33,11 +33,11 @@ So siehst du früh, ob die App sich so anfühlt, wie du sie dir vorgestellt hast
 Damit eine App in den Store darf, braucht es mehr als die App selbst:
 
 - ein **Entwicklerkonto bei Apple**, das auf dich läuft und das du selbst anlegst und bezahlst,
-- eine **Datenschutzerklärung** und eine **Support-Seite** im Netz,
+- eine **Datenschutzerklärung** und eine **Support-Seite** im Netz, also eine Domain und Webspace,
 - **Screenshots und Texte** für den Store-Eintrag,
 - Angaben dazu, welche Daten die App erhebt.
 
-Das alles gehört bei mir zum Auftrag, einschließlich der Website zur App.
+Die Seiten und Texte baue ich dir mit. Das Entwicklerkonto sowie Domain und Webspace laufen auf deinen Namen: Ich richte sie dir ein und kümmere mich darum, die laufenden Kosten trägst du. So gehört dir später alles.
 
 ## 5. Die Prüfung durch Apple
 
