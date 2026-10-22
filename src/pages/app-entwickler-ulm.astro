@@ -1,0 +1,71 @@
+---
+import BlogLayout from "../layouts/BlogLayout.astro";
+
+const mailto = "mailto:mail@benkohler.de?subject=App-Projekt%20Ulm";
+const pageUrl = "https://benkohler.de/app-entwickler-ulm/";
+const title = "App-Entwickler in Ulm und Neu-Ulm";
+const description = "Ben Kohler baut iPhone-, iPad- und Mac-Apps für Kunden in Ulm, Neu-Ulm und Umgebung. Festpreis ab 999 €, persönliche Treffen möglich.";
+
+const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "WebPage",
+            "name": title,
+            "description": description,
+            "url": pageUrl,
+            "inLanguage": "de-DE",
+            "about": { "@id": "https://benkohler.de/#service" },
+        },
+        {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://benkohler.de/" },
+                { "@type": "ListItem", "position": 2, "name": "App entwickeln lassen", "item": "https://benkohler.de/app-entwickeln-lassen/" },
+                { "@type": "ListItem", "position": 3, "name": "App-Entwickler Ulm", "item": pageUrl },
+            ],
+        },
+    ],
+};
+---
+
+<BlogLayout title="App-Entwickler Ulm" description={description}>
+    <script slot="head" type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+
+    <header class="article-header">
+        <div class="shell article-header__inner">
+            <a class="article-header__back" href="/app-entwickeln-lassen/">← App entwickeln lassen</a>
+            <h1>{title}</h1>
+            <p class="article-header__description">{description}</p>
+        </div>
+    </header>
+
+    <article class="article-body">
+        <p>Ich bin Ben Kohler und arbeite von Ulm aus. Wenn du in Ulm, Neu-Ulm oder der Region eine App brauchst, ist der Weg zu mir kurz: Wir können uns zum ersten Gespräch persönlich treffen, statt zu telefonieren. Danach läuft das meiste über Video und Mail, so wie bei Kunden im ganzen Land.</p>
+
+        <h2>Was ich für dich baue</h2>
+        <p>Apps für das Apple-Ökosystem: iPhone, iPad und Mac, nativ mit Swift und SwiftUI. Zu jeder App gehört eine Website mit Datenschutzerklärung und Support-Seite. Android geht auf Anfrage. Die erste Version baue ich zum Festpreis ab 999&nbsp;€, schriftlich vor dem Start. Wie sich der Preis zusammensetzt, steht im <a href="/app-entwicklung-kosten/">Kostenratgeber</a>.</p>
+
+        <h2>Wie die Zusammenarbeit läuft</h2>
+        <ul>
+            <li>Ein erstes Gespräch von einer halben Stunde, kostenlos.</li>
+            <li>Ein schriftliches Angebot mit Festpreis und Zeitplan.</li>
+            <li>Jede Woche ein neuer Stand der App auf deinem iPhone, über TestFlight.</li>
+            <li>Veröffentlichung in deinem App-Store-Konto, Übergabe des Quellcodes.</li>
+        </ul>
+        <p>Ich arbeite immer nur an einem Projekt gleichzeitig. Du hast also eine feste Ansprechperson, die deine App kennt.</p>
+
+        <h2>Meine eigenen Apps</h2>
+        <p>An ihnen siehst du, wie ich arbeite: <a href="https://familymanager.pro/landing" rel="noopener">FamilyManager</a> für Familien, <a href="https://gymbo.benkohler.de/" rel="noopener">GymBo</a> als Trainingstagebuch, <a href="https://track4kids.de/" rel="noopener">Track4Kids</a> für Kinder und <a href="https://startune.benkohler.de/" rel="noopener">StarTune</a> für den Mac. Was sich an ihnen ändert, schreibe ich <a href="/blog/">im Blog</a> auf.</p>
+    </article>
+
+    <section class="guide-cta">
+        <div class="shell guide-cta__inner">
+            <div>
+                <h2>Erzähl mir von deiner App.</h2>
+                <p>Schreib mir, was die App können soll. Ich antworte innerhalb von zwei Werktagen.</p>
+            </div>
+            <a class="button button--primary" href={mailto}>Projekt anfragen <span aria-hidden="true">↗</span></a>
+        </div>
+    </section>
+</BlogLayout>

@@ -159,7 +159,7 @@ const structuredData = {
         <div class="shell">
             <div class="hire-head">
                 <h2 id="angebot-title">Was ich anbiete.</h2>
-                <p>Zwei Pakete. Bei der ersten Version bekommst du einen Festpreis ab 999 €. Den genauen Betrag nennt dir das Angebot nach dem ersten Gespräch, bevor irgendetwas losgeht.</p>
+                <p>Zwei Pakete. Bei der ersten Version bekommst du einen Festpreis ab 999 €. Den genauen Betrag nennt dir das Angebot nach dem ersten Gespräch, bevor irgendetwas losgeht. Wie sich der Preis zusammensetzt, steht im <a href="/app-entwicklung-kosten/">Kostenratgeber</a>.</p>
             </div>
             <div class="offers">
                 {offers.map((offer) => (
@@ -230,7 +230,7 @@ const structuredData = {
         <div class="shell hire-contact__inner">
             <div>
                 <h2>Erzähl mir von deiner App.</h2>
-                <p>Schreib mir ein paar Sätze: was die App können soll, für wen sie ist und bis wann du sie brauchst. Ich antworte innerhalb von zwei Werktagen.</p>
+                <p>Schreib mir ein paar Sätze: was die App können soll, für wen sie ist und bis wann du sie brauchst. Ich antworte innerhalb von zwei Werktagen. Aus Ulm oder der Region? <a href="/app-entwickler-ulm/">Hier geht es zur Seite für Ulm und Neu-Ulm.</a></p>
             </div>
             <a class="button button--primary" href={mailto}>mail@benkohler.de <span aria-hidden="true">↗</span></a>
         </div>
@@ -303,6 +303,7 @@ const structuredData = {
     .hire-contact__inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
     .hire-contact h2 { max-width: 790px; margin-bottom: 0; font-size: clamp(2.1rem, 3.2vw, 3.2rem); }
     .hire-contact p { max-width: 620px; margin: 14px 0 0; color: #455238; }
+    .hire-contact p a { color: inherit; font-weight: 700; }
     .hire-contact .button { flex: 0 0 auto; }
 
     @media (max-width: 1020px) {

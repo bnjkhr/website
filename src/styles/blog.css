@@ -176,3 +176,12 @@ h1, h2, h3 {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
 }
+
+.guide-cta { padding-block: 78px; border-top: 1px solid var(--ink); background: var(--acid); }
+.guide-cta__inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+.guide-cta h2 { max-width: 790px; margin-bottom: 0; font-size: clamp(2.1rem, 3.2vw, 3.2rem); }
+.guide-cta p { max-width: 620px; margin: 14px 0 0; color: #455238; }
+.guide-cta .button { flex: 0 0 auto; }
+@media (max-width: 760px) {
+  .guide-cta__inner { align-items: flex-start; flex-direction: column; }
+}
