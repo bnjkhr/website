@@ -51,6 +51,8 @@ assert_contains "dist/robots.txt" "sitemap-index.xml" "robots.txt does not point
 assert_contains "dist/index.html" 'application/ld\+json' "homepage has no structured data"
 assert_contains "dist/app-entwickeln-lassen/index.html" '"@type":"FAQPage"' "client page has no FAQ structured data"
 assert_contains "dist/app-entwickeln-lassen/index.html" 'og:image' "client page has no social image"
+assert_contains "dist/app-entwickeln-lassen/index.html" 'Festpreis ab 999' "client page does not show the fixed price"
+assert_contains "dist/app-entwickeln-lassen/index.html" '"minPrice":999' "client page has no price in structured data"
 assert_contains "dist/impressum.html" 'DDG' "impressum still cites the TMG"
 
 assert_contains "vercel.json" "frame-ancestors" "security headers are missing"
