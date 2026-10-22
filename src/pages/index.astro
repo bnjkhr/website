@@ -160,6 +160,7 @@ const structuredData = {
         .nav__links { display: flex; align-items: center; gap: 4px; }
         .nav__links a { min-height: 44px; display: inline-flex; align-items: center; padding: 0 13px; color: var(--muted); text-decoration: none; font-size: .9rem; font-weight: 650; }
         .nav__links a:hover { color: var(--ink); }
+        .nav__short { display: none; }
         .nav__links .nav__mail { margin-left: 8px; border: 1px solid var(--ink); border-radius: 999px; color: var(--ink); }
 
         .hero { overflow: hidden; border-bottom: 1px solid var(--rule); }
@@ -327,7 +328,10 @@ const structuredData = {
 
         @media (max-width: 760px) {
             .shell { width: min(var(--wrap), calc(100% - 28px)); }
-            .nav__links a:not(.nav__mail) { display: none; }
+            .nav__links a:not(.nav__hire) { display: none; }
+            .nav__links .nav__hire { margin-left: 0; border: 1px solid var(--ink); border-radius: 999px; color: var(--ink); }
+            .nav__long { display: none; }
+            .nav__short { display: inline; }
             .hero__grid { min-height: auto; padding-block: 58px 64px; }
             .hero h1 { font-size: clamp(2.7rem, 12vw, 5.1rem); }
             .atlas { min-height: 490px; border-radius: 24px; box-shadow: 9px 11px 0 rgba(22, 32, 25, .09); }
@@ -386,7 +390,7 @@ const structuredData = {
                 <a href="#produkte">Projekte</a>
                 <a href="#haltung">Die Idee dahinter</a>
                 <a href="/blog/">Blog</a>
-                <a href="/app-entwickeln-lassen/">App entwickeln lassen</a>
+                <a class="nav__hire" href="/app-entwickeln-lassen/"><span class="nav__long">App entwickeln lassen</span><span class="nav__short">Projekt anfragen</span></a>
                 <a href="#about">Über mich</a>
                 <a class="nav__mail" href="mailto:mail@benkohler.de">Schreib mir</a>
             </div>
