@@ -40,12 +40,55 @@ const faqs = [
     { q: "Was machst du nicht?", a: "Spiele. Und Projekte, die in zwei Wochen fertig sein müssen." },
     { q: "Wo sitzt du?", a: "In Ulm. Das meiste läuft über Video und Mail. Wenn du in der Nähe bist, können wir uns auch treffen." },
 ];
+
+const pageUrl = "https://benkohler.de/app-entwickeln-lassen/";
+const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "ProfessionalService",
+            "@id": "https://benkohler.de/#service",
+            "name": "Ben Kohler – iOS-App-Entwicklung",
+            "url": pageUrl,
+            "image": "https://benkohler.de/images/og-default.png",
+            "email": "mail@benkohler.de",
+            "founder": { "@id": "https://benkohler.de/#person" },
+            "address": { "@type": "PostalAddress", "addressLocality": "Ulm", "postalCode": "89073", "addressCountry": "DE" },
+            "areaServed": [
+                { "@type": "City", "name": "Ulm" },
+                { "@type": "City", "name": "Neu-Ulm" },
+                { "@type": "AdministrativeArea", "name": "Alb-Donau-Kreis" },
+            ],
+            "knowsLanguage": "de",
+            "makesOffer": offers.map((offer) => ({
+                "@type": "Offer",
+                "itemOffered": { "@type": "Service", "name": offer.name, "description": offer.text },
+            })),
+        },
+        {
+            "@type": "FAQPage",
+            "mainEntity": faqs.map((faq) => ({
+                "@type": "Question",
+                "name": faq.q,
+                "acceptedAnswer": { "@type": "Answer", "text": faq.a },
+            })),
+        },
+        {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://benkohler.de/" },
+                { "@type": "ListItem", "position": 2, "name": "App entwickeln lassen", "item": pageUrl },
+            ],
+        },
+    ],
+};
 ---
 
 <BlogLayout
-    title="App entwickeln lassen"
-    description="Ben Kohler aus Ulm baut iPhone-Apps im Auftrag: von der ersten Version bis in den App Store und danach weiter."
+    title="iOS-App entwickeln lassen in Ulm"
+    description="Ben Kohler aus Ulm entwickelt iPhone-Apps im Auftrag: von der ersten Version über TestFlight bis in den App Store, mit festem Ansprechpartner."
 >
+    <script slot="head" type="application/ld+json" set:html={JSON.stringify(structuredData)} />
     <header class="hire-hero">
         <div class="shell">
             <h1>Ich baue auch Apps für andere.</h1>

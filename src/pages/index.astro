@@ -9,18 +9,54 @@ const formatDate = (date: Date) => new Intl.DateTimeFormat("de-DE", {
     month: "long",
     year: "numeric",
 }).format(date);
+
+const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "WebSite",
+            "@id": "https://benkohler.de/#website",
+            "url": "https://benkohler.de/",
+            "name": "Ben Kohler",
+            "inLanguage": "de-DE",
+            "publisher": { "@id": "https://benkohler.de/#person" },
+        },
+        {
+            "@type": "Person",
+            "@id": "https://benkohler.de/#person",
+            "name": "Ben Kohler",
+            "url": "https://benkohler.de/",
+            "image": "https://benkohler.de/images/ben-profile.jpg",
+            "jobTitle": "iOS-Entwickler",
+            "email": "mailto:mail@benkohler.de",
+            "address": { "@type": "PostalAddress", "addressLocality": "Ulm", "addressCountry": "DE" },
+            "knowsAbout": ["iOS-App-Entwicklung", "Swift", "SwiftUI", "App Store", "TestFlight"],
+        },
+    ],
+};
 ---
 <!doctype html>
 <html lang="de">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Ich bin Ben Kohler aus Ulm. Hier zeige ich meine Projekte FamilyManager, Track4Kids, GymBo und MAISON BENCHRIS und erzähle, was sie miteinander verbindet.">
+    <meta name="description" content="Ben Kohler aus Ulm entwickelt iPhone-Apps: FamilyManager, Track4Kids, GymBo und StarTune. Auf Anfrage baue ich auch Apps für andere.">
     <meta name="theme-color" content="#eef1ea">
+    <meta name="robots" content="index, follow, max-image-preview:large">
     <link rel="canonical" href="https://benkohler.de/">
     <link rel="alternate" type="application/rss+xml" title="Ben Kohler Blog" href="https://benkohler.de/rss.xml">
     <link rel="manifest" href="/site.webmanifest">
-    <title>Ben Kohler · Meine Projekte</title>
+    <title>Ben Kohler · iOS-Entwickler aus Ulm</title>
+    <meta property="og:title" content="Ben Kohler · iOS-Entwickler aus Ulm">
+    <meta property="og:description" content="Ben Kohler aus Ulm entwickelt iPhone-Apps: FamilyManager, Track4Kids, GymBo und StarTune. Auf Anfrage baue ich auch Apps für andere.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://benkohler.de/">
+    <meta property="og:site_name" content="Ben Kohler">
+    <meta property="og:locale" content="de_DE">
+    <meta property="og:image" content="https://benkohler.de/images/og-default.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://benkohler.de/images/og-default.png">
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
     <style is:global>
         @font-face {
             font-family: "Inter";
@@ -350,7 +386,7 @@ const formatDate = (date: Date) => new Intl.DateTimeFormat("de-DE", {
                 <a href="#produkte">Projekte</a>
                 <a href="#haltung">Die Idee dahinter</a>
                 <a href="/blog/">Blog</a>
-                <a href="/app-entwickeln-lassen/">Zusammenarbeit</a>
+                <a href="/app-entwickeln-lassen/">App entwickeln lassen</a>
                 <a href="#about">Über mich</a>
                 <a class="nav__mail" href="mailto:mail@benkohler.de">Schreib mir</a>
             </div>
