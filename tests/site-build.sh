@@ -53,6 +53,12 @@ assert_contains "dist/app-entwickeln-lassen/index.html" '"@type":"FAQPage"' "cli
 assert_contains "dist/app-entwickeln-lassen/index.html" 'og:image' "client page has no social image"
 assert_contains "dist/app-entwickeln-lassen/index.html" 'Festpreis ab 999' "client page does not show the fixed price"
 assert_contains "dist/app-entwickeln-lassen/index.html" '"minPrice":999' "client page has no price in structured data"
+assert_file "dist/app-entwicklung-kosten/index.html"
+assert_file "dist/app-entwickler-ulm/index.html"
+assert_contains "dist/app-entwickeln-lassen/index.html" 'href="/app-entwicklung-kosten/"' "client page does not link to the cost guide"
+assert_contains "dist/app-entwickeln-lassen/index.html" 'href="/app-entwickler-ulm/"' "client page does not link to the Ulm page"
+assert_contains "dist/sitemap-0.xml" 'app-entwicklung-kosten' "cost guide is missing from the sitemap"
+assert_contains "dist/sitemap-0.xml" 'app-entwickler-ulm' "Ulm page is missing from the sitemap"
 assert_contains "dist/impressum.html" 'DDG' "impressum still cites the TMG"
 
 assert_contains "vercel.json" "frame-ancestors" "security headers are missing"
