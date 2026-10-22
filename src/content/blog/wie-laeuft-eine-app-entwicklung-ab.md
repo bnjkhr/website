@@ -47,7 +47,13 @@ Bevor eine App erscheint, prüft Apple sie. Das dauert in der Regel nicht lange,
 
 Die App erscheint in **deinem** App-Store-Konto. Du bekommst den Quellcode und eine Beschreibung, wie alles zusammenhängt. So bist du nicht von mir abhängig, falls sich später etwas ändert.
 
-## 7. Danach geht es weiter
+## 7. Feedback von deinen Nutzern sammeln
+
+Sobald die App draußen ist, kommen Wünsche und Fehlermeldungen. Damit sie nicht in Mails und Nachrichten verloren gehen, gibt es [Roadlight](https://roadlight.pro): ein Board, auf dem deine Nutzer Ideen einreichen und darüber abstimmen, dazu eine öffentliche Roadmap und ein Changelog. Ich habe es selbst gebaut und sammle damit das Feedback zu meinen eigenen Apps.
+
+Wenn du bei mir eine App entwickeln lässt, kannst du Roadlight kostenlos mitnutzen, wenn du möchtest, ohne extra Gebühr.
+
+## 8. Danach geht es weiter
 
 Mit der Veröffentlichung ist die App nicht fertig. Jedes Jahr kommt ein neues iOS, Nutzer melden Fehler und wünschen sich Funktionen. Dafür gibt es die Weiterentwicklung: feste Tage im Monat, monatlich kündbar.
 

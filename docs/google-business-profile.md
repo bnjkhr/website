@@ -20,7 +20,7 @@ Name und Telefonnummer sind noch offen (siehe „Von Ben zu klären").
 
 ## Beschreibung (max. 750 Zeichen)
 
-Ich bin Ben Kohler, App-Entwickler aus Ulm. Ich baue Apps im Auftrag für das Apple-Ökosystem: iPhone, iPad und Mac, nativ mit Swift und SwiftUI. Zu jeder App baue ich Website, Datenschutzerklärung und Support-Seite. Domain und Webspace richte ich dir ein, sie laufen auf deinen Namen. Android geht auf Anfrage. Die erste Version gibt es zum Festpreis ab 999 €, schriftlich vor dem Start. Du bekommst jede Woche einen neuen Stand per TestFlight auf dein iPhone. Die App läuft in deinem eigenen App-Store-Konto, den Quellcode bekommst du dazu. Ich arbeite immer nur an einem Projekt gleichzeitig und bundesweit remote. Eigene Apps von mir: FamilyManager, GymBo, Track4Kids und StarTune.
+Ich bin Ben Kohler, App-Entwickler aus Ulm. Ich baue Apps im Auftrag für das Apple-Ökosystem: iPhone, iPad und Mac, nativ mit Swift und SwiftUI. Zu jeder App baue ich Website, Datenschutzerklärung und Support-Seite. Domain und Webspace richte ich dir ein, sie laufen auf deinen Namen. Android geht auf Anfrage. Die erste Version gibt es zum Festpreis ab 999 €, schriftlich vor dem Start. Du bekommst jede Woche einen neuen Stand per TestFlight auf dein iPhone. Die App läuft in deinem eigenen App-Store-Konto, den Quellcode bekommst du dazu. Ich arbeite bundesweit remote und immer nur an einem Projekt. Auf Wunsch kostenlos dabei: Roadlight, mein Feedback-Board für Nutzerwünsche. Eigene Apps: FamilyManager, GymBo, Track4Kids, StarTune.
 
 ## Leistungen
 

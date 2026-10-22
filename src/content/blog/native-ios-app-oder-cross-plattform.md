@@ -50,4 +50,4 @@ Mein Rat für viele Ideen: erst für eine Plattform bauen, schauen, ob die App g
 
 ## Was das für den Preis heißt
 
-Eine App für eine Plattform ist günstiger als dieselbe App für mehrere. Meine Festpreise für die erste Version beginnen bei 999 €. Wovon der Preis abhängt, steht im [Kostenratgeber](/app-entwicklung-kosten/). Wie ich arbeite und was das Starterpaket enthält, findest du auf der Seite [App entwickeln lassen](/app-entwickeln-lassen/).
+Eine App für eine Plattform ist günstiger als dieselbe App für mehrere. Meine Festpreise für die erste Version beginnen bei 999 €. Wovon der Preis abhängt, steht im [Kostenratgeber](/app-entwicklung-kosten/). Wie ich arbeite und was das Starterpaket enthält, findest du auf der Seite [App entwickeln lassen](/app-entwickeln-lassen/). Wer bei mir eine App entwickeln lässt, kann außerdem [Roadlight](https://roadlight.pro) kostenlos mitnutzen, mein Feedback-Board für Nutzerwünsche.
