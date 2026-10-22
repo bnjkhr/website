@@ -9,7 +9,7 @@ Name und Telefonnummer sind noch offen (siehe „Von Ben zu klären").
 | --- | --- |
 | Typ | Dienstleister im Einzugsgebiet (Service-Area-Business) |
 | Adresse | **Ausblenden.** Die Privatadresse bleibt nur im Impressum. |
-| Name | `Ben Kohler` (wie auf der Website; keine Schlagwörter anhängen, das führt zu Sperrungen) |
+| Name | `Ben Kohler Digital Services` (wie im Impressum und auf der Website; keine weiteren Schlagwörter anhängen, das führt zu Sperrungen) |
 | Primäre Kategorie | In der Google-Liste nach „Softwareentwickler" bzw. „Mobile-App-Entwickler" suchen und die passendste nehmen |
 | Weitere Kategorien | „Webdesigner" nur, wenn Web-Oberflächen wirklich angeboten werden; sonst weglassen |
 | Einzugsgebiet | Deutschland. Falls Google nur Orte zulässt: Ulm, Neu-Ulm, Alb-Donau-Kreis, Stuttgart, München, Augsburg |
@@ -20,7 +20,7 @@ Name und Telefonnummer sind noch offen (siehe „Von Ben zu klären").
 
 ## Beschreibung (max. 750 Zeichen)
 
-Ich bin Ben Kohler, App-Entwickler aus Ulm. Ich baue Apps im Auftrag für das Apple-Ökosystem: iPhone, iPad und Mac, nativ mit Swift und SwiftUI. Zu jeder App baue ich Website, Datenschutzerklärung und Support-Seite. Domain und Webspace richte ich dir ein, sie laufen auf deinen Namen. Android geht auf Anfrage. Die erste Version gibt es zum Festpreis ab 999 €, schriftlich vor dem Start. Du bekommst jede Woche einen neuen Stand per TestFlight auf dein iPhone. Die App läuft in deinem eigenen App-Store-Konto, den Quellcode bekommst du dazu. Ich arbeite bundesweit remote und immer nur an einem Projekt. Auf Wunsch kostenlos dabei: Roadlight, mein Feedback-Board für Nutzerwünsche. Eigene Apps: FamilyManager, GymBo, Track4Kids, StarTune.
+Ben Kohler Digital Services, App-Entwickler aus Ulm. Ich baue Apps im Auftrag für das Apple-Ökosystem: iPhone, iPad und Mac, nativ mit Swift und SwiftUI. Zu jeder App baue ich Website, Datenschutzerklärung und Support-Seite. Domain und Webspace richte ich dir ein, sie laufen auf deinen Namen. Android geht auf Anfrage. Die erste Version gibt es zum Festpreis ab 999 €, schriftlich vor dem Start. Du bekommst jede Woche einen neuen Stand per TestFlight auf dein iPhone. Die App läuft in deinem eigenen App-Store-Konto, den Quellcode bekommst du dazu. Ich arbeite bundesweit remote und immer nur an einem Projekt. Auf Wunsch kostenlos dabei: Roadlight, mein Feedback-Board für Nutzerwünsche. Eigene Apps: FamilyManager, GymBo, Track4Kids, StarTune.
 
 ## Leistungen
 
@@ -46,6 +46,6 @@ Nur echte. Beta-Tester von Track4Kids und GymBo sowie Auftraggeber nach der Übe
 ## Von Ben zu klären
 
 - Telefonnummer öffentlich ja/nein.
-- Profilname (Vorschlag oben).
+- Profilname: `Ben Kohler Digital Services` (so steht er im Impressum).
 - Verifizierung: Google verlangt meist ein kurzes Video. Das kann nur Ben machen.
 - Gleiche Angaben (Name, E-Mail, Ort) in Impressum, JSON-LD und Verzeichnissen verwenden.
