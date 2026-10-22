@@ -32,10 +32,10 @@ const platforms = [
 const offers = [
     {
         name: "Erste Version",
-        claim: "Für eine Idee, die noch keine App ist.",
+        claim: "Das Starterpaket: für eine Idee, die noch keine App ist.",
         text: "Wir legen zusammen fest, was in die erste Version muss und was warten kann. Dann baue ich sie. Jede Woche landet ein neuer Stand über TestFlight auf deinem iPhone.",
         price: "Festpreis ab 999 €",
-        duration: "je nach Umfang, meist 8 bis 12 Wochen",
+        duration: "Termin steht im Angebot",
         featured: true,
     },
     {
@@ -46,6 +46,27 @@ const offers = [
         duration: "monatlich kündbar",
     },
 ];
+
+const example = {
+    name: "Gießplan",
+    pitch: "Eine App, die dich ans Gießen deiner Zimmerpflanzen erinnert.",
+    included: [
+        "Liste deiner Pflanzen mit Name, Foto und Gießrhythmus",
+        "Erinnerung per Mitteilung, wenn eine Pflanze Wasser braucht",
+        "Ein Tippen auf „gegossen“ setzt den Rhythmus neu",
+        "Drei Bildschirme: Übersicht, Pflanze, Einstellungen",
+        "Daten bleiben auf dem Gerät, keine Anmeldung",
+        "Website mit Datenschutzerklärung und Support-Seite",
+        "Veröffentlichung in deinem App-Store-Konto, Quellcode für dich",
+    ],
+    excluded: [
+        "Konto und Anmeldung",
+        "Abgleich zwischen mehreren Geräten oder Nutzern",
+        "Bezahlfunktion oder Abo",
+        "Eigene Server und Datenbank",
+        "Eine Version für Android",
+    ],
+};
 
 const proofs = [
     { name: "FamilyManager", text: "Termine, Aufgaben und Einkäufe für Familien, auch über mehrere Haushalte hinweg.", meta: "iPhone", href: "https://familymanager.pro/landing" },
@@ -177,6 +198,36 @@ const structuredData = {
         </div>
     </section>
 
+    <section class="hire-section" aria-labelledby="beispiel-title">
+        <div class="shell">
+            <div class="hire-head">
+                <h2 id="beispiel-title">Ein Beispiel für das Starterpaket.</h2>
+                <p>Ab 999&nbsp;€ bekommst du eine kleine, klar umrissene App. So kann das aussehen. Das Beispiel ist ausgedacht und zeigt den Umfang, nicht ein fertiges Produkt.</p>
+            </div>
+            <div class="example">
+                <div class="example__head">
+                    <h3>{example.name}</h3>
+                    <p>{example.pitch}</p>
+                </div>
+                <div class="example__lists">
+                    <div>
+                        <h4>Im Starterpaket</h4>
+                        <ul class="example__list">
+                            {example.included.map((item) => <li>{item}</li>)}
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Nicht im Starterpaket</h4>
+                        <ul class="example__list example__list--out">
+                            {example.excluded.map((item) => <li>{item}</li>)}
+                        </ul>
+                        <p class="example__note">Brauchst du etwas davon, wird das Angebot größer. Wir besprechen es im ersten Gespräch, und du siehst den Preis, bevor ich anfange.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="hire-section" aria-labelledby="proof-title">
         <div class="shell">
             <div class="hire-head">
@@ -274,6 +325,18 @@ const structuredData = {
     .offer--featured .offer__text, .offer--featured .offer__facts dt { color: #455238; }
     .offer__facts dd { margin: 0; font-weight: 760; text-align: right; }
 
+    .example { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(28px, 5vw, 72px); padding: clamp(26px, 3.4vw, 44px); border: 1px solid var(--ink); border-radius: 28px; background: var(--paper); }
+    .example__head h3 { margin-bottom: 14px; font-size: clamp(2.2rem, 3.6vw, 3.4rem); }
+    .example__head p { margin: 0; color: var(--muted); font-size: 1.08rem; }
+    .example__lists { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    .example h4 { margin: 0 0 14px; font-size: .86rem; font-weight: 790; letter-spacing: .08em; text-transform: uppercase; }
+    .example__list { margin: 0; padding: 0; list-style: none; }
+    .example__list li { position: relative; padding: 10px 0 10px 28px; border-top: 1px solid var(--rule); font-size: .95rem; }
+    .example__list li::before { content: "✓"; position: absolute; left: 0; color: #4b6f1d; font-weight: 800; }
+    .example__list--out li { color: var(--muted); }
+    .example__list--out li::before { content: "–"; color: var(--muted); }
+    .example__note { margin: 16px 0 0; color: var(--muted); font-size: .9rem; }
+
     .proofs { border-top: 1px solid var(--ink); }
     .proof { min-height: 88px; display: grid; grid-template-columns: minmax(170px, .8fr) minmax(0, 1.2fr) 140px 36px; align-items: center; gap: 22px; border-bottom: 1px solid var(--rule); text-decoration: none; transition: background .25s var(--ease); }
     .proof:hover { background: rgba(251, 252, 248, .72); }
@@ -307,7 +370,7 @@ const structuredData = {
     .hire-contact .button { flex: 0 0 auto; }
 
     @media (max-width: 1020px) {
-        .offers, .platforms { grid-template-columns: 1fr; }
+        .offers, .platforms, .example, .example__lists { grid-template-columns: 1fr; }
         .facts { grid-template-columns: 1fr 1fr; }
         .facts__item:nth-child(3) { padding-left: 0; border-left: 0; }
         .facts__item:nth-child(n+3) { margin-top: 20px; border-top: 1px solid var(--rule); }
