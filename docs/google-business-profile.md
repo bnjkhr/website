@@ -20,14 +20,14 @@ Name und Telefonnummer sind noch offen (siehe „Von Ben zu klären").
 
 ## Beschreibung (max. 750 Zeichen)
 
-Ich bin Ben Kohler, App-Entwickler aus Ulm. Ich baue Apps im Auftrag für das Apple-Ökosystem: iPhone, iPad und Mac, nativ mit Swift und SwiftUI. Zu jeder App gehören Website, Datenschutzerklärung und Support-Seite. Android geht auf Anfrage. Die erste Version gibt es zum Festpreis ab 999 €, schriftlich vor dem Start. Du bekommst jede Woche einen neuen Stand per TestFlight auf dein iPhone. Die App läuft in deinem eigenen App-Store-Konto, den Quellcode bekommst du dazu. Ich arbeite immer nur an einem Projekt gleichzeitig und bundesweit remote. Eigene Apps von mir: FamilyManager, GymBo, Track4Kids und StarTune.
+Ich bin Ben Kohler, App-Entwickler aus Ulm. Ich baue Apps im Auftrag für das Apple-Ökosystem: iPhone, iPad und Mac, nativ mit Swift und SwiftUI. Zu jeder App baue ich Website, Datenschutzerklärung und Support-Seite. Domain und Webspace richte ich dir ein, sie laufen auf deinen Namen. Android geht auf Anfrage. Die erste Version gibt es zum Festpreis ab 999 €, schriftlich vor dem Start. Du bekommst jede Woche einen neuen Stand per TestFlight auf dein iPhone. Die App läuft in deinem eigenen App-Store-Konto, den Quellcode bekommst du dazu. Ich arbeite immer nur an einem Projekt gleichzeitig und bundesweit remote. Eigene Apps von mir: FamilyManager, GymBo, Track4Kids und StarTune.
 
 ## Leistungen
 
 1. **App entwickeln lassen (erste Version).** Von der Idee bis in den App Store, mit wöchentlichen Testständen über TestFlight. Festpreis ab 999 €.
 2. **App-Weiterentwicklung.** Feste Tage im Monat für neue Funktionen, Anpassungen an neue iOS-Versionen und Nutzerfeedback. Monatlich kündbar.
 3. **Mac-App entwickeln.** Native Apps für macOS mit SwiftUI.
-4. **Website zur App.** Landingpage, Datenschutzerklärung und Support-Seite für den App-Store-Eintrag.
+4. **Website zur App.** Landingpage, Datenschutzerklärung und Support-Seite für den App-Store-Eintrag. Domain und Webspace laufen auf den Namen des Kunden, laufende Kosten trägt er.
 
 ## Beiträge (alle 1 bis 2 Wochen, Link zum Blog)
 
