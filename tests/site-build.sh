@@ -59,6 +59,9 @@ assert_contains "dist/app-entwickeln-lassen/index.html" 'href="/app-entwicklung-
 assert_contains "dist/app-entwickeln-lassen/index.html" 'href="/app-entwickler-ulm/"' "client page does not link to the Ulm page"
 assert_contains "dist/sitemap-0.xml" 'app-entwicklung-kosten' "cost guide is missing from the sitemap"
 assert_contains "dist/sitemap-0.xml" 'app-entwickler-ulm' "Ulm page is missing from the sitemap"
+assert_file "dist/blog/wie-laeuft-eine-app-entwicklung-ab/index.html"
+assert_file "dist/blog/native-ios-app-oder-cross-plattform/index.html"
+assert_contains "dist/app-entwickeln-lassen/index.html" 'id="beispiel-title"' "client page has no example app section"
 assert_contains "dist/impressum.html" 'DDG' "impressum still cites the TMG"
 
 assert_contains "vercel.json" "frame-ancestors" "security headers are missing"
