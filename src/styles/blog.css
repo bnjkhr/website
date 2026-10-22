@@ -82,10 +82,7 @@ h1, h2, h3 {
 }
 .nav__inner { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
 .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; font-weight: 790; letter-spacing: -.025em; }
-.brand__mark { position: relative; width: 18px; height: 18px; border: 2px solid var(--ink); border-radius: 50%; }
-.brand__mark::before, .brand__mark::after { content: ""; position: absolute; width: 6px; height: 6px; border-radius: 50%; }
-.brand__mark::before { top: -4px; right: -5px; background: var(--signal); }
-.brand__mark::after { bottom: -4px; left: -5px; background: var(--acid); }
+.brand__mark { flex: 0 0 auto; width: 30px; height: 30px; background: url("/logo/zeichen.svg") center / contain no-repeat; }
 .nav__links { display: flex; align-items: center; gap: 4px; }
 .nav__links a { min-height: 44px; display: inline-flex; align-items: center; padding: 0 13px; color: var(--muted); text-decoration: none; font-size: .9rem; font-weight: 650; }
 .nav__links a:hover, .nav__links a[aria-current="page"] { color: var(--ink); }
