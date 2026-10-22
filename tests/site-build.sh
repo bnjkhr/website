@@ -67,6 +67,7 @@ assert_file "dist/favicon.svg"
 assert_file "dist/apple-touch-icon.png"
 assert_file "dist/logo/logo.svg"
 assert_contains "dist/index.html" 'rel="icon" href="/favicon.svg"' "homepage has no favicon link"
+assert_contains "dist/index.html" 'google-site-verification' "homepage has no Search Console verification tag"
 assert_contains "dist/impressum.html" 'DDG' "impressum still cites the TMG"
 
 assert_contains "vercel.json" "frame-ancestors" "security headers are missing"
