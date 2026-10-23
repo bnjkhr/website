@@ -1,7 +1,7 @@
 ---
 import BlogLayout from "../layouts/BlogLayout.astro";
 
-const mailto = "mailto:mail@benkohler.de?subject=App-Projekt";
+const contactUrl = "/?thema=projekt#kontakt";
 const pageUrl = "https://benkohler.de/app-entwicklung-kosten/";
 const title = "Was kostet es, eine App entwickeln zu lassen?";
 const description = "Was eine App kostet, hängt vom Umfang ab, nicht vom Stundensatz. Warum ich zum Festpreis ab 999 € arbeite und woran du ein gutes Angebot erkennst.";
@@ -88,7 +88,7 @@ const structuredData = {
                 <h2>Festpreis für deine App anfragen.</h2>
                 <p>Ab 999&nbsp;€. Ich antworte innerhalb von zwei Werktagen.</p>
             </div>
-            <a class="button button--primary" href={mailto}>Projekt anfragen <span aria-hidden="true">↗</span></a>
+            <a class="button button--primary" href={contactUrl}>Projekt anfragen <span aria-hidden="true">↗</span></a>
         </div>
     </section>
 </BlogLayout>

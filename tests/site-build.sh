@@ -45,6 +45,9 @@ assert_contains "dist/blog/ein-eigener-ort-fuer-updates/index.html" 'Ein eigener
 assert_contains "dist/rss.xml" 'ein-eigener-ort-fuer-updates' "article is missing from RSS"
 assert_contains "api/newsletter-subscribe.js" 'createConfirmationToken' "double-opt-in start is missing"
 assert_contains "api/newsletter-confirm.js" 'subscription: "opt_in"' "confirmed subscribers are not opted in"
+assert_contains "api/contact.js" 'verifyFormToken' "contact form does not check its form token"
+assert_contains "dist/index.html" 'data-contact-form' "contact form is missing on the homepage"
+assert_not_contains "dist/index.html" 'mailto:' "homepage still exposes a mailto link"
 assert_contains "scripts/create-newsletter-draft.mjs" 'send: false' "broadcast drafts must not send automatically"
 
 assert_contains "dist/robots.txt" "sitemap-index.xml" "robots.txt does not point to the sitemap"

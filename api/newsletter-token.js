@@ -1,6 +1,6 @@
 import { createFormToken, sendStatus } from "../lib/newsletter.js";
 
-// Hands the signup form a short-lived token. Subscribing without one is refused,
+// Hands the signup and contact forms a short-lived token (`?purpose=contact` for the latter). Subscribing without one is refused,
 // so scripts that post straight to /api/newsletter-subscribe never trigger a mail.
 export default function handler(req, res) {
   if (req.method !== "GET") {
@@ -19,5 +19,6 @@ export default function handler(req, res) {
   res.statusCode = 200;
   res.setHeader("Cache-Control", "no-store");
   res.setHeader("Content-Type", "application/json; charset=utf-8");
-  res.end(JSON.stringify({ token: createFormToken(secret) }));
+  const purpose = new URL(req.url, "http://localhost").searchParams.get("purpose") === "contact" ? "contact" : "subscribe";
+  res.end(JSON.stringify({ token: createFormToken(secret, Date.now(), purpose) }));
 }

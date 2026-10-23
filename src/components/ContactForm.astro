@@ -1,0 +1,192 @@
+---
+// Optional Cloudflare Turnstile. Without the public site key no script and no widget are added.
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
+---
+
+<section class="contact" id="kontakt" aria-labelledby="contact-title">
+  <div class="shell contact__inner">
+    <div class="contact__copy">
+      <h2 id="contact-title">Schreib mir.</h2>
+      <p>Du nutzt eines meiner Projekte, hast eine Frage oder Feedback dazu? Ich freue mich über jede Nachricht.</p>
+      <p class="contact__hire">Du brauchst eine App? <a href="/app-entwickeln-lassen/">Ich nehme auch Aufträge an →</a></p>
+    </div>
+    <form class="contact__form" action="/api/contact" method="post" data-contact-form data-turnstile-sitekey={turnstileSiteKey || undefined}>
+      <div class="contact__field">
+        <label for="contact-topic">Worum geht es?</label>
+        <select id="contact-topic" name="topic">
+          <option value="feedback">Frage oder Feedback zu einer App</option>
+          <option value="projekt">App-Projekt anfragen</option>
+          <option value="sonstiges">Sonstiges</option>
+        </select>
+      </div>
+      <div class="contact__row">
+        <div class="contact__field">
+          <label for="contact-name">Name</label>
+          <input id="contact-name" name="name" type="text" autocomplete="name" maxlength="100" required />
+        </div>
+        <div class="contact__field">
+          <label for="contact-email">E-Mail-Adresse</label>
+          <input id="contact-email" name="email" type="email" inputmode="email" autocomplete="email" maxlength="254" required />
+        </div>
+      </div>
+      <div class="contact__field">
+        <label for="contact-message">Nachricht</label>
+        <textarea id="contact-message" name="message" rows="6" maxlength="5000" required></textarea>
+      </div>
+      <div class="contact__trap" aria-hidden="true">
+        <label>Website <input name="website" type="text" tabindex="-1" autocomplete="off" /></label>
+      </div>
+      {turnstileSiteKey && <div data-turnstile-container></div>}
+      <button type="submit">Nachricht senden</button>
+      <p class="contact__legal">Ich verwende deine Angaben nur, um dir zu antworten. Details im <a href="/datenschutz.html">Datenschutz</a>.</p>
+      <p class="contact__status" role="status" aria-live="polite" data-contact-status></p>
+    </form>
+  </div>
+</section>
+
+<script>
+  type TurnstileApi = {
+    render(container: HTMLElement, options: Record<string, unknown>): string;
+    reset(widgetId: string): void;
+  };
+
+  const MIN_TOKEN_AGE_MS = 3_250; // the server requires 3 s; the margin covers clock rounding
+  const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+  const turnstile = () => (window as unknown as { turnstile?: TurnstileApi }).turnstile;
+
+  const form = document.querySelector<HTMLFormElement>("[data-contact-form]");
+  if (form) {
+    const container = form.querySelector<HTMLElement>("[data-turnstile-container]");
+    const siteKey = form.dataset.turnstileSitekey;
+    let formToken: { value: string; fetchedAt: number } | null = null;
+    let widgetId: string | undefined;
+    let turnstileResponse = "";
+
+    async function fetchFormToken() {
+      try {
+        const response = await fetch("/api/newsletter-token?purpose=contact", { headers: { Accept: "application/json" }, cache: "no-store" });
+        if (!response.ok) throw new Error("token");
+        formToken = { value: (await response.json()).token, fetchedAt: Date.now() };
+      } catch {
+        formToken = null;
+      }
+    }
+    void fetchFormToken();
+
+    // Preselect the topic from a link like /?thema=projekt#kontakt.
+    const topic = new URLSearchParams(location.search).get("thema");
+    const select = form.querySelector<HTMLSelectElement>("select[name='topic']");
+    if (select && topic && [...select.options].some((option) => option.value === topic)) select.value = topic;
+
+    if (siteKey && container) {
+      if (!document.querySelector("script[src^='https://challenges.cloudflare.com/turnstile']")) {
+        const loader = document.createElement("script");
+        loader.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+        loader.async = true;
+        document.head.append(loader);
+      }
+      void (async () => {
+        while (!turnstile()) await wait(100);
+        widgetId = turnstile()!.render(container, {
+          sitekey: siteKey,
+          appearance: "interaction-only",
+          callback: (response: string) => { turnstileResponse = response; },
+          "expired-callback": () => { turnstileResponse = ""; },
+        });
+      })();
+    }
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const button = form.querySelector<HTMLButtonElement>("button[type='submit']");
+      const status = form.querySelector<HTMLElement>("[data-contact-status]");
+      if (!button || !status) return;
+
+      button.disabled = true;
+      status.dataset.state = "pending";
+      status.textContent = "Nachricht wird gesendet …";
+
+      try {
+        if (!formToken || Date.now() - formToken.fetchedAt > 100 * 60 * 1000) await fetchFormToken();
+        if (!formToken) throw new Error("Das Formular ist gerade nicht verfügbar. Bitte versuche es später noch einmal.");
+        await wait(formToken.fetchedAt + MIN_TOKEN_AGE_MS - Date.now());
+        if (container) for (let i = 0; i < 100 && !turnstileResponse; i++) await wait(100);
+
+        const payload: Record<string, unknown> = { ...Object.fromEntries(new FormData(form)), formToken: formToken.value };
+        if (container) payload["cf-turnstile-response"] = turnstileResponse;
+        const response = await fetch(form.action, {
+          method: "POST",
+          headers: { Accept: "application/json", "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.message || "Die Nachricht konnte nicht gesendet werden.");
+        form.reset();
+        status.dataset.state = "success";
+        status.textContent = result.message;
+      } catch (error) {
+        status.dataset.state = "error";
+        status.textContent = error instanceof Error ? error.message : "Die Nachricht konnte nicht gesendet werden.";
+      } finally {
+        formToken = null; // a form token is not reused after a submission
+        void fetchFormToken();
+        if (widgetId) {
+          turnstileResponse = ""; // Turnstile responses are single-use
+          turnstile()?.reset(widgetId);
+        }
+        button.disabled = false;
+      }
+    });
+  }
+</script>
+
+<style>
+  .contact { padding-block: 78px; border-top: 1px solid var(--ink); background: var(--acid); }
+  .contact__inner { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(32px, 6vw, 84px); align-items: start; }
+  .contact h2 { max-width: 790px; font-size: var(--type-h2-small); }
+  .contact__copy p { max-width: 510px; margin-top: 14px; color: #455238; }
+  .contact__hire a { color: var(--ink); font-weight: 760; }
+  .contact__form { display: grid; gap: 16px; }
+  .contact__row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .contact__field label { display: block; margin-bottom: 8px; font-size: .82rem; font-weight: 740; }
+  .contact__form input, .contact__form select, .contact__form textarea {
+    width: 100%;
+    min-width: 0;
+    min-height: 52px;
+    padding: 0 16px;
+    border: 1px solid var(--ink);
+    border-radius: 14px;
+    background: var(--paper);
+    color: var(--ink);
+    font: inherit;
+  }
+  .contact__form textarea { min-height: 150px; padding-block: 14px; resize: vertical; }
+  .contact__form button {
+    justify-self: start;
+    min-height: 52px;
+    padding: 0 22px;
+    border: 1px solid var(--ink);
+    border-radius: 14px;
+    background: var(--ink);
+    color: #fff;
+    font: inherit;
+    font-weight: 760;
+    cursor: pointer;
+  }
+  .contact__form button:hover { background: #2b382f; }
+  .contact__form button:disabled { cursor: wait; opacity: .65; }
+  .contact__legal, .contact__status { margin: 0; font-size: .76rem; line-height: 1.5; color: #4e5d41; }
+  .contact__legal a { color: inherit; font-weight: 700; }
+  .contact__status:empty { display: none; }
+  .contact__status[data-state="success"] { color: var(--ink); font-size: .9rem; font-weight: 720; }
+  .contact__status[data-state="error"] { color: #8c2817; font-size: .9rem; font-weight: 720; }
+  .contact__trap { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+
+  @media (max-width: 820px) {
+    .contact__inner { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .contact__row { grid-template-columns: 1fr; }
+    .contact__form button { width: 100%; }
+  }
+</style>

@@ -12,6 +12,7 @@ import {
 import confirmHandler from "../api/newsletter-confirm.js";
 import subscribeHandler from "../api/newsletter-subscribe.js";
 import tokenHandler from "../api/newsletter-token.js";
+import contactHandler from "../api/contact.js";
 
 const secret = "test-secret-with-at-least-thirty-two-characters";
 const email = "ben@example.de";
@@ -420,4 +421,79 @@ test("confirmation endpoint only allows GET and POST", async () => {
 
   assert.equal(response.statusCode, 405);
   assert.equal(response.headers.Allow, "GET, POST");
+});
+
+// --- Kontaktformular ---
+
+const contactBody = (overrides = {}) => ({
+  name: "Erika Muster",
+  email,
+  topic: "projekt",
+  message: "Hallo Ben,\nich brauche eine App.",
+  formToken: createFormToken(secret, Date.now() - 10_000, "contact"),
+  ...overrides,
+});
+const contactRequest = (body, headers = {}) => ({ method: "POST", headers: { accept: "application/json", ...headers }, body });
+
+test("contact form sends the message to the owner with the visitor as reply-to", async () => {
+  await withConfiguredApi({}, async (calls) => {
+    const response = await callHandler(contactHandler, contactRequest(contactBody()));
+    assert.equal(response.statusCode, 200);
+    const [mail] = emailsSent(calls);
+    assert.equal(mail.body.to, "mail@benkohler.de");
+    assert.equal(mail.body.reply_to, email);
+    assert.match(mail.body.subject, /App-Projekt anfragen: Erika Muster/);
+    assert.match(mail.body.text, /ich brauche eine App/);
+  });
+});
+
+test("contact form escapes HTML and keeps header values on one line", async () => {
+  await withConfiguredApi({}, async (calls) => {
+    await callHandler(contactHandler, contactRequest(contactBody({
+      name: "Eve\r\nBcc: x@evil.de",
+      message: "<script>alert(1)</script>",
+    })));
+    const [mail] = emailsSent(calls);
+    assert.ok(!/[\r\n]/.test(mail.body.subject));
+    assert.ok(!mail.body.html.includes("<script>"));
+    assert.ok(mail.body.html.includes("&lt;script&gt;"));
+  });
+});
+
+test("contact form refuses a newsletter token, a missing token and cross-site posts", async () => {
+  await withConfiguredApi({}, async (calls) => {
+    const wrongPurpose = await callHandler(contactHandler, contactRequest(contactBody({ formToken: formTokenAged(10) })));
+    const noToken = await callHandler(contactHandler, contactRequest(contactBody({ formToken: undefined })));
+    const crossSite = await callHandler(contactHandler, contactRequest(contactBody(), { "sec-fetch-site": "cross-site" }));
+    assert.deepEqual([wrongPurpose.statusCode, noToken.statusCode, crossSite.statusCode], [400, 400, 400]);
+    assert.equal(emailsSent(calls).length, 0);
+  });
+});
+
+test("contact form swallows honeypot posts and rejects invalid input without sending", async () => {
+  await withConfiguredApi({}, async (calls) => {
+    const trap = await callHandler(contactHandler, contactRequest(contactBody({ website: "http://spam.example" })));
+    const badEmail = await callHandler(contactHandler, contactRequest(contactBody({ email: "nope" })));
+    const empty = await callHandler(contactHandler, contactRequest(contactBody({ message: "  " })));
+    const tooLong = await callHandler(contactHandler, contactRequest(contactBody({ message: "x".repeat(5001) })));
+    assert.deepEqual([trap.statusCode, badEmail.statusCode, empty.statusCode, tooLong.statusCode], [200, 400, 400, 400]);
+    assert.equal(emailsSent(calls).length, 0);
+  });
+});
+
+test("contact form reports a failed Resend delivery", async () => {
+  await withConfiguredApi({ "POST /emails": [500, { name: "application_error", message: "boom" }] }, async () => {
+    const response = await callHandler(contactHandler, contactRequest(contactBody()));
+    assert.equal(response.statusCode, 502);
+  });
+});
+
+test("token endpoint issues contact tokens that only the contact form accepts", async () => {
+  await withConfiguredApi({}, async () => {
+    const response = await callHandler(tokenHandler, { method: "GET", url: "/api/newsletter-token?purpose=contact" });
+    const { token } = JSON.parse(response.body);
+    const later = Date.now() + 5_000;
+    assert.ok(verifyFormToken(token, secret, later, "contact"));
+    assert.ok(!verifyFormToken(token, secret, later));
+  });
 });
