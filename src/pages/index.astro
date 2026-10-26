@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import NewsletterForm from "../components/NewsletterForm.astro";
+import ContactForm from "../components/ContactForm.astro";
 
 const [latestPost] = (await getCollection("blog", ({ data }) => !data.draft))
     .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
@@ -29,7 +30,6 @@ const structuredData = {
             "url": "https://benkohler.de/",
             "image": "https://benkohler.de/images/ben-profile.jpg",
             "jobTitle": "iOS-Entwickler",
-            "email": "mailto:mail@benkohler.de",
             "address": { "@type": "PostalAddress", "addressLocality": "Ulm", "addressCountry": "DE" },
             "knowsAbout": ["iOS-App-Entwicklung", "Swift", "SwiftUI", "App Store", "TestFlight"],
         },
@@ -296,12 +296,6 @@ const structuredData = {
         .press__label { display: block; color: var(--muted); font-size: .75rem; font-weight: 700; }
         .press__title { display: block; margin-top: 4px; font-weight: 740; }
 
-        .contact { padding-block: 78px; border-top: 1px solid var(--ink); background: var(--acid); }
-        .contact__inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
-        .contact h2 { max-width: 790px; font-size: var(--type-h2-small); }
-        .contact p { max-width: 620px; margin-top: 14px; color: #455238; }
-        .contact__hire a { color: var(--ink); font-weight: 760; }
-        .contact .button { flex: 0 0 auto; background: var(--ink); color: #fff; }
         .footer { padding-block: 28px; background: var(--ink); color: #aeb9b2; }
         .footer__inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; font-size: .82rem; }
         .footer__links { display: flex; flex-wrap: wrap; gap: 20px; }
@@ -357,7 +351,6 @@ const structuredData = {
             .journal__date { grid-column: 1 / -1; }
             .about__grid { grid-template-columns: 1fr; }
             .portrait { width: min(88%, 400px); }
-            .contact__inner { align-items: flex-start; flex-direction: column; }
             .footer__inner { align-items: flex-start; flex-direction: column; }
         }
 
@@ -393,7 +386,7 @@ const structuredData = {
                 <a href="/blog/">Blog</a>
                 <a class="nav__hire" href="/app-entwickeln-lassen/"><span class="nav__long">App entwickeln lassen</span><span class="nav__short">Projekt anfragen</span></a>
                 <a href="#about">Über mich</a>
-                <a class="nav__mail" href="mailto:mail@benkohler.de">Schreib mir</a>
+                <a class="nav__mail" href="#kontakt">Schreib mir</a>
             </div>
         </div>
     </nav>
@@ -554,12 +547,7 @@ const structuredData = {
             </div>
         </section>
 
-        <section class="contact">
-            <div class="shell contact__inner">
-                <div><h2>Schreib mir.</h2><p>Du nutzt eines meiner Projekte, hast eine Frage oder Feedback dazu? Ich freue mich über jede Mail.</p><p class="contact__hire">Du brauchst eine App? <a href="/app-entwickeln-lassen/">Ich nehme auch Aufträge an →</a></p></div>
-                <a class="button" href="mailto:mail@benkohler.de">mail@benkohler.de <span aria-hidden="true">↗</span></a>
-            </div>
-        </section>
+        <ContactForm />
     </main>
 
     <footer class="footer">

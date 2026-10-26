@@ -1,7 +1,7 @@
 ---
 import BlogLayout from "../layouts/BlogLayout.astro";
 
-const mailto = "mailto:mail@benkohler.de?subject=App-Projekt";
+const contactUrl = "/?thema=projekt#kontakt";
 const pageUrl = "https://benkohler.de/app-entwickeln-lassen/";
 
 const facts = [
@@ -107,7 +107,6 @@ const structuredData = {
             "logo": "https://benkohler.de/logo/logo.svg",
             "url": pageUrl,
             "image": "https://benkohler.de/images/og-default.png",
-            "email": "mail@benkohler.de",
             "priceRange": "ab 999 €",
             "founder": { "@id": "https://benkohler.de/#person" },
             "address": { "@type": "PostalAddress", "addressLocality": "Ulm", "postalCode": "89073", "addressCountry": "DE" },
@@ -152,7 +151,7 @@ const structuredData = {
             <h1>App entwickeln lassen: für iPhone, iPad, Mac und Web.</h1>
             <p class="hire-hero__lede">Ich bin Ben Kohler, Entwickler aus Ulm. Ich baue Apps im Auftrag, vom ersten Entwurf bis in den App Store, zum Festpreis ab 999 €. Ich arbeite immer nur an einem Projekt gleichzeitig, du hast also eine feste Ansprechperson.</p>
             <div class="actions">
-                <a class="button button--primary" href={mailto}>Festpreis anfragen <span aria-hidden="true">↗</span></a>
+                <a class="button button--primary" href={contactUrl}>Festpreis anfragen <span aria-hidden="true">↗</span></a>
                 <a class="button button--quiet" href="#angebot">Was ich anbiete <span aria-hidden="true">↓</span></a>
             </div>
             <dl class="facts">
@@ -297,7 +296,7 @@ const structuredData = {
                 <h2>Erzähl mir von deiner App.</h2>
                 <p>Schreib mir ein paar Sätze: was die App können soll, für wen sie ist und bis wann du sie brauchst. Ich antworte innerhalb von zwei Werktagen. Aus Ulm oder der Region? <a href="/app-entwickler-ulm/">Hier geht es zur Seite für Ulm und Neu-Ulm.</a></p>
             </div>
-            <a class="button button--primary" href={mailto}>mail@benkohler.de <span aria-hidden="true">↗</span></a>
+            <a class="button button--primary" href={contactUrl}>Projekt anfragen <span aria-hidden="true">↗</span></a>
         </div>
     </section>
 </BlogLayout>

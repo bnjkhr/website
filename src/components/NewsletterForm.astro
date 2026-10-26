@@ -79,7 +79,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
   if (forms.length) void refreshFormToken();
 
   const siteKey = forms[0]?.dataset.turnstileSitekey;
-  if (siteKey) {
+  if (siteKey && !document.querySelector("script[src^='https://challenges.cloudflare.com/turnstile']")) {
     const loader = document.createElement("script");
     loader.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
     loader.async = true;

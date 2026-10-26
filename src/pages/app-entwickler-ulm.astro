@@ -1,7 +1,7 @@
 ---
 import BlogLayout from "../layouts/BlogLayout.astro";
 
-const mailto = "mailto:mail@benkohler.de?subject=App-Projekt%20Ulm";
+const contactUrl = "/?thema=projekt#kontakt";
 const pageUrl = "https://benkohler.de/app-entwickler-ulm/";
 const title = "App-Entwickler in Ulm und Neu-Ulm";
 const description = "Ben Kohler baut iPhone-, iPad- und Mac-Apps für Kunden in Ulm, Neu-Ulm und Umgebung. Festpreis ab 999 €, persönliche Treffen möglich.";
@@ -66,7 +66,7 @@ const structuredData = {
                 <h2>Erzähl mir von deiner App.</h2>
                 <p>Schreib mir, was die App können soll. Ich antworte innerhalb von zwei Werktagen.</p>
             </div>
-            <a class="button button--primary" href={mailto}>Projekt anfragen <span aria-hidden="true">↗</span></a>
+            <a class="button button--primary" href={contactUrl}>Projekt anfragen <span aria-hidden="true">↗</span></a>
         </div>
     </section>
 </BlogLayout>
