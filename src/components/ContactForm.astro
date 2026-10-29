@@ -141,10 +141,10 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
 </script>
 
 <style>
-  .contact { padding-block: 78px; border-top: 1px solid var(--ink); background: var(--acid); }
+  .contact { padding-block: 78px; border-top: var(--section-rule, 1px solid var(--ink)); background: var(--form-bg, var(--acid)); }
   .contact__inner { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(32px, 6vw, 84px); align-items: start; }
   .contact h2 { max-width: 790px; font-size: var(--type-h2-small); }
-  .contact__copy p { max-width: 510px; margin-top: 14px; color: #455238; }
+  .contact__copy p { max-width: 510px; margin-top: 14px; color: var(--form-muted, #455238); }
   .contact__hire a { color: var(--ink); font-weight: 760; }
   .contact__form { display: grid; gap: 16px; }
   .contact__row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -154,9 +154,9 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
     min-width: 0;
     min-height: 52px;
     padding: 0 16px;
-    border: 1px solid var(--ink);
-    border-radius: 14px;
-    background: var(--paper);
+    border: var(--field-border, 1px solid var(--ink));
+    border-radius: var(--field-radius, 14px);
+    background: var(--field-bg, var(--paper));
     color: var(--ink);
     font: inherit;
   }
@@ -165,17 +165,17 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
     justify-self: start;
     min-height: 52px;
     padding: 0 22px;
-    border: 1px solid var(--ink);
-    border-radius: 14px;
-    background: var(--ink);
+    border: var(--btn-border, 1px solid var(--ink));
+    border-radius: var(--btn-radius, 14px);
+    background: var(--btn-bg, var(--ink));
     color: #fff;
     font: inherit;
     font-weight: 760;
     cursor: pointer;
   }
-  .contact__form button:hover { background: #2b382f; }
+  .contact__form button:hover { background: var(--btn-bg-hover, #2b382f); }
   .contact__form button:disabled { cursor: wait; opacity: .65; }
-  .contact__legal, .contact__status { margin: 0; font-size: .76rem; line-height: 1.5; color: #4e5d41; }
+  .contact__legal, .contact__status { margin: 0; font-size: .76rem; line-height: 1.5; color: var(--form-muted, #4e5d41); }
   .contact__legal a { color: inherit; font-weight: 700; }
   .contact__status:empty { display: none; }
   .contact__status[data-state="success"] { color: var(--ink); font-size: .9rem; font-weight: 720; }
