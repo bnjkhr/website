@@ -175,7 +175,7 @@ h1, h2, h3 {
 
 @media (max-width: 760px) {
   .shell { width: min(var(--wrap), calc(100% - 36px)); }
-  .nav__links a:not(.nav__hire) { display: none; }
+  .nav__links a:not(.nav__hire):not([data-lang]) { display: none; }
   .nav__links .nav__hire { margin-left: 0; color: var(--link); font-size: .85rem; }
   .nav__long { display: none; }
   .nav__short { display: inline; }

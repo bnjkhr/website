@@ -1,13 +1,15 @@
 ---
+import { ui, type Lang } from "../i18n";
+
 interface Props {
   compact?: boolean;
   heading?: string;
+  lang?: Lang;
 }
 
-const {
-  compact = false,
-  heading = "Neue Beiträge per E-Mail",
-} = Astro.props;
+const { compact = false, lang = "de" } = Astro.props;
+const t = ui[lang].newsletter;
+const heading = Astro.props.heading ?? t.heading;
 // Optional Cloudflare Turnstile. Without the public site key no script and no widget are added.
 const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
 ---
@@ -15,11 +17,12 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
 <aside class:list={["newsletter", { "newsletter--compact": compact }]} id="newsletter" aria-labelledby="newsletter-title">
   <div class="newsletter__copy">
     <h2 id="newsletter-title">{heading}</h2>
-    <p>Unregelmäßige Updates zu meinen Produkten und dem, was beim Entwickeln dahinter passiert.</p>
+    <p>{t.copy}</p>
   </div>
-  <form class="newsletter__form" action="/api/newsletter-subscribe" method="post" data-newsletter-form data-turnstile-sitekey={turnstileSiteKey || undefined}>
+  <form class="newsletter__form" action="/api/newsletter-subscribe" method="post" data-newsletter-form data-lang={lang} data-msg-pending={t.pending} data-msg-success={t.success} data-msg-error={t.error} data-turnstile-sitekey={turnstileSiteKey || undefined}>
+    <input type="hidden" name="lang" value={lang} />
     <div class="newsletter__field">
-      <label for={`newsletter-email-${compact ? "compact" : "full"}`}>E-Mail-Adresse</label>
+      <label for={`newsletter-email-${compact ? "compact" : "full"}`}>{t.emailLabel}</label>
       <div class="newsletter__controls">
         <input
           id={`newsletter-email-${compact ? "compact" : "full"}`}
@@ -27,18 +30,18 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
           type="email"
           inputmode="email"
           autocomplete="email"
-          placeholder="du@beispiel.de"
+          placeholder={t.placeholder}
           maxlength="254"
           required
         />
-        <button type="submit">Updates abonnieren</button>
+        <button type="submit">{t.submit}</button>
       </div>
     </div>
     <div class="newsletter__trap" aria-hidden="true">
-      <label>Website <input name="website" type="text" tabindex="-1" autocomplete="off" /></label>
+      <label>{t.honeypot} <input name="website" type="text" tabindex="-1" autocomplete="off" /></label>
     </div>
     {turnstileSiteKey && <div data-turnstile-container></div>}
-    <p class="newsletter__legal">Nach der Anmeldung erhältst du eine Bestätigungsmail. Klicks auf Links in den E-Mails werden ausgewertet. Abmeldung jederzeit. Details im <a href="/datenschutz.html">Datenschutz</a>.</p>
+    <p class="newsletter__legal">{t.legalBefore}<a href="/datenschutz.html">{t.legalLink}</a>{t.legalAfter}</p>
     <p class="newsletter__status" role="status" aria-live="polite" data-newsletter-status></p>
   </form>
 </aside>
@@ -59,7 +62,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
   let pendingToken: Promise<void> | null = null;
 
   function refreshFormToken() {
-    pendingToken ??= fetch("/api/newsletter-token", { headers: { Accept: "application/json" }, cache: "no-store" })
+    pendingToken ??= fetch(`/api/newsletter-token?lang=${forms[0]?.dataset.lang ?? "de"}`, { headers: { Accept: "application/json" }, cache: "no-store" })
       .then((response) => (response.ok ? response.json() : Promise.reject(new Error("token"))))
       .then(({ token }) => { formToken = { value: token, fetchedAt: Date.now() }; })
       .catch(() => { formToken = null; })
@@ -115,7 +118,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
 
       button.disabled = true;
       status.dataset.state = "pending";
-      status.textContent = "Anmeldung wird gesendet …";
+      status.textContent = form.dataset.msgPending ?? "";
 
       try {
         const [formTokenValue, turnstileValue] = await Promise.all([
@@ -130,15 +133,15 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
           body: JSON.stringify(payload),
         });
         const result = await response.json();
-        if (!response.ok) throw new Error(result.message || "Die Anmeldung konnte nicht gesendet werden.");
+        if (!response.ok) throw new Error(result.message || form.dataset.msgError);
         form.reset();
         status.dataset.state = "success";
-        status.textContent = "Fast geschafft: Bitte bestätige die Anmeldung über die E-Mail in deinem Postfach.";
+        status.textContent = form.dataset.msgSuccess ?? "";
       } catch (error) {
         formToken = null; // a rejected or expired token must not be reused
         void refreshFormToken();
         status.dataset.state = "error";
-        status.textContent = error instanceof Error ? error.message : "Die Anmeldung konnte nicht gesendet werden.";
+        status.textContent = error instanceof Error ? error.message : (form.dataset.msgError ?? "");
       } finally {
         if (widgetId) {
           turnstileResponse = ""; // Turnstile responses are single-use

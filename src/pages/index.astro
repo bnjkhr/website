@@ -2,6 +2,12 @@
 import { getCollection } from "astro:content";
 import NewsletterForm from "../components/NewsletterForm.astro";
 import ContactForm from "../components/ContactForm.astro";
+import LangSwitch from "../components/LangSwitch.astro";
+import { pagePath, type Lang } from "../i18n";
+
+// Sprache dieser Seite. Die englische Startseite übernimmt die Struktur 1:1 mit lang = "en".
+const lang: Lang = "de";
+const otherPath = pagePath("home", "en");
 
 const [latestPost] = (await getCollection("blog", ({ data }) => !data.draft))
     .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
@@ -37,7 +43,7 @@ const structuredData = {
 };
 ---
 <!doctype html>
-<html lang="de">
+<html lang={lang}>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -46,6 +52,9 @@ const structuredData = {
     <meta name="google-site-verification" content="BTTiqd4pViSqZN7GCZwKtEMVipfOYplPx7w8ON70AGk" />
     <meta name="robots" content="index, follow, max-image-preview:large">
     <link rel="canonical" href="https://benkohler.de/">
+    <link rel="alternate" hreflang="de" href="https://benkohler.de/">
+    <link rel="alternate" hreflang="en" href={new URL(otherPath, "https://benkohler.de")}>
+    <link rel="alternate" hreflang="x-default" href="https://benkohler.de/">
     <link rel="alternate" type="application/rss+xml" title="Ben Kohler Blog" href="https://benkohler.de/rss.xml">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -265,7 +274,7 @@ const structuredData = {
 
         @media (max-width: 760px) {
             .shell { width: min(var(--wrap), calc(100% - 36px)); }
-            .nav__links a:not(.nav__hire) { display: none; }
+            .nav__links a:not(.nav__hire):not([data-lang]) { display: none; }
             .nav__links .nav__hire { margin-left: 0; color: var(--link); font-size: .85rem; }
             .nav__long { display: none; }
             .nav__short { display: inline; }
@@ -299,6 +308,7 @@ const structuredData = {
                 <a class="nav__hire" href="/app-entwickeln-lassen/"><span class="nav__long">App entwickeln lassen</span><span class="nav__short">Projekt anfragen</span></a>
                 <a href="#about">Über mich</a>
                 <a class="nav__mail" href="#kontakt">Schreib mir</a>
+                <LangSwitch lang={lang} currentPath={pagePath("home", lang)} alternatePath={otherPath} />
             </div>
         </div>
     </nav>
@@ -400,7 +410,7 @@ const structuredData = {
                     </a>
                 )}
                 <div class="journal__newsletter">
-                    <NewsletterForm compact />
+                    <NewsletterForm compact lang={lang} />
                 </div>
             </div>
         </section>
@@ -422,7 +432,7 @@ const structuredData = {
             </div>
         </section>
 
-        <ContactForm />
+        <ContactForm lang={lang} />
     </main>
 
     <footer class="footer">

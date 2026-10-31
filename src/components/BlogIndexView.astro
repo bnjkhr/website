@@ -1,0 +1,56 @@
+---
+import NewsletterForm from "./NewsletterForm.astro";
+import BlogLayout from "../layouts/BlogLayout.astro";
+import type { BlogPost } from "../i18n/blog";
+import { blogPostPath, formatDate, otherLang, pagePath, ui, type Lang } from "../i18n";
+
+interface Props {
+  lang: Lang;
+  posts: BlogPost[];
+}
+
+const { lang, posts } = Astro.props;
+const t = ui[lang].blog;
+---
+
+<BlogLayout
+  title={t.title}
+  description={t.description}
+  lang={lang}
+  canonicalPath={pagePath("blog", lang)}
+  alternatePath={pagePath("blog", otherLang(lang))}
+>
+  <header class="blog-hero">
+    <div class="shell blog-hero__grid">
+      <h1>{t.heroTitle}</h1>
+      <div>
+        <p>{t.heroText}</p>
+        <div class="blog-hero__links">
+          <a href="#newsletter">{t.subscribe}</a>
+          <a href={pagePath("rss", lang)}>{t.rssFeed}</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="post-list" aria-label={t.listLabel}>
+    <div class="shell">
+      {posts.length > 0 ? posts.map((post) => (
+        <a class="post-card" href={blogPostPath(post, lang)}>
+          <span class="post-card__meta">{formatDate(post.data.publishedAt, lang)}</span>
+          <span>
+            <h2>{post.data.title}</h2>
+            <p>{post.data.description}</p>
+          </span>
+          <span class="post-card__arrow" aria-hidden="true">→</span>
+        </a>
+      )) : (
+        <p class="empty-state">{t.empty}</p>
+      )}
+    </div>
+  </section>
+
+  <div class="shell newsletter-wrap">
+    <NewsletterForm lang={lang} />
+  </div>
+</BlogLayout>

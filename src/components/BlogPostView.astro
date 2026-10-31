@@ -1,0 +1,72 @@
+---
+import { render } from "astro:content";
+import NewsletterForm from "./NewsletterForm.astro";
+import BlogLayout from "../layouts/BlogLayout.astro";
+import { alternateForPost, type BlogPost } from "../i18n/blog";
+import { blogPostPath, formatDate, pagePath, ui, type Lang } from "../i18n";
+
+interface Props {
+  lang: Lang;
+  post: BlogPost;
+}
+
+const { lang, post } = Astro.props;
+const t = ui[lang].blog;
+const { Content } = await render(post);
+const alternate = await alternateForPost(post, lang);
+---
+
+<BlogLayout
+  title={post.data.title}
+  description={post.data.description}
+  lang={lang}
+  canonicalPath={blogPostPath(post, lang)}
+  alternatePath={alternate.path}
+  alternateIsTranslation={alternate.isTranslation}
+  type="article"
+  publishedAt={post.data.publishedAt}
+  updatedAt={post.data.updatedAt}
+  heroImage={post.data.heroImage}
+>
+  <header class="article-header">
+    <div class="shell article-header__inner">
+      <a class="article-header__back" href={pagePath("blog", lang)}>{t.allPosts}</a>
+      <h1>{post.data.title}</h1>
+      <p class="article-header__description">{post.data.description}</p>
+      <div class="article-meta">
+        <time datetime={post.data.publishedAt.toISOString()}>{formatDate(post.data.publishedAt, lang)}</time>
+        {post.data.tags.length > 0 && (
+          <span class="article-meta__tags">{post.data.tags.map((tag: string) => <span>{tag}</span>)}</span>
+        )}
+      </div>
+    </div>
+  </header>
+
+  {post.data.heroImage && (
+    <figure class="article-hero shell">
+      <img
+        src={post.data.heroImage}
+        alt={post.data.heroImageAlt || ""}
+        width="2000"
+        height="1125"
+        loading="eager"
+        fetchpriority="high"
+      />
+      {post.data.heroImageCredit && (
+        <figcaption>
+          {post.data.heroImageCreditUrl ? (
+            <a href={post.data.heroImageCreditUrl} rel="noopener noreferrer">{post.data.heroImageCredit}</a>
+          ) : post.data.heroImageCredit}
+        </figcaption>
+      )}
+    </figure>
+  )}
+
+  <article class="article-body">
+    <Content />
+  </article>
+
+  <div class="shell article-newsletter">
+    <NewsletterForm compact heading={t.nextPost} lang={lang} />
+  </div>
+</BlogLayout>

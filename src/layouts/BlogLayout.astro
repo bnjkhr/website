@@ -1,5 +1,7 @@
 ---
 import "../styles/blog.css";
+import LangSwitch from "../components/LangSwitch.astro";
+import { OG_LOCALE, otherLang, pagePath, ui, type Lang } from "../i18n";
 
 interface Props {
   title: string;
@@ -9,6 +11,12 @@ interface Props {
   publishedAt?: Date;
   updatedAt?: Date;
   heroImage?: string;
+  /** Sprache der Seite. */
+  lang?: Lang;
+  /** Pfad der Gegenseite in der anderen Sprache (Umschalter, hreflang). */
+  alternatePath?: string;
+  /** false, wenn alternatePath nur ein Ausweichziel ist und keine echte Übersetzung (dann kein hreflang). */
+  alternateIsTranslation?: boolean;
 }
 
 const {
@@ -19,15 +27,30 @@ const {
   publishedAt,
   updatedAt,
   heroImage,
+  lang = "de",
+  alternatePath,
+  alternateIsTranslation = true,
 } = Astro.props;
+const t = ui[lang];
+const home = pagePath("home", lang);
 const canonical = new URL(canonicalPath, Astro.site);
 const current = (href: string) => (Astro.url.pathname.startsWith(href) ? "page" : undefined);
+const hreflangs = alternatePath && alternateIsTranslation
+  ? (() => {
+      const paths = { [lang]: canonicalPath, [otherLang(lang)]: alternatePath } as Record<Lang, string>;
+      return [
+        { hreflang: "de", href: new URL(paths.de, Astro.site) },
+        { hreflang: "en", href: new URL(paths.en, Astro.site) },
+        { hreflang: "x-default", href: new URL(paths.de, Astro.site) },
+      ];
+    })()
+  : [];
 const socialImage = new URL(heroImage ?? "/images/og-default.png", Astro.site);
-const pageTitle = title === "Blog" ? "Blog · Ben Kohler" : `${title} · Ben Kohler`;
+const pageTitle = title === t.blog.title ? "Blog · Ben Kohler" : `${title} · Ben Kohler`;
 ---
 
 <!doctype html>
-<html lang="de">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -39,7 +62,7 @@ const pageTitle = title === "Blog" ? "Blog · Ben Kohler" : `${title} · Ben Koh
     <meta property="og:type" content={type} />
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content="Ben Kohler" />
-    <meta property="og:locale" content="de_DE" />
+    <meta property="og:locale" content={OG_LOCALE[lang]} />
     <meta property="og:image" content={socialImage} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
@@ -49,7 +72,8 @@ const pageTitle = title === "Blog" ? "Blog · Ben Kohler" : `${title} · Ben Koh
     {publishedAt && <meta property="article:published_time" content={publishedAt.toISOString()} />}
     {updatedAt && <meta property="article:modified_time" content={updatedAt.toISOString()} />}
     <link rel="canonical" href={canonical} />
-    <link rel="alternate" type="application/rss+xml" title="Ben Kohler Blog" href={new URL("/rss.xml", Astro.site)} />
+    {hreflangs.map((link) => <link rel="alternate" hreflang={link.hreflang} href={link.href} />)}
+    <link rel="alternate" type="application/rss+xml" title={t.blog.rssTitle} href={new URL(pagePath("rss", lang), Astro.site)} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
@@ -57,16 +81,17 @@ const pageTitle = title === "Blog" ? "Blog · Ben Kohler" : `${title} · Ben Koh
     <slot name="head" />
   </head>
   <body>
-    <a class="skip" href="#main">Zum Inhalt</a>
-    <nav class="nav" aria-label="Hauptnavigation">
+    <a class="skip" href="#main">{t.skip}</a>
+    <nav class="nav" aria-label={t.nav.label}>
       <div class="shell nav__inner">
-        <a class="brand" href="/"><span class="brand__mark" aria-hidden="true"></span>Ben Kohler</a>
+        <a class="brand" href={home}><span class="brand__mark" aria-hidden="true"></span>Ben Kohler</a>
         <div class="nav__links">
-          <a href="/#produkte">Projekte</a>
-          <a href="/blog/" aria-current={current("/blog/")}>Blog</a>
-          <a class="nav__hire" href="/app-entwickeln-lassen/" aria-current={current("/app-entwickeln-lassen/")}><span class="nav__long">App entwickeln lassen</span><span class="nav__short">Projekt anfragen</span></a>
-          <a href="/#about">Über mich</a>
-          <a class="nav__mail" href="/#kontakt">Schreib mir</a>
+          <a href={`${home}#produkte`}>{t.nav.projects}</a>
+          <a href={pagePath("blog", lang)} aria-current={current(pagePath("blog", lang))}>{t.nav.blog}</a>
+          <a class="nav__hire" href={pagePath("hire", lang)} aria-current={current(pagePath("hire", lang))}><span class="nav__long">{t.nav.hire}</span><span class="nav__short">{t.nav.hireShort}</span></a>
+          <a href={`${home}#about`}>{t.nav.about}</a>
+          <a class="nav__mail" href={`${home}#kontakt`}>{t.nav.contact}</a>
+          <LangSwitch lang={lang} currentPath={canonicalPath} alternatePath={alternatePath} />
         </div>
       </div>
     </nav>
@@ -75,13 +100,14 @@ const pageTitle = title === "Blog" ? "Blog · Ben Kohler" : `${title} · Ben Koh
     </main>
     <footer class="footer">
       <div class="shell footer__inner">
-        <span>© 2026 Ben Kohler Digital Services · Ulm</span>
+        <span>{t.footer.copyright}</span>
         <div class="footer__links">
-          <a href="/app-entwicklung-kosten/">Was kostet eine App?</a>
-          <a href="/app-entwickler-ulm/">App-Entwickler Ulm</a>
-          <a href="/impressum.html">Impressum</a>
-          <a href="/datenschutz.html">Datenschutz</a>
-          <a href="/rss.xml">RSS</a>
+          <a href={pagePath("cost", lang)}>{t.footer.cost}</a>
+          <a href={pagePath("ulm", lang)}>{t.footer.ulm}</a>
+          {/* Impressum und Datenschutz sind rechtsverbindlich und nur auf Deutsch vorhanden. */}
+          <a href="/impressum.html" hreflang={lang === "en" ? "de" : undefined}>{t.footer.imprint}</a>
+          <a href="/datenschutz.html" hreflang={lang === "en" ? "de" : undefined}>{t.footer.privacy}</a>
+          <a href={pagePath("rss", lang)}>{t.footer.rss}</a>
         </div>
       </div>
     </footer>

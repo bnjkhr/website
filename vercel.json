@@ -1,5 +1,169 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/en/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    },
+    {
+      "source": "/app-entwickeln-lassen/",
+      "destination": "/en/hire-an-app-developer/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    },
+    {
+      "source": "/app-entwickeln-lassen",
+      "destination": "/en/hire-an-app-developer/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    },
+    {
+      "source": "/app-entwickler-ulm/",
+      "destination": "/en/app-developer-ulm/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    },
+    {
+      "source": "/app-entwickler-ulm",
+      "destination": "/en/app-developer-ulm/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    },
+    {
+      "source": "/app-entwicklung-kosten/",
+      "destination": "/en/app-development-cost/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    },
+    {
+      "source": "/app-entwicklung-kosten",
+      "destination": "/en/app-development-cost/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    },
+    {
+      "source": "/blog/",
+      "destination": "/en/blog/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    },
+    {
+      "source": "/blog",
+      "destination": "/en/blog/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
@@ -8,10 +172,22 @@
           "key": "Content-Security-Policy",
           "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self' https://maison-benchris.de; font-src 'self'; connect-src 'self' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'"
         },
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "DENY" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        }
       ]
     }
   ]
