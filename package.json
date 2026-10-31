@@ -8,9 +8,10 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "check": "astro check",
+    "gen:redirects": "node scripts/gen-lang-redirects.mjs",
     "newsletter:draft": "node --env-file-if-exists=.env.local scripts/create-newsletter-draft.mjs",
     "newsletter:setup": "node --env-file-if-exists=.env.local scripts/setup-newsletter.mjs",
-    "test": "node --test tests/newsletter.test.mjs && npm run build && sh tests/site-build.sh"
+    "test": "node --test tests/newsletter.test.mjs tests/i18n.test.mjs && npm run build && sh tests/site-build.sh"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.19",

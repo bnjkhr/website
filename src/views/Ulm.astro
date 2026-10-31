@@ -1,0 +1,77 @@
+---
+import BlogLayout from "../layouts/BlogLayout.astro";
+import { otherLang, pagePath, type Lang } from "../i18n";
+import { ulm } from "../i18n/ulm";
+
+interface Props {
+    lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = ulm[lang];
+const site = "https://benkohler.de";
+const contactUrl = `${pagePath("home", lang)}?thema=projekt#kontakt`;
+const pageUrl = `${site}${pagePath("ulm", lang)}`;
+const fill = (html: string) =>
+    html.replace("{cost}", pagePath("cost", lang)).replace("{blog}", pagePath("blog", lang));
+
+const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "WebPage",
+            "name": t.title,
+            "description": t.description,
+            "url": pageUrl,
+            "inLanguage": t.inLanguage,
+            "about": { "@id": `${site}/#service` },
+        },
+        {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": t.breadcrumbs.home, "item": `${site}${pagePath("home", lang)}` },
+                { "@type": "ListItem", "position": 2, "name": t.breadcrumbs.hire, "item": `${site}${pagePath("hire", lang)}` },
+                { "@type": "ListItem", "position": 3, "name": t.breadcrumbs.current, "item": pageUrl },
+            ],
+        },
+    ],
+};
+---
+
+<BlogLayout title={t.layoutTitle} description={t.description} lang={lang} alternatePath={pagePath("ulm", otherLang(lang))}>
+    <script slot="head" type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+
+    <header class="article-header">
+        <div class="shell article-header__inner">
+            <a class="article-header__back" href={pagePath("hire", lang)}>{t.back}</a>
+            <h1>{t.title}</h1>
+            <p class="article-header__description">{t.description}</p>
+        </div>
+    </header>
+
+    <article class="article-body">
+        <p>{t.intro}</p>
+
+        <h2>{t.buildHeading}</h2>
+        <p set:html={fill(t.build)} />
+
+        <h2>{t.workHeading}</h2>
+        <ul>
+            {t.steps.map((step) => <li set:html={fill(step)} />)}
+        </ul>
+        <p>{t.single}</p>
+
+        <h2>{t.appsHeading}</h2>
+        <p set:html={fill(t.apps)} />
+    </article>
+
+    <section class="guide-cta">
+        <div class="shell guide-cta__inner">
+            <div>
+                <h2>{t.cta.heading}</h2>
+                <p>{t.cta.text}</p>
+            </div>
+            <a class="button button--primary" href={contactUrl}>{t.cta.button} <span aria-hidden="true">↗</span></a>
+        </div>
+    </section>
+</BlogLayout>

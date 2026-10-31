@@ -1,0 +1,54 @@
+---
+import { otherLang, pagePath, ui, type Lang } from "../i18n";
+
+interface Props {
+  lang: Lang;
+  /** Pfad der aktuellen Seite. */
+  currentPath: string;
+  /** Pfad der Gegenseite in der anderen Sprache. Ohne Angabe: Startseite der anderen Sprache. */
+  alternatePath?: string;
+}
+
+const { lang, currentPath, alternatePath } = Astro.props;
+const other = otherLang(lang);
+const href: Record<Lang, string> = {
+  [lang]: currentPath,
+  [other]: alternatePath ?? pagePath("home", other),
+} as Record<Lang, string>;
+const t = ui[lang].langSwitch;
+---
+
+<span class="nav__lang" role="group" aria-label={t.label}>
+  <a href={href.de} hreflang="de" lang="de" title={t.de} data-lang="de" aria-current={lang === "de" ? "true" : undefined}>DE</a>
+  <span class="nav__lang-sep" aria-hidden="true">·</span>
+  <a href={href.en} hreflang="en" lang="en" title={t.en} data-lang="en" aria-current={lang === "en" ? "true" : undefined}>EN</a>
+</span>
+
+<script>
+  // Eine bewusste Wahl überstimmt die automatische Weiche (Accept-Language) dauerhaft.
+  document.querySelectorAll<HTMLAnchorElement>("a[data-lang]").forEach((link) => {
+    link.addEventListener("click", () => {
+      try {
+        document.cookie = `lang=${link.dataset.lang}; Max-Age=31536000; Path=/; SameSite=Lax`;
+      } catch {
+        // Ohne Cookie funktioniert der Link trotzdem.
+      }
+    });
+  });
+</script>
+
+<style is:global>
+  .nav__lang { display: inline-flex; align-items: center; margin-left: 6px; }
+  .nav__links .nav__lang a { min-width: 44px; justify-content: center; padding: 0 8px; }
+  .nav__links .nav__lang a[aria-current="true"] { color: #000; font-weight: 600; }
+  .nav__lang-sep { color: rgba(29, 29, 31, .4); font-size: .78rem; }
+
+  /* Schmale Bildschirme: Marke und Anfrage-Link bleiben einzeilig, der Umschalter behält 44 px Tippfläche. */
+  @media (max-width: 760px) {
+    .nav__inner { gap: 8px; }
+    .brand, .nav__links .nav__hire { white-space: nowrap; }
+    .nav__links .nav__hire { padding: 0 8px; }
+    .nav__lang { margin-left: 0; }
+    .nav__lang-sep { display: none; }
+  }
+</style>

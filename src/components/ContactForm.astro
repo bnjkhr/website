@@ -1,4 +1,12 @@
 ---
+import { pagePath, ui, type Lang } from "../i18n";
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = "de" } = Astro.props;
+const t = ui[lang].contact;
 // Optional Cloudflare Turnstile. Without the public site key no script and no widget are added.
 const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
 ---
@@ -6,39 +14,40 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
 <section class="contact" id="kontakt" aria-labelledby="contact-title">
   <div class="shell contact__inner">
     <div class="contact__copy">
-      <h2 id="contact-title">Schreib mir.</h2>
-      <p>Du nutzt eines meiner Projekte, hast eine Frage oder Feedback dazu? Ich freue mich über jede Nachricht.</p>
-      <p class="contact__hire">Du brauchst eine App? <a href="/app-entwickeln-lassen/">Ich nehme auch Aufträge an →</a></p>
+      <h2 id="contact-title">{t.heading}</h2>
+      <p>{t.intro}</p>
+      <p class="contact__hire">{t.hireBefore}<a href={pagePath("hire", lang)}>{t.hireLink}</a></p>
     </div>
-    <form class="contact__form" action="/api/contact" method="post" data-contact-form data-turnstile-sitekey={turnstileSiteKey || undefined}>
+    <form class="contact__form" action="/api/contact" method="post" data-contact-form data-lang={lang} data-msg-pending={t.pending} data-msg-unavailable={t.unavailable} data-msg-error={t.error} data-turnstile-sitekey={turnstileSiteKey || undefined}>
+      <input type="hidden" name="lang" value={lang} />
       <div class="contact__field">
-        <label for="contact-topic">Worum geht es?</label>
+        <label for="contact-topic">{t.topicLabel}</label>
         <select id="contact-topic" name="topic">
-          <option value="feedback">Frage oder Feedback zu einer App</option>
-          <option value="projekt">App-Projekt anfragen</option>
-          <option value="sonstiges">Sonstiges</option>
+          <option value="feedback">{t.topicFeedback}</option>
+          <option value="projekt">{t.topicProject}</option>
+          <option value="sonstiges">{t.topicOther}</option>
         </select>
       </div>
       <div class="contact__row">
         <div class="contact__field">
-          <label for="contact-name">Name</label>
+          <label for="contact-name">{t.nameLabel}</label>
           <input id="contact-name" name="name" type="text" autocomplete="name" maxlength="100" required />
         </div>
         <div class="contact__field">
-          <label for="contact-email">E-Mail-Adresse</label>
+          <label for="contact-email">{t.emailLabel}</label>
           <input id="contact-email" name="email" type="email" inputmode="email" autocomplete="email" maxlength="254" required />
         </div>
       </div>
       <div class="contact__field">
-        <label for="contact-message">Nachricht</label>
+        <label for="contact-message">{t.messageLabel}</label>
         <textarea id="contact-message" name="message" rows="6" maxlength="5000" required></textarea>
       </div>
       <div class="contact__trap" aria-hidden="true">
-        <label>Website <input name="website" type="text" tabindex="-1" autocomplete="off" /></label>
+        <label>{t.honeypot} <input name="website" type="text" tabindex="-1" autocomplete="off" /></label>
       </div>
       {turnstileSiteKey && <div data-turnstile-container></div>}
-      <button type="submit">Nachricht senden</button>
-      <p class="contact__legal">Ich verwende deine Angaben nur, um dir zu antworten. Details im <a href="/datenschutz.html">Datenschutz</a>.</p>
+      <button type="submit">{t.submit}</button>
+      <p class="contact__legal">{t.legalBefore}<a href="/datenschutz.html">{t.legalLink}</a>{t.legalAfter}</p>
       <p class="contact__status" role="status" aria-live="polite" data-contact-status></p>
     </form>
   </div>
@@ -64,7 +73,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
 
     async function fetchFormToken() {
       try {
-        const response = await fetch("/api/newsletter-token?purpose=contact", { headers: { Accept: "application/json" }, cache: "no-store" });
+        const response = await fetch(`/api/newsletter-token?purpose=contact&lang=${form!.dataset.lang ?? "de"}`, { headers: { Accept: "application/json" }, cache: "no-store" });
         if (!response.ok) throw new Error("token");
         formToken = { value: (await response.json()).token, fetchedAt: Date.now() };
       } catch {
@@ -104,11 +113,11 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
 
       button.disabled = true;
       status.dataset.state = "pending";
-      status.textContent = "Nachricht wird gesendet …";
+      status.textContent = form.dataset.msgPending ?? "";
 
       try {
         if (!formToken || Date.now() - formToken.fetchedAt > 100 * 60 * 1000) await fetchFormToken();
-        if (!formToken) throw new Error("Das Formular ist gerade nicht verfügbar. Bitte versuche es später noch einmal.");
+        if (!formToken) throw new Error(form.dataset.msgUnavailable);
         await wait(formToken.fetchedAt + MIN_TOKEN_AGE_MS - Date.now());
         if (container) for (let i = 0; i < 100 && !turnstileResponse; i++) await wait(100);
 
@@ -120,13 +129,13 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "";
           body: JSON.stringify(payload),
         });
         const result = await response.json();
-        if (!response.ok) throw new Error(result.message || "Die Nachricht konnte nicht gesendet werden.");
+        if (!response.ok) throw new Error(result.message || form.dataset.msgError);
         form.reset();
         status.dataset.state = "success";
         status.textContent = result.message;
       } catch (error) {
         status.dataset.state = "error";
-        status.textContent = error instanceof Error ? error.message : "Die Nachricht konnte nicht gesendet werden.";
+        status.textContent = error instanceof Error ? error.message : (form.dataset.msgError ?? "");
       } finally {
         formToken = null; // a form token is not reused after a submission
         void fetchFormToken();
