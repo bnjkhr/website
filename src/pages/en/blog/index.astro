@@ -1,0 +1,8 @@
+---
+import BlogIndexView from "../../../components/BlogIndexView.astro";
+import { getPosts } from "../../../i18n/blog";
+
+const posts = await getPosts("en");
+---
+
+<BlogIndexView lang="en" posts={posts} />

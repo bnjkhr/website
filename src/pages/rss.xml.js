@@ -1,21 +1,21 @@
 import rss from "@astrojs/rss";
-import { getCollection } from "astro:content";
+import { getPosts } from "../i18n/blog";
+import { FEED_LANGUAGE, blogPostPath, ui } from "../i18n";
 
 export async function GET(context) {
-  const posts = (await getCollection("blog", ({ data }) => !data.draft))
-    .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+  const posts = await getPosts("de");
 
   return rss({
-    title: "Ben Kohler Blog",
-    description: "Updates zu meinen Produkten und Einblicke in ihre Entwicklung.",
+    title: ui.de.blog.rssTitle,
+    description: ui.de.blog.rssDescription,
     site: context.site,
     items: posts.map((post) => ({
       title: post.data.title,
       description: post.data.description,
       pubDate: post.data.publishedAt,
-      link: `/blog/${post.id}/`,
+      link: blogPostPath(post, "de"),
       categories: post.data.tags,
     })),
-    customData: "<language>de-DE</language>",
+    customData: `<language>${FEED_LANGUAGE.de}</language>`,
   });
 }

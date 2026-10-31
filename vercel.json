@@ -1,5 +1,421 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/en/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    },
+    {
+      "source": "/app-entwickeln-lassen/",
+      "destination": "/en/hire-an-app-developer/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    },
+    {
+      "source": "/app-entwickeln-lassen",
+      "destination": "/en/hire-an-app-developer/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    },
+    {
+      "source": "/app-entwickler-ulm/",
+      "destination": "/en/app-developer-ulm/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    },
+    {
+      "source": "/app-entwickler-ulm",
+      "destination": "/en/app-developer-ulm/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    },
+    {
+      "source": "/app-entwicklung-kosten/",
+      "destination": "/en/app-development-cost/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    },
+    {
+      "source": "/app-entwicklung-kosten",
+      "destination": "/en/app-development-cost/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    },
+    {
+      "source": "/blog/",
+      "destination": "/en/blog/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    },
+    {
+      "source": "/blog",
+      "destination": "/en/blog/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    },
+    {
+      "source": "/blog/ein-eigener-ort-fuer-updates/",
+      "destination": "/en/blog/a-home-for-updates/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    },
+    {
+      "source": "/blog/ein-eigener-ort-fuer-updates",
+      "destination": "/en/blog/a-home-for-updates/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    },
+    {
+      "source": "/blog/app-ueberblick-2-bis-9-oktober-2026/",
+      "destination": "/en/blog/app-roundup-2-to-9-october-2026/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    },
+    {
+      "source": "/blog/app-ueberblick-2-bis-9-oktober-2026",
+      "destination": "/en/blog/app-roundup-2-to-9-october-2026/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    },
+    {
+      "source": "/blog/app-ueberblick-25-september-bis-2-oktober-2026/",
+      "destination": "/en/blog/app-roundup-25-september-to-2-october-2026/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    },
+    {
+      "source": "/blog/app-ueberblick-25-september-bis-2-oktober-2026",
+      "destination": "/en/blog/app-roundup-25-september-to-2-october-2026/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    },
+    {
+      "source": "/blog/app-ueberblick-7-bis-14-september-2026/",
+      "destination": "/en/blog/app-roundup-7-to-14-september-2026/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    },
+    {
+      "source": "/blog/app-ueberblick-7-bis-14-september-2026",
+      "destination": "/en/blog/app-roundup-7-to-14-september-2026/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    },
+    {
+      "source": "/blog/wie-laeuft-eine-app-entwicklung-ab/",
+      "destination": "/en/blog/how-an-app-development-project-works/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    },
+    {
+      "source": "/blog/wie-laeuft-eine-app-entwicklung-ab",
+      "destination": "/en/blog/how-an-app-development-project-works/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    },
+    {
+      "source": "/blog/mein-setup-claude-code/",
+      "destination": "/en/blog/how-i-build-apps-with-claude-code/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    },
+    {
+      "source": "/blog/mein-setup-claude-code",
+      "destination": "/en/blog/how-i-build-apps-with-claude-code/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    },
+    {
+      "source": "/blog/native-ios-app-oder-cross-plattform/",
+      "destination": "/en/blog/native-ios-app-or-cross-platform/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    },
+    {
+      "source": "/blog/native-ios-app-oder-cross-plattform",
+      "destination": "/en/blog/native-ios-app-or-cross-platform/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
@@ -8,10 +424,22 @@
           "key": "Content-Security-Policy",
           "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self' https://maison-benchris.de; font-src 'self'; connect-src 'self' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'"
         },
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "DENY" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        }
       ]
     }
   ]

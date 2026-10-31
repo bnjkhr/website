@@ -1,0 +1,324 @@
+---
+import BlogLayout from "../layouts/BlogLayout.astro";
+import { hire } from "../i18n/hire";
+import { otherLang, pagePath, type Lang } from "../i18n";
+
+interface Props {
+    lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = hire[lang];
+const site = "https://benkohler.de";
+const contactUrl = `${pagePath("home", lang)}?thema=projekt#kontakt`;
+const pagePathname = pagePath("hire", lang);
+const pageUrl = `${site}${pagePathname}`;
+
+const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "ProfessionalService",
+            "@id": `${site}/#service`,
+            "name": "Ben Kohler Digital Services",
+            "legalName": "Ben Kohler Digital Services",
+            "logo": `${site}/logo/logo.svg`,
+            "url": pageUrl,
+            "image": `${site}/images/og-default.png`,
+            "priceRange": t.priceRange,
+            "founder": { "@id": `${site}/#person` },
+            "address": { "@type": "PostalAddress", "addressLocality": "Ulm", "postalCode": "89073", "addressCountry": "DE" },
+            "areaServed": { "@type": "Country", "name": t.areaServed },
+            "knowsLanguage": lang,
+            "inLanguage": lang,
+            "makesOffer": t.offers.map((offer, index) => ({
+                "@type": "Offer",
+                "itemOffered": { "@type": "Service", "name": offer.name, "description": offer.text },
+                ...(index === 0 && {
+                    "priceSpecification": { "@type": "PriceSpecification", "minPrice": 999, "priceCurrency": "EUR" },
+                }),
+            })),
+        },
+        {
+            "@type": "FAQPage",
+            "inLanguage": lang,
+            "mainEntity": t.faqs.map((faq) => ({
+                "@type": "Question",
+                "name": faq.q,
+                "acceptedAnswer": { "@type": "Answer", "text": faq.a },
+            })),
+        },
+        {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": t.breadcrumb.home, "item": `${site}${pagePath("home", lang)}` },
+                { "@type": "ListItem", "position": 2, "name": t.breadcrumb.hire, "item": pageUrl },
+            ],
+        },
+    ],
+};
+---
+
+<BlogLayout
+    title={t.seo.title}
+    description={t.seo.description}
+    lang={lang}
+    canonicalPath={pagePathname}
+    alternatePath={pagePath("hire", otherLang(lang))}
+>
+    <script slot="head" type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+
+    <header class="hire-hero">
+        <div class="shell">
+            <p class="hire-hero__eyebrow">{t.hero.eyebrow}</p>
+            <h1>{t.hero.title}</h1>
+            <p class="hire-hero__lede">{t.hero.lede}</p>
+            <div class="actions">
+                <a class="button button--primary" href={contactUrl}>{t.hero.cta} <span aria-hidden="true">↗</span></a>
+                <a class="button button--quiet" href="#angebot">{t.hero.secondary} <span aria-hidden="true">↓</span></a>
+            </div>
+            <dl class="facts">
+                {t.facts.map((fact) => (
+                    <div class="facts__item"><dt>{fact.value}</dt><dd>{fact.label}</dd></div>
+                ))}
+            </dl>
+        </div>
+    </header>
+
+    <section class="hire-section" aria-labelledby="plattform-title">
+        <div class="shell">
+            <div class="hire-head">
+                <h2 id="plattform-title">{t.platformsSection.title}</h2>
+                <p>{t.platformsSection.text}</p>
+            </div>
+            <div class="platforms">
+                {t.platforms.map((platform) => (
+                    <article class="platform">
+                        <h3>{platform.name}</h3>
+                        <p class="platform__claim">{platform.claim}</p>
+                        <p class="platform__text">{platform.text}</p>
+                    </article>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <section class="hire-section" id="angebot" aria-labelledby="angebot-title">
+        <div class="shell">
+            <div class="hire-head">
+                <h2 id="angebot-title">{t.offerSection.title}</h2>
+                <p>{t.offerSection.before}<a href={pagePath("cost", lang)}>{t.offerSection.linkText}</a>{t.offerSection.after}</p>
+            </div>
+            <div class="offers">
+                {t.offers.map((offer) => (
+                    <article class:list={["offer", { "offer--featured": offer.featured }]}>
+                        <h3>{offer.name}</h3>
+                        <p class="offer__claim">{offer.claim}</p>
+                        <p class="offer__text">{offer.text}</p>
+                        <dl class="offer__facts">
+                            <div><dt>{t.offerLabels.price}</dt><dd>{offer.price}</dd></div>
+                            <div><dt>{t.offerLabels.duration}</dt><dd>{offer.duration}</dd></div>
+                        </dl>
+                    </article>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <section class="hire-section" aria-labelledby="roadlight-title">
+        <div class="shell">
+            <div class="hire-head">
+                <h2 id="roadlight-title">{t.roadlight.title}</h2>
+                <p>{t.roadlight.before}<a href="https://roadlight.pro" rel="noopener">{t.roadlight.linkText}</a>{t.roadlight.after}</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="hire-section" aria-labelledby="beispiel-title">
+        <div class="shell">
+            <div class="hire-head">
+                <h2 id="beispiel-title">{t.exampleSection.title}</h2>
+                <p>{t.exampleSection.text}</p>
+            </div>
+            <div class="example">
+                <div class="example__head">
+                    <h3>{t.example.name}</h3>
+                    <p>{t.example.pitch}</p>
+                </div>
+                <div class="example__lists">
+                    <div>
+                        <h4>{t.exampleSection.included}</h4>
+                        <ul class="example__list">
+                            {t.example.included.map((item) => <li>{item}</li>)}
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>{t.exampleSection.excluded}</h4>
+                        <ul class="example__list example__list--out">
+                            {t.example.excluded.map((item) => <li>{item}</li>)}
+                        </ul>
+                        <p class="example__note">{t.exampleSection.note}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="hire-section" aria-labelledby="proof-title">
+        <div class="shell">
+            <div class="hire-head">
+                <h2 id="proof-title">{t.proofSection.title}</h2>
+                <p>{t.proofSection.before}<a href={pagePath("blog", lang)}>{t.proofSection.linkText}</a>{t.proofSection.after}</p>
+            </div>
+            <div class="proofs">
+                {t.proofs.map((proof) => (
+                    <a class="proof" href={proof.href} rel="noopener">
+                        <span class="proof__name">{proof.name}</span>
+                        <span class="proof__text">{proof.text}</span>
+                        <span class="proof__meta">{proof.meta}</span>
+                        <span class="proof__arrow" aria-hidden="true">↗</span>
+                    </a>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <section class="hire-section" aria-labelledby="ablauf-title">
+        <div class="shell">
+            <div class="hire-head">
+                <h2 id="ablauf-title">{t.stepsSection.title}</h2>
+            </div>
+            <ol class="steps">
+                {t.steps.map((step) => (
+                    <li class="step">
+                        <h3>{step.title}</h3>
+                        <p>{step.text}</p>
+                    </li>
+                ))}
+            </ol>
+        </div>
+    </section>
+
+    <section class="hire-section hire-section--faq" aria-labelledby="faq-title">
+        <div class="shell faq">
+            <h2 id="faq-title">{t.faqSection.title}</h2>
+            <div>
+                {t.faqs.map((faq) => (
+                    <details class="faq__item">
+                        <summary>{faq.q}</summary>
+                        <p>{faq.a}</p>
+                    </details>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <section class="hire-contact">
+        <div class="shell hire-contact__inner">
+            <div>
+                <h2>{t.contact.title}</h2>
+                <p>{t.contact.before}<a href={pagePath("ulm", lang)}>{t.contact.ulmLink}</a></p>
+            </div>
+            <a class="button button--primary" href={contactUrl}>{t.contact.button} <span aria-hidden="true">↗</span></a>
+        </div>
+    </section>
+</BlogLayout>
+
+<style>
+    .hire-hero { padding: clamp(64px, 9vw, 120px) 0 clamp(56px, 8vw, 96px); text-align: center; }
+    .hire-hero h1 { max-width: 980px; margin: 0 auto; font-size: clamp(2.7rem, 6.6vw, 5.4rem); letter-spacing: -.05em; line-height: 1.04; text-wrap: balance; }
+    .hire-hero__eyebrow { margin: 0 0 18px; color: var(--muted); font-size: clamp(1rem, 1.6vw, 1.2rem); font-weight: 600; letter-spacing: -.01em; }
+    .hire-hero__lede { max-width: 660px; margin: 24px auto 0; color: var(--muted); font-size: clamp(1.1rem, 1.8vw, 1.3rem); line-height: 1.4; text-wrap: pretty; }
+    .actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 30px; }
+
+    .facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: clamp(44px, 6vw, 72px) 0 0; text-align: left; }
+    .facts__item { padding: 24px; border-radius: 22px; background: var(--gray); }
+    .facts dt { font-size: clamp(1.4rem, 2.2vw, 1.9rem); font-weight: 700; letter-spacing: -.04em; line-height: 1.1; }
+    .facts dd { margin: 8px 0 0; color: var(--muted); font-size: .92rem; }
+
+    .platforms { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .platform { padding: clamp(26px, 3vw, 36px); border-radius: var(--radius); background: var(--card); }
+    .platform h3 { margin-bottom: 14px; font-size: clamp(1.6rem, 2.4vw, 2rem); }
+    .platform__claim { margin: 0 0 10px; font-weight: 650; }
+    .platform__text { margin: 0; color: var(--muted); }
+
+    .hire-section { --card: var(--gray); padding: clamp(72px, 9vw, 120px) 0; }
+    .hire-section:nth-of-type(even) { --card: #fff; background: var(--gray); }
+    .hire-head { max-width: 720px; margin-bottom: clamp(32px, 4vw, 52px); }
+    .hire-head h2, .faq h2 { margin-bottom: 0; font-size: clamp(2.2rem, 4.6vw, 3.6rem); letter-spacing: -.045em; text-wrap: balance; }
+    .hire-head p { max-width: 58ch; margin: 18px 0 0; color: var(--muted); font-size: 1.15rem; }
+    .hire-head a { color: var(--link); }
+    .hire-head a:hover { text-decoration: underline; }
+
+    .offers { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .offer { display: flex; flex-direction: column; padding: clamp(28px, 3.4vw, 44px); border-radius: var(--radius); background: var(--card); }
+    .offer--featured { background: var(--ink); color: #f5f5f7; }
+    .offer h3 { margin-bottom: 16px; font-size: clamp(1.9rem, 3vw, 2.5rem); }
+    .offer--featured h3 { color: #f5f5f7; }
+    .offer__claim { margin-bottom: 10px; font-weight: 650; line-height: 1.4; }
+    .offer__text { margin-bottom: 26px; color: var(--muted); }
+    .offer__facts { margin: auto 0 0; border-top: 1px solid var(--rule); }
+    .offer__facts div { display: flex; justify-content: space-between; gap: 16px; padding-top: 12px; font-size: .92rem; }
+    .offer__facts dt { color: var(--muted); }
+    .offer--featured .offer__text, .offer--featured .offer__facts dt { color: #a1a1a6; }
+    .offer--featured .offer__facts { border-color: #424245; }
+    .offer__facts dd { margin: 0; font-weight: 650; text-align: right; }
+
+    .example { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(28px, 5vw, 72px); padding: clamp(28px, 4vw, 52px); border-radius: var(--radius); background: var(--card); }
+    .example__head h3 { margin-bottom: 14px; font-size: clamp(2rem, 3.6vw, 3rem); }
+    .example__head p { margin: 0; color: var(--muted); font-size: 1.12rem; }
+    .example__lists { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    .example h4 { margin: 0 0 14px; font-size: .85rem; font-weight: 650; color: var(--muted); }
+    .example__list { margin: 0; padding: 0; list-style: none; }
+    .example__list li { position: relative; padding: 10px 0 10px 28px; border-top: 1px solid var(--rule); font-size: .95rem; }
+    .example__list li::before { content: "✓"; position: absolute; left: 0; color: #248a3d; font-weight: 700; }
+    .example__list--out li { color: var(--muted); }
+    .example__list--out li::before { content: "–"; color: var(--muted); }
+    .example__note { margin: 16px 0 0; color: var(--muted); font-size: .9rem; }
+
+    .proofs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .proof { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 16px; padding: 28px; border-radius: var(--radius); background: var(--card); text-decoration: none; transition: transform .35s var(--ease), box-shadow .35s var(--ease); }
+    .proof:hover { transform: translateY(-4px); box-shadow: 0 24px 40px -22px rgba(0, 0, 0, .22); }
+    .proof__name { grid-column: 1; font-size: 1.5rem; font-weight: 700; letter-spacing: -.035em; }
+    .proof__text { grid-column: 1; color: var(--muted); }
+    .proof__meta { grid-column: 1; margin-top: 8px; color: var(--muted); font-size: .8rem; font-weight: 600; }
+    .proof__arrow { grid-column: 2; grid-row: 1 / 4; align-self: center; color: var(--link); font-size: 1.4rem; }
+
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin: 0; padding: 0; list-style: none; counter-reset: step; }
+    .step { padding: 28px; border-radius: var(--radius); background: var(--card); counter-increment: step; }
+    .step::before { content: counter(step); display: grid; place-items: center; width: 34px; height: 34px; margin-bottom: 18px; border-radius: 50%; background: var(--blue); color: #fff; font-size: .95rem; font-weight: 600; }
+    .step h3 { margin-bottom: 10px; font-size: 1.5rem; }
+    .step p { margin: 0; color: var(--muted); }
+
+    .hire-section--faq { background: #fff; }
+    .faq { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(36px, 6vw, 90px); }
+    .faq__item { border-bottom: 1px solid var(--rule); }
+    .faq__item:first-child { border-top: 1px solid var(--rule); }
+    .faq__item summary { min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 18px; cursor: pointer; font-weight: 600; letter-spacing: -.015em; list-style: none; }
+    .faq__item summary::-webkit-details-marker { display: none; }
+    .faq__item summary::after { content: "+"; color: var(--muted); font-size: 1.6rem; font-weight: 300; transition: transform .2s var(--ease); }
+    .faq__item[open] summary::after { transform: rotate(45deg); }
+    .faq__item p { max-width: 60ch; margin: 0 0 22px; color: var(--muted); }
+
+    .hire-contact { padding-block: clamp(64px, 8vw, 104px); background: var(--gray); text-align: center; }
+    .hire-contact__inner { display: flex; flex-direction: column; align-items: center; gap: 28px; }
+    .hire-contact h2 { max-width: 790px; margin-bottom: 0; font-size: clamp(2rem, 4.4vw, 3.4rem); letter-spacing: -.045em; text-wrap: balance; }
+    .hire-contact p { max-width: 620px; margin: 14px auto 0; color: var(--muted); font-size: 1.1rem; }
+    .hire-contact p a { color: var(--link); }
+    .hire-contact .button { flex: 0 0 auto; }
+
+    @media (max-width: 1020px) {
+        .offers, .platforms, .example, .example__lists, .proofs { grid-template-columns: 1fr; }
+        .facts { grid-template-columns: 1fr 1fr; }
+        .steps { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 760px) {
+        .steps { grid-template-columns: 1fr; }
+        .faq { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 480px) {
+        .facts { grid-template-columns: 1fr; }
+    }
+</style>
