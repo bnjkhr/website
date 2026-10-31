@@ -17,9 +17,9 @@ Diesen Beitrag habe ich zu einer Art Tutorial ausgebaut. Wenn du selbst Apps mit
 
 ## Der Ablauf im Überblick
 
-Bevor es ins Detail geht, hier der Rahmen. Ein normaler Tag hat bei mir zwei Rollen: Claude und die Agenten bauen, ich entscheide.
+Bevor es ins Detail geht, hier der Rahmen: der Weg einer Änderung vom Branch bis in die Produktion. Oben arbeiten Claude und die Agenten automatisch, unten entscheide ich bewusst von Hand.
 
-![Ein Tag, zwei Rollen: Claude baut, ich entscheide. Zeitleiste von „Laufend“ bis „Abends“: Claude sammelt und sortiert, ich wähle aus, Agents bauen, ich prüfe und gebe frei.](/images/blog/ein-tag-zwei-rollen.png)
+![Vom Branch in die Produktion: Claude und die Agenten planen, öffnen den Pull Request, prüfen und reparieren automatisch. Danach teste ich auf dev, promote nach staging und gebe die Produktion frei.](/images/blog/vom-branch-in-die-produktion.png)
 
 Alles, was in diesem Beitrag folgt, dient im Kern einem Ziel: Ich möchte den Agenten viel Freiheit geben können, ohne dass dabei etwas kaputtgeht, das ich nicht reparieren kann. Dafür braucht es drei Dinge: klare Regeln, Sicherheitsnetze und nachprüfbare Belege dafür, dass etwas funktioniert.
 
