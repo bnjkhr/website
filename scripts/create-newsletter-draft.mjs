@@ -54,7 +54,7 @@ const { data: result, error } = await resend.broadcasts.create({
   topicId: process.env.RESEND_NEWSLETTER_TOPIC_ID || undefined,
   from: process.env.NEWSLETTER_FROM || "Ben Kohler <newsletter@benkohler.de>",
   replyTo: "mail@benkohler.de",
-  name: `Blog: ${data.title}`,
+  name: `Blog: ${data.title}`.slice(0, 70), // Resend erlaubt höchstens 70 Zeichen
   subject: data.newsletterSubject || data.title,
   previewText: data.newsletterPreview || data.description,
   html,
