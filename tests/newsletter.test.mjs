@@ -497,3 +497,133 @@ test("token endpoint issues contact tokens that only the contact form accepts", 
     assert.ok(!verifyFormToken(token, secret, later));
   });
 });
+
+// --- Sprachen: Antworttexte, Bestätigungsmail und Bestätigungsseite folgen `lang`.
+
+const subscribeRequest = (body, headers = {}) => ({
+  method: "POST",
+  headers: { accept: "application/json", ...headers },
+  body: { email, formToken: formTokenAged(10), ...body },
+});
+
+test("subscribe endpoint answers in German by default and for unknown languages", async () => {
+  for (const lang of [undefined, "fr", "EN", ["en"]]) {
+    await withConfiguredApi({}, async (calls) => {
+      const response = await callHandler(subscribeHandler, subscribeRequest({ lang }));
+
+      assert.equal(response.statusCode, 200);
+      assert.match(JSON.parse(response.body).message, /Postfach/);
+      const [mail] = emailsSent(calls);
+      assert.equal(mail.body.subject, "Bitte bestätige dein Blog-Abo");
+      assert.match(mail.body.text, /lang=de/);
+    });
+  }
+});
+
+test("subscribe endpoint sends an English confirmation mail whose link carries the language", async () => {
+  await withConfiguredApi({}, async (calls) => {
+    const response = await callHandler(subscribeHandler, subscribeRequest({ lang: "en" }));
+
+    assert.equal(response.statusCode, 200);
+    assert.match(JSON.parse(response.body).message, /inbox/);
+    const [mail] = emailsSent(calls);
+    assert.equal(mail.body.subject, "Please confirm your blog subscription");
+    assert.match(mail.body.text, /Confirm your subscription/);
+    assert.match(mail.body.html, /lang="en"/);
+    assert.match(mail.body.html, /Confirm subscription/);
+    const link = mail.body.text.match(/https:\/\/\S+/)[0];
+    assert.equal(new URL(link).searchParams.get("lang"), "en");
+    assert.ok(verifyConfirmationToken(new URL(link).searchParams.get("token"), secret));
+  });
+});
+
+test("subscribe endpoint reports errors in the requested language", async () => {
+  await withConfiguredApi({}, async () => {
+    const invalid = await callHandler(subscribeHandler, subscribeRequest({ lang: "en", email: "nope" }));
+    assert.equal(invalid.statusCode, 400);
+    assert.equal(JSON.parse(invalid.body).message, "Please enter a valid email address.");
+
+    const noToken = await callHandler(subscribeHandler, subscribeRequest({ lang: "en", formToken: undefined }));
+    assert.match(JSON.parse(noToken.body).message, /reload the page/);
+
+    const wrongMethod = await callHandler(subscribeHandler, { method: "GET", url: "/api/newsletter-subscribe?lang=en" });
+    assert.equal(wrongMethod.statusCode, 405);
+    assert.match(JSON.parse(wrongMethod.body).message, /only accepts/);
+  });
+});
+
+test("subscribe endpoint renders the HTML fallback page in English", async () => {
+  await withConfiguredApi({}, async () => {
+    const response = await callHandler(subscribeHandler, subscribeRequest({ lang: "en" }, { accept: "text/html" }));
+
+    assert.match(response.body, /<html lang="en">/);
+    assert.match(response.body, /Almost done\./);
+    assert.match(response.body, /href="\/en\/blog\/"/);
+  });
+});
+
+test("confirmation page in English asks for a click and posts the language back", async () => {
+  await withConfiguredApi({}, async (calls) => {
+    const token = createConfirmationToken(email, secret);
+    const response = await callHandler(confirmHandler, {
+      method: "GET",
+      headers: { accept: "text/html" },
+      url: `/api/newsletter-confirm?token=${token}&lang=en`,
+    });
+
+    assert.equal(response.statusCode, 200);
+    assert.match(response.body, /<html lang="en">/);
+    assert.match(response.body, /Confirm your subscription\?/);
+    assert.match(response.body, /name="lang" value="en"/);
+    assert.match(response.body, />Confirm subscription</);
+    assert.match(response.body, /href="\/en\/blog\/"/);
+    assert.equal(calls.length, 0);
+  });
+});
+
+test("confirmation endpoint answers in the language of the request", async () => {
+  await withConfiguredApi({
+    [`GET /contacts/${email}`]: [404, { statusCode: 404, name: "not_found", message: "Contact not found" }],
+    "POST /contacts": [201, { object: "contact", id: "contact-1" }],
+  }, async () => {
+    const token = createConfirmationToken(email, secret);
+    const done = await callHandler(confirmHandler, {
+      method: "POST",
+      body: new URLSearchParams({ token, lang: "en" }).toString(),
+    });
+    assert.equal(done.statusCode, 200);
+    assert.equal(JSON.parse(done.body).title, "Subscription confirmed.");
+
+    const expired = await callHandler(confirmHandler, { method: "GET", url: "/api/newsletter-confirm?token=bad&lang=en" });
+    assert.equal(expired.statusCode, 400);
+    assert.equal(JSON.parse(expired.body).title, "This link is no longer valid.");
+
+    const german = await callHandler(confirmHandler, { method: "GET", url: "/api/newsletter-confirm?token=bad" });
+    assert.equal(JSON.parse(german.body).title, "Link nicht mehr gültig.");
+  });
+});
+
+test("contact form answers in the requested language but mails the owner in German", async () => {
+  await withConfiguredApi({}, async (calls) => {
+    const sent = await callHandler(contactHandler, contactRequest(contactBody({ lang: "en" })));
+    assert.equal(sent.statusCode, 200);
+    assert.equal(JSON.parse(sent.body).title, "Thank you!");
+    const [mail] = emailsSent(calls);
+    assert.match(mail.body.subject, /App-Projekt anfragen: Erika Muster/);
+    assert.match(mail.body.html, /Neue Nachricht über das Kontaktformular/);
+
+    const missing = await callHandler(contactHandler, contactRequest(contactBody({ lang: "en", message: "" })));
+    assert.equal(missing.statusCode, 400);
+    assert.equal(JSON.parse(missing.body).message, "Please enter your name and a message.");
+
+    const german = await callHandler(contactHandler, contactRequest(contactBody({ message: "" })));
+    assert.equal(JSON.parse(german.body).message, "Bitte gib Name und Nachricht an.");
+  });
+});
+
+test("token endpoint reports its errors in the requested language", async () => {
+  const response = await callHandler(tokenHandler, { method: "POST", url: "/api/newsletter-token?lang=en" });
+
+  assert.equal(response.statusCode, 405);
+  assert.equal(JSON.parse(response.body).message, "This address only accepts GET requests.");
+});

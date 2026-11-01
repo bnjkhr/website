@@ -1,14 +1,28 @@
 ---
 import BlogLayout from "../layouts/BlogLayout.astro";
+import { pagePath, ui } from "../i18n";
+
+// Eine Seite für beide Sprachen: Auf einer 404 ist die Sprache nicht bekannt.
+const de = ui.de.notFound;
+const en = ui.en.notFound;
 ---
 
-<BlogLayout title="Seite nicht gefunden" description="Die angeforderte Seite wurde nicht gefunden.">
+<BlogLayout title={de.title} description={de.description}>
   <section class="blog-hero">
     <div class="shell blog-hero__grid">
-      <h1>Hier ist nichts.</h1>
+      <h1>{de.heading}</h1>
       <div>
-        <p>Die Seite wurde verschoben oder hat nie existiert.</p>
-        <div class="blog-hero__links"><a href="/">Zur Startseite</a><a href="/blog/">Zum Blog</a></div>
+        <p>{de.text}</p>
+        <div class="blog-hero__links"><a href={pagePath("home", "de")}>{de.home}</a><a href={pagePath("blog", "de")}>{de.blog}</a></div>
+      </div>
+    </div>
+  </section>
+  <section class="blog-hero" lang="en">
+    <div class="shell blog-hero__grid">
+      <h1>{en.heading}</h1>
+      <div>
+        <p>{en.text}</p>
+        <div class="blog-hero__links"><a href={pagePath("home", "en")}>{en.home}</a><a href={pagePath("blog", "en")}>{en.blog}</a></div>
       </div>
     </div>
   </section>

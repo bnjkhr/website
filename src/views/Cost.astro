@@ -1,0 +1,93 @@
+---
+import BlogLayout from "../layouts/BlogLayout.astro";
+import { otherLang, pagePath, type Lang } from "../i18n";
+import { cost } from "../i18n/cost";
+
+interface Props {
+    lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = cost[lang];
+const site = "https://benkohler.de";
+const contactUrl = `${pagePath("home", lang)}?thema=projekt#kontakt`;
+const pageUrl = `${site}${pagePath("cost", lang)}`;
+const fill = (html: string) => html.replace("{hire}", pagePath("hire", lang));
+
+const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "Article",
+            "headline": t.title,
+            "description": t.description,
+            "inLanguage": t.inLanguage,
+            "mainEntityOfPage": pageUrl,
+            "datePublished": "2026-10-22",
+            "dateModified": "2026-10-22",
+            "image": `${site}/images/og-default.png`,
+            "author": { "@id": `${site}/#person` },
+            "publisher": { "@id": `${site}/#person` },
+        },
+        {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": t.breadcrumbs.home, "item": `${site}${pagePath("home", lang)}` },
+                { "@type": "ListItem", "position": 2, "name": t.breadcrumbs.hire, "item": `${site}${pagePath("hire", lang)}` },
+                { "@type": "ListItem", "position": 3, "name": t.breadcrumbs.current, "item": pageUrl },
+            ],
+        },
+    ],
+};
+---
+
+<BlogLayout title={t.layoutTitle} description={t.description} lang={lang} alternatePath={pagePath("cost", otherLang(lang))}>
+    <script slot="head" type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+
+    <header class="article-header">
+        <div class="shell article-header__inner">
+            <a class="article-header__back" href={pagePath("hire", lang)}>{t.back}</a>
+            <h1>{t.title}</h1>
+            <p class="article-header__description">{t.description}</p>
+        </div>
+    </header>
+
+    <article class="article-body">
+        <p>{t.intro}</p>
+
+        <h2>{t.priceHeading}</h2>
+        <ul>
+            {t.priceItems.map((item) => <li set:html={item} />)}
+        </ul>
+
+        <h2>{t.modelHeading}</h2>
+        <p>{t.model}</p>
+
+        <h2>{t.chargeHeading}</h2>
+        {t.charge.map((p) => <p set:html={fill(p)} />)}
+
+        <h2>{t.goodHeading}</h2>
+        <ul>
+            {t.goodItems.map((item) => <li set:html={item} />)}
+        </ul>
+
+        <h2>{t.runningHeading}</h2>
+        <p>{t.running}</p>
+
+        <h2>{t.afterHeading}</h2>
+        <p>{t.after}</p>
+
+        <h2>{t.findHeading}</h2>
+        <p>{t.find}</p>
+    </article>
+
+    <section class="guide-cta">
+        <div class="shell guide-cta__inner">
+            <div>
+                <h2>{t.cta.heading}</h2>
+                <p set:html={t.cta.text} />
+            </div>
+            <a class="button button--primary" href={contactUrl}>{t.cta.button} <span aria-hidden="true">↗</span></a>
+        </div>
+    </section>
+</BlogLayout>

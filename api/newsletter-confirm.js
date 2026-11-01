@@ -5,6 +5,7 @@ import {
   sendStatus,
   verifyConfirmationToken,
 } from "../lib/newsletter.js";
+import { messages, requestLang } from "../lib/i18n.js";
 
 function isNotFound(error) {
   return error?.statusCode === 404 || error?.status === 404;
@@ -15,9 +16,14 @@ function isAlreadyAssigned(error) {
 }
 
 export default async function handler(req, res) {
+  // Die Sprache steckt im Link (GET: ?lang=) bzw. im Formular der Bestätigungsseite (POST: lang).
+  const lang = requestLang(req, req.method === "POST" ? parseBody(req.body) : {});
+  const t = messages[lang].confirm;
+  const reply = (status, payload, page) => sendStatus(res, status, payload, req, { lang, ...page });
+
   if (req.method !== "GET" && req.method !== "POST") {
     res.setHeader("Allow", "GET, POST");
-    sendStatus(res, 405, { message: "Dieser Bestätigungslink ist ungültig." }, req);
+    reply(405, { message: t.invalidLink });
     return;
   }
 
@@ -27,7 +33,7 @@ export default async function handler(req, res) {
   const topicId = process.env.RESEND_NEWSLETTER_TOPIC_ID;
   if (!apiKey || !tokenSecret || tokenSecret.length < 32 || !segmentId) {
     console.error("Newsletter confirmation is missing required configuration");
-    sendStatus(res, 503, { message: "Die Bestätigung ist gerade nicht verfügbar. Bitte versuche es später noch einmal." }, req);
+    reply(503, { message: t.unavailable });
     return;
   }
 
@@ -36,26 +42,20 @@ export default async function handler(req, res) {
     : req.query?.token || new URL(req.url || "/api/newsletter-confirm", "http://localhost").searchParams.get("token");
   const confirmation = verifyConfirmationToken(token, tokenSecret);
   if (!confirmation) {
-    sendStatus(res, 400, {
-      title: "Link nicht mehr gültig.",
-      message: "Der Bestätigungslink ist ungültig oder älter als 48 Stunden. Bitte melde dich erneut an.",
-    }, req);
+    reply(400, { title: t.expiredTitle, message: t.expiredMessage });
     return;
   }
 
   // Mail gateways and link scanners open links automatically. Opening the link
   // therefore only asks for confirmation; the subscription needs an explicit POST.
   if (req.method === "GET") {
-    sendStatus(res, 200, {
-      title: "Abo bestätigen?",
-      message: `Ein Klick noch: Bestätige, dass ${confirmation.email} neue Beiträge per E-Mail erhalten soll.`,
-    }, req, { confirmToken: token });
+    reply(200, { title: t.askTitle, message: t.ask(confirmation.email) }, { confirmToken: token });
     return;
   }
 
   const fail = (step, error) => {
     console.error(`Resend ${step} failed`, { name: error.name, message: error.message });
-    sendStatus(res, 502, { message: "Die Anmeldung konnte nicht bestätigt werden. Bitte versuche es später noch einmal." }, req);
+    reply(502, { message: t.failed });
   };
 
   const confirmedAt = Date.now();
@@ -97,8 +97,5 @@ export default async function handler(req, res) {
     confirmedAt: Math.floor(confirmedAt / 1000),
     consentVersion: confirmation.consentVersion,
   });
-  sendStatus(res, 200, {
-    title: "Abo bestätigt.",
-    message: "Du erhältst künftig neue Beiträge per E-Mail. Abmelden kannst du dich mit einem Klick in jeder Nachricht.",
-  }, req);
+  reply(200, { title: t.doneTitle, message: t.doneMessage });
 }

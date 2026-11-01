@@ -8,9 +8,8 @@ import {
   sendStatus,
   verifyFormToken,
 } from "../lib/newsletter.js";
+import { messages, requestLang } from "../lib/i18n.js";
 
-const REFRESH_MESSAGE = "Bitte lade die Seite neu und versuche es noch einmal.";
-const TURNSTILE_MESSAGE = "Die Sicherheitsprüfung ist fehlgeschlagen. Bitte versuche es noch einmal.";
 const TOPICS = {
   projekt: "App-Projekt anfragen",
   feedback: "Frage oder Feedback zu einer App",
@@ -55,24 +54,28 @@ function logContact(level, reason, req, email) {
 const singleLine = (value) => String(value || "").replace(/\s+/g, " ").trim();
 
 export default async function handler(req, res) {
+  const body = parseBody(req.body);
+  const lang = requestLang(req, body);
+  const t = messages[lang];
+  const reply = (status, payload, page) => sendStatus(res, status, payload, req, { lang, ...page });
+
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
-    sendStatus(res, 405, { message: "Diese Adresse akzeptiert nur Nachrichten per Formular." }, req);
+    reply(405, { message: t.contact.methodNotAllowed });
     return;
   }
 
-  const body = parseBody(req.body);
   const email = normalizeEmail(body.email);
   if (body.website) {
     logContact("warn", "honeypot", req, email);
-    sendStatus(res, 200, { message: "Danke, deine Nachricht ist angekommen." }, req);
+    reply(200, { message: t.contact.thanks });
     return;
   }
 
   const secFetchSite = req.headers["sec-fetch-site"];
   if (secFetchSite && secFetchSite !== "same-origin" && secFetchSite !== "same-site") {
     logContact("warn", "cross-site-request", req, email);
-    sendStatus(res, 400, { message: REFRESH_MESSAGE }, req);
+    reply(400, { message: t.refresh });
     return;
   }
 
@@ -80,20 +83,20 @@ export default async function handler(req, res) {
   const tokenSecret = process.env.NEWSLETTER_TOKEN_SECRET;
   if (!apiKey || !tokenSecret || tokenSecret.length < 32) {
     console.error("Contact form is missing RESEND_API_KEY or NEWSLETTER_TOKEN_SECRET");
-    sendStatus(res, 503, { message: "Das Formular ist gerade nicht verfügbar. Bitte versuche es später noch einmal." }, req);
+    reply(503, { message: t.contact.unavailable });
     return;
   }
 
   if (!verifyFormToken(body.formToken, tokenSecret, Date.now(), "contact")) {
     logContact("warn", "invalid-form-token", req, email);
-    sendStatus(res, 400, { message: REFRESH_MESSAGE }, req);
+    reply(400, { message: t.refresh });
     return;
   }
 
   const turnstileSecret = process.env.TURNSTILE_SECRET_KEY;
   if (turnstileSecret && !await passesTurnstile(turnstileSecret, body["cf-turnstile-response"], req)) {
     logContact("warn", "turnstile-failed", req, email);
-    sendStatus(res, 400, { message: TURNSTILE_MESSAGE }, req);
+    reply(400, { message: t.turnstile });
     return;
   }
 
@@ -101,16 +104,16 @@ export default async function handler(req, res) {
   const message = String(body.message || "").trim();
   const topic = Object.hasOwn(TOPICS, body.topic) ? body.topic : "sonstiges";
   if (!name || !message) {
-    sendStatus(res, 400, { message: "Bitte gib Name und Nachricht an." }, req);
+    reply(400, { message: t.contact.nameAndMessage });
     return;
   }
   if (name.length > MAX_NAME || message.length > MAX_MESSAGE) {
-    sendStatus(res, 400, { message: "Name oder Nachricht sind zu lang." }, req);
+    reply(400, { message: t.contact.tooLong });
     return;
   }
   if (!isValidEmail(email)) {
     logContact("warn", "invalid-email", req, email);
-    sendStatus(res, 400, { message: "Bitte gib eine gültige E-Mail-Adresse ein." }, req);
+    reply(400, { message: t.invalidEmail });
     return;
   }
 
@@ -135,10 +138,10 @@ export default async function handler(req, res) {
   if (error) {
     logContact("error", "resend-failed", req, email);
     console.error("Contact email failed", { name: error.name, message: error.message });
-    sendStatus(res, 502, { message: "Die Nachricht konnte nicht gesendet werden. Bitte versuche es später noch einmal." }, req);
+    reply(502, { message: t.contact.sendFailed });
     return;
   }
 
   logContact("log", "sent", req, email);
-  sendStatus(res, 200, { title: "Danke!", message: "Deine Nachricht ist angekommen. Ich melde mich bei dir." }, req);
+  reply(200, { title: t.contact.doneTitle, message: t.contact.doneMessage });
 }
