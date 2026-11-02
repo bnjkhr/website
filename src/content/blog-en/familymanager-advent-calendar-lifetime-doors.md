@@ -37,7 +37,7 @@ Every day there is a small piece of family content for everyone, whether or not 
 
 For me the lifetime is the price anchor. If I made it cheaper for good, the regular price of €89.99 would soon be just a number on paper. So I chose a quantity I know in advance: 23, one per door, and then it is over. The regular price stays what it is, and anyone who takes part in December gets a real advantage instead of a permanent discount.
 
-<!-- OPEN for Ben: 1–2 sentences on why the time is random. I have no fact for it, so I did not make one up. -->
+The time is random so that it is not always the same early birds or bots who win. If you drop by at some point during the day, you have just as much of a chance.
 
 ## Planned: a draw behind door 24
 
@@ -45,11 +45,9 @@ For me the lifetime is the price anchor. If I made it cheaper for good, the regu
 
 Behind door 24 I plan to raffle **3 lifetimes**. You can enter from 1 December until 24 December before 6 pm. It is free, independent of any purchase, with one entry per household. The draw runs automatically on 24 December at 6 pm. The draw is still being built and not yet final; the terms will be on the advent page.
 
-## Planned: gifting to other families
+## Gifting to other families
 
-<!-- DRAFT: Publish only once Ben has confirmed. Otherwise delete this section. -->
-
-In December, families should be able to give up to three other families one month of Premium in the iPhone app. You will find it under **More → Give** (German UI: Mehr → Schenken). This is planned too and not finished yet.
+From 1 December, you can give up to three other families one month of Premium in the iPhone app under **More → Gift a family** (German UI: Mehr → Familie beschenken).
 
 ## Take part
 

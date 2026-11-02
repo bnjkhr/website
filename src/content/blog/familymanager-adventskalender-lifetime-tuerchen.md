@@ -38,7 +38,7 @@ Für alle gibt es jeden Tag einen kleinen Inhalt für die Familie, unabhängig d
 
 Die Lifetime ist für mich der Preisanker. Wenn ich sie dauerhaft billiger machen würde, wäre der reguläre Preis von 89,99 € bald nur noch eine Zahl auf dem Papier. Deshalb habe ich ein Kontingent gewählt, das ich vorher kenne: 23 Stück, jeweils eine pro Türchen, und danach ist Schluss. Der reguläre Preis bleibt dadurch das, was er ist, und wer im Dezember zugreift, bekommt einen echten Vorteil statt eines dauerhaften Rabatts.
 
-<!-- OFFEN für Ben: Hier gern in 1–2 Sätzen, warum die Uhrzeit zufällig ist. Fakt dazu fehlt mir, deshalb nichts erfunden. -->
+Die Uhrzeit ist zufällig, damit nicht immer dieselben Frühaufsteher oder Bots gewinnen. Wer zwischendurch vorbeischaut, hat genauso eine Chance.
 
 ## Geplant: Verlosung hinter Türchen 24
 
@@ -46,11 +46,9 @@ Die Lifetime ist für mich der Preisanker. Wenn ich sie dauerhaft billiger mache
 
 Hinter Türchen 24 plane ich eine Verlosung von **3 Lifetimes**. Eintragen kannst du dich vom 1. Dezember bis zum 24. Dezember vor 18 Uhr. Das ist kostenlos und unabhängig von Käufen, pro Haushalt gibt es ein Los. Die Ziehung läuft automatisch am 24. Dezember um 18 Uhr. Die Verlosung ist noch in Arbeit und noch nicht endgültig bestätigt, die Bedingungen stehen dann auf der Adventsseite.
 
-## Geplant: Familien beschenken
+## Familien beschenken
 
-<!-- ENTWURF: Erst veröffentlichen, wenn Ben bestätigt hat. Sonst Absatz streichen. -->
-
-Im Dezember sollen Familien in der iPhone-App bis zu drei anderen Familien einen Monat Premium schenken können. Du findest es dann unter **Mehr → Schenken**. Auch das ist geplant und noch nicht fertig.
+Ab 1. Dezember kannst du in der iPhone-App unter **Mehr → Familie beschenken** bis zu drei anderen Familien einen Monat Premium schenken.
 
 ## Mitmachen
 
