@@ -1,7 +1,7 @@
 ---
 title: "Zwei Haushalte, ein Kalender: Wie FamilyManager getrennt erziehende Eltern verbindet"
 description: "Wenn Kinder in zwei Haushalten leben, endet Familienorganisation nicht an der Haustür. Wie ich verbundene Haushalte, den Wechselplan und das Teilen von Terminen in FamilyManager gebaut habe."
-publishedAt: 2026-11-20
+publishedAt: 2026-12-04
 tags:
   - FamilyManager
   - Hinter den Kulissen

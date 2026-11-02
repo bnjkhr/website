@@ -1,7 +1,7 @@
 ---
 title: "My best critic is a tester, and still they do not decide what I build"
 description: "The best feedback on FamilyManager comes from my test team. Why I still do not build every wish, how I separate bugs from wishes and which wishes I turned down."
-publishedAt: 2026-11-06
+publishedAt: 2026-11-20
 tags:
   - FamilyManager
   - Behind the scenes

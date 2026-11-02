@@ -1,7 +1,7 @@
 ---
 title: "Two households, one calendar: how FamilyManager connects separated parents"
 description: "When children live in two households, family organisation does not stop at the front door. How I built connected households, the custody schedule and event sharing in FamilyManager."
-publishedAt: 2026-11-20
+publishedAt: 2026-12-04
 tags:
   - FamilyManager
   - Behind the scenes
