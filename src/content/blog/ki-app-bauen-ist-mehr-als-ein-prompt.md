@@ -6,6 +6,10 @@ tags:
   - Produktentwicklung
   - Hinter den Kulissen
 draft: false
+heroImage: "/images/blog/hero-ki-prompt.webp"
+heroImageAlt: "Blaues Netz aus leuchtenden Linien und Punkten"
+heroImageCredit: "Foto: Conny Schneider · Unsplash"
+heroImageCreditUrl: "https://unsplash.com/photos/xuTJZ7uD7PI"
 ---
 
 „Beschreibe deine App, und wir bauen sie für dich.“ So ähnlich klingt das Versprechen vieler KI-Werkzeuge, Lovable zum Beispiel. Und ein Teil davon stimmt: Ein Prototyp, der aussieht wie eine App und sich klicken lässt, ist heute in einer Stunde da. Ich arbeite selbst jeden Tag mit KI und möchte darauf nicht mehr verzichten.

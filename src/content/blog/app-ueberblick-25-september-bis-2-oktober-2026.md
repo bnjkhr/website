@@ -6,6 +6,10 @@ tags:
   - Wochenrückblick
   - Produktentwicklung
 draft: false
+heroImage: "/images/blog/hero-ueberblick-sept-2.webp"
+heroImageAlt: "Aufgeschlagener Monatsplaner mit zwei Stiften"
+heroImageCredit: "Foto: 2H Media · Unsplash"
+heroImageCreditUrl: "https://unsplash.com/photos/cdDDWLezAJ0"
 newsletterSubject: "Fehlermeldungen, die etwas sagen"
 newsletterPreview: "FamilyManager 2.2.6 ist im Store, 2.2.7 im Test – dazu Neues bei GymBo und Roadlight."
 ---

@@ -9,10 +9,11 @@ const postSchema = z.object({
   updatedAt: z.coerce.date().optional(),
   tags: z.array(z.string()).default([]),
   draft: z.boolean().default(false),
-  heroImage: z.string().min(1).optional(),
-  heroImageAlt: z.string().min(1).optional(),
-  heroImageCredit: z.string().min(1).optional(),
-  heroImageCreditUrl: z.url().optional(),
+  // Titelbild liegt im Kopf des Beitrags hinter Titel und Untertitel; Quelle steht darunter.
+  heroImage: z.string().min(1),
+  heroImageAlt: z.string().min(1),
+  heroImageCredit: z.string().min(1),
+  heroImageCreditUrl: z.url(),
   newsletterSubject: z.string().optional(),
   newsletterPreview: z.string().optional(),
 });

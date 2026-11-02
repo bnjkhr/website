@@ -61,7 +61,7 @@ const de: HomeStrings = {
   },
   familymanager: {
     eyebrow: "Familie",
-    claim: "Termine, Aufgaben und Einkäufe gemeinsam organisieren.",
+    claim: "Abhaken statt Nachhaken.",
     desc: "Mit FamilyManager arbeite ich daran, den Überblick im Familienalltag zu erleichtern. Auch dann, wenn die Familie in mehreren Haushalten lebt.",
     link: "FamilyManager ansehen",
     alt: "FamilyManager Heute-Ansicht",
@@ -131,7 +131,7 @@ const en: HomeStrings = {
   },
   familymanager: {
     eyebrow: "Family",
-    claim: "Organise appointments, tasks and shopping together.",
+    claim: "Checked off. Not chased.",
     desc: "With FamilyManager I'm working on making it easier to keep track of family life, even when the family lives in more than one household.",
     link: "See FamilyManager",
     alt: "FamilyManager Today view",

@@ -6,6 +6,10 @@ tags:
   - App-Entwicklung
   - Produktentwicklung
 draft: false
+heroImage: "/images/blog/hero-native-ios.webp"
+heroImageAlt: "MacBook, iPad und iPhone nebeneinander auf einem Holztisch"
+heroImageCredit: "Foto: Firmbee.com · Unsplash"
+heroImageCreditUrl: "https://unsplash.com/photos/2mc2B5iX6as"
 ---
 
 Wenn jemand eine App bauen lassen möchte, kommt früh die Frage: Soll sie nativ sein oder mit einem Cross-Plattform-Framework entstehen? Beide Wege sind legitim. Hier erkläre ich, was der Unterschied ist und warum ich für meine Aufträge auf das Apple-Ökosystem mit Swift und SwiftUI setze.
