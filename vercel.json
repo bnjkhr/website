@@ -344,6 +344,42 @@
       ]
     },
     {
+      "source": "/blog/ki-app-bauen-ist-mehr-als-ein-prompt/",
+      "destination": "/en/blog/building-an-app-with-ai-takes-more-than-a-prompt/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    },
+    {
+      "source": "/blog/ki-app-bauen-ist-mehr-als-ein-prompt",
+      "destination": "/en/blog/building-an-app-with-ai-takes-more-than-a-prompt/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    },
+    {
       "source": "/blog/wie-laeuft-eine-app-entwicklung-ab/",
       "destination": "/en/blog/how-an-app-development-project-works/",
       "statusCode": 307,
