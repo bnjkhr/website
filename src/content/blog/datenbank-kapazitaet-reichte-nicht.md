@@ -1,7 +1,7 @@
 ---
 title: "Der Tag, an dem meine Datenbank zu klein war"
 description: "Am 24. September 2026 war FamilyManager gut 20 Minuten nicht erreichbar. Die Ursache war kein Programmierfehler, sondern ein Speicher, der nicht mehr reichte. Wie ich es gefunden habe und was ich daraus mitnehme."
-publishedAt: 2026-11-13
+publishedAt: 2026-12-18
 tags:
   - FamilyManager
   - Hinter den Kulissen

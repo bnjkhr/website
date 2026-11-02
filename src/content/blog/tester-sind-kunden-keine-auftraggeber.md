@@ -1,7 +1,7 @@
 ---
 title: "Mein bester Kritiker ist ein Tester, und trotzdem bestimmt er nicht, was ich baue"
 description: "Aus dem Testteam kommen die besten Rückmeldungen zu FamilyManager. Warum ich trotzdem nicht jeden Wunsch baue, wie ich Bugs von Wünschen trenne und welche Wünsche ich abgelehnt habe."
-publishedAt: 2026-11-06
+publishedAt: 2026-11-20
 tags:
   - FamilyManager
   - Hinter den Kulissen

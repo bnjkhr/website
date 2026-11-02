@@ -1,7 +1,7 @@
 ---
 title: "A family app for children with ADHD: what I built and what I do not promise"
 description: "The children's mode “Jetzt” (“Now”) shows a child one step at a time. How I built it, what the research offers, why the Struktur-Hilfen for adults are private and why I do not promise any effect."
-publishedAt: 2026-11-11
+publishedAt: 2026-11-13
 tags:
   - FamilyManager
   - Behind the scenes

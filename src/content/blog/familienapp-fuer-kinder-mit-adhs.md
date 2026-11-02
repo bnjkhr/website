@@ -1,7 +1,7 @@
 ---
 title: "Eine Familien-App für Kinder mit ADHS: Was ich gebaut habe und was ich nicht verspreche"
 description: "Der Kindermodus „Jetzt“ zeigt Kindern einen Schritt nach dem anderen. Wie ich ihn gebaut habe, was die Forschung hergibt, warum die Struktur-Hilfen für Erwachsene privat sind und warum ich keine Wirkung verspreche."
-publishedAt: 2026-11-11
+publishedAt: 2026-11-13
 tags:
   - FamilyManager
   - Hinter den Kulissen
