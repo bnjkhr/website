@@ -4,6 +4,10 @@ description: "Why news about my products will now live here."
 publishedAt: 2026-09-14
 tags:
   - Behind the scenes
+heroImage: "/images/blog/hero-eigener-ort.webp"
+heroImageAlt: "Steaming mug by the window next to a MacBook"
+heroImageCredit: "Photo: Zach Ramelan · Unsplash"
+heroImageCreditUrl: "https://unsplash.com/photos/IPX_OiuK4po"
 newsletterSubject: "A new home for my updates"
 newsletterPreview: "News about my products will now be on my website."
 translationOf: "ein-eigener-ort-fuer-updates"

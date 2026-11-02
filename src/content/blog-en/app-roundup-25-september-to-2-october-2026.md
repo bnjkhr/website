@@ -6,6 +6,10 @@ tags:
   - App roundup
   - Product development
 draft: false
+heroImage: "/images/blog/hero-ueberblick-sept-2.webp"
+heroImageAlt: "Open monthly planner with two pens"
+heroImageCredit: "Photo: 2H Media · Unsplash"
+heroImageCreditUrl: "https://unsplash.com/photos/cdDDWLezAJ0"
 newsletterSubject: "Error messages that actually say something"
 newsletterPreview: "FamilyManager 2.2.6 is in the store, 2.2.7 is in testing – plus news from GymBo and Roadlight."
 translationOf: "app-ueberblick-25-september-bis-2-oktober-2026"

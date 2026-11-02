@@ -7,6 +7,10 @@ tags:
   - Behind the scenes
   - Product development
 draft: false
+heroImage: "/images/blog/hero-claude-code-setup.webp"
+heroImageAlt: "Desk with monitors showing code in evening light"
+heroImageCredit: "Photo: Jannis Brandt · Unsplash"
+heroImageCreditUrl: "https://unsplash.com/photos/4mHaSX8zvJI"
 translationOf: "mein-setup-claude-code"
 ---
 

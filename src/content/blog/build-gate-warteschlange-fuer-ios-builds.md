@@ -6,6 +6,10 @@ tags:
   - Hinter den Kulissen
   - Produktentwicklung
 draft: false
+heroImage: "/images/blog/hero-build-gate.webp"
+heroImageAlt: "Edelstahl-Drehkreuze mit grünen und roten Statuslichtern"
+heroImageCredit: "Foto: Martin Leitgeb · Unsplash"
+heroImageCreditUrl: "https://unsplash.com/photos/u5Mm6I8qQC8"
 ---
 
 Wenn mehrere KI-Agenten gleichzeitig an iOS-Apps arbeiten, stoßen sie irgendwann an dieselbe Wand: den eigenen Rechner. In diesem Beitrag zeige ich, wie ich das Problem mit einem Skript von knapp 400 Zeilen gelöst habe, das ich **Build-Gate** nenne. Es ist entstanden, als ich an FamilyManager mit mehreren Agenten parallel gearbeitet habe, und gilt inzwischen für alle meine iOS-Projekte. Du bekommst die Idee, die wichtigsten Teile des Skripts im Wortlaut und die Fehler, aus denen es gewachsen ist.

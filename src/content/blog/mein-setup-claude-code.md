@@ -7,6 +7,10 @@ tags:
   - Hinter den Kulissen
   - Produktentwicklung
 draft: false
+heroImage: "/images/blog/hero-claude-code-setup.webp"
+heroImageAlt: "Schreibtisch mit Monitoren und Code im Abendlicht"
+heroImageCredit: "Foto: Jannis Brandt · Unsplash"
+heroImageCreditUrl: "https://unsplash.com/photos/4mHaSX8zvJI"
 ---
 
 Eigentlich komme ich aus der Entwicklung. GymBo habe ich ursprünglich angefangen, um wieder in SwiftUI hineinzukommen: selbst programmieren, Neues ausprobieren, auf den aktuellen Stand kommen. Dabei habe ich schnell gemerkt, dass Agentic Coding enorm hilft, wenn ich das Tempo hochhalten will. Aus dem Lernprojekt wurde so nach und nach meine heutige Arbeitsweise.
