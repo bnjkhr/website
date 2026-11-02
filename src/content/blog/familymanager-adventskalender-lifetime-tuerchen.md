@@ -7,6 +7,10 @@ tags:
   - Hinter den Kulissen
   - Produktentwicklung
 draft: true
+heroImage: "/images/blog/hero-advent.webp"
+heroImageAlt: "Adventskalender aus bunt bemalten, nummerierten Holzhäuschen"
+heroImageCredit: "Foto: Elena Mozhvilo · Unsplash"
+heroImageCreditUrl: "https://unsplash.com/photos/wBenc1bRgGI"
 newsletterSubject: "Der FamilyManager-Adventskalender startet am 1. Dezember"
 newsletterPreview: "23 Lifetimes, jeden Tag eine Chance, und für alle kleine Familien-Extras."
 ---

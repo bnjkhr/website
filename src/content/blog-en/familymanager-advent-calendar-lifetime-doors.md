@@ -7,6 +7,10 @@ tags:
   - Behind the scenes
   - Product development
 draft: true
+heroImage: "/images/blog/hero-advent.webp"
+heroImageAlt: "Advent calendar made of colourfully painted, numbered wooden houses"
+heroImageCredit: "Photo: Elena Mozhvilo · Unsplash"
+heroImageCreditUrl: "https://unsplash.com/photos/wBenc1bRgGI"
 translationOf: "familymanager-adventskalender-lifetime-tuerchen"
 ---
 
