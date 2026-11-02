@@ -6,6 +6,10 @@ tags:
   - Wochenrückblick
   - Produktentwicklung
 draft: false
+heroImage: "/images/blog/hero-ueberblick-okt-1.webp"
+heroImageAlt: "Aufgeschlagener Tagesplaner mit Stiften"
+heroImageCredit: "Foto: My Profit Tutor · Unsplash"
+heroImageCreditUrl: "https://unsplash.com/photos/9MtxPyV9ss0"
 ---
 
 Diese Woche war die größte seit Langem. Der rote Faden beim FamilyManager: Du sollst schneller finden, was du suchst, und Web und App sollen sich gleich anfühlen. GymBo hat Supersätze und Zirkel auf Vordermann gebracht. Und am Ende zeige ich dir, wie ich das alles neben meinem Vollzeitjob schaffe.

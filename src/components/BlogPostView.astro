@@ -28,8 +28,19 @@ const alternate = await alternateForPost(post, lang);
   updatedAt={post.data.updatedAt}
   heroImage={post.data.heroImage}
 >
-  <header class="article-header">
-    <div class="shell article-header__inner">
+  <header class:list={["article-header", post.data.heroImage && "article-header--hero"]}>
+    <div class:list={["shell", "article-header__inner", post.data.heroImage && "article-header__card"]}>
+      {post.data.heroImage && (
+        <img
+          class="article-header__bg"
+          src={post.data.heroImage}
+          alt={post.data.heroImageAlt || ""}
+          width="2000"
+          height="1125"
+          loading="eager"
+          fetchpriority="high"
+        />
+      )}
       <a class="article-header__back" href={pagePath("blog", lang)}>{t.allPosts}</a>
       <h1>{post.data.title}</h1>
       <p class="article-header__description">{post.data.description}</p>
@@ -40,27 +51,14 @@ const alternate = await alternateForPost(post, lang);
         )}
       </div>
     </div>
+    {post.data.heroImage && post.data.heroImageCredit && (
+      <p class="shell article-header__credit">
+        {post.data.heroImageCreditUrl ? (
+          <a href={post.data.heroImageCreditUrl} rel="noopener noreferrer">{post.data.heroImageCredit}</a>
+        ) : post.data.heroImageCredit}
+      </p>
+    )}
   </header>
-
-  {post.data.heroImage && (
-    <figure class="article-hero shell">
-      <img
-        src={post.data.heroImage}
-        alt={post.data.heroImageAlt || ""}
-        width="2000"
-        height="1125"
-        loading="eager"
-        fetchpriority="high"
-      />
-      {post.data.heroImageCredit && (
-        <figcaption>
-          {post.data.heroImageCreditUrl ? (
-            <a href={post.data.heroImageCreditUrl} rel="noopener noreferrer">{post.data.heroImageCredit}</a>
-          ) : post.data.heroImageCredit}
-        </figcaption>
-      )}
-    </figure>
-  )}
 
   <article class="article-body">
     <Content />

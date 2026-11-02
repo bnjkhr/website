@@ -6,6 +6,10 @@ tags:
   - App-Entwicklung
   - Zusammenarbeit
 draft: false
+heroImage: "/images/blog/hero-app-entwicklung.webp"
+heroImageAlt: "Hände skizzieren in einem Spiralnotizbuch"
+heroImageCredit: "Foto: Kaizen Nguyễn · Unsplash"
+heroImageCreditUrl: "https://unsplash.com/photos/ee5yWSeHPuw"
 ---
 
 Wer zum ersten Mal eine App bauen lässt, weiß selten, was auf ihn zukommt. Das ist normal: Der Weg von der Idee bis in den App Store hat Schritte, die man von außen nicht sieht. In diesem Beitrag gehe ich sie der Reihe nach durch, so wie ich sie auch bei Aufträgen gehe.

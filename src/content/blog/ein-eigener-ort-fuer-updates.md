@@ -4,6 +4,10 @@ description: "Warum Neuigkeiten zu meinen Produkten künftig hier zu finden sind
 publishedAt: 2026-09-14
 tags:
   - Hinter den Kulissen
+heroImage: "/images/blog/hero-eigener-ort.webp"
+heroImageAlt: "Dampfende Tasse am Fenster neben einem MacBook"
+heroImageCredit: "Foto: Zach Ramelan · Unsplash"
+heroImageCreditUrl: "https://unsplash.com/photos/IPX_OiuK4po"
 newsletterSubject: "Ein neuer Ort für meine Updates"
 newsletterPreview: "Neuigkeiten zu meinen Produkten gibt es künftig direkt auf meiner Website."
 ---
