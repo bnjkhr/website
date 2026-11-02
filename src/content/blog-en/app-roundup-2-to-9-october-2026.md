@@ -6,6 +6,10 @@ tags:
   - App roundup
   - Product development
 draft: false
+heroImage: "/images/blog/hero-ueberblick-okt-1.webp"
+heroImageAlt: "Open daily planner with pens"
+heroImageCredit: "Photo: My Profit Tutor · Unsplash"
+heroImageCreditUrl: "https://unsplash.com/photos/9MtxPyV9ss0"
 translationOf: "app-ueberblick-2-bis-9-oktober-2026"
 ---
 

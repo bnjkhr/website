@@ -6,6 +6,10 @@ tags:
   - Product development
   - Behind the scenes
 draft: false
+heroImage: "/images/blog/hero-ki-prompt.webp"
+heroImageAlt: "Blue network of glowing lines and dots"
+heroImageCredit: "Photo: Conny Schneider · Unsplash"
+heroImageCreditUrl: "https://unsplash.com/photos/xuTJZ7uD7PI"
 translationOf: "ki-app-bauen-ist-mehr-als-ein-prompt"
 ---
 

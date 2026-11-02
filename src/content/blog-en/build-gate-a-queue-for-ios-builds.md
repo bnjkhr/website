@@ -6,6 +6,10 @@ tags:
   - Behind the scenes
   - Product development
 draft: false
+heroImage: "/images/blog/hero-build-gate.webp"
+heroImageAlt: "Stainless steel turnstiles with green and red status lights"
+heroImageCredit: "Photo: Martin Leitgeb · Unsplash"
+heroImageCreditUrl: "https://unsplash.com/photos/u5Mm6I8qQC8"
 translationOf: "build-gate-warteschlange-fuer-ios-builds"
 ---
 

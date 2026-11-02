@@ -6,6 +6,10 @@ tags:
   - App development
   - Product development
 draft: false
+heroImage: "/images/blog/hero-native-ios.webp"
+heroImageAlt: "MacBook, iPad and iPhone side by side on a wooden table"
+heroImageCredit: "Photo: Firmbee.com · Unsplash"
+heroImageCreditUrl: "https://unsplash.com/photos/2mc2B5iX6as"
 translationOf: "native-ios-app-oder-cross-plattform"
 ---
 

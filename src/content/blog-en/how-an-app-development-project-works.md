@@ -6,6 +6,10 @@ tags:
   - App development
   - Collaboration
 draft: false
+heroImage: "/images/blog/hero-app-entwicklung.webp"
+heroImageAlt: "Hands sketching in a spiral notebook"
+heroImageCredit: "Photo: Kaizen Nguyễn · Unsplash"
+heroImageCreditUrl: "https://unsplash.com/photos/ee5yWSeHPuw"
 translationOf: "wie-laeuft-eine-app-entwicklung-ab"
 ---
 
