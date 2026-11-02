@@ -44,11 +44,9 @@ Die Lifetime ist für mich der Preisanker. Wenn ich sie dauerhaft billiger mache
 
 Die Uhrzeit ist zufällig, damit nicht immer dieselben Frühaufsteher oder Bots gewinnen. Wer zwischendurch vorbeischaut, hat genauso eine Chance.
 
-## Geplant: Verlosung hinter Türchen 24
+## Verlosung hinter Türchen 24
 
-<!-- ENTWURF: Erst veröffentlichen, wenn Ben bestätigt hat. Sonst Absatz streichen. -->
-
-Hinter Türchen 24 plane ich eine Verlosung von **3 Lifetimes**. Eintragen kannst du dich vom 1. Dezember bis zum 24. Dezember vor 18 Uhr. Das ist kostenlos und unabhängig von Käufen, pro Haushalt gibt es ein Los. Die Ziehung läuft automatisch am 24. Dezember um 18 Uhr. Die Verlosung ist noch in Arbeit und noch nicht endgültig bestätigt, die Bedingungen stehen dann auf der Adventsseite.
+Hinter Türchen 24 verlose ich 3 Lifetimes. Eintragen kannst du dich vom 1. Dezember bis zum 24. Dezember vor 18 Uhr, auf [familymanager.pro/advent](https://familymanager.pro/advent). Das ist kostenlos und hat nichts mit einem Kauf zu tun, pro Haushalt gibt es ein Los, dein Konto muss älter als 24 Stunden sein. Die Ziehung läuft automatisch am 24. Dezember um 18 Uhr, die Gewinner bekommen eine Mail.
 
 ## Familien beschenken
 

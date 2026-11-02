@@ -43,11 +43,9 @@ For me the lifetime is the price anchor. If I made it cheaper for good, the regu
 
 The time is random so that it is not always the same early birds or bots who win. If you drop by at some point during the day, you have just as much of a chance.
 
-## Planned: a draw behind door 24
+## Draw behind door 24
 
-<!-- DRAFT: Publish only once Ben has confirmed. Otherwise delete this section. -->
-
-Behind door 24 I plan to raffle **3 lifetimes**. You can enter from 1 December until 24 December before 6 pm. It is free, independent of any purchase, with one entry per household. The draw runs automatically on 24 December at 6 pm. The draw is still being built and not yet final; the terms will be on the advent page.
+Behind door 24 I am raffling 3 lifetimes. You can enter from 1 December until 24 December before 6 pm, at [familymanager.pro/advent](https://familymanager.pro/advent). It is free and has nothing to do with a purchase, there is one entry per household, and your account must be older than 24 hours. The draw runs automatically on 24 December at 6 pm, and the winners get an email.
 
 ## Gifting to other families
 
