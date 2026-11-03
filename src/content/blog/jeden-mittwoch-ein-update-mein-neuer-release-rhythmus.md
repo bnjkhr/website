@@ -36,7 +36,7 @@ Unabhängig vom Mittwoch läuft TestFlight laufend. Sobald etwas fertig ist, geh
 - **Kein leeres Release nur um des Termins willen.** Gibt es nichts, das fertig ist, gibt es kein Update am Mittwoch.
 - **Ein Punkt, der nicht fertig ist, hält das Release nicht auf.** Er fährt eine Woche später mit.
 - **Größere Funktionen bleiben ausgeschaltet, bis sie fertig sind.** So kann ich schon früh mit ihnen arbeiten, ohne dass sie halb fertig bei dir ankommen.
-- **Über Weihnachten pausiere ich,** ungefähr vom 22. bis 28. Dezember, weil Apple in dieser Zeit langsamer prüft.
+- **Über Weihnachten und Neujahr pausiere ich.** Ab dem 22. Dezember prüft Apple langsamer, und vom 27. Dezember bis 8. Januar bin ich im Urlaub. Das letzte Update vor der Pause kommt am 16. Dezember, das erste danach am 13. Januar.
 
 ## Warum ich das mache
 
