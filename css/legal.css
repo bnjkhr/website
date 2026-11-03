@@ -92,6 +92,8 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 }
 .lnav__brand { font-family: var(--font-display); font-weight: 600; font-size: 1.02rem; letter-spacing: -0.01em; color: var(--ink); }
 .lnav__brand b { color: var(--accent); font-weight: 600; }
+.lnav__sub { font-weight: 400; opacity: .6; white-space: pre; }
+@media (max-width: 480px) { .lnav__sub { display: none; } }
 .lnav__back {
     font-family: var(--font-mono);
     font-size: 0.72rem;
