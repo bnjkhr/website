@@ -88,6 +88,8 @@ h1, h2, h3 {
 .nav__inner { min-height: 48px; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
 .brand { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; font-size: .95rem; font-weight: 650; letter-spacing: -.02em; }
 .brand__mark { flex: 0 0 auto; width: 22px; height: 22px; background: url("/logo/zeichen.svg") center / contain no-repeat; }
+.brand__sub { font-weight: 400; color: rgba(29, 29, 31, .56); }
+@media (max-width: 480px) { .brand__sub { display: none; } }
 .nav__links { display: flex; align-items: center; gap: 2px; }
 .nav__links a { min-height: 44px; display: inline-flex; align-items: center; padding: 0 12px; color: rgba(29, 29, 31, .8); text-decoration: none; font-size: .78rem; letter-spacing: -.005em; transition: color .2s; }
 .nav__links a:hover { color: #000; }

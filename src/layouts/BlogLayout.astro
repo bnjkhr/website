@@ -84,7 +84,7 @@ const pageTitle = title === t.blog.title ? "Blog · Ben Kohler" : `${title} · B
     <a class="skip" href="#main">{t.skip}</a>
     <nav class="nav" aria-label={t.nav.label}>
       <div class="shell nav__inner">
-        <a class="brand" href={home}><span class="brand__mark" aria-hidden="true"></span>Ben Kohler</a>
+        <a class="brand" href={home}><span class="brand__mark" aria-hidden="true"></span><span>Ben Kohler<span class="brand__sub"> | Digital Services</span></span></a>
         <div class="nav__links">
           <a href={`${home}#produkte`}>{t.nav.projects}</a>
           <a href={pagePath("blog", lang)} aria-current={current(pagePath("blog", lang))}>{t.nav.blog}</a>
