@@ -34,7 +34,7 @@ Für mich war 2026 ein aufregendes Jahr. Ich schaue kurz zurück, was passiert i
 
 ## Danke
 
-Mehr als tausend Menschen nutzen FamilyManager inzwischen. Das hätte ich im Februar nicht erwartet, und es fühlt sich jedes Mal ein bisschen unwirklich an, wenn ich das lese.
+Mehr als 2000 Menschen haben inzwischen ein Konto bei FamilyManager, in über 1200 Haushalten. Das hätte ich im Februar nicht erwartet, und es fühlt sich jedes Mal ein bisschen unwirklich an, wenn ich das lese.
 
 Mein Dank gilt allen, die mir geschrieben haben, auch wenn die Nachricht mit „Das funktioniert nicht“ anfing. Er gilt denen, die neue Versionen früh getestet und mir genau gesagt haben, was nicht stimmt. Und allen, die FamilyManager weiterempfohlen haben, an die Schwester, den Nachbarn oder die Eltern aus der Kita.
 

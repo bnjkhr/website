@@ -35,7 +35,7 @@ Today is Christmas Eve, and I want to thank you. For using FamilyManager, trying
 
 ## Thank you
 
-More than a thousand people use FamilyManager now. I would not have expected that in February, and it still feels a little unreal every time I read it.
+More than 2,000 people now have a FamilyManager account, across more than 1,200 households. I would not have expected that in February, and it still feels a little unreal every time I read it.
 
 My thanks go to everyone who wrote to me, even when the message started with "This does not work". To those who tested new versions early and told me exactly what was wrong. And to everyone who recommended FamilyManager, to a sister, a neighbour or the parents from daycare.
 
