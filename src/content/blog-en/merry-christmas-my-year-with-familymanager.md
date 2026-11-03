@@ -19,7 +19,7 @@ Today is Christmas Eve, and I want to thank you. For using FamilyManager, trying
 
 ## The year in bullet points
 
-- **February:** The first lines of code. The idea was simple: one app where a family has tasks, events, shopping and documents in one place, without five different apps and without a constant chat.
+- **3 February:** The first lines of code. The idea was simple: one app where a family has tasks, events, shopping and documents in one place, without five different apps and without a constant chat.
 - **Summer:** Version 2 and, on 16 July, version 2.1 in the App Store. Updates followed in quick succession up to the 2.2.x versions in late summer.
 - **July:** I found out that many of my emails never reached some of the users, and fixed it. I will write about that in more detail in December.
 - **Autumn:** A new navigation, a search for everything, the custody schedule right in the calendar, plus many small things you notice in everyday use.
