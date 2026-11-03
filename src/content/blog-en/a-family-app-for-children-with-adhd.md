@@ -33,7 +33,7 @@ A few deliberate decisions sit behind it:
 Before building I collected and read literature: meta-analyses, guidelines and individual studies. The result is more sober than an advertisement would be:
 
 - **Parent training and reinforcement** work on parenting behaviour and on behavioural problems, even when rated blind. On core symptoms the effects are only clear when raters are not blinded.
-- **Pure training of attention or working memory** through an app mainly improves the training task itself. It hardly carries over to everyday life according to blinded measures.
+- **Pure training of attention or working memory** through an app mainly improves the training task itself. It hardly transfers to everyday life according to blinded measures.
 - **Training in organisational skills,** by contrast, counts as a well-supported approach, even if the ratings there mostly come from parents and teachers.
 - **Visible timers and breaking tasks into steps** have plausible reasons behind them, but no robust evidence of effectiveness in ADHD. The German guideline only allows digital applications as a supplement and with proof of effectiveness.
 
