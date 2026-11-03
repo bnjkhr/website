@@ -37,7 +37,7 @@ Independent of Wednesday, TestFlight runs continuously. As soon as something is 
 - **No empty release just for the date.** If nothing is finished, there is no update on Wednesday.
 - **An item that is not finished does not hold the release back.** It ships a week later.
 - **Bigger features stay switched off until they are finished.** That way I can work with them early without them reaching you half-done.
-- **I pause over Christmas,** roughly 22 to 28 December, because Apple reviews more slowly then.
+- **I pause over Christmas and New Year.** From 22 December Apple reviews more slowly, and from 27 December to 8 January I am on holiday. The last update before the break comes on 16 December, the first one after it on 13 January.
 
 ## Why I am doing this
 
