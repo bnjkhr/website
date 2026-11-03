@@ -16,7 +16,7 @@ translationOf: "jeden-mittwoch-ein-update-mein-neuer-release-rhythmus"
 
 Until now, updates for FamilyManager arrived irregularly. Sometimes nothing for weeks, then one big drop, most recently version 3.0 on 1 November with the new look and the structure aids. I am changing that. From version 3.0.2, FamilyManager ships **every Wednesday** with an update.
 
-I am a solo developer with a full-time job on the side. Claude helps me build, test and plan. That is exactly why I need a fixed rhythm that holds up in busy weeks too.
+I am a solo developer with a full-time job on the side. Claude helps me build, test and plan. That is exactly why I need a fixed rhythm I can keep up even in busy weeks.
 
 ## What to expect every Wednesday
 
@@ -41,7 +41,7 @@ Independent of Wednesday, TestFlight runs continuously. As soon as something is 
 
 ## Why I am doing this
 
-Small, predictable steps have three advantages for me: bugs are gone sooner, each update carries less risk, and feedback reaches the app faster. A big drop after weeks of silence is harder for everyone involved to judge.
+Small, predictable steps have three advantages for me: bugs are gone sooner, each update has less risk, and feedback reaches the app faster. A big drop after weeks of silence is harder for everyone involved to judge.
 
 ## You can check what is planned
 

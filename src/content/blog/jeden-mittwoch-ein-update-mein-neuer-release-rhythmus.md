@@ -15,7 +15,7 @@ heroImageCreditUrl: "https://unsplash.com/photos/7ja5zM7PBu8"
 
 Bisher kamen die Updates für FamilyManager unregelmäßig. Mal gab es wochenlang nichts, dann kam ein großer Wurf, zuletzt Version 3.0 am 1. November mit dem neuen Auftritt und den Struktur-Hilfen. Das ändere ich. Ab Version 3.0.2 erscheint FamilyManager **jeden Mittwoch** mit einem Update.
 
-Ich bin Solo-Entwickler und habe nebenbei einen Vollzeitjob. Claude unterstützt mich beim Bauen, Testen und Planen. Gerade deshalb brauche ich einen festen Takt, der auch in vollen Wochen trägt.
+Ich bin Solo-Entwickler und habe nebenbei einen Vollzeitjob. Claude unterstützt mich beim Bauen, Testen und Planen. Gerade deshalb brauche ich einen festen Takt, den ich auch in vollen Wochen schaffe.
 
 ## Was dich jeden Mittwoch erwartet
 
