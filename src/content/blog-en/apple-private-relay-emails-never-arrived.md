@@ -1,7 +1,7 @@
 ---
 title: "Why every email to a good third of my users never arrived"
 description: "If you signed in with Apple and chose “Hide My Email”, you got no email from FamilyManager at all. How I found it, what it meant and which setting at Apple was missing."
-publishedAt: 2026-12-11
+publishedAt: 2026-12-18
 tags:
   - FamilyManager
   - Behind the scenes

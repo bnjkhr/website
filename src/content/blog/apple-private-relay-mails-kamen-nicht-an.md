@@ -1,7 +1,7 @@
 ---
 title: "Warum jede Mail an gut ein Drittel meiner Nutzer nicht ankam"
 description: "Wer sich mit Apple anmeldet und „E-Mail verbergen“ wählt, bekam von FamilyManager keine einzige Mail. Wie ich das gefunden habe, was es bedeutete und welche Einstellung bei Apple gefehlt hat."
-publishedAt: 2026-12-11
+publishedAt: 2026-12-18
 tags:
   - FamilyManager
   - Hinter den Kulissen

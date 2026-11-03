@@ -1,7 +1,7 @@
 ---
 title: "When the cloud quota is empty and no run turns red"
 description: "In September all Xcode Cloud runs were cancelled instantly for two weeks, and everything looked green on GitHub. How I recognised it, why a missing test is more dangerous than a red one and what I changed."
-publishedAt: 2027-01-08
+publishedAt: 2027-01-15
 tags:
   - Behind the scenes
   - Product development
