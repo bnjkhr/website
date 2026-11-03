@@ -1,7 +1,7 @@
 ---
 title: "Wenn das Cloud-Kontingent leer ist und kein Lauf mehr rot wird"
 description: "Im September brachen alle Xcode-Cloud-Läufe zwei Wochen lang sofort ab, und in GitHub sah alles grün aus. Woran ich es erkannt habe, warum ein fehlender Test gefährlicher ist als ein roter und was ich geändert habe."
-publishedAt: 2027-01-15
+publishedAt: 2027-01-22
 tags:
   - Hinter den Kulissen
   - Produktentwicklung

@@ -1,7 +1,7 @@
 ---
 title: "The day my database was too small"
 description: "On 24 September 2026 FamilyManager was unreachable for a good 20 minutes. The cause was not a programming mistake but memory that no longer sufficed. How I found it and what I take from it."
-publishedAt: 2027-01-08
+publishedAt: 2027-01-15
 tags:
   - FamilyManager
   - Behind the scenes
