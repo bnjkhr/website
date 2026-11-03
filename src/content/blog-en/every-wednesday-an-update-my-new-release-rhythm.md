@@ -24,7 +24,7 @@ Mostly small point versions: bugs that are gone, and polish. Now and then a bigg
 
 ## How a week works
 
-- **Monday morning is the cut-off.** Whatever is finished and tested by then goes out. Whatever is not takes the next Wednesday.
+- **Monday morning is the cut-off.** Whatever is finished by then and has run with the testers goes out. Whatever is not takes the next Wednesday.
 - **Tuesday** is polish, and I submit the update to Apple.
 - **Wednesday** I release it in the App Store. The web version gets it the same day.
 
@@ -34,7 +34,7 @@ Independent of Wednesday, TestFlight runs continuously. As soon as something is 
 
 ## The rules
 
-- **No empty release just for the date.** If nothing is finished, there is no Wednesday update.
+- **No empty release just for the date.** If nothing is finished, there is no update on Wednesday.
 - **An item that is not finished does not hold the release back.** It ships a week later.
 - **Bigger features stay switched off until they are finished.** That way I can work with them early without them reaching you half-done.
 - **I pause over Christmas,** roughly 22 to 28 December, because Apple reviews more slowly then.

@@ -23,7 +23,7 @@ Meistens sind es kleine Punkt-Versionen: Fehler, die weg sind, und Feinschliff. 
 
 ## Wie eine Woche abläuft
 
-- **Montag früh ist Stichtag.** Was dann fertig und getestet ist, fährt mit. Was nicht fertig ist, nimmt den nächsten Mittwoch.
+- **Montag früh ist Stichtag.** Was dann fertig ist und bei den Testern lief, fährt mit. Was nicht fertig ist, nimmt den nächsten Mittwoch.
 - **Dienstag** ist Feinschliff, und ich reiche das Update bei Apple ein.
 - **Mittwoch** gebe ich es im App Store frei. Die Web-Version bekommt es am selben Tag.
 
@@ -33,7 +33,7 @@ Unabhängig vom Mittwoch läuft TestFlight laufend. Sobald etwas fertig ist, geh
 
 ## Die Regeln
 
-- **Kein leeres Release nur um des Termins willen.** Gibt es nichts, das fertig ist, gibt es keinen Mittwoch-Update.
+- **Kein leeres Release nur um des Termins willen.** Gibt es nichts, das fertig ist, gibt es kein Update am Mittwoch.
 - **Ein Punkt, der nicht fertig ist, hält das Release nicht auf.** Er fährt eine Woche später mit.
 - **Größere Funktionen bleiben ausgeschaltet, bis sie fertig sind.** So kann ich schon früh mit ihnen arbeiten, ohne dass sie halb fertig bei dir ankommen.
 - **Über Weihnachten pausiere ich,** ungefähr vom 22. bis 28. Dezember, weil Apple in dieser Zeit langsamer prüft.
