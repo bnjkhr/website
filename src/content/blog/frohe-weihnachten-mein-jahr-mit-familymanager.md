@@ -18,7 +18,7 @@ Für mich war 2026 ein aufregendes Jahr. Ich schaue kurz zurück, was passiert i
 
 ## Das Jahr in Stichpunkten
 
-- **Februar:** Die ersten Zeilen Code. Die Idee dahinter war einfach: Eine App, in der eine Familie Aufgaben, Termine, Einkauf und Dokumente an einem Ort hat, ohne fünf verschiedene Apps und ohne Dauerchat.
+- **3. Februar:** Die ersten Zeilen Code. Die Idee dahinter war einfach: Eine App, in der eine Familie Aufgaben, Termine, Einkauf und Dokumente an einem Ort hat, ohne fünf verschiedene Apps und ohne Dauerchat.
 - **Sommer:** Version 2 und, am 16. Juli, Version 2.1 im App Store. Danach ging es in kurzen Abständen weiter, bis zu den Versionen 2.2.x im Spätsommer.
 - **Juli:** Ich habe herausgefunden, dass viele meiner E-Mails bei einem Teil der Nutzer gar nicht ankamen, und das behoben. Darüber schreibe ich im Dezember noch ausführlicher.
 - **Herbst:** Neue Navigation, eine Suche für alles, der Wechselplan direkt im Kalender, dazu viele kleine Dinge, die sich im Alltag bemerkbar machen.
