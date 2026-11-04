@@ -87,8 +87,8 @@ const pageTitle = title === t.blog.title ? "Blog · Ben Kohler" : `${title} · B
         <a class="brand" href={home}><span class="brand__mark" aria-hidden="true"></span><span>Ben Kohler<span class="brand__sub"> | Digital Services</span></span></a>
         <div class="nav__links">
           <a href={`${home}#produkte`}>{t.nav.projects}</a>
-          <a href={pagePath("blog", lang)} aria-current={current(pagePath("blog", lang))}>{t.nav.blog}</a>
           <a class="nav__hire" href={pagePath("hire", lang)} aria-current={current(pagePath("hire", lang))}><span class="nav__long">{t.nav.hire}</span><span class="nav__short">{t.nav.hireShort}</span></a>
+          <a href={pagePath("blog", lang)} aria-current={current(pagePath("blog", lang))}>{t.nav.blog}</a>
           <a href={`${home}#about`}>{t.nav.about}</a>
           <a class="nav__mail" href={`${home}#kontakt`}>{t.nav.contact}</a>
           <LangSwitch lang={lang} currentPath={canonicalPath} alternatePath={alternatePath} />
