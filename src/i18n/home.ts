@@ -29,6 +29,7 @@ export interface HomeStrings {
     title: string;
     lede: string;
     steps: { title: string; text: string }[];
+    equity: { text: string; link: string };
     cta: string;
     costLink: string;
   };
@@ -110,6 +111,7 @@ const de: HomeStrings = {
       { title: "2 · Bauen", text: "Ich baue die erste Version nativ fürs iPhone. Jede Woche landet ein neuer Stand über TestFlight auf deinem Gerät." },
       { title: "3 · Veröffentlichen", text: "Ich begleite den Weg in den App Store und bleibe danach Ansprechperson." },
     ],
+    equity: { text: "Überzeugt mich deine Idee, steige ich auch mit Anteilen ein.", link: "So funktioniert die Beteiligung" },
     cta: "App entwickeln lassen",
     costLink: "Was kostet eine App?",
   },
@@ -205,6 +207,7 @@ const en: HomeStrings = {
       { title: "2 · Build", text: "I build the first version natively for the iPhone. Every week a new build lands on your device through TestFlight." },
       { title: "3 · Launch", text: "I take you through the App Store release and stay your point of contact afterwards." },
     ],
+    equity: { text: "If your idea convinces me, I can also come on board for equity.", link: "How the equity option works" },
     cta: "Hire an app developer",
     costLink: "What does an app cost?",
   },
