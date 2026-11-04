@@ -27,9 +27,9 @@ A 2025 study by the organisation METR fits here. It had 16 experienced developer
 
 An app doesn't consist of screens but of decisions. Where does the data live? What happens when the network is gone? How does the app grow without every change shaking everything else? How do you ship an update while old versions are still running on devices?
 
-AI answers such questions happily, but usually for the case you are describing right now. It builds a piece that works today without asking. Whether it still holds up in six months is a question for the person who has the whole thing in their head. If you can't judge the structure, you only notice when every change gets more expensive than the one before.
+AI answers such questions happily, but usually for the case you are describing right now. It builds a piece that works today without asking. Whether it still works in six months, once the app has grown, is a question for the person who has the whole thing in their head. If you can't judge the structure, you only notice when every change gets more expensive than the one before.
 
-## Security: you carry the risk
+## Security: the risk is yours
 
 This is where the consequences are harshest. In 2025 the security vendor Veracode tested over 100 AI models on 80 programming tasks. [In 45 percent of cases](https://levelup.gitconnected.com/developers-have-been-shipping-ai-generated-vulnerabilities-since-2021-d1c93c3787b9) the generated code contained vulnerabilities from the well-known OWASP Top 10 categories. That doesn't mean AI code is always insecure. It means it isn't automatically secure, and you can't tell by looking.
 
