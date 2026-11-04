@@ -18,9 +18,9 @@ export interface HomeStrings {
     lede: string;
     ctaProjects: string;
     ctaIdea: string;
-    pillars: string[];
-    deviceAlt: { familymanager: string; gymbo: string };
+    portraitAlt: string;
   };
+  stats: { label: string; items: { value: string; label: string }[] };
   familymanager: { eyebrow: string; claim: string; desc: string; link: string; alt: string };
   gymbo: { eyebrow: string; claim: string; desc: string; link: string; alt: string };
   track4kids: { eyebrow: string; claim: string; desc: string; link: string; alt: string };
@@ -29,6 +29,7 @@ export interface HomeStrings {
     title: string;
     lede: string;
     steps: { title: string; text: string }[];
+    equity: { text: string; link: string };
     cta: string;
     costLink: string;
   };
@@ -41,8 +42,6 @@ export interface HomeStrings {
   extras: { title: string; intro: string; cards: HomeCard[] };
   journal: { title: string; allPosts: string; readPost: string };
   about: {
-    portraitAlt: string;
-    caption: string;
     title: string;
     text: string;
     pressLabel: string;
@@ -66,8 +65,16 @@ const de: HomeStrings = {
     lede: "Ich bin Ben, iOS-Entwickler aus Ulm. Ich entwickle eigene Apps für Familie, Training und Kinder und setze auf Anfrage deine Idee um.",
     ctaProjects: "Projekte ansehen",
     ctaIdea: "Was sie verbindet",
-    pillars: ["Familie", "Training", "Kinder & Ernährung", "Pflege", "Auftragsarbeit"],
-    deviceAlt: { familymanager: "", gymbo: "" },
+    portraitAlt: "Ben Kohler, Produktentwickler aus Ulm",
+  },
+  stats: {
+    label: "Ben Kohler in Zahlen",
+    items: [
+      { value: "26 Jahre", label: "Erfahrung, seit September 2000 entwickle ich Software" },
+      { value: "4.000+", label: "Nutzerinnen und Nutzer über alle meine Apps" },
+      { value: "1.600", label: "Familien nutzen FamilyManager jeden Tag" },
+      { value: "40+", label: "App-Updates in den letzten 12 Monaten" },
+    ],
   },
   familymanager: {
     eyebrow: "Familie",
@@ -104,6 +111,7 @@ const de: HomeStrings = {
       { title: "2 · Bauen", text: "Ich baue die erste Version nativ fürs iPhone. Jede Woche landet ein neuer Stand über TestFlight auf deinem Gerät." },
       { title: "3 · Veröffentlichen", text: "Ich begleite den Weg in den App Store und bleibe danach Ansprechperson." },
     ],
+    equity: { text: "Überzeugt mich deine Idee, steige ich auch mit Anteilen ein.", link: "So funktioniert die Beteiligung" },
     cta: "App entwickeln lassen",
     costLink: "Was kostet eine App?",
   },
@@ -130,8 +138,6 @@ const de: HomeStrings = {
   },
   journal: { title: "Was zwischen den Releases passiert.", allPosts: "Alle Beiträge", readPost: "Beitrag lesen" },
   about: {
-    portraitAlt: "Ben Kohler, Produktentwickler aus Ulm",
-    caption: "Ben · Ulm",
     title: "Ein bisschen mehr über mich.",
     text: "Ich lebe in Ulm und entwickle seit vielen Jahren Software. An FamilyManager arbeite ich neben meinem Vollzeitjob. Wie das zusammenpasst und wie die App entstanden ist, erzähle ich im Podcast Happy Bootstrapping.",
     pressLabel: "Zu Gast im Podcast",
@@ -155,8 +161,16 @@ const en: HomeStrings = {
     lede: "I'm Ben, an iOS developer from Ulm, Germany. I build my own apps for family, training and kids, and I build yours on request.",
     ctaProjects: "See the projects",
     ctaIdea: "What connects them",
-    pillars: ["Family", "Training", "Kids & nutrition", "Skincare", "Client work"],
-    deviceAlt: { familymanager: "", gymbo: "" },
+    portraitAlt: "Ben Kohler, product developer from Ulm, Germany",
+  },
+  stats: {
+    label: "Ben Kohler in numbers",
+    items: [
+      { value: "26 years", label: "of experience, building software since September 2000" },
+      { value: "4,000+", label: "users across all my apps" },
+      { value: "1,600", label: "families use FamilyManager every day" },
+      { value: "40+", label: "app updates in the last 12 months" },
+    ],
   },
   familymanager: {
     eyebrow: "Family",
@@ -193,6 +207,7 @@ const en: HomeStrings = {
       { title: "2 · Build", text: "I build the first version natively for the iPhone. Every week a new build lands on your device through TestFlight." },
       { title: "3 · Launch", text: "I take you through the App Store release and stay your point of contact afterwards." },
     ],
+    equity: { text: "If your idea convinces me, I can also come on board for equity.", link: "How the equity option works" },
     cta: "Hire an app developer",
     costLink: "What does an app cost?",
   },
@@ -219,8 +234,6 @@ const en: HomeStrings = {
   },
   journal: { title: "What happens between releases.", allPosts: "All posts", readPost: "Read the post" },
   about: {
-    portraitAlt: "Ben Kohler, product developer from Ulm, Germany",
-    caption: "Ben · Ulm, Germany",
     title: "A little more about me.",
     text: "I live in Ulm and have been building software for many years. I work on FamilyManager alongside my full-time job. How that fits together and how the app came about, I talk about on the podcast Happy Bootstrapping (in German).",
     pressLabel: "Guest on the podcast",

@@ -88,6 +88,7 @@ const structuredData = {
             --bg: #fbfbfd;
             --gray: #f5f5f7;
             --ink: #1d1d1f;
+            --ink-2: #424245;
             --muted: #6e6e73;
             --rule: #d2d2d7;
             --blue: #0071e3;
@@ -150,8 +151,8 @@ const structuredData = {
         .nav__links a { min-height: 44px; display: inline-flex; align-items: center; padding: 0 12px; color: rgba(29, 29, 31, .8); text-decoration: none; font-size: .78rem; letter-spacing: -.005em; transition: color .2s; }
         .nav__links a:hover { color: #000; }
         .nav__short { display: none; }
-        .nav__links .nav__mail { margin-left: 6px; padding: 0 14px; min-height: 28px; border-radius: 980px; background: var(--blue); color: #fff; }
-        .nav__links .nav__mail:hover { background: var(--btn-bg-hover); color: #fff; }
+        .nav__links .nav__mail { margin-left: 8px; padding: 0 14px; min-height: 30px; border-radius: 980px; border: 1px solid var(--blue); color: var(--blue); transition: background .2s, color .2s; }
+        .nav__links .nav__mail:hover { background: var(--blue); color: #fff; }
 
         /* Links und Buttons */
         .btn { min-height: 44px; display: inline-flex; align-items: center; padding: 0 22px; border-radius: 980px; background: var(--blue); color: #fff; text-decoration: none; font-size: 1.05rem; transition: background .2s; }
@@ -160,19 +161,26 @@ const structuredData = {
         .link::after { content: "›"; margin-left: .3em; font-size: 1.2em; line-height: 1; transition: transform .2s var(--ease); }
         .link:hover { text-decoration: underline; text-underline-offset: .2em; }
         .link:hover::after { transform: translateX(3px); }
-        .actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 4px 26px; margin-top: 22px; }
+        .actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-start; gap: 4px 26px; margin-top: 22px; }
 
         /* Gerät */
         .device { position: relative; width: var(--device-w, 300px); border: calc(var(--device-w, 300px) * .03) solid #131315; border-radius: calc(var(--device-w, 300px) * .173); overflow: hidden; background: #000; box-shadow: 0 0 0 1.5px #4a4a4f, 0 50px 90px -30px rgba(0, 0, 0, .45); }
         .device img { width: 100%; aspect-ratio: 1206 / 2622; object-fit: cover; }
-        .stage { position: relative; display: flex; justify-content: center; overflow: hidden; }
 
-        /* Hero */
-        .hero { padding-top: clamp(64px, 9vw, 120px); text-align: center; background: var(--bg); overflow: hidden; }
-        .hero h1 { font-size: clamp(3.2rem, 9vw, 6.4rem); letter-spacing: -.05em; line-height: 1.02; text-wrap: balance; }
-        .hero__lede { max-width: 640px; margin: 22px auto 0; color: var(--muted); font-size: clamp(1.15rem, 2vw, 1.4rem); line-height: 1.4; letter-spacing: -.015em; text-wrap: balance; }
-        .hero .stage { --device-w: min(290px, 40vw); height: clamp(380px, 54vw, 620px); margin-top: clamp(44px, 6vw, 72px); gap: clamp(14px, 3vw, 40px); align-items: flex-start; }
-        .hero .device--b { margin-top: clamp(40px, 6vw, 84px); }
+        /* Hero: Claim links, Porträt rechts */
+        .hero { padding-block: clamp(48px, 7vw, 96px) clamp(40px, 5vw, 64px); background: var(--bg); }
+        .hero__grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(32px, 6vw, 96px); align-items: center; }
+        .hero h1 { font-size: clamp(3.4rem, 8.4vw, 6.6rem); letter-spacing: -.055em; line-height: .98; text-wrap: balance; }
+        .hero__lede { max-width: 30ch; margin-top: 26px; color: var(--ink-2); font-size: clamp(1.15rem, 1.9vw, 1.4rem); line-height: 1.4; letter-spacing: -.015em; text-wrap: pretty; }
+        .hero .actions { justify-content: flex-start; margin-top: 32px; }
+        .hero__portrait { justify-self: end; width: min(100%, 440px); }
+        .hero__portrait img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 32px; box-shadow: 0 40px 80px -36px rgba(0, 0, 0, .4); }
+
+        /* Zahlen */
+        .stats { padding-bottom: clamp(48px, 7vw, 96px); background: var(--bg); }
+        .stats__list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin: 0; padding: 0; list-style: none; }
+        .stats strong { display: block; font-size: clamp(1.7rem, 3.6vw, 3rem); font-weight: 700; letter-spacing: -.045em; line-height: 1.05; white-space: nowrap; }
+        .stats span { display: block; max-width: 20ch; margin-top: 8px; color: var(--muted); font-size: .95rem; line-height: 1.35; }
 
         /* Projekt-Showcase: Das Gerät bleibt stehen, Text und Hintergrund wechseln pro Projekt */
         .show { --sbg: var(--gray); --sink: var(--ink); --smuted: var(--muted); --saccent: #34703d; background: var(--sbg); color: var(--sink); transition: background-color .6s var(--ease), color .6s var(--ease); }
@@ -198,20 +206,18 @@ const structuredData = {
         .panel .actions { justify-content: flex-start; }
         .panel .link { color: var(--sink); text-decoration: underline; text-underline-offset: .25em; transition: color .6s var(--ease); }
 
-        .pillars { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 34px; }
-        .pillars span { padding: 8px 16px; border-radius: 980px; background: var(--gray); font-size: .92rem; font-weight: 500; }
-
-        /* Haltung */
-        .credo { padding-block: clamp(100px, 14vw, 200px); background: var(--bg); }
+        
+        /* Haltung: dunkler Block */
+        .credo { padding-block: clamp(96px, 13vw, 180px); background: #000; color: #f5f5f7; }
         .credo__sentence { max-width: 1000px; font-size: clamp(2.4rem, 6.2vw, 4.8rem); letter-spacing: -.045em; line-height: 1.06; text-wrap: balance; }
         .credo__sentence .w { transition: color .35s var(--ease); }
-        .js .credo__sentence .w { color: #c9c9ce; }
-        .js .credo__sentence .w.on { color: var(--ink); }
-        .credo__lead { max-width: 640px; margin-top: 36px; color: var(--muted); font-size: clamp(1.1rem, 1.8vw, 1.3rem); line-height: 1.5; text-wrap: pretty; }
+        .js .credo__sentence .w { color: #48484a; }
+        .js .credo__sentence .w.on { color: #f5f5f7; }
+        .credo__lead { max-width: 640px; margin-top: 36px; color: #a1a1a6; font-size: clamp(1.1rem, 1.8vw, 1.3rem); line-height: 1.5; text-wrap: pretty; }
         .credo__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: clamp(56px, 7vw, 96px); }
-        .credo__item { padding: 32px 30px 36px; border-radius: var(--radius); background: var(--gray); }
+        .credo__item { padding: 32px 30px 36px; border-radius: var(--radius); background: #1d1d1f; }
         .credo__item strong { display: block; font-size: 1.5rem; letter-spacing: -.03em; }
-        .credo__item p { margin-top: 10px; color: var(--muted); }
+        .credo__item p { margin-top: 10px; color: #a1a1a6; }
         .credo__outro { margin-top: clamp(48px, 6vw, 80px); font-size: clamp(1.6rem, 3.2vw, 2.4rem); font-weight: 600; letter-spacing: -.035em; text-wrap: balance; }
 
         /* Weitere Projekte */
@@ -232,6 +238,8 @@ const structuredData = {
         .work h2 { max-width: 15ch; font-size: clamp(2.4rem, 6vw, 4.4rem); letter-spacing: -.05em; text-wrap: balance; }
         .work__lede { max-width: 56ch; margin-top: 18px; color: var(--muted); font-size: 1.2rem; text-wrap: pretty; }
         .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(24px, 4vw, 56px); margin-top: clamp(40px, 5vw, 64px); }
+        .work__equity { margin-top: clamp(36px, 5vw, 56px); color: var(--ink-2); font-size: 1.2rem; font-weight: 600; letter-spacing: -.02em; text-wrap: balance; }
+        .work__equity .link { margin-left: .4em; font-weight: 400; }
         .steps div { padding-top: 20px; border-top: 1.5px solid var(--ink); }
         .steps strong { display: block; font-size: 1.4rem; letter-spacing: -.03em; }
         .steps p { margin-top: 8px; color: var(--muted); }
@@ -251,10 +259,6 @@ const structuredData = {
 
         /* Über mich */
         .about { padding-block: clamp(72px, 9vw, 120px); }
-        .about__grid { display: grid; grid-template-columns: minmax(240px, .6fr) minmax(0, 1.4fr); gap: clamp(40px, 8vw, 110px); align-items: center; }
-        .portrait { width: min(100%, 380px); }
-        .portrait img { width: 100%; border-radius: var(--radius); box-shadow: 0 30px 60px -30px rgba(0, 0, 0, .35); }
-        .portrait figcaption { margin-top: 14px; color: var(--muted); font-size: .85rem; }
         .about__text { max-width: 620px; margin-top: 22px; color: var(--muted); font-size: 1.15rem; line-height: 1.6; text-wrap: pretty; }
         .press { display: flex; align-items: center; justify-content: space-between; gap: 24px; max-width: 620px; margin-top: 30px; padding: 20px 24px; border-radius: 20px; background: var(--gray); text-decoration: none; transition: background .25s; }
         .press:hover { background: #ededf0; }
@@ -271,14 +275,8 @@ const structuredData = {
         /* Scrollbasierte Bewegung (Parallax). Ohne Unterstützung oder mit „Bewegung reduzieren“ bleibt alles ruhig. */
         @supports (animation-timeline: view()) {
             @media (prefers-reduced-motion: no-preference) {
-                @keyframes hero-copy { to { opacity: 0; transform: translateY(70px); } }
-                @keyframes hero-a { to { transform: translateY(-70px) scale(1.04); } }
-                @keyframes hero-b { to { transform: translateY(-150px) scale(1.04); } }
                 @keyframes fade-up { from { opacity: 0; transform: translateY(36px); } to { opacity: 1; transform: none; } }
 
-                .hero__copy { animation: hero-copy linear both; animation-timeline: scroll(root); animation-range: 0 520px; }
-                .hero .device--a { animation: hero-a linear both; animation-timeline: scroll(root); animation-range: 0 640px; }
-                .hero .device--b { animation: hero-b linear both; animation-timeline: scroll(root); animation-range: 0 640px; }
                 .reveal { animation: fade-up linear both; animation-timeline: view(); animation-range: entry 5% entry 55%; }
             }
         }
@@ -299,8 +297,10 @@ const structuredData = {
             .panel__icon { width: 52px; height: 52px; margin-bottom: 16px; }
             .panel h2 { font-size: clamp(2.4rem, 11vw, 3.4rem); }
             .steps { grid-template-columns: 1fr; }
-            .about__grid { grid-template-columns: 1fr; }
-            .portrait { width: min(70%, 320px); }
+            .hero__grid { grid-template-columns: 1fr; }
+            .hero__portrait { justify-self: start; width: min(78%, 360px); order: 2; }
+            .hero__lede { max-width: 38ch; }
+            .stats__list { grid-template-columns: 1fr 1fr; row-gap: 32px; }
         }
 
         @media (max-width: 760px) {
@@ -334,9 +334,8 @@ const structuredData = {
             <a class="brand" href="#top"><span class="brand__mark" aria-hidden="true"></span><span>Ben Kohler<span class="brand__sub"> | Digital Services</span></span></a>
             <div class="nav__links">
                 <a href="#produkte">{n.nav.projects}</a>
-                <a href="#haltung">{n.nav.idea}</a>
-                <a href={pagePath("blog", lang)}>{n.nav.blog}</a>
                 <a class="nav__hire" href={pagePath("hire", lang)}><span class="nav__long">{n.nav.hire}</span><span class="nav__short">{n.nav.hireShort}</span></a>
+                <a href={pagePath("blog", lang)}>{n.nav.blog}</a>
                 <a href="#about">{n.nav.about}</a>
                 <a class="nav__mail" href="#kontakt">{n.nav.contact}</a>
                 <LangSwitch lang={lang} currentPath={homePath} alternatePath={otherPath} />
@@ -346,7 +345,7 @@ const structuredData = {
 
     <main id="main" tabindex="-1">
         <header class="hero" id="top">
-            <div class="shell">
+            <div class="shell hero__grid">
                 <div class="hero__copy">
                     <h1>{t.hero.title}</h1>
                     <p class="hero__lede">{t.hero.lede}</p>
@@ -354,14 +353,20 @@ const structuredData = {
                         <a class="btn" href="#produkte">{t.hero.ctaProjects}</a>
                         <a class="link" href="#haltung">{t.hero.ctaIdea}</a>
                     </div>
-                    <div class="pillars">{t.hero.pillars.map((pillar) => <span>{pillar}</span>)}</div>
                 </div>
-            </div>
-            <div class="stage" aria-hidden="true">
-                <div class="device device--a"><img decoding="async" width="1206" height="2622" src="/images/indie-preview/familymanager-heute.png" alt={t.hero.deviceAlt.familymanager}></div>
-                <div class="device device--b"><img decoding="async" width="1260" height="2736" src="/images/indie-preview/gymbo-heute.png" alt={t.hero.deviceAlt.gymbo}></div>
+                <figure class="hero__portrait">
+                    <img decoding="async" fetchpriority="high" src="/images/ben-profile.webp" width="600" height="800" alt={t.hero.portraitAlt}>
+                </figure>
             </div>
         </header>
+
+        <section class="stats" aria-label={t.stats.label}>
+            <div class="shell">
+                <ul class="stats__list">
+                    {t.stats.items.map((item) => <li><strong>{item.value}</strong><span>{item.label}</span></li>)}
+                </ul>
+            </div>
+        </section>
 
         <div id="produkte">
             <section class="show" data-showcase data-active="familymanager" aria-label={n.nav.projects}>
@@ -447,6 +452,7 @@ const structuredData = {
                         <div class="reveal"><strong>{step.title}</strong><p>{step.text}</p></div>
                     ))}
                 </div>
+                <p class="work__equity reveal">{t.work.equity.text} <a class="link" href={`${pagePath("hire", lang)}#beteiligung`}>{t.work.equity.link}</a></p>
                 <div class="actions" style="justify-content:flex-start"><a class="btn" href={pagePath("hire", lang)}>{t.work.cta}</a><a class="link" href={pagePath("cost", lang)}>{t.work.costLink}</a></div>
             </div>
         </section>
@@ -472,19 +478,13 @@ const structuredData = {
         </section>
 
         <section class="about" id="about">
-            <div class="shell about__grid">
-                <figure class="portrait reveal">
-                    <img loading="lazy" decoding="async" src="/images/ben-profile.webp" width="600" height="800" alt={t.about.portraitAlt}>
-                    <figcaption>{t.about.caption}</figcaption>
-                </figure>
-                <div class="reveal">
-                    <h2>{t.about.title}</h2>
-                    <p class="about__text">{t.about.text}</p>
-                    <a class="press" href="https://happy-bootstrapping.de/ben-kohler-familymanager-familien-app-neben-dem-vollzeitjob-184/" rel="noopener">
-                        <span><span class="press__label">{t.about.pressLabel}</span><span class="press__title">{t.about.pressTitle}</span></span>
-                        <span aria-hidden="true">↗</span>
-                    </a>
-                </div>
+            <div class="shell reveal">
+                <h2>{t.about.title}</h2>
+                <p class="about__text">{t.about.text}</p>
+                <a class="press" href="https://happy-bootstrapping.de/ben-kohler-familymanager-familien-app-neben-dem-vollzeitjob-184/" rel="noopener">
+                    <span><span class="press__label">{t.about.pressLabel}</span><span class="press__title">{t.about.pressTitle}</span></span>
+                    <span aria-hidden="true">↗</span>
+                </a>
             </div>
         </section>
 
