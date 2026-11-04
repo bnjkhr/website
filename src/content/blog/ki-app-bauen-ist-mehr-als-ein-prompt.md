@@ -26,9 +26,9 @@ Dazu passt eine Studie der Organisation METR aus dem Jahr 2025. Sie ließ 16 erf
 
 Eine App besteht nicht aus Bildschirmen, sondern aus Entscheidungen. Wo liegen die Daten? Was passiert, wenn das Netz weg ist? Wie wächst die App, ohne dass jede Änderung alles andere ins Wanken bringt? Wie spielt man ein Update ein, wenn alte Versionen noch auf Geräten laufen?
 
-KI beantwortet solche Fragen gern, aber meist für den Fall, den du gerade beschreibst. Sie baut ohne Nachfrage ein Stück, das heute funktioniert. Ob es in einem halben Jahr noch trägt, ist eine Frage an die Person, die das Ganze im Kopf hat. Wer die Struktur nicht beurteilen kann, merkt es erst, wenn jede Änderung teurer wird als die davor.
+KI beantwortet solche Fragen gern, aber meist für den Fall, den du gerade beschreibst. Sie baut ohne Nachfrage ein Stück, das heute funktioniert. Ob es in einem halben Jahr noch funktioniert, wenn die App gewachsen ist, ist eine Frage an die Person, die das Ganze im Kopf hat. Wer die Struktur nicht beurteilen kann, merkt es erst, wenn jede Änderung teurer wird als die davor.
 
-## Sicherheit: Das Risiko trägst du
+## Sicherheit: Das Risiko liegt bei dir
 
 Hier sind die Folgen am härtesten. Der Sicherheitsanbieter Veracode hat 2025 über 100 KI-Modelle an 80 Programmieraufgaben getestet. [In 45 Prozent der Fälle](https://levelup.gitconnected.com/developers-have-been-shipping-ai-generated-vulnerabilities-since-2021-d1c93c3787b9) enthielt der erzeugte Code Schwachstellen aus den bekannten OWASP-Top-10-Kategorien. Das heißt nicht, dass KI-Code immer unsicher ist. Es heißt, dass er nicht automatisch sicher ist, und dass man ihm das nicht ansieht.
 
