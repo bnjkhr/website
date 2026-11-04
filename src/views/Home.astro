@@ -174,26 +174,32 @@ const structuredData = {
         .hero .stage { --device-w: min(290px, 40vw); height: clamp(380px, 54vw, 620px); margin-top: clamp(44px, 6vw, 72px); gap: clamp(14px, 3vw, 40px); align-items: flex-start; }
         .hero .device--b { margin-top: clamp(40px, 6vw, 84px); }
 
-        /* Projekt-Kapitel */
-        .chapter { position: relative; padding-top: clamp(80px, 11vw, 150px); text-align: center; overflow: hidden; }
-        .chapter__eyebrow { display: block; margin-bottom: 14px; font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 600; letter-spacing: -.02em; }
-        .chapter h2 { font-size: clamp(3rem, 8vw, 5.8rem); letter-spacing: -.05em; }
-        .chapter__claim { max-width: 22ch; margin: 18px auto 0; font-size: clamp(1.4rem, 3vw, 2.1rem); font-weight: 600; letter-spacing: -.03em; line-height: 1.18; text-wrap: balance; }
-        .chapter__desc { max-width: 560px; margin: 16px auto 0; font-size: clamp(1.02rem, 1.6vw, 1.2rem); line-height: 1.45; text-wrap: pretty; }
-        .chapter .stage { --device-w: min(330px, 70vw); height: clamp(420px, 62vw, 640px); margin-top: clamp(40px, 6vw, 72px); align-items: flex-start; }
-        .chapter--family { background: var(--gray); }
-        .chapter--family .chapter__eyebrow { color: #34703d; }
-        .chapter--family .chapter__desc { color: var(--muted); }
-        .chapter--gym { background: #000; color: #f5f5f7; }
-        .chapter--gym .chapter__eyebrow { color: #7fe3a0; }
-        .chapter--gym .chapter__desc { color: #a1a1a6; }
-        .chapter--gym .link { color: #2997ff; }
-        .chapter--gym .device { border-color: #1c1c1e; box-shadow: 0 0 0 1.5px #3a3a3e, 0 50px 90px -30px rgba(120, 90, 255, .35); }
-        .chapter--care { background: #f1e7e1; color: #1b2a36; padding-bottom: clamp(80px, 11vw, 150px); }
-        .chapter--care .chapter__eyebrow { color: #8a5b4c; }
-        .chapter--care .chapter__desc { color: #5f5a58; }
-        .film { width: min(980px, calc(100% - 48px)); margin: clamp(40px, 6vw, 72px) auto 0; aspect-ratio: 16 / 9; border-radius: var(--radius); overflow: hidden; background: #d9c8bf; box-shadow: 0 40px 80px -30px rgba(60, 35, 25, .4); }
+        /* Projekt-Showcase: Das Gerät bleibt stehen, Text und Hintergrund wechseln pro Projekt */
+        .show { --sbg: var(--gray); --sink: var(--ink); --smuted: var(--muted); --saccent: #34703d; background: var(--sbg); color: var(--sink); transition: background-color .6s var(--ease), color .6s var(--ease); }
+        .show[data-active="gymbo"] { --sbg: #000; --sink: #f5f5f7; --smuted: #a1a1a6; --saccent: #7fe3a0; }
+        .show[data-active="track4kids"] { --sbg: #fdf6e9; --sink: #1c4a34; --smuted: #4d6b5a; --saccent: #b8730a; }
+        .show[data-active="maison"] { --sbg: #f1e7e1; --sink: #1b2a36; --smuted: #5f5a58; --saccent: #8a5b4c; }
+        .show__inner { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 6vw, 100px); }
+        .phone { position: sticky; top: 0; order: 2; height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .phone__frame { --device-w: min(300px, 64vw); position: relative; width: var(--device-w); aspect-ratio: 1206 / 2622; }
+        .phone .device { position: absolute; inset: 0; width: 100%; opacity: 0; transform: scale(.94); transition: opacity .5s, transform .6s var(--ease); }
+        .phone .device.on { opacity: 1; transform: none; }
+        .show[data-active="gymbo"] .device { border-color: #1c1c1e; box-shadow: 0 0 0 1.5px #3a3a3e, 0 50px 90px -30px rgba(120, 90, 255, .35); }
+        .phone .film { position: absolute; left: 50%; top: 50%; width: min(420px, 40vw); aspect-ratio: 4 / 5; margin: 0; border-radius: var(--radius); overflow: hidden; background: #d9c8bf; box-shadow: 0 40px 80px -30px rgba(60, 35, 25, .4); opacity: 0; transform: translate(-50%, -50%) scale(.94); transition: opacity .5s, transform .6s var(--ease); }
+        .phone .film.on { opacity: 1; transform: translate(-50%, -50%); }
         .maison-video { display: block; width: 100%; height: 100%; object-fit: cover; }
+        .panels { order: 1; }
+        .panel { min-height: 100vh; max-width: 460px; display: flex; flex-direction: column; justify-content: center; }
+        .panel__icon { width: 64px; height: 64px; margin-bottom: 22px; border-radius: 15px; box-shadow: 0 10px 24px -10px rgba(0, 0, 0, .35); }
+        .panel__eyebrow { display: block; margin-bottom: 12px; color: var(--saccent); font-size: 1.05rem; font-weight: 600; letter-spacing: -.02em; transition: color .6s var(--ease); }
+        .panel h2 { font-size: clamp(2.8rem, 6vw, 4.6rem); letter-spacing: -.05em; }
+        .panel__claim { margin-top: 16px; font-size: clamp(1.4rem, 2.6vw, 1.9rem); font-weight: 600; letter-spacing: -.03em; line-height: 1.18; text-wrap: balance; }
+        .panel__desc { margin-top: 14px; color: var(--smuted); font-size: 1.15rem; line-height: 1.45; text-wrap: pretty; transition: color .6s var(--ease); }
+        .panel .actions { justify-content: flex-start; }
+        .panel .link { color: var(--sink); text-decoration: underline; text-underline-offset: .25em; transition: color .6s var(--ease); }
+
+        .pillars { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 34px; }
+        .pillars span { padding: 8px 16px; border-radius: 980px; background: var(--gray); font-size: .92rem; font-weight: 500; }
 
         /* Haltung */
         .credo { padding-block: clamp(100px, 14vw, 200px); background: var(--bg); }
@@ -202,7 +208,7 @@ const structuredData = {
         .js .credo__sentence .w { color: #c9c9ce; }
         .js .credo__sentence .w.on { color: var(--ink); }
         .credo__lead { max-width: 640px; margin-top: 36px; color: var(--muted); font-size: clamp(1.1rem, 1.8vw, 1.3rem); line-height: 1.5; text-wrap: pretty; }
-        .credo__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: clamp(56px, 7vw, 96px); }
+        .credo__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: clamp(56px, 7vw, 96px); }
         .credo__item { padding: 32px 30px 36px; border-radius: var(--radius); background: var(--gray); }
         .credo__item strong { display: block; font-size: 1.5rem; letter-spacing: -.03em; }
         .credo__item p { margin-top: 10px; color: var(--muted); }
@@ -220,6 +226,15 @@ const structuredData = {
         .card__name { display: block; margin-top: 10px; font-size: 1.7rem; font-weight: 700; letter-spacing: -.035em; }
         .card__desc { margin-top: 8px; color: var(--muted); }
         .card__arrow { margin-top: auto; padding-top: 18px; color: var(--link); font-size: 1.4rem; line-height: 1; }
+
+        /* Mit mir arbeiten */
+        .work { padding-block: clamp(80px, 10vw, 140px); background: var(--gray); }
+        .work h2 { max-width: 15ch; font-size: clamp(2.4rem, 6vw, 4.4rem); letter-spacing: -.05em; text-wrap: balance; }
+        .work__lede { max-width: 56ch; margin-top: 18px; color: var(--muted); font-size: 1.2rem; text-wrap: pretty; }
+        .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(24px, 4vw, 56px); margin-top: clamp(40px, 5vw, 64px); }
+        .steps div { padding-top: 20px; border-top: 1.5px solid var(--ink); }
+        .steps strong { display: block; font-size: 1.4rem; letter-spacing: -.03em; }
+        .steps p { margin-top: 8px; color: var(--muted); }
 
         /* Blog */
         .journal { padding-block: clamp(72px, 9vw, 120px); }
@@ -259,15 +274,11 @@ const structuredData = {
                 @keyframes hero-copy { to { opacity: 0; transform: translateY(70px); } }
                 @keyframes hero-a { to { transform: translateY(-70px) scale(1.04); } }
                 @keyframes hero-b { to { transform: translateY(-150px) scale(1.04); } }
-                @keyframes rise { from { transform: translateY(110px); } to { transform: translateY(-40px); } }
-                @keyframes grow { from { transform: scale(.9); } to { transform: scale(1); } }
                 @keyframes fade-up { from { opacity: 0; transform: translateY(36px); } to { opacity: 1; transform: none; } }
 
                 .hero__copy { animation: hero-copy linear both; animation-timeline: scroll(root); animation-range: 0 520px; }
                 .hero .device--a { animation: hero-a linear both; animation-timeline: scroll(root); animation-range: 0 640px; }
                 .hero .device--b { animation: hero-b linear both; animation-timeline: scroll(root); animation-range: 0 640px; }
-                .chapter .device { animation: rise linear both; animation-timeline: view(); animation-range: cover; }
-                .film { animation: grow linear both; animation-timeline: view(); animation-range: entry 0% cover 45%; }
                 .reveal { animation: fade-up linear both; animation-timeline: view(); animation-range: entry 5% entry 55%; }
             }
         }
@@ -275,6 +286,13 @@ const structuredData = {
         @media (max-width: 900px) {
             .more { grid-template-columns: 1fr 1fr; }
             .card, .card:nth-child(n+4) { grid-column: auto; }
+            .credo__grid { grid-template-columns: 1fr 1fr; }
+            .show__inner { grid-template-columns: 1fr; gap: 0; }
+            .phone { order: 0; top: 48px; z-index: 2; height: 54vh; background: var(--sbg); transition: background-color .6s var(--ease); }
+            .phone__frame { --device-w: min(190px, 46vw); }
+            .phone .film { width: 60vw; }
+            .panel { min-height: 62vh; max-width: none; justify-content: flex-start; padding-block: 28px; }
+            .steps { grid-template-columns: 1fr; }
             .about__grid { grid-template-columns: 1fr; }
             .portrait { width: min(70%, 320px); }
         }
@@ -330,6 +348,7 @@ const structuredData = {
                         <a class="btn" href="#produkte">{t.hero.ctaProjects}</a>
                         <a class="link" href="#haltung">{t.hero.ctaIdea}</a>
                     </div>
+                    <div class="pillars">{t.hero.pillars.map((pillar) => <span>{pillar}</span>)}</div>
                 </div>
             </div>
             <div class="stage" aria-hidden="true">
@@ -339,37 +358,50 @@ const structuredData = {
         </header>
 
         <div id="produkte">
-            <section class="chapter chapter--family" id="familymanager" aria-labelledby="familymanager-title">
-                <div class="shell">
-                    <span class="chapter__eyebrow">{t.familymanager.eyebrow}</span>
-                    <h2 id="familymanager-title">FamilyManager</h2>
-                    <p class="chapter__claim">{t.familymanager.claim}</p>
-                    <p class="chapter__desc">{t.familymanager.desc}</p>
-                    <div class="actions"><a class="link" href="https://familymanager.pro/landing" rel="noopener">{t.familymanager.link}</a></div>
+            <section class="show" data-showcase data-active="familymanager" aria-label={n.nav.projects}>
+                <div class="shell show__inner">
+                    <div class="phone" aria-hidden="true">
+                        <div class="phone__frame">
+                            <div class="device on" data-k="familymanager"><img loading="lazy" decoding="async" width="1206" height="2622" src="/images/indie-preview/familymanager-heute.png" alt=""></div>
+                            <div class="device" data-k="gymbo"><img loading="lazy" decoding="async" width="1206" height="2622" src="/images/indie-preview/gymbo-aktivitaet.png" alt=""></div>
+                            <div class="device" data-k="track4kids"><img loading="lazy" decoding="async" width="900" height="1957" src="/images/indie-preview/track4kids-entdecken.png" alt=""></div>
+                            <div class="film" data-k="maison"><video class="maison-video" src="https://maison-benchris.de/mbc/hero.mp4" autoplay muted loop playsinline preload="metadata"></video></div>
+                        </div>
+                    </div>
+                    <div class="panels">
+                        <article class="panel" id="familymanager" data-k="familymanager" aria-labelledby="familymanager-title">
+                            <img class="panel__icon" loading="lazy" width="64" height="64" src="/images/indie-preview/familymanager-icon.png" alt="">
+                            <span class="panel__eyebrow">{t.familymanager.eyebrow}</span>
+                            <h2 id="familymanager-title">FamilyManager</h2>
+                            <p class="panel__claim">{t.familymanager.claim}</p>
+                            <p class="panel__desc">{t.familymanager.desc}</p>
+                            <div class="actions"><a class="link" href="https://familymanager.pro/landing" rel="noopener">{t.familymanager.link}</a></div>
+                        </article>
+                        <article class="panel" id="gymbo" data-k="gymbo" aria-labelledby="gymbo-title">
+                            <img class="panel__icon" loading="lazy" width="64" height="64" src="/images/indie-preview/gymbo-icon.png" alt="">
+                            <span class="panel__eyebrow">{t.gymbo.eyebrow}</span>
+                            <h2 id="gymbo-title">GymBo</h2>
+                            <p class="panel__claim">{t.gymbo.claim}</p>
+                            <p class="panel__desc">{t.gymbo.desc}</p>
+                            <div class="actions"><a class="link" href="https://gymbo.benkohler.de/" rel="noopener">{t.gymbo.link}</a></div>
+                        </article>
+                        <article class="panel" id="track4kids" data-k="track4kids" aria-labelledby="track4kids-title">
+                            <img class="panel__icon" loading="lazy" width="64" height="64" src="/images/indie-preview/track4kids-icon.png" alt="">
+                            <span class="panel__eyebrow">{t.track4kids.eyebrow}</span>
+                            <h2 id="track4kids-title">Track4Kids</h2>
+                            <p class="panel__claim">{t.track4kids.claim}</p>
+                            <p class="panel__desc">{t.track4kids.desc}</p>
+                            <div class="actions"><a class="link" href="https://track4kids.de/" rel="noopener">{t.track4kids.link}</a></div>
+                        </article>
+                        <article class="panel" id="maison-benchris" data-k="maison" aria-labelledby="maison-title">
+                            <span class="panel__eyebrow">{t.maison.eyebrow}</span>
+                            <h2 id="maison-title">MAISON BENCHRIS</h2>
+                            <p class="panel__claim">{t.maison.claim}</p>
+                            <p class="panel__desc">{t.maison.desc}</p>
+                            <div class="actions"><a class="link" href="https://maison-benchris.de/" rel="noopener">{t.maison.link}</a></div>
+                        </article>
+                    </div>
                 </div>
-                <div class="stage"><div class="device"><img loading="lazy" decoding="async" width="1206" height="2622" src="/images/indie-preview/familymanager-heute.png" alt={t.familymanager.alt}></div></div>
-            </section>
-
-            <section class="chapter chapter--gym" id="gymbo" aria-labelledby="gymbo-title">
-                <div class="shell">
-                    <span class="chapter__eyebrow">{t.gymbo.eyebrow}</span>
-                    <h2 id="gymbo-title">GymBo</h2>
-                    <p class="chapter__claim">{t.gymbo.claim}</p>
-                    <p class="chapter__desc">{t.gymbo.desc}</p>
-                    <div class="actions"><a class="link" href="https://gymbo.benkohler.de/" rel="noopener">{t.gymbo.link}</a></div>
-                </div>
-                <div class="stage"><div class="device"><img loading="lazy" decoding="async" width="1206" height="2622" src="/images/indie-preview/gymbo-aktivitaet.png" alt={t.gymbo.alt}></div></div>
-            </section>
-
-            <section class="chapter chapter--care" id="maison-benchris" aria-labelledby="maison-title">
-                <div class="shell">
-                    <span class="chapter__eyebrow">{t.maison.eyebrow}</span>
-                    <h2 id="maison-title">MAISON BENCHRIS</h2>
-                    <p class="chapter__claim">{t.maison.claim}</p>
-                    <p class="chapter__desc">{t.maison.desc}</p>
-                    <div class="actions"><a class="link" href="https://maison-benchris.de/" rel="noopener">{t.maison.link}</a></div>
-                </div>
-                <div class="film"><video class="maison-video" src="https://maison-benchris.de/mbc/hero.mp4" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
             </section>
         </div>
 
@@ -397,6 +429,19 @@ const structuredData = {
                         <a class="card" id={card.id} href={card.href} rel="noopener"><span class="card__meta">{card.meta}</span><span class="card__name">{card.name}</span><span class="card__desc">{card.desc}</span><span class="card__arrow" aria-hidden="true">↗</span></a>
                     ))}
                 </div>
+            </div>
+        </section>
+
+        <section class="work" id="auftrag" aria-labelledby="work-title">
+            <div class="shell">
+                <h2 id="work-title" class="reveal">{t.work.title}</h2>
+                <p class="work__lede reveal">{t.work.lede}</p>
+                <div class="steps">
+                    {t.work.steps.map((step) => (
+                        <div class="reveal"><strong>{step.title}</strong><p>{step.text}</p></div>
+                    ))}
+                </div>
+                <div class="actions" style="justify-content:flex-start"><a class="btn" href={pagePath("hire", lang)}>{t.work.cta}</a><a class="link" href={pagePath("cost", lang)}>{t.work.costLink}</a></div>
             </div>
         </section>
 
@@ -460,6 +505,22 @@ const structuredData = {
         maisonVideos.forEach(video => video.addEventListener('loadeddata', updateVideoMotion));
         reducedMotion.addEventListener('change', updateVideoMotion);
         updateVideoMotion();
+
+        // Showcase: Das Gerät und die Hintergrundfarbe folgen dem Projekt, das gerade in der Bildmitte steht.
+        const showcase = document.querySelector<HTMLElement>('[data-showcase]');
+        if (showcase) {
+            const layers = showcase.querySelectorAll<HTMLElement>('.phone [data-k]');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+                    const key = (entry.target as HTMLElement).dataset.k;
+                    showcase.dataset.active = key;
+                    layers.forEach((layer) => layer.classList.toggle('on', layer.dataset.k === key));
+                });
+            // Mobil steht das Gerät oben, der Text darunter: dort wird umgeschaltet. Am Desktop in der Bildmitte.
+            }, { rootMargin: window.matchMedia('(max-width: 900px)').matches ? '-60% 0px -39% 0px' : '-45% 0px -45% 0px' });
+            showcase.querySelectorAll('.panel').forEach((panel) => observer.observe(panel));
+        }
 
         // Der Haltungssatz wird beim Scrollen Wort für Wort dunkel. Ohne JS oder bei reduzierter Bewegung steht er sofort komplett da.
         const sentence = document.querySelector<HTMLElement>('[data-words]');

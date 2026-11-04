@@ -18,11 +18,20 @@ export interface HomeStrings {
     lede: string;
     ctaProjects: string;
     ctaIdea: string;
+    pillars: string[];
     deviceAlt: { familymanager: string; gymbo: string };
   };
   familymanager: { eyebrow: string; claim: string; desc: string; link: string; alt: string };
   gymbo: { eyebrow: string; claim: string; desc: string; link: string; alt: string };
+  track4kids: { eyebrow: string; claim: string; desc: string; link: string; alt: string };
   maison: { eyebrow: string; claim: string; desc: string; link: string };
+  work: {
+    title: string;
+    lede: string;
+    steps: { title: string; text: string }[];
+    cta: string;
+    costLink: string;
+  };
   credo: {
     sentence: string;
     lead: string;
@@ -54,9 +63,10 @@ const de: HomeStrings = {
   },
   hero: {
     title: "Apps für den Alltag.",
-    lede: "Ich bin Ben, iOS-Entwickler aus Ulm. Ich baue Apps für Familien und fürs Training. Gerade kommt eine Hautpflegemarke dazu.",
+    lede: "Ich bin Ben, iOS-Entwickler aus Ulm. Ich entwickle eigene Apps für Familie, Training und Kinder und setze auf Anfrage deine Idee um.",
     ctaProjects: "Projekte ansehen",
     ctaIdea: "Was sie verbindet",
+    pillars: ["Familie", "Training", "Kinder & Ernährung", "Pflege", "Auftragsarbeit"],
     deviceAlt: { familymanager: "", gymbo: "" },
   },
   familymanager: {
@@ -73,11 +83,29 @@ const de: HomeStrings = {
     link: "GymBo ansehen",
     alt: "GymBo Aktivität mit Wochenziel und Check-in",
   },
+  track4kids: {
+    eyebrow: "Kinder · Beta",
+    claim: "Verstehen statt Kalorien zählen.",
+    desc: "Kinder von 9 bis 12 sammeln Lebensmittel als Karten und stellen Teams für Arenen zusammen. Ohne Tracking und ohne Druck.",
+    link: "Track4Kids ansehen",
+    alt: "Track4Kids Entdecken-Ansicht mit Kartenkatalog",
+  },
   maison: {
     eyebrow: "Pflege · in Vorbereitung",
     claim: "Mein nächstes Projekt geht über Software hinaus.",
     desc: "Mit MAISON BENCHRIS arbeite ich an einer Hautpflegemarke. Mein Ziel ist Pflege, die sich einfach in den Alltag einbauen lässt.",
     link: "Zu MAISON BENCHRIS",
+  },
+  work: {
+    title: "Deine App. Von mir gebaut.",
+    lede: "Ich baue Apps im Auftrag, vom ersten Entwurf bis in den App Store. Ich arbeite immer nur an einem Projekt gleichzeitig, du hast also eine feste Ansprechperson.",
+    steps: [
+      { title: "1 · Klären", text: "Wir sprechen über Idee und Umfang. Du bekommst ein schriftliches Festpreis-Angebot ab 999 €, bevor irgendetwas losgeht." },
+      { title: "2 · Bauen", text: "Ich baue die erste Version nativ fürs iPhone. Jede Woche landet ein neuer Stand über TestFlight auf deinem Gerät." },
+      { title: "3 · Veröffentlichen", text: "Ich begleite den Weg in den App Store und bleibe danach Ansprechperson." },
+    ],
+    cta: "App entwickeln lassen",
+    costLink: "Was kostet eine App?",
   },
   credo: {
     sentence: "Das wurde mir erst später klar: Es geht immer um den Alltag.",
@@ -85,15 +113,15 @@ const de: HomeStrings = {
     items: [
       { title: "Zusammenleben", text: "Wie eine Familie ihren Tag organisiert. Auch dann, wenn sie in mehreren Haushalten lebt." },
       { title: "Bewegen", text: "Wie man beim Training dranbleibt, weil man sieht, was beim letzten Mal ging." },
+      { title: "Lernen", text: "Wie Kinder verstehen, was Essen mit ihnen macht, ohne Zahlen und ohne Druck." },
       { title: "Sich kümmern", text: "Wie Pflege in den Tag passt, ohne zur zusätzlichen Aufgabe zu werden." },
     ],
-    outro: "Deshalb stehen die drei hier zusammen.",
+    outro: "Deshalb stehen die vier hier zusammen.",
   },
   extras: {
     title: "Weitere Projekte",
-    intro: "Daneben gibt es kleinere Projekte rund um Kinder und Ernährung, Musik, Produktfeedback und Inhalte im Netz.",
+    intro: "Daneben gibt es kleinere Projekte rund um Musik, Nahrungsergänzung, Produktfeedback und Inhalte im Netz.",
     cards: [
-      { id: "track4kids", meta: "iOS · Beta", name: "Track4Kids", desc: "Kinder von 9 bis 12 lernen mit Karten und Arenen Lebensmittel kennen. Ohne Kalorienzählen.", href: "https://track4kids.de/" },
       { meta: "macOS · Live", name: "StarTune", desc: "Songs schneller favorisieren.", href: "https://startune.benkohler.de/" },
       { meta: "iOS und Web · Beta", name: "NaturSupps", desc: "Informationen zu Nahrungsergänzungsmitteln.", href: "https://natursupps.benkohler.de/" },
       { meta: "Web · Beta", name: "RoadLight", desc: "Feedback, Voting und Roadmap an einem Ort.", href: "https://roadlight.pro/" },
@@ -124,9 +152,10 @@ const en: HomeStrings = {
   },
   hero: {
     title: "Apps for everyday life.",
-    lede: "I'm Ben, an iOS developer from Ulm, Germany. I build apps for families and for training. A skincare brand is joining them now.",
+    lede: "I'm Ben, an iOS developer from Ulm, Germany. I build my own apps for family, training and kids, and I build yours on request.",
     ctaProjects: "See the projects",
     ctaIdea: "What connects them",
+    pillars: ["Family", "Training", "Kids & nutrition", "Skincare", "Client work"],
     deviceAlt: { familymanager: "", gymbo: "" },
   },
   familymanager: {
@@ -143,11 +172,29 @@ const en: HomeStrings = {
     link: "See GymBo",
     alt: "GymBo activity with weekly goal and check-in",
   },
+  track4kids: {
+    eyebrow: "Kids · beta",
+    claim: "Understanding, not counting calories.",
+    desc: "Kids aged 9 to 12 collect foods as cards and put together teams for arenas. No tracking, no pressure.",
+    link: "See Track4Kids",
+    alt: "Track4Kids Discover view with the card catalogue",
+  },
   maison: {
     eyebrow: "Skincare · coming soon",
     claim: "My next project goes beyond software.",
     desc: "With MAISON BENCHRIS I'm working on a skincare brand. My goal is skincare that fits easily into everyday life.",
     link: "Go to MAISON BENCHRIS",
+  },
+  work: {
+    title: "Your app. Built by me.",
+    lede: "I build apps on commission, from the first sketch to the App Store. I only work on one project at a time, so you get one fixed point of contact.",
+    steps: [
+      { title: "1 · Clarify", text: "We talk about your idea and scope. You get a written fixed-price quote from €999 before anything starts." },
+      { title: "2 · Build", text: "I build the first version natively for the iPhone. Every week a new build lands on your device through TestFlight." },
+      { title: "3 · Launch", text: "I take you through the App Store release and stay your point of contact afterwards." },
+    ],
+    cta: "Hire an app developer",
+    costLink: "What does an app cost?",
   },
   credo: {
     sentence: "It only became clear to me later: it's always about everyday life.",
@@ -155,15 +202,15 @@ const en: HomeStrings = {
     items: [
       { title: "Living together", text: "How a family organises its day, even when it lives in more than one household." },
       { title: "Moving", text: "How you stick with training because you can see what worked last time." },
+      { title: "Learning", text: "How kids come to understand what food does for them, without numbers and without pressure." },
       { title: "Taking care", text: "How skincare fits into the day without turning into one more chore." },
     ],
-    outro: "That's why these three belong together here.",
+    outro: "That's why these four belong together here.",
   },
   extras: {
     title: "More projects",
-    intro: "There are also smaller projects around kids and nutrition, music, product feedback and content on the web.",
+    intro: "There are also smaller projects around music, dietary supplements, product feedback and content on the web.",
     cards: [
-      { id: "track4kids", meta: "iOS · Beta", name: "Track4Kids", desc: "Kids aged 9 to 12 get to know food through cards and arenas. No calorie counting.", href: "https://track4kids.de/" },
       { meta: "macOS · Live", name: "StarTune", desc: "Favourite songs faster.", href: "https://startune.benkohler.de/" },
       { meta: "iOS and web · Beta", name: "NaturSupps", desc: "Information about dietary supplements.", href: "https://natursupps.benkohler.de/" },
       { meta: "Web · Beta", name: "RoadLight", desc: "Feedback, voting and roadmap in one place.", href: "https://roadlight.pro/" },
