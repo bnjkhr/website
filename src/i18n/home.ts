@@ -69,10 +69,10 @@ const de: HomeStrings = {
   stats: {
     label: "Ben Kohler in Zahlen",
     items: [
-      { value: "4", label: "eigene Apps: FamilyManager, GymBo, Track4Kids, StarTune" },
-      { value: "1", label: "Projekt gleichzeitig, mit fester Ansprechperson" },
-      { value: "Jede Woche", label: "ein neuer Stand per TestFlight" },
-      { value: "ab 999 €", label: "Festpreis, schriftlich vor dem Start" },
+      { value: "26 Jahre", label: "Erfahrung, seit September 2000 entwickle ich Software" },
+      { value: "4.000+", label: "Nutzerinnen und Nutzer über alle meine Apps" },
+      { value: "1.600", label: "Familien nutzen FamilyManager jeden Tag" },
+      { value: "40+", label: "App-Updates in den letzten 12 Monaten" },
     ],
   },
   familymanager: {
@@ -164,10 +164,10 @@ const en: HomeStrings = {
   stats: {
     label: "Ben Kohler in numbers",
     items: [
-      { value: "4", label: "apps of my own: FamilyManager, GymBo, Track4Kids, StarTune" },
-      { value: "1", label: "project at a time, with one fixed point of contact" },
-      { value: "Every week", label: "a new build through TestFlight" },
-      { value: "from €999", label: "fixed price, in writing before we start" },
+      { value: "26 years", label: "of experience, building software since September 2000" },
+      { value: "4,000+", label: "users across all my apps" },
+      { value: "1,600", label: "families use FamilyManager every day" },
+      { value: "40+", label: "app updates in the last 12 months" },
     ],
   },
   familymanager: {
