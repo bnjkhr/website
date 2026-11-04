@@ -18,9 +18,9 @@ export interface HomeStrings {
     lede: string;
     ctaProjects: string;
     ctaIdea: string;
-    pillars: string[];
-    deviceAlt: { familymanager: string; gymbo: string };
+    portraitAlt: string;
   };
+  stats: { label: string; items: { value: string; label: string }[] };
   familymanager: { eyebrow: string; claim: string; desc: string; link: string; alt: string };
   gymbo: { eyebrow: string; claim: string; desc: string; link: string; alt: string };
   track4kids: { eyebrow: string; claim: string; desc: string; link: string; alt: string };
@@ -41,8 +41,6 @@ export interface HomeStrings {
   extras: { title: string; intro: string; cards: HomeCard[] };
   journal: { title: string; allPosts: string; readPost: string };
   about: {
-    portraitAlt: string;
-    caption: string;
     title: string;
     text: string;
     pressLabel: string;
@@ -66,8 +64,16 @@ const de: HomeStrings = {
     lede: "Ich bin Ben, iOS-Entwickler aus Ulm. Ich entwickle eigene Apps für Familie, Training und Kinder und setze auf Anfrage deine Idee um.",
     ctaProjects: "Projekte ansehen",
     ctaIdea: "Was sie verbindet",
-    pillars: ["Familie", "Training", "Kinder & Ernährung", "Pflege", "Auftragsarbeit"],
-    deviceAlt: { familymanager: "", gymbo: "" },
+    portraitAlt: "Ben Kohler, Produktentwickler aus Ulm",
+  },
+  stats: {
+    label: "Ben Kohler in Zahlen",
+    items: [
+      { value: "4", label: "eigene Apps: FamilyManager, GymBo, Track4Kids, StarTune" },
+      { value: "1", label: "Projekt gleichzeitig, mit fester Ansprechperson" },
+      { value: "Jede Woche", label: "ein neuer Stand per TestFlight" },
+      { value: "ab 999 €", label: "Festpreis, schriftlich vor dem Start" },
+    ],
   },
   familymanager: {
     eyebrow: "Familie",
@@ -130,8 +136,6 @@ const de: HomeStrings = {
   },
   journal: { title: "Was zwischen den Releases passiert.", allPosts: "Alle Beiträge", readPost: "Beitrag lesen" },
   about: {
-    portraitAlt: "Ben Kohler, Produktentwickler aus Ulm",
-    caption: "Ben · Ulm",
     title: "Ein bisschen mehr über mich.",
     text: "Ich lebe in Ulm und entwickle seit vielen Jahren Software. An FamilyManager arbeite ich neben meinem Vollzeitjob. Wie das zusammenpasst und wie die App entstanden ist, erzähle ich im Podcast Happy Bootstrapping.",
     pressLabel: "Zu Gast im Podcast",
@@ -155,8 +159,16 @@ const en: HomeStrings = {
     lede: "I'm Ben, an iOS developer from Ulm, Germany. I build my own apps for family, training and kids, and I build yours on request.",
     ctaProjects: "See the projects",
     ctaIdea: "What connects them",
-    pillars: ["Family", "Training", "Kids & nutrition", "Skincare", "Client work"],
-    deviceAlt: { familymanager: "", gymbo: "" },
+    portraitAlt: "Ben Kohler, product developer from Ulm, Germany",
+  },
+  stats: {
+    label: "Ben Kohler in numbers",
+    items: [
+      { value: "4", label: "apps of my own: FamilyManager, GymBo, Track4Kids, StarTune" },
+      { value: "1", label: "project at a time, with one fixed point of contact" },
+      { value: "Every week", label: "a new build through TestFlight" },
+      { value: "from €999", label: "fixed price, in writing before we start" },
+    ],
   },
   familymanager: {
     eyebrow: "Family",
@@ -219,8 +231,6 @@ const en: HomeStrings = {
   },
   journal: { title: "What happens between releases.", allPosts: "All posts", readPost: "Read the post" },
   about: {
-    portraitAlt: "Ben Kohler, product developer from Ulm, Germany",
-    caption: "Ben · Ulm, Germany",
     title: "A little more about me.",
     text: "I live in Ulm and have been building software for many years. I work on FamilyManager alongside my full-time job. How that fits together and how the app came about, I talk about on the podcast Happy Bootstrapping (in German).",
     pressLabel: "Guest on the podcast",
