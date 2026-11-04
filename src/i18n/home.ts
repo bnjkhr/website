@@ -39,6 +39,7 @@ export interface HomeStrings {
     items: { title: string; text: string }[];
     outro: string;
   };
+  testimonials: { title: string; stars: string; source: string; items: { quote: string; author: string; app: string }[] };
   extras: { title: string; intro: string; cards: HomeCard[] };
   journal: { title: string; allPosts: string; readPost: string };
   about: {
@@ -125,6 +126,17 @@ const de: HomeStrings = {
       { title: "Sich kümmern", text: "Wie Pflege in den Tag passt, ohne zur zusätzlichen Aufgabe zu werden." },
     ],
     outro: "Deshalb stehen die vier hier zusammen.",
+  },
+  testimonials: {
+    title: "Was Nutzer sagen.",
+    stars: "5 von 5 Sternen",
+    source: "Bewertungen aus dem App Store",
+    items: [
+      { quote: "Es ist der beste Kalender seit der Erfindung von Apps. Er beinhaltet alle wichtigen Funktionen, ist nicht überladen mit unnützem Zeugs und der Entwickler ist jederzeit erreichbar und setzt Wünsche von Anwender in Windeseile um.", author: "Freddy221", app: "FamilyManager" },
+      { quote: "Nach vielen Versuchen mit doppelten Kalendern und geteilten Tabellen und Notizen fand unsere Patchworkfamilie diese App. Wir finden die Umsetzung Klasse und vor allem intuitiv.", author: "Fam.A.Felix", app: "FamilyManager" },
+      { quote: "Clean und auf den Punkt. Das was ich von einer tollen Watch App erwarte. Und stetig am verbessern! Es macht echt einfach noch mehr Spaß mit dieser App zu trainieren und das iPhone im Schrank zu lassen.", author: "Nachbarshund", app: "GymBo" },
+      { quote: "Es wurde so viel an Punkten mitbedacht, rundum gelungene App.", author: "J0na123", app: "GymBo" },
+    ],
   },
   extras: {
     title: "Weitere Projekte",
@@ -221,6 +233,17 @@ const en: HomeStrings = {
       { title: "Taking care", text: "How skincare fits into the day without turning into one more chore." },
     ],
     outro: "That's why these four belong together here.",
+  },
+  testimonials: {
+    title: "What users say.",
+    stars: "5 out of 5 stars",
+    source: "App Store reviews, translated from German",
+    items: [
+      { quote: "It's the best calendar since apps were invented. It has all the important features, isn't cluttered with useless stuff, and the developer is always reachable and implements users' wishes in no time.", author: "Freddy221", app: "FamilyManager" },
+      { quote: "After many attempts with duplicate calendars and shared spreadsheets and notes, our blended family found this app. We think it's well done and, above all, intuitive.", author: "Fam.A.Felix", app: "FamilyManager" },
+      { quote: "Clean and to the point. Exactly what I expect from a great Watch app. And it keeps getting better! It's simply more fun to train with this app and leave the iPhone in the locker.", author: "Nachbarshund", app: "GymBo" },
+      { quote: "So many details were thought of. A thoroughly well-made app.", author: "J0na123", app: "GymBo" },
+    ],
   },
   extras: {
     title: "More projects",
