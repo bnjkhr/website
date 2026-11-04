@@ -21,6 +21,7 @@ export interface HireStrings {
   offerSection: { title: string; before: string; linkText: string; after: string };
   offerLabels: { price: string; duration: string };
   offers: { name: string; claim: string; text: string; price: string; duration: string; featured?: boolean }[];
+  equity: { title: string; paragraphs: string[]; cta: string };
   roadlight: { title: string; before: string; linkText: string; after: string };
   exampleSection: { title: string; text: string; included: string; excluded: string; note: string };
   example: { name: string; pitch: string; included: string[]; excluded: string[] };
@@ -99,6 +100,15 @@ const de: HireStrings = {
       duration: "monatlich kündbar",
     },
   ],
+  equity: {
+    title: "Überzeugt mich deine Idee, steige ich ein.",
+    paragraphs: [
+      "Nicht jede Idee ist nur ein Auftrag. Bei manchen glaube ich so sehr an das Produkt, dass ich es mit dir zusammen aufbauen möchte. Dann bleibt mein Grundpreis niedrig, ab 999 €, und ich bin dafür am Erfolg beteiligt.",
+      "Wie die Beteiligung aussieht, legen wir gemeinsam fest: Anteile an der Firma, eine Umsatzbeteiligung, ein Anteil am Verkaufserlös oder etwas anderes, das zu deiner Idee passt. Du zahlst weniger, bevor die App etwas verdient. Ich trage ein Stück vom Risiko mit und habe dasselbe Ziel wie du: dass die App wächst.",
+      "Ob ich einsteige, entscheide ich nach dem ersten Gespräch. Du bekommst alles schriftlich, bevor ich anfange.",
+    ],
+    cta: "Idee schildern",
+  },
   roadlight: {
     title: "Feedback deiner Nutzer, ohne Aufpreis.",
     before: "Wer bei mir eine App entwickeln lässt, kann ",
@@ -155,6 +165,7 @@ const de: HireStrings = {
   faqSection: { title: "Fragen und Antworten." },
   faqs: [
     { q: "Was kostet es, eine App entwickeln zu lassen?", a: "Meine Festpreise beginnen bei 999 €. Was am Ende im Angebot steht, hängt vom Umfang ab: wie viele Bildschirme, ob die App ein Konto und eine Datenbank braucht und ob sie mit anderen Diensten spricht. Nach dem ersten Gespräch bekommst du den Preis schriftlich, bevor irgendetwas losgeht." },
+    { q: "Kannst du dich auch mit Anteilen bezahlen lassen?", a: "Ja, wenn mich deine Idee überzeugt. Dann bleibt mein Grundpreis niedrig, und ich werde am Erfolg beteiligt: über Anteile an der Firma, eine Umsatzbeteiligung oder einen Anteil am Verkaufserlös. Die Form legen wir im ersten Gespräch fest und halten sie schriftlich fest, bevor ich anfange." },
     { q: "Was bedeutet Festpreis?", a: "Du zahlst genau den Betrag aus dem Angebot, auch wenn die Entwicklung länger dauert als geplant. Änderungen am Umfang besprechen wir vorher und halten sie schriftlich fest." },
     { q: "Was muss ich selbst bezahlen?", a: "Die laufenden Kosten laufen auf deinen Namen: das Entwicklerkonto bei Apple sowie Domain und Webspace für die Website zur App. Ich richte das alles für dich ein und kümmere mich darum, bezahlt wird es von dir. So gehört dir später alles und du bist nicht von mir abhängig." },
     { q: "Für welche Geräte baust du Apps?", a: "Mein Schwerpunkt ist das Apple-Ökosystem: iPhone, iPad und Mac, mit Swift und SwiftUI. Eine Website zur App baue ich immer mit. Domain und Webspace dafür buchst du auf deinen Namen, die laufenden Kosten trägst du. Android geht auf Anfrage, den passenden Weg klären wir im ersten Gespräch." },
@@ -239,6 +250,15 @@ const en: HireStrings = {
       duration: "cancel monthly",
     },
   ],
+  equity: {
+    title: "If your idea convinces me, I'll get on board.",
+    paragraphs: [
+      "Not every idea is just a commission. With some, I believe in the product so much that I want to build it with you. Then my base price stays low, from €999, and in return I share in the success.",
+      "What that share looks like, we decide together: equity in the company, a revenue share, a share of the proceeds from a sale, or something else that fits your idea. You pay less before the app earns anything. I carry part of the risk and want the same thing you do: for the app to grow.",
+      "Whether I come on board is something I decide after the first call. You get everything in writing before I start.",
+    ],
+    cta: "Tell me your idea",
+  },
   roadlight: {
     title: "Feedback from your users, at no extra cost.",
     before: "If you have me build your app, you can use ",
@@ -295,6 +315,7 @@ const en: HireStrings = {
   faqSection: { title: "Questions and answers." },
   faqs: [
     { q: "What does it cost to have an app developed?", a: "My fixed prices start at €999. What ends up in the quote depends on the scope: how many screens, whether the app needs an account and a database, and whether it talks to other services. After the first call you get the price in writing, before anything starts." },
+    { q: "Can you take equity instead of part of the fee?", a: "Yes, if your idea convinces me. Then my base price stays low and I share in the success: through equity in the company, a revenue share or a share of the proceeds from a sale. We agree on the form in the first call and put it in writing before I start." },
     { q: "What does fixed price mean?", a: "You pay exactly the amount in the quote, even if development takes longer than planned. We discuss any change in scope beforehand and put it in writing." },
     { q: "What do I have to pay for myself?", a: "The running costs are registered in your name: the Apple developer account, plus domain and hosting for the app's website. I set it all up and take care of it, but you pay for it. That way you own everything later and don't depend on me." },
     { q: "Which devices do you build apps for?", a: "My focus is the Apple ecosystem: iPhone, iPad and Mac, with Swift and SwiftUI. I always build a website for the app as well. You register the domain and hosting in your name and pay the running costs. Android is possible on request; we'll work out the right approach in the first call." },

@@ -238,6 +238,8 @@ const structuredData = {
         .work h2 { max-width: 15ch; font-size: clamp(2.4rem, 6vw, 4.4rem); letter-spacing: -.05em; text-wrap: balance; }
         .work__lede { max-width: 56ch; margin-top: 18px; color: var(--muted); font-size: 1.2rem; text-wrap: pretty; }
         .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(24px, 4vw, 56px); margin-top: clamp(40px, 5vw, 64px); }
+        .work__equity { margin-top: clamp(36px, 5vw, 56px); color: var(--ink-2); font-size: 1.2rem; font-weight: 600; letter-spacing: -.02em; text-wrap: balance; }
+        .work__equity .link { margin-left: .4em; font-weight: 400; }
         .steps div { padding-top: 20px; border-top: 1.5px solid var(--ink); }
         .steps strong { display: block; font-size: 1.4rem; letter-spacing: -.03em; }
         .steps p { margin-top: 8px; color: var(--muted); }
@@ -450,6 +452,7 @@ const structuredData = {
                         <div class="reveal"><strong>{step.title}</strong><p>{step.text}</p></div>
                     ))}
                 </div>
+                <p class="work__equity reveal">{t.work.equity.text} <a class="link" href={`${pagePath("hire", lang)}#beteiligung`}>{t.work.equity.link}</a></p>
                 <div class="actions" style="justify-content:flex-start"><a class="btn" href={pagePath("hire", lang)}>{t.work.cta}</a><a class="link" href={pagePath("cost", lang)}>{t.work.costLink}</a></div>
             </div>
         </section>
