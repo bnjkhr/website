@@ -287,11 +287,17 @@ const structuredData = {
             .more { grid-template-columns: 1fr 1fr; }
             .card, .card:nth-child(n+4) { grid-column: auto; }
             .credo__grid { grid-template-columns: 1fr 1fr; }
+            /* Mobil: Das Gerät steht als Streifen oben und schrumpft beim Scrollen (--p: 0 bis 1, per Skript). */
+            .show { --p: 0; --nav: 48px; }
             .show__inner { grid-template-columns: 1fr; gap: 0; }
-            .phone { order: 0; top: 48px; z-index: 2; height: 54vh; background: var(--sbg); transition: background-color .6s var(--ease); }
-            .phone__frame { --device-w: min(190px, 46vw); }
-            .phone .film { width: 60vw; }
-            .panel { min-height: 62vh; max-width: none; justify-content: flex-start; padding-block: 28px; }
+            .phone { order: 0; top: 0; z-index: 2; height: calc(var(--nav) + 54vh - 22vh * var(--p)); align-items: flex-start; padding-top: calc(var(--nav) + 14px); overflow: hidden; background: var(--sbg); transition: background-color .6s var(--ease); }
+            .phone::after { content: ""; position: absolute; inset: auto 0 0; height: 36px; background: linear-gradient(to bottom, transparent, var(--sbg)); pointer-events: none; }
+            .phone__frame { --device-w: calc(200px - 50px * var(--p)); }
+            .phone .film { top: 0; width: calc(var(--device-w) * 1.2); transform: translate(-50%, 0) scale(.94); }
+            .phone .film.on { transform: translate(-50%, 0); }
+            .panel { min-height: 70vh; max-width: none; justify-content: flex-start; padding-block: 24px 40px; }
+            .panel__icon { width: 52px; height: 52px; margin-bottom: 16px; }
+            .panel h2 { font-size: clamp(2.4rem, 11vw, 3.4rem); }
             .steps { grid-template-columns: 1fr; }
             .about__grid { grid-template-columns: 1fr; }
             .portrait { width: min(70%, 320px); }
@@ -510,16 +516,36 @@ const structuredData = {
         const showcase = document.querySelector<HTMLElement>('[data-showcase]');
         if (showcase) {
             const layers = showcase.querySelectorAll<HTMLElement>('.phone [data-k]');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (!entry.isIntersecting) return;
-                    const key = (entry.target as HTMLElement).dataset.k;
-                    showcase.dataset.active = key;
-                    layers.forEach((layer) => layer.classList.toggle('on', layer.dataset.k === key));
-                });
-            // Mobil steht das Gerät oben, der Text darunter: dort wird umgeschaltet. Am Desktop in der Bildmitte.
-            }, { rootMargin: window.matchMedia('(max-width: 900px)').matches ? '-60% 0px -39% 0px' : '-45% 0px -45% 0px' });
-            showcase.querySelectorAll('.panel').forEach((panel) => observer.observe(panel));
+            const mobile = window.matchMedia('(max-width: 900px)');
+            let observer: IntersectionObserver | undefined;
+            const watchPanels = () => {
+                observer?.disconnect();
+                // Mobil steht das Gerät als Streifen oben, der Text darunter: dort wird umgeschaltet. Am Desktop in der Bildmitte.
+                const h = window.innerHeight;
+                const edge = Math.round(48 + h * 0.32 + 4);
+                const margin = mobile.matches ? `-${edge}px 0px -${Math.max(0, h - edge - 6)}px 0px` : '-45% 0px -45% 0px';
+                observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (!entry.isIntersecting) return;
+                        const key = (entry.target as HTMLElement).dataset.k;
+                        showcase.dataset.active = key;
+                        layers.forEach((layer) => layer.classList.toggle('on', layer.dataset.k === key));
+                    });
+                }, { rootMargin: margin });
+                showcase.querySelectorAll('.panel').forEach((panel) => observer!.observe(panel));
+            };
+            watchPanels();
+            window.addEventListener('resize', watchPanels);
+
+            // Mobil schrumpft das Gerät über die ersten halben Bildschirmhöhen des Abschnitts.
+            let frame = 0;
+            const shrink = () => {
+                frame = 0;
+                const p = mobile.matches ? Math.min(1, Math.max(0, -showcase.getBoundingClientRect().top / (window.innerHeight * 0.5))) : 0;
+                showcase.style.setProperty('--p', p.toFixed(3));
+            };
+            window.addEventListener('scroll', () => { if (!frame) frame = requestAnimationFrame(shrink); }, { passive: true });
+            shrink();
         }
 
         // Der Haltungssatz wird beim Scrollen Wort für Wort dunkel. Ohne JS oder bei reduzierter Bewegung steht er sofort komplett da.
