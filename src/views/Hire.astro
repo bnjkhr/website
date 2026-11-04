@@ -125,6 +125,16 @@ const structuredData = {
         </div>
     </section>
 
+    <div class="equity" id="beteiligung" role="region" aria-labelledby="equity-title">
+        <div class="shell equity__inner">
+            <h2 id="equity-title">{t.equity.title}</h2>
+            <div class="equity__body">
+                {t.equity.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+                <a class="button button--primary" href={contactUrl}>{t.equity.cta} <span aria-hidden="true">↗</span></a>
+            </div>
+        </div>
+    </div>
+
     <section class="hire-section" aria-labelledby="roadlight-title">
         <div class="shell">
             <div class="hire-head">
@@ -289,6 +299,13 @@ const structuredData = {
     .step h3 { margin-bottom: 10px; font-size: 1.5rem; }
     .step p { margin: 0; color: var(--muted); }
 
+    .equity { padding-block: clamp(72px, 9vw, 120px); background: #000; color: #f5f5f7; }
+    .equity__inner { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(32px, 6vw, 96px); align-items: start; }
+    .equity h2 { margin: 0; color: #f5f5f7; font-size: clamp(2.2rem, 4.6vw, 3.6rem); letter-spacing: -.045em; text-wrap: balance; }
+    .equity__body p { margin: 0 0 1.2em; color: #a1a1a6; font-size: 1.15rem; line-height: 1.55; text-wrap: pretty; }
+    .equity__body p:first-child { color: #f5f5f7; }
+    .equity__body .button { margin-top: 12px; }
+
     .hire-section--faq { background: #fff; }
     .faq { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(36px, 6vw, 90px); }
     .faq__item { border-bottom: 1px solid var(--rule); }
@@ -307,7 +324,7 @@ const structuredData = {
     .hire-contact .button { flex: 0 0 auto; }
 
     @media (max-width: 1020px) {
-        .offers, .platforms, .example, .example__lists, .proofs { grid-template-columns: 1fr; }
+        .offers, .platforms, .example, .example__lists, .proofs, .equity__inner { grid-template-columns: 1fr; }
         .steps { grid-template-columns: 1fr 1fr; }
     }
 
