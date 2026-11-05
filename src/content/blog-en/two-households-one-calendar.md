@@ -14,7 +14,7 @@ heroImageCreditUrl: "https://unsplash.com/photos/sN0dnAWfBZE"
 translationOf: "zwei-haushalte-ein-kalender"
 ---
 
-Family organisation does not stop at the front door, least of all when children live in two households. Who picks up when, where the sports kit is, what is planned for Thursday: much of it concerns both households, and both sides need the same picture. For such families I built a set of features in FamilyManager. In this post I explain how they fit together.
+Family organisation does not stop at the front door, least of all when children live in two households. Who picks up when, where the sports kit is, what is planned for Thursday: much of it concerns both households, and both sides need the same picture. For such families I built a set of features in FamilyManager.
 
 ## The start
 

@@ -27,7 +27,7 @@ Dass es das Kontingent war, ließ sich schwer belegen:
 
 ## Warum kein Lauf rot wurde
 
-Das ist der eigentliche Punkt. Ein abgebrochener Lauf erscheint in der GitHub-Prüfliste nicht als rot, sondern **gar nicht**. Die Liste zeigte durchgehend „erfolgreich“ und „kann gemergt werden“, während der Nachweis für die iOS-App fehlte.
+Ein abgebrochener Lauf erscheint in der GitHub-Prüfliste nicht als rot, sondern **gar nicht**. Die Liste zeigte durchgehend „erfolgreich“ und „kann gemergt werden“, während der Nachweis für die iOS-App fehlte.
 
 Seitdem gilt für mich: **Ein grüner Pull Request ohne die iOS-Zeilen ist kein grüner Pull Request.** Vor jedem Merge prüfe ich den Lauf gegen den genauen Commit, per Kommandozeile bei App Store Connect, und nicht an dem, was GitHub anzeigt.
 
@@ -40,7 +40,3 @@ Nicht die Release-Builds, sondern die Pull Requests. Zwischen dem 26. August und
 - **Die volle Suite läuft in der Cloud nur noch dort, wo sie vor einem Release zählt:** bei Pull Requests nach `staging` und `main`. Pull Requests nach `dev` lösen keinen Lauf mehr aus. Feature-Änderungen prüfe ich lokal.
 - **Die BUILD-Aktion ist raus.** Neben der TEST-Aktion baute sie dasselbe ein zweites Mal. Ich habe 128 Läufe ausgewertet, 101 davon mit beiden Aktionen: Nie war BUILD rot, während TEST grün war. Der Wegfall spart rund ein Viertel des Kontingents.
 - **Der Standardlauf startet nur noch bei Änderungen an der iOS-App,** nicht mehr bei einer reinen Web-Änderung.
-
-## Was ich daraus mitnehme
-
-Ein roter Test sagt dir, dass etwas kaputt ist. Ein fehlender Test sagt gar nichts, und genau deshalb ist er gefährlicher. Messen statt vertrauen: Wenn der Nachweis nicht dasteht, ist die Antwort „unbekannt“, nicht „grün“.

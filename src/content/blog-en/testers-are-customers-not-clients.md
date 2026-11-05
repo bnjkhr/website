@@ -48,7 +48,3 @@ Another point involved a product decision: a submitted cleaning task could only 
 - **A quiet-time timer.** I dropped that one too.
 
 A no is not criticism of the suggestion. The idea behind it is often reasonable, and it still does not fit into an app that is meant to stay simple for very different families.
-
-## Why this is good for everyone
-
-The test team stays valuable because it looks closely. I stay able to act because I do not have to run in every direction at once. And anyone who only looks at the app now and then gets a product that does not get heavier with every update.
