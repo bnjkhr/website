@@ -11,7 +11,7 @@ heroImage: "/images/blog/hero-einfachheit-ki.webp"
 heroImageAlt: "Single fir tree on a wide, snowy field in the fog"
 heroImageCredit: "Photo: Cristina Gottardi · Unsplash"
 heroImageCreditUrl: "https://unsplash.com/photos/4L-AyDJM-yM"
-translationOf: "einfachheit-und-ki-warum-ich-mehr-streichen-muss"
+translationOf: "einfachheit-und-ki-warum-weglassen-wichtiger-wird"
 ---
 
 On the website of Neil West, who worked at Apple for 16 years and published the book "It Just Works" in October 2026, there is a sentence that has stayed with me for weeks: ["AI won't fix complexity. It will amplify it."](https://neilwest.com/) I have not read the book and refer only to this sentence. But it describes what I experienced with FamilyManager.
