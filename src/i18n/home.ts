@@ -73,7 +73,7 @@ const de: HomeStrings = {
     items: [
       { value: "26 Jahre", label: "Erfahrung, seit September 2000 entwickle ich Software" },
       { value: "4.000+", label: "Nutzerinnen und Nutzer über alle meine Apps" },
-      { value: "1.600", label: "Familien nutzen FamilyManager jeden Tag" },
+      { value: "2.000+", label: "FamilyManager-Konten in über 1.200 Haushalten" },
       { value: "40+", label: "App-Updates in den letzten 12 Monaten" },
     ],
   },
@@ -180,7 +180,7 @@ const en: HomeStrings = {
     items: [
       { value: "26 years", label: "of experience, building software since September 2000" },
       { value: "4,000+", label: "users across all my apps" },
-      { value: "1,600", label: "families use FamilyManager every day" },
+      { value: "2,000+", label: "FamilyManager accounts in more than 1,200 households" },
       { value: "40+", label: "app updates in the last 12 months" },
     ],
   },
