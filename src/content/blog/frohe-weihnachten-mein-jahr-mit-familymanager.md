@@ -14,8 +14,6 @@ heroImageCreditUrl: "https://unsplash.com/photos/JqRkgN6eErk"
 
 Heute ist Heiligabend, und ich möchte mich bei dir bedanken. Dafür, dass du FamilyManager nutzt, ausprobierst oder einfach hier mitliest. Ich wünsche dir und deiner Familie ein friedliches Weihnachtsfest und ein paar ruhige Tage, ganz ohne Terminplan.
 
-Für mich war 2026 ein aufregendes Jahr. Ich schaue kurz zurück, was passiert ist.
-
 ## Das Jahr in Stichpunkten
 
 - **3. Februar:** Die ersten Zeilen Code. Die Idee dahinter war einfach: Eine App, in der eine Familie Aufgaben, Termine, Einkauf und Dokumente an einem Ort hat, ohne fünf verschiedene Apps und ohne Dauerchat.
@@ -29,7 +27,6 @@ Für mich war 2026 ein aufregendes Jahr. Ich schaue kurz zurück, was passiert i
 
 - **Weglassen ist Arbeit.** Vor 3.0 habe ich mehr gestrichen als hinzugefügt. Die App ist dadurch nicht kleiner, aber klarer geworden.
 - **Rückmeldungen schlagen meine Annahmen.** Vieles, was ich für wichtig hielt, war es nicht. Vieles, was ich für Kleinkram hielt, hat jemandem den Tag leichter gemacht.
-- **Ein fester Takt ist besser als ein großer Wurf.** Deshalb der Mittwoch.
 - **Messen statt vermuten.** Die meisten meiner Fehler habe ich nicht gesehen, sondern gemessen.
 
 ## Danke

@@ -28,7 +28,7 @@ It was hard to prove that the quota was the cause:
 
 ## Why no run turned red
 
-This is the actual point. A cancelled run does not show up in the GitHub checklist as red, but **not at all**. The list kept showing "successful" and "can be merged" while the proof for the iOS app was missing.
+A cancelled run does not show up in the GitHub checklist as red, but **not at all**. The list kept showing "successful" and "can be merged" while the proof for the iOS app was missing.
 
 Since then my rule is: **A green pull request without the iOS lines is not a green pull request.** Before every merge I check the run against the exact commit, from the command line at App Store Connect, and not by what GitHub displays.
 
@@ -41,7 +41,3 @@ Not the release builds but the pull requests. Between 26 August and 11 September
 - **The full suite now runs in the cloud only where it counts before a release:** for pull requests to `staging` and `main`. Pull requests to `dev` no longer start a run. I check feature changes locally.
 - **The BUILD action is gone.** Next to the TEST action it built the same thing a second time. I evaluated 128 runs, 101 of them with both actions: BUILD was never red while TEST was green. Dropping it saves about a quarter of the quota.
 - **The default run now only starts for changes to the iOS app,** no longer for a pure web change.
-
-## What I take from this
-
-A red test tells you that something is broken. A missing test tells you nothing, and that is exactly why it is more dangerous. Measure instead of trusting: if the proof is not there, the answer is "unknown", not "green".

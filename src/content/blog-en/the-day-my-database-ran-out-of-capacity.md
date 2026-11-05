@@ -14,7 +14,7 @@ heroImageCreditUrl: "https://unsplash.com/photos/OnI_TNcIv9U"
 translationOf: "datenbank-kapazitaet-reichte-nicht"
 ---
 
-On Thursday, 24 September 2026, FamilyManager was unreachable for a good 20 minutes. Signing in and loading data failed, and the errors came back as timeouts. I restarted the database, and afterwards everything worked again. But a restart is not an explanation. This post is about what I found.
+On Thursday, 24 September 2026, FamilyManager was unreachable for a good 20 minutes. Signing in and loading data failed, and the errors came back as timeouts. I restarted the database, and afterwards everything worked again. But a restart is not an explanation.
 
 ## The pattern
 
@@ -33,7 +33,3 @@ On top of that there were requests that were not needed at all. While looking, I
 The same day I moved the database to a larger instance with 1 GB of memory and adjusted the memory settings. I also noted a rule for myself: when timeouts roll in, I first look at swap and disk wait before searching the code.
 
 A restart only empties the swap briefly. The memory fills up again if nothing changes at the cause. So I will measure at the daily peaks whether the larger instance is enough. If swap stays high, I go up another step.
-
-## What I take from this
-
-The cause was not spectacular. It was a limit I did not have in view. The outage showed me that I must not look at the database's load only when something is broken. "Still enough" quickly turns into an outage once the daily peak grows.

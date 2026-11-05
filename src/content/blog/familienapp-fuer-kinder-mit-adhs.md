@@ -13,9 +13,9 @@ heroImageCredit: "Foto: Michał Bożek · Unsplash"
 heroImageCreditUrl: "https://unsplash.com/photos/RcxR1aLw8X0"
 ---
 
-Ich wollte wissen, was eine Familien-App für Kinder mit ADHS oder ähnlichen Herausforderungen tun kann und was nicht. In diesem Beitrag erzähle ich, was ich gebaut habe, worauf ich mich dabei gestützt habe und was ich ausdrücklich nicht verspreche.
+Ich wollte wissen, was eine Familien-App für Kinder mit ADHS oder ähnlichen Herausforderungen tun kann und was nicht.
 
-Vorweg das Wichtigste: **FamilyManager ist keine Therapie und ersetzt keine ärztliche oder therapeutische Begleitung.** Der Kindermodus ist als Beta gekennzeichnet.
+**FamilyManager ist keine Therapie und ersetzt keine ärztliche oder therapeutische Begleitung.** Der Kindermodus ist als Beta gekennzeichnet.
 
 ## Der Kindermodus „Jetzt“
 
@@ -46,7 +46,7 @@ Aus der Recherche ist auch eine Richtung entstanden, an der ich arbeite: Eine gr
 
 Ein Hinweis aus dem Test hat mich auf eine Lücke gebracht: ADHS gibt es auch bei Erwachsenen, auch bei Eltern. Also gibt es einen Schalter pro Person, der die Hilfen einschaltet. Er heißt **Struktur-Hilfen** und nicht „Fokus“, weil „Fokus“ eine iOS-Systemfunktion ist.
 
-Der wichtigste Punkt dabei ist der Datenschutz. Die Information, dass jemand diese Hilfen nutzt, ist ein Gesundheitsbezug. Deshalb liegt der Schalter für Erwachsene in einer eigenen, privaten Tabelle, die nur die eigene Zeile lesen kann. Partner und Kinder sehen ihn nicht, auch nicht in Profilen, Listen, Benachrichtigungen oder Auswertungen. Das Wort „ADHS“ kommt in der App-Oberfläche und in der Datenbank nicht vor. Kinder unter 16 können den Schalter weder ein- noch ausschalten, ab 16 entscheiden sie selbst. Vor dem Start habe ich eine Datenschutz-Folgenabschätzung gemacht.
+Die Information, dass jemand diese Hilfen nutzt, ist ein Gesundheitsbezug. Deshalb liegt der Schalter für Erwachsene in einer eigenen, privaten Tabelle, die nur die eigene Zeile lesen kann. Partner und Kinder sehen ihn nicht, auch nicht in Profilen, Listen, Benachrichtigungen oder Auswertungen. Das Wort „ADHS“ kommt in der App-Oberfläche und in der Datenbank nicht vor. Kinder unter 16 können den Schalter weder ein- noch ausschalten, ab 16 entscheiden sie selbst. Vor dem Start habe ich eine Datenschutz-Folgenabschätzung gemacht.
 
 ## Was noch offen ist
 

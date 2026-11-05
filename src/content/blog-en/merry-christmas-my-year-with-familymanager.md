@@ -15,8 +15,6 @@ translationOf: "frohe-weihnachten-mein-jahr-mit-familymanager"
 
 Today is Christmas Eve, and I want to thank you. For using FamilyManager, trying it out or simply reading along here. I wish you and your family a peaceful Christmas and a few quiet days, with no schedule at all.
 
-2026 was an exciting year for me. Here is a quick look back at what happened.
-
 ## The year in bullet points
 
 - **3 February:** The first lines of code. The idea was simple: one app where a family has tasks, events, shopping and documents in one place, without five different apps and without a constant chat.
@@ -30,7 +28,6 @@ Today is Christmas Eve, and I want to thank you. For using FamilyManager, trying
 
 - **Leaving things out is work.** Before 3.0 I removed more than I added. The app did not get smaller, but it got clearer.
 - **Feedback beats my assumptions.** Much of what I thought was important was not. Much of what I thought was minor made someone's day easier.
-- **A fixed rhythm beats one big drop.** That is why Wednesday.
 - **Measure instead of guess.** Most of my mistakes I did not see, I measured them.
 
 ## Thank you

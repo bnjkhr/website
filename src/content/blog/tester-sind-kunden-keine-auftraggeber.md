@@ -47,7 +47,3 @@ Bei einem anderen Punkt gab es eine Produktentscheidung: Eine eingereichte Putza
 - **Ein Ruhe-Timer.** Auch den habe ich verworfen.
 
 Eine Absage ist keine Kritik am Vorschlag. Oft ist der Gedanke dahinter vernünftig, und er passt trotzdem nicht in eine App, die für sehr unterschiedliche Familien einfach bleiben soll.
-
-## Warum das gut für alle ist
-
-Das Testteam bleibt wertvoll, weil es genau hinsieht. Ich bleibe handlungsfähig, weil ich nicht in jede Richtung gleichzeitig laufen muss. Und wer nur ab und zu in die App schaut, bekommt ein Produkt, das nicht mit jedem Update schwerer wird.

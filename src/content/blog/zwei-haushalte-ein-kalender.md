@@ -13,7 +13,7 @@ heroImageCredit: "Foto: João Roger Goes Pereira · Unsplash"
 heroImageCreditUrl: "https://unsplash.com/photos/sN0dnAWfBZE"
 ---
 
-Familienorganisation hört nicht an der Haustür auf, besonders nicht, wenn Kinder in zwei Haushalten leben. Wer wann abholt, wo die Sportsachen liegen, was für Donnerstag geplant ist: Vieles davon betrifft beide Haushalte, und beide Seiten brauchen denselben Stand. Für solche Familien habe ich in FamilyManager eine Reihe von Funktionen gebaut. In diesem Beitrag erzähle ich, wie sie zusammenhängen.
+Familienorganisation hört nicht an der Haustür auf, besonders nicht, wenn Kinder in zwei Haushalten leben. Wer wann abholt, wo die Sportsachen liegen, was für Donnerstag geplant ist: Vieles davon betrifft beide Haushalte, und beide Seiten brauchen denselben Stand. Für solche Familien habe ich in FamilyManager eine Reihe von Funktionen gebaut.
 
 ## Der Einstieg
 

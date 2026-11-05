@@ -14,9 +14,9 @@ heroImageCreditUrl: "https://unsplash.com/photos/RcxR1aLw8X0"
 translationOf: "familienapp-fuer-kinder-mit-adhs"
 ---
 
-I wanted to know what a family app can do for children with ADHD or similar challenges, and what it cannot. In this post I explain what I built, what I based it on and what I explicitly do not promise.
+I wanted to know what a family app can do for children with ADHD or similar challenges, and what it cannot.
 
-The most important thing first: **FamilyManager is not a therapy and does not replace medical or therapeutic care.** The children's mode is marked as a beta.
+**FamilyManager is not a therapy and does not replace medical or therapeutic care.** The children's mode is marked as a beta.
 
 ## The children's mode "Jetzt" ("Now")
 
@@ -47,7 +47,7 @@ The research also pointed me in a direction I am working on: a large meta-analys
 
 A hint from testing showed me a gap: ADHD exists in adults too, including parents. So there is one switch per person that turns the help on. It is called **Struktur-Hilfen** ("structure aids") and not "Focus", because "Focus" is an iOS system feature.
 
-The most important point is data protection. The information that someone uses these aids points to health. That is why the switch for adults sits in a separate, private table that only the person's own row can read. Partners and children do not see it, not in profiles, lists, notifications or reports. The word "ADHD" does not appear in the app interface or in the database. Children under 16 can neither switch it on nor off, from 16 they decide themselves. Before launch I carried out a data protection impact assessment.
+The information that someone uses these aids points to health. That is why the switch for adults sits in a separate, private table that only the person's own row can read. Partners and children do not see it, not in profiles, lists, notifications or reports. The word "ADHD" does not appear in the app interface or in the database. Children under 16 can neither switch it on nor off, from 16 they decide themselves. Before launch I carried out a data protection impact assessment.
 
 ## What is still open
 

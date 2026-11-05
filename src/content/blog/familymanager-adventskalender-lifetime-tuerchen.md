@@ -17,8 +17,6 @@ newsletterPreview: "23 Lifetimes, jeden Tag eine Chance, und für alle kleine Fa
 
 Vom 1. bis 24. Dezember gibt es auf [familymanager.pro/advent](https://familymanager.pro/advent) einen Adventskalender. Jeden Tag öffnet sich ein Türchen, und zwar zu einer Uhrzeit, die vorher niemand kennt. Sie liegt irgendwo zwischen 8 und 21 Uhr. Hinter den Türchen 1 bis 23 liegt jeweils genau **eine Lifetime für 39 €** statt regulär 89,99 €. Du sparst also 50,99 €. Wer zuerst kommt, bekommt sie.
 
-In diesem Beitrag erzähle ich, wie es funktioniert und warum ich es so gebaut habe und nicht als Dauerrabatt.
-
 ## Wie es funktioniert
 
 - **Ein Türchen pro Tag.** Es öffnet zu einer zufälligen Uhrzeit zwischen 8 und 21 Uhr, die vorher niemand kennt.
@@ -40,7 +38,7 @@ Für alle gibt es jeden Tag einen kleinen Inhalt für die Familie, unabhängig d
 
 ## Warum 23 Lifetimes und kein Dauerrabatt
 
-Die Lifetime ist für mich der Preisanker. Wenn ich sie dauerhaft billiger machen würde, wäre der reguläre Preis von 89,99 € bald nur noch eine Zahl auf dem Papier. Deshalb habe ich ein Kontingent gewählt, das ich vorher kenne: 23 Stück, jeweils eine pro Türchen, und danach ist Schluss. Der reguläre Preis bleibt dadurch das, was er ist, und wer im Dezember zugreift, bekommt einen echten Vorteil statt eines dauerhaften Rabatts.
+Die Lifetime ist für mich der Preisanker. Wenn ich sie dauerhaft billiger machen würde, wäre der reguläre Preis von 89,99 € bald nur noch eine Zahl auf dem Papier. Deshalb habe ich ein Kontingent gewählt, das ich vorher kenne: 23 Stück, jeweils eine pro Türchen, und danach ist Schluss.
 
 Die Uhrzeit ist zufällig, damit nicht immer dieselben Frühaufsteher oder Bots gewinnen. Wer zwischendurch vorbeischaut, hat genauso eine Chance.
 

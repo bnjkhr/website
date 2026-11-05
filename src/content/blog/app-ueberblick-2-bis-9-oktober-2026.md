@@ -76,7 +76,7 @@ Die Frage bekomme ich oft: „Wie schaffst du das eigentlich?“ Neben meinem Vo
 
 So sieht ein normaler Tag aus:
 
-1. Claude sammelt automatisch ein, was reinkommt: Wünsche aus unserem Voting-Tool, Issues auf GitHub, Nachrichten aus Slack, Feedback aus TestFlight.
+1. Claude sammelt automatisch ein, was reinkommt: Wünsche aus meinem Voting-Tool, Issues auf GitHub, Nachrichten aus Slack, Feedback aus TestFlight.
 2. Morgens liegt alles aufbereitet vor mir: sortiert, priorisiert, mit einer Einschätzung.
 3. Ich wähle aus, was heute gebaut wird. Alles andere bleibt bewusst liegen.
 4. Tagsüber, während ich im Job bin, arbeiten KI-Agents die Aufgaben ab: planen, umsetzen, testen, sich gegenseitig prüfen.
