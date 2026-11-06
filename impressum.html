@@ -40,7 +40,7 @@
         </address>
 
         <h2 class="legal__h">Kontakt</h2>
-        <p>E-Mail: <a id="impressum-email" href="#"></a></p>
+        <p>E-Mail: <a data-mail-u="mail" data-mail-d="benkohler.de" data-mail-text href="#">mail [at] benkohler [punkt] de</a></p>
 
         <h2 class="legal__h">Haftungsausschluss</h2>
         <p>
@@ -64,15 +64,6 @@
       </div>
     </footer>
 
-    <script>
-      (function() {
-        const el = document.getElementById('impressum-email');
-        if (!el) return;
-        const u = 'mail';
-        const d = 'benkohler.de';
-        el.href = 'mai' + 'lto:' + u + '@' + d;
-        el.textContent = u + '@' + d;
-      })();
-    </script>
+    <script src="/js/mail.js" defer></script>
   </body>
 </html>
