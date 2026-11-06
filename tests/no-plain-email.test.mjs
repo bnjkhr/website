@@ -58,3 +58,9 @@ test("Impressum und Datenschutz bieten die Adresse mit Fallback und externem Scr
   }
   assert.ok(existsSync("dist/js/mail.js"));
 });
+
+test("Impressum nennt das Kontaktformular und den Verantwortlichen nach § 18 Abs. 2 MStV", () => {
+  const html = readFileSync("dist/impressum.html", "utf8");
+  assert.match(html, /href="\/#kontakt"/);
+  assert.match(html, /Verantwortlich für den Inhalt nach § 18 Abs\. 2 MStV/);
+});
