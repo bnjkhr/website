@@ -77,7 +77,7 @@ I get asked this question a lot: "How do you actually manage all this?" Alongsid
 
 This is what a normal day looks like:
 
-1. Claude automatically collects whatever comes in: requests from our voting tool, issues on GitHub, messages from Slack, feedback from TestFlight.
+1. Claude automatically collects whatever comes in: requests from my voting tool, issues on GitHub, messages from Slack, feedback from TestFlight.
 2. In the morning, everything is waiting for me, prepared: sorted, prioritised, with an assessment.
 3. I choose what gets built today. Everything else deliberately stays where it is.
 4. During the day, while I'm at work, AI agents work through the tasks: planning, implementing, testing, reviewing each other.

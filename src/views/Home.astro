@@ -437,7 +437,23 @@ const structuredData = {
                         <div class="credo__item reveal"><strong>{item.title}</strong><p>{item.text}</p></div>
                     ))}
                 </div>
-                <p class="credo__outro reveal">{t.credo.outro}</p>
+                {t.credo.outro && <p class="credo__outro reveal">{t.credo.outro}</p>}
+            </div>
+        </section>
+
+        <section class="proof" aria-labelledby="proof-title">
+            <div class="shell">
+                <h2 id="proof-title" class="reveal">{t.testimonials.title}</h2>
+                <div class="proof__grid">
+                    {t.testimonials.items.map((item) => (
+                        <figure class="proof__item reveal">
+                            <span class="proof__stars" role="img" aria-label={t.testimonials.stars}>★★★★★</span>
+                            <blockquote>{item.quote}</blockquote>
+                            <figcaption><strong>{item.author}</strong> · {item.app}</figcaption>
+                        </figure>
+                    ))}
+                </div>
+                <p class="proof__source">{t.testimonials.source}</p>
             </div>
         </section>
 

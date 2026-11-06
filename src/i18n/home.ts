@@ -73,7 +73,7 @@ const de: HomeStrings = {
     items: [
       { value: "26 Jahre", label: "Erfahrung, seit September 2000 entwickle ich Software" },
       { value: "4.000+", label: "Nutzerinnen und Nutzer über alle meine Apps" },
-      { value: "1.600", label: "Familien nutzen FamilyManager jeden Tag" },
+      { value: "2.000+", label: "FamilyManager-Konten in über 1.200 Haushalten" },
       { value: "40+", label: "App-Updates in den letzten 12 Monaten" },
     ],
   },
@@ -106,7 +106,7 @@ const de: HomeStrings = {
   },
   work: {
     title: "Deine App. Von mir gebaut.",
-    lede: "Ich baue Apps im Auftrag, vom ersten Entwurf bis in den App Store. Ich arbeite immer nur an einem Projekt gleichzeitig, du hast also eine feste Ansprechperson.",
+    lede: "Ich baue Apps im Auftrag, vom ersten Entwurf bis in den App Store. Bei mir hast du eine feste Ansprechperson: mich.",
     steps: [
       { title: "1 · Klären", text: "Wir sprechen über Idee und Umfang. Du bekommst ein schriftliches Festpreis-Angebot ab 999 €, bevor irgendetwas losgeht." },
       { title: "2 · Bauen", text: "Ich baue die erste Version nativ fürs iPhone. Jede Woche landet ein neuer Stand über TestFlight auf deinem Gerät." },
@@ -117,15 +117,15 @@ const de: HomeStrings = {
     costLink: "Was kostet eine App?",
   },
   credo: {
-    sentence: "Das wurde mir erst später klar: Es geht immer um den Alltag.",
-    lead: "Lange habe ich vor allem gesehen, wie unterschiedlich die Projekte sind. Erst mit der Hautpflegemarke fiel mir auf, dass sie alle vom selben Ort handeln. Von dem, was wir jeden Tag tun.",
+    sentence: "Alle vier Projekte setzen im Alltag an.",
+    lead: "Lange habe ich vor allem gesehen, wie unterschiedlich die Projekte sind. Erst mit der Hautpflegemarke fiel mir auf, was sie gemeinsam haben: Jedes hilft bei etwas, das jeden Tag ansteht.",
     items: [
       { title: "Zusammenleben", text: "Wie eine Familie ihren Tag organisiert. Auch dann, wenn sie in mehreren Haushalten lebt." },
       { title: "Bewegen", text: "Wie man beim Training dranbleibt, weil man sieht, was beim letzten Mal ging." },
       { title: "Lernen", text: "Wie Kinder verstehen, was Essen mit ihnen macht, ohne Zahlen und ohne Druck." },
       { title: "Sich kümmern", text: "Wie Pflege in den Tag passt, ohne zur zusätzlichen Aufgabe zu werden." },
     ],
-    outro: "Deshalb stehen die vier hier zusammen.",
+    outro: "",
   },
   testimonials: {
     title: "Was Nutzer sagen.",
@@ -180,7 +180,7 @@ const en: HomeStrings = {
     items: [
       { value: "26 years", label: "of experience, building software since September 2000" },
       { value: "4,000+", label: "users across all my apps" },
-      { value: "1,600", label: "families use FamilyManager every day" },
+      { value: "2,000+", label: "FamilyManager accounts in more than 1,200 households" },
       { value: "40+", label: "app updates in the last 12 months" },
     ],
   },
@@ -213,7 +213,7 @@ const en: HomeStrings = {
   },
   work: {
     title: "Your app. Built by me.",
-    lede: "I build apps on commission, from the first sketch to the App Store. I only work on one project at a time, so you get one fixed point of contact.",
+    lede: "I build apps on commission, from the first sketch to the App Store. With me you have one fixed point of contact: me.",
     steps: [
       { title: "1 · Clarify", text: "We talk about your idea and scope. You get a written fixed-price quote from €999 before anything starts." },
       { title: "2 · Build", text: "I build the first version natively for the iPhone. Every week a new build lands on your device through TestFlight." },
@@ -224,15 +224,15 @@ const en: HomeStrings = {
     costLink: "What does an app cost?",
   },
   credo: {
-    sentence: "It only became clear to me later: it's always about everyday life.",
-    lead: "For a long time I mostly saw how different the projects are. Only with the skincare brand did I notice that they all come from the same place. From what we do every day.",
+    sentence: "All four projects start from everyday life.",
+    lead: "For a long time I mostly saw how different the projects are. Only with the skincare brand did I notice what they have in common: each one helps with something that comes up every day.",
     items: [
       { title: "Living together", text: "How a family organises its day, even when it lives in more than one household." },
       { title: "Moving", text: "How you stick with training because you can see what worked last time." },
       { title: "Learning", text: "How kids come to understand what food does for them, without numbers and without pressure." },
       { title: "Taking care", text: "How skincare fits into the day without turning into one more chore." },
     ],
-    outro: "That's why these four belong together here.",
+    outro: "",
   },
   testimonials: {
     title: "What users say.",
