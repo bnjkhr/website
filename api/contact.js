@@ -117,8 +117,13 @@ export default async function handler(req, res) {
     return;
   }
 
-  const to = process.env.CONTACT_TO || "mail@benkohler.de";
-  const from = process.env.CONTACT_FROM || "Ben Kohler Website <website@benkohler.de>";
+  const to = process.env.CONTACT_TO;
+  const from = process.env.CONTACT_FROM;
+  if (!to || !from) {
+    console.error("Contact form is missing CONTACT_TO or CONTACT_FROM");
+    reply(503, { message: t.contact.unavailable });
+    return;
+  }
   const resend = new Resend(apiKey);
   const { error } = await resend.emails.send({
     from,
