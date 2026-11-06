@@ -13,7 +13,7 @@ import {
   toLang,
   ui,
 } from "../src/i18n/index.ts";
-import { buildRedirects } from "../scripts/gen-lang-redirects.mjs";
+import { LEGAL_REDIRECTS, buildRedirects } from "../scripts/gen-lang-redirects.mjs";
 import { blogTranslations } from "../scripts/translations.mjs";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
@@ -93,7 +93,18 @@ test("every translated blog post gets a redirect to its English counterpart", ()
 
 test("vercel.json is up to date with the generator", () => {
   execFileSync(process.execPath, ["scripts/gen-lang-redirects.mjs", "--check"], { cwd: root, stdio: "pipe" });
-  assert.deepEqual(vercel.redirects, buildRedirects());
+  assert.deepEqual(vercel.redirects, [...LEGAL_REDIRECTS, ...buildRedirects()]);
+});
+
+test("/impressum and /datenschutz without .html redirect permanently to the static pages", () => {
+  for (const page of ["impressum", "datenschutz"]) {
+    for (const source of [`/${page}`, `/${page}/`]) {
+      const redirect = vercel.redirects.find((entry) => entry.source === source);
+      assert.equal(redirect?.destination, `/${page}.html`, source);
+      assert.equal(redirect.permanent, true, source);
+      assert.equal(redirect.has, undefined, source);
+    }
+  }
 });
 
 test("security headers in vercel.json stay in place", () => {
