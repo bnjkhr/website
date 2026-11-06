@@ -22,6 +22,9 @@ const configuredEnvironment = {
   RESEND_NEWSLETTER_SEGMENT_ID: "segment-test",
   RESEND_NEWSLETTER_TOPIC_ID: "topic-test",
   SITE_URL: "https://benkohler.de",
+  NEWSLETTER_FROM: "Test <newsletter@example.com>",
+  CONTACT_TO: "owner@example.com",
+  CONTACT_FROM: "Test <website@example.com>",
 };
 
 // A form token as the browser would hold it: issued `ageSeconds` ago.
@@ -440,7 +443,7 @@ test("contact form sends the message to the owner with the visitor as reply-to",
     const response = await callHandler(contactHandler, contactRequest(contactBody()));
     assert.equal(response.statusCode, 200);
     const [mail] = emailsSent(calls);
-    assert.equal(mail.body.to, "mail@benkohler.de");
+    assert.equal(mail.body.to, "owner@example.com");
     assert.equal(mail.body.reply_to, email);
     assert.match(mail.body.subject, /App-Projekt anfragen: Erika Muster/);
     assert.match(mail.body.text, /ich brauche eine App/);

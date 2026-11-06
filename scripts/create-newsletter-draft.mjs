@@ -11,7 +11,7 @@ if (!slug || !/^[a-z0-9-]+$/.test(slug)) {
   process.exit(1);
 }
 
-const required = ["RESEND_API_KEY", "RESEND_NEWSLETTER_SEGMENT_ID"];
+const required = ["RESEND_API_KEY", "RESEND_NEWSLETTER_SEGMENT_ID", "NEWSLETTER_FROM"];
 const missing = required.filter((key) => !process.env[key]);
 if (missing.length > 0) {
   console.error(`Fehlende Umgebungsvariablen: ${missing.join(", ")}`);
@@ -52,8 +52,8 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 const { data: result, error } = await resend.broadcasts.create({
   segmentId: process.env.RESEND_NEWSLETTER_SEGMENT_ID,
   topicId: process.env.RESEND_NEWSLETTER_TOPIC_ID || undefined,
-  from: process.env.NEWSLETTER_FROM || "Ben Kohler <newsletter@benkohler.de>",
-  replyTo: "mail@benkohler.de",
+  from: process.env.NEWSLETTER_FROM,
+  replyTo: process.env.NEWSLETTER_REPLY_TO || undefined,
   name: `Blog: ${data.title}`.slice(0, 70), // Resend erlaubt höchstens 70 Zeichen
   subject: data.newsletterSubject || data.title,
   previewText: data.newsletterPreview || data.description,
