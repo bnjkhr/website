@@ -450,6 +450,19 @@ test("contact form sends the message to the owner with the visitor as reply-to",
   });
 });
 
+test("contact form still delivers to Ben when CONTACT_TO and CONTACT_FROM are unset", async () => {
+  await withConfiguredApi({}, async (calls) => {
+    delete process.env.CONTACT_TO;
+    delete process.env.CONTACT_FROM;
+    const response = await callHandler(contactHandler, contactRequest(contactBody()));
+    assert.equal(response.statusCode, 200);
+    const [mail] = emailsSent(calls);
+    const at = String.fromCharCode(64);
+    assert.deepEqual([mail.body.to].flat(), [`mail${at}benkohler.de`]);
+    assert.match(mail.body.from, new RegExp(`website${at}benkohler\\.de`));
+  });
+});
+
 test("contact form escapes HTML and keeps header values on one line", async () => {
   await withConfiguredApi({}, async (calls) => {
     await callHandler(contactHandler, contactRequest(contactBody({

@@ -2,6 +2,26 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
     {
+      "source": "/impressum",
+      "destination": "/impressum.html",
+      "permanent": true
+    },
+    {
+      "source": "/impressum/",
+      "destination": "/impressum.html",
+      "permanent": true
+    },
+    {
+      "source": "/datenschutz",
+      "destination": "/datenschutz.html",
+      "permanent": true
+    },
+    {
+      "source": "/datenschutz/",
+      "destination": "/datenschutz.html",
+      "permanent": true
+    },
+    {
       "source": "/",
       "destination": "/en/",
       "statusCode": 307,
