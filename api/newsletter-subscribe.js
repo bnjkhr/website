@@ -83,9 +83,9 @@ export default async function handler(req, res) {
     : process.env.VERCEL_PROJECT_PRODUCTION_URL || process.env.VERCEL_URL;
   const siteUrl = process.env.SITE_URL
     || (vercelHost ? `https://${vercelHost}` : "https://benkohler.de");
-  const from = process.env.NEWSLETTER_FROM || "Ben Kohler <newsletter@benkohler.de>";
-  if (!apiKey || !tokenSecret || tokenSecret.length < 32) {
-    console.error("Newsletter signup is missing RESEND_API_KEY or NEWSLETTER_TOKEN_SECRET");
+  const from = process.env.NEWSLETTER_FROM;
+  if (!apiKey || !from || !tokenSecret || tokenSecret.length < 32) {
+    console.error("Newsletter signup is missing RESEND_API_KEY, NEWSLETTER_FROM or NEWSLETTER_TOKEN_SECRET");
     reply(503, { message: t.subscribe.unavailable });
     return;
   }
@@ -119,7 +119,7 @@ export default async function handler(req, res) {
   const { error } = await resend.emails.send({
     from,
     to: email,
-    replyTo: "mail@benkohler.de",
+    replyTo: process.env.NEWSLETTER_REPLY_TO || undefined,
     subject: mail.subject,
     text: mail.text(confirmationUrl),
     html: `<div lang="${lang}" style="max-width:620px;margin:0 auto;padding:32px 20px;font-family:Arial,sans-serif;color:#162019;line-height:1.6">

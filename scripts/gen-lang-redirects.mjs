@@ -19,6 +19,12 @@ const VERCEL_JSON = fileURLToPath(new URL("../vercel.json", import.meta.url));
 // Der Feed wird von Readern abgerufen, nicht von Menschen im Browser: nie umleiten.
 const SKIPPED_PAGES = new Set(["rss"]);
 
+// Rechtstexte liegen als statische .html-Dateien in public/. Ohne Endung gab es 404,
+// andere Seiten verlinken aber /impressum und /datenschutz: dauerhaft weiterleiten.
+export const LEGAL_REDIRECTS = ["impressum", "datenschutz"].flatMap((page) =>
+  [`/${page}`, `/${page}/`].map((source) => ({ source, destination: `/${page}.html`, permanent: true })),
+);
+
 export function buildRedirects() {
   const pairs = [
     ...Object.entries(PAGES)
@@ -47,7 +53,7 @@ export function renderVercelJson(current) {
   const { redirects: _old, ...rest } = config;
   // `redirects` steht direkt hinter `$schema`, alle übrigen Schlüssel behalten ihre Reihenfolge.
   const { $schema, ...others } = rest;
-  const next = { ...($schema ? { $schema } : {}), redirects: buildRedirects(), ...others };
+  const next = { ...($schema ? { $schema } : {}), redirects: [...LEGAL_REDIRECTS, ...buildRedirects()], ...others };
   return `${JSON.stringify(next, null, 2)}\n`;
 }
 
