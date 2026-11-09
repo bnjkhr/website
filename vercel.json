@@ -472,6 +472,42 @@
       ]
     },
     {
+      "source": "/blog/weniger-ist-mehr-was-ich-vor-3-0-gestrichen-habe/",
+      "destination": "/en/blog/less-is-more-what-i-cut-before-3-0/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    },
+    {
+      "source": "/blog/weniger-ist-mehr-was-ich-vor-3-0-gestrichen-habe",
+      "destination": "/en/blog/less-is-more-what-i-cut-before-3-0/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    },
+    {
       "source": "/blog/native-ios-app-oder-cross-plattform/",
       "destination": "/en/blog/native-ios-app-or-cross-platform/",
       "statusCode": 307,
