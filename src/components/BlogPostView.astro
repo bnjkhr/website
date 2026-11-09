@@ -46,6 +46,7 @@ const alternate = await alternateForPost(post, lang);
       <p class="article-header__description">{post.data.description}</p>
       <div class="article-meta">
         <time datetime={post.data.publishedAt.toISOString()}>{formatDate(post.data.publishedAt, lang)}</time>
+        {post.data.draft && <span class="article-meta__tags"><span>ENTWURF</span></span>}
         {post.data.tags.length > 0 && (
           <span class="article-meta__tags">{post.data.tags.map((tag: string) => <span>{tag}</span>)}</span>
         )}

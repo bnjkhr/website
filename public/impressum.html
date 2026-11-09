@@ -37,11 +37,19 @@
         </address>
 
         <h2 class="legal__h">Kontakt</h2>
-        <p>E-Mail: <a id="impressum-email" href="#"></a></p>
+        <p>E-Mail: <a data-mail-u="mail" data-mail-d="benkohler.de" data-mail-text href="#">mail [at] benkohler [punkt] de</a></p>
+        <p>Kontaktformular: <a href="/#kontakt">benkohler.de/#kontakt</a></p>
+
+        <h2 class="legal__h">Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+        <p>
+          Ben Kohler<br />
+          Auf dem Kreuz 32/1<br />
+          89073 Ulm
+        </p>
 
         <h2 class="legal__h">Haftungsausschluss</h2>
         <p>
-          Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung
+          Trotz sorgfältiger inhaltlicher Kontrolle übernehme ich keine Haftung
           für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten
           sind ausschließlich deren Betreiber verantwortlich.
         </p>
@@ -61,15 +69,6 @@
       </div>
     </footer>
 
-    <script>
-      (function() {
-        const el = document.getElementById('impressum-email');
-        if (!el) return;
-        const u = 'mail';
-        const d = 'benkohler.de';
-        el.href = 'mai' + 'lto:' + u + '@' + d;
-        el.textContent = u + '@' + d;
-      })();
-    </script>
+    <script src="/js/mail.js" defer></script>
   </body>
 </html>

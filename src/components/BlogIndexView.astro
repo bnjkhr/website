@@ -37,7 +37,7 @@ const t = ui[lang].blog;
     <div class="shell">
       {posts.length > 0 ? posts.map((post) => (
         <a class="post-card" href={blogPostPath(post, lang)}>
-          <span class="post-card__meta">{formatDate(post.data.publishedAt, lang)}</span>
+          <span class="post-card__meta">{formatDate(post.data.publishedAt, lang)}{post.data.draft && " · ENTWURF"}</span>
           <span>
             <h2>{post.data.title}</h2>
             <p>{post.data.description}</p>

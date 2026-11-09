@@ -9,14 +9,20 @@ export type BlogPost = GermanPost | EnglishPost;
 
 const newestFirst = (a: BlogPost, b: BlogPost) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf();
 
-/** Veröffentlichte Beiträge einer Sprache, neueste zuerst. */
+/**
+ * Auf Vercel-Vorschauen (nicht Produktion) zeigt der Blog auch Entwürfe, damit sie
+ * vor der Veröffentlichung im echten Layout lesbar sind. Produktion zeigt nie Entwürfe.
+ */
+const showDrafts = process.env.VERCEL_ENV === "preview";
+
+/** Veröffentlichte Beiträge einer Sprache, neueste zuerst (in Vorschauen samt Entwürfen). */
 export async function getPosts(lang: "de"): Promise<GermanPost[]>;
 export async function getPosts(lang: "en"): Promise<EnglishPost[]>;
 export async function getPosts(lang: Lang): Promise<BlogPost[]>;
 export async function getPosts(lang: Lang): Promise<BlogPost[]> {
   const posts: BlogPost[] = lang === "de"
-    ? await getCollection("blog", ({ data }) => !data.draft)
-    : await getCollection("blogEn", ({ data }) => !data.draft);
+    ? await getCollection("blog", ({ data }) => showDrafts || !data.draft)
+    : await getCollection("blogEn", ({ data }) => showDrafts || !data.draft);
   return posts.sort(newestFirst);
 }
 

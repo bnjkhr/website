@@ -2,6 +2,26 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
     {
+      "source": "/impressum",
+      "destination": "/impressum.html",
+      "permanent": true
+    },
+    {
+      "source": "/impressum/",
+      "destination": "/impressum.html",
+      "permanent": true
+    },
+    {
+      "source": "/datenschutz",
+      "destination": "/datenschutz.html",
+      "permanent": true
+    },
+    {
+      "source": "/datenschutz/",
+      "destination": "/datenschutz.html",
+      "permanent": true
+    },
+    {
       "source": "/",
       "destination": "/en/",
       "statusCode": 307,
@@ -436,6 +456,42 @@
     {
       "source": "/blog/mein-setup-claude-code",
       "destination": "/en/blog/how-i-build-apps-with-claude-code/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    },
+    {
+      "source": "/blog/weniger-ist-mehr-was-ich-vor-3-0-gestrichen-habe/",
+      "destination": "/en/blog/less-is-more-what-i-cut-before-3-0/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    },
+    {
+      "source": "/blog/weniger-ist-mehr-was-ich-vor-3-0-gestrichen-habe",
+      "destination": "/en/blog/less-is-more-what-i-cut-before-3-0/",
       "statusCode": 307,
       "has": [
         {

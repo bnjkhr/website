@@ -117,8 +117,11 @@ export default async function handler(req, res) {
     return;
   }
 
-  const to = process.env.CONTACT_TO || "mail@benkohler.de";
-  const from = process.env.CONTACT_FROM || "Ben Kohler Website <website@benkohler.de>";
+  // Defaults are assembled from parts so the address never appears verbatim in the source.
+  // Production has no CONTACT_TO/CONTACT_FROM set; without defaults the form would fail with 503.
+  const at = String.fromCharCode(64);
+  const to = process.env.CONTACT_TO || `mail${at}benkohler.de`;
+  const from = process.env.CONTACT_FROM || `Ben Kohler Website <website${at}benkohler.de>`;
   const resend = new Resend(apiKey);
   const { error } = await resend.emails.send({
     from,
