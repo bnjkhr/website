@@ -1,12 +1,12 @@
 ---
 title: "Weniger ist mehr: Was ich vor FamilyManager 3.0 gestrichen habe"
 description: "Rund 90 Schalter, 13 Bildschirme bis zur ersten Aufgabe, neun Wörter für Codes: Ich habe FamilyManager vor 3.0 auf Einfachheit geprüft. Was ich gestrichen habe, was ich bewusst behalten habe und warum."
-publishedAt: 2026-11-06
+publishedAt: 2026-11-09
 tags:
   - FamilyManager
   - Hinter den Kulissen
   - Produktentwicklung
-draft: true
+draft: false
 heroImage: "/images/blog/hero-weniger-ist-mehr.webp"
 heroImageAlt: "Weiße Wandnische mit drei Vasen"
 heroImageCredit: "Foto: Allison Saeng · Unsplash"

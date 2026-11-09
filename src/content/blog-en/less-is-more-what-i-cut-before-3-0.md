@@ -1,12 +1,12 @@
 ---
 title: "Less is more: what I cut before FamilyManager 3.0"
 description: "About 90 switches, 13 screens before the first task, nine words for codes: I audited FamilyManager for simplicity before 3.0. What I cut, what I deliberately kept and why."
-publishedAt: 2026-11-06
+publishedAt: 2026-11-09
 tags:
   - FamilyManager
   - Behind the scenes
   - Product development
-draft: true
+draft: false
 heroImage: "/images/blog/hero-weniger-ist-mehr.webp"
 heroImageAlt: "White wall niche with three vases"
 heroImageCredit: "Photo: Allison Saeng · Unsplash"
