@@ -457,22 +457,6 @@ const structuredData = {
             </div>
         </section>
 
-        <section class="proof" aria-labelledby="proof-title">
-            <div class="shell">
-                <h2 id="proof-title" class="reveal">{t.testimonials.title}</h2>
-                <div class="proof__grid">
-                    {t.testimonials.items.map((item) => (
-                        <figure class="proof__item reveal">
-                            <span class="proof__stars" role="img" aria-label={t.testimonials.stars}>★★★★★</span>
-                            <blockquote>{item.quote}</blockquote>
-                            <figcaption><strong>{item.author}</strong> · {item.app}</figcaption>
-                        </figure>
-                    ))}
-                </div>
-                <p class="proof__source">{t.testimonials.source}</p>
-            </div>
-        </section>
-
         <section class="extras" aria-labelledby="extras-title">
             <div class="shell">
                 <div class="extras__head reveal">
