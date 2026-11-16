@@ -6,7 +6,7 @@ tags:
   - FamilyManager
   - Behind the scenes
   - Product development
-draft: true
+draft: false
 heroImage: "/images/blog/hero-kindermodus.webp"
 heroImageAlt: "A child's hand places a colourful wooden block on a house made of blocks"
 heroImageCredit: "Photo: Michał Bożek · Unsplash"
@@ -30,24 +30,24 @@ A few deliberate decisions sit behind it:
 
 ## What the research offers
 
-Before building I collected and read literature: meta-analyses, guidelines and individual studies. The result is more sober than an advertisement would be:
+Alongside building I collected and read literature: meta-analyses, guidelines and individual studies. The result is more sober than an advertisement would be:
 
-- **Parent training and reinforcement** work on parenting behaviour and on behavioural problems, even when rated blind. On core symptoms the effects are only clear when raters are not blinded.
+- **Parent training and reinforcement** work on parenting behaviour and on behavioural problems, even when rated by probably blinded raters. On core symptoms the effects are only clear when raters are not blinded.
 - **Pure training of attention or working memory** through an app mainly improves the training task itself. It hardly transfers to everyday life according to blinded measures.
-- **Training in organisational skills,** by contrast, counts as a well-supported approach, even if the ratings there mostly come from parents and teachers.
+- **Training in organisational skills** is better supported by contrast. The studies behind it, though, worked with therapists and about 20 sessions, and parents and teachers did the rating. An app does not replace that.
 - **Visible timers and breaking tasks into steps** have plausible reasons behind them, but no robust evidence of effectiveness in ADHD. The German guideline only allows digital applications as a supplement and with proof of effectiveness.
 
 For me that means: an app is best justified as a **tool for the parents**, for reliable structure and consistent behaviour. It is not a cure for core symptoms. So I never talk about lowering ADHD symptoms, and I do not advertise "Jetzt" as a treatment.
 
 ## Recognition instead of points
 
-The research also pointed me in a direction I am working on: a large meta-analysis found that expected, tangible rewards can undermine a person's own motivation, whereas positive verbal feedback does not. Researchers dispute this, and another meta-analysis is more relaxed about it. So I am working on weighting recognition more than plain point-collecting. I will write about how far I get once it is finished.
+The research also pointed me in a direction I am working on: a large meta-analysis found that expected, tangible rewards can undermine a person's own motivation, whereas positive verbal feedback does not. Researchers dispute this, and another meta-analysis is more relaxed about it. So I weight recognition more than plain point-collecting. Since 3.0, parents can send a child praise directly for a completed task, and the child sees it at the end of "Jetzt". How well that works in everyday life, I do not know yet.
 
 ## Struktur-Hilfen for adults, and why they are private
 
 A hint from testing showed me a gap: ADHD exists in adults too, including parents. So there is one switch per person that turns the help on. It is called **Struktur-Hilfen** ("structure aids") and not "Focus", because "Focus" is an iOS system feature.
 
-The information that someone uses these aids points to health. That is why the switch for adults sits in a separate, private table that only the person's own row can read. Partners and children do not see it, not in profiles, lists, notifications or reports. The word "ADHD" does not appear in the app interface or in the database. Children under 16 can neither switch it on nor off, from 16 they decide themselves. Before launch I carried out a data protection impact assessment.
+The information that someone uses these aids points to health. That is why the switch sits in a separate, private table that only the person's own row can read. For adults, partners and children do not see it, not in profiles, lists, notifications or reports. The word "ADHD" does not appear in the app interface or in the database. For children, the parents switch it. For teenagers from 16, the parents can set the account to "decides for themselves"; then the person decides, and the parents no longer see the setting. Before launch I did a data protection impact assessment.
 
 ## What is still open
 
