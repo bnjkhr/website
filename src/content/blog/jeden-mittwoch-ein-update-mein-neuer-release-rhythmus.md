@@ -1,12 +1,12 @@
 ---
 title: "Jeden Mittwoch ein Update: Mein neuer Release-Rhythmus für FamilyManager"
 description: "Früher kamen Updates unregelmäßig: mal wochenlang nichts, dann ein großer Wurf. Ab 3.0.2 erscheint FamilyManager jeden Mittwoch. Wie die Woche abläuft, welche Regeln gelten und warum ich das mache."
-publishedAt: 2026-11-13
+publishedAt: 2026-11-18
 tags:
   - FamilyManager
   - Hinter den Kulissen
   - Produktentwicklung
-draft: true
+draft: false
 heroImage: "/images/blog/hero-release-rhythmus.webp"
 heroImageAlt: "Aufgeschlagener Wochenplaner mit einem Stift auf einem Holztisch"
 heroImageCredit: "Foto: Cabri Caldwell · Unsplash"
@@ -49,6 +49,7 @@ Im öffentlichen [Voting-Tool](https://votingtool.benkohler.de) steht im FamilyM
 - 3.0.2 am 11. November
 - 3.0.3 am 18. November
 - 3.0.4 am 25. November
+- 3.0.5 am 2. Dezember
 - 3.1 im Dezember
 
 Dort kannst du auch selbst Wünsche einreichen und abstimmen. Nach jedem Release hake ich ab, was erledigt ist.

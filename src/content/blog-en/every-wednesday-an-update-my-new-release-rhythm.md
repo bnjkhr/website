@@ -1,12 +1,12 @@
 ---
 title: "An update every Wednesday: my new release rhythm for FamilyManager"
 description: "Updates used to arrive irregularly: nothing for weeks, then one big drop. From 3.0.2, FamilyManager ships every Wednesday. How the week works, which rules apply and why I am doing this."
-publishedAt: 2026-11-13
+publishedAt: 2026-11-18
 tags:
   - FamilyManager
   - Behind the scenes
   - Product development
-draft: true
+draft: false
 heroImage: "/images/blog/hero-release-rhythmus.webp"
 heroImageAlt: "Open weekly planner with a pen on a wooden table"
 heroImageCredit: "Photo: Cabri Caldwell · Unsplash"
@@ -50,6 +50,7 @@ In the public [voting tool](https://votingtool.benkohler.de), the FamilyManager 
 - 3.0.2 on 11 November
 - 3.0.3 on 18 November
 - 3.0.4 on 25 November
+- 3.0.5 on 2 December
 - 3.1 in December
 
 You can also submit wishes and vote there yourself. After each release I tick off what is done.
