@@ -6,7 +6,7 @@ tags:
   - FamilyManager
   - Hinter den Kulissen
   - Produktentwicklung
-draft: true
+draft: false
 heroImage: "/images/blog/hero-kindermodus.webp"
 heroImageAlt: "Kinderhand setzt einen bunten Holzbaustein auf ein Haus aus Klötzen"
 heroImageCredit: "Foto: Michał Bożek · Unsplash"
@@ -29,24 +29,24 @@ Dahinter stehen ein paar bewusste Entscheidungen:
 
 ## Was die Forschung hergibt
 
-Ich habe vor dem Bauen Literatur gesammelt und gelesen: Metaanalysen, Leitlinien und Einzelstudien. Das Ergebnis ist nüchterner, als ein Werbetext es wäre:
+Neben dem Bauen habe ich Literatur gesammelt und gelesen: Metaanalysen, Leitlinien und Einzelstudien. Das Ergebnis ist nüchterner, als ein Werbetext es wäre:
 
-- **Elterntraining und Verstärkung** wirken auf das Erziehungsverhalten und auf Verhaltensprobleme, auch bei verblindeter Bewertung. Auf die Kernsymptome sind die Effekte nur bei unverblindeten Bewertern klar.
+- **Elterntraining und Verstärkung** wirken auf das Erziehungsverhalten und auf Verhaltensprobleme, auch bei wahrscheinlich verblindeter Bewertung. Auf die Kernsymptome sind die Effekte nur bei unverblindeten Bewertern klar.
 - **Reines Training von Aufmerksamkeit oder Arbeitsgedächtnis** per App verbessert vor allem die Trainingsaufgabe selbst. Auf den Alltag überträgt es sich nach verblindeten Maßen kaum.
-- **Training von Organisationsfertigkeiten** gilt dagegen als gut gestützter Ansatz, auch wenn die Bewertung dort meist von Eltern und Lehrkräften kommt.
+- **Training von Organisationsfertigkeiten** ist dagegen besser belegt. Die Studien dazu arbeiteten allerdings mit Therapeuten und rund 20 Sitzungen, und bewertet haben Eltern und Lehrkräfte. Eine App ersetzt das nicht.
 - **Sichtbare Zeitgeber und Schrittzerlegung** haben plausible Gründe, aber keine belastbaren Belege für Wirksamkeit bei ADHS. Die deutsche Leitlinie lässt digitale Anwendungen nur ergänzend und mit Wirksamkeitsnachweis zu.
 
 Für mich heißt das: Eine App lässt sich am ehesten als **Werkzeug für die Eltern** begründen, für verlässliche Struktur und konsequentes Verhalten. Sie ist kein Heilmittel für Kernsymptome. Deshalb spreche ich nie davon, ADHS-Symptome zu senken, und ich bewerbe „Jetzt“ nicht als Behandlung.
 
 ## Anerkennung statt Punkte
 
-Aus der Recherche ist auch eine Richtung entstanden, an der ich arbeite: Eine große Metaanalyse fand, dass erwartete, greifbare Belohnungen die eigene Motivation untergraben können, positives verbales Feedback dagegen nicht. Das ist unter Forschenden umstritten, eine andere Metaanalyse sieht das gelassener. Deshalb baue ich daran, Anerkennung stärker zu gewichten als reines Punktesammeln. Wie weit ich damit bin, schreibe ich, wenn es fertig ist.
+Aus der Recherche ist auch eine Richtung entstanden, an der ich arbeite: Eine große Metaanalyse fand, dass erwartete, greifbare Belohnungen die eigene Motivation untergraben können, positives verbales Feedback dagegen nicht. Das ist unter Forschenden umstritten, eine andere Metaanalyse sieht das gelassener. Deshalb gewichte ich Anerkennung stärker als reines Punktesammeln. Seit 3.0 können Eltern einem Kind zu einer erledigten Aufgabe direkt ein Lob schicken, und das Kind sieht es am Ende von „Jetzt“. Wie gut das im Alltag ankommt, weiß ich noch nicht.
 
 ## Struktur-Hilfen für Erwachsene und warum sie privat sind
 
 Ein Hinweis aus dem Test hat mich auf eine Lücke gebracht: ADHS gibt es auch bei Erwachsenen, auch bei Eltern. Also gibt es einen Schalter pro Person, der die Hilfen einschaltet. Er heißt **Struktur-Hilfen** und nicht „Fokus“, weil „Fokus“ eine iOS-Systemfunktion ist.
 
-Die Information, dass jemand diese Hilfen nutzt, ist ein Gesundheitsbezug. Deshalb liegt der Schalter für Erwachsene in einer eigenen, privaten Tabelle, die nur die eigene Zeile lesen kann. Partner und Kinder sehen ihn nicht, auch nicht in Profilen, Listen, Benachrichtigungen oder Auswertungen. Das Wort „ADHS“ kommt in der App-Oberfläche und in der Datenbank nicht vor. Kinder unter 16 können den Schalter weder ein- noch ausschalten, ab 16 entscheiden sie selbst. Vor dem Start habe ich eine Datenschutz-Folgenabschätzung gemacht.
+Die Information, dass jemand diese Hilfen nutzt, ist ein Gesundheitsbezug. Deshalb liegt der Schalter in einer eigenen, privaten Tabelle, die nur die eigene Zeile lesen kann. Bei Erwachsenen sehen Partner und Kinder ihn nicht, auch nicht in Profilen, Listen, Benachrichtigungen oder Auswertungen. Das Wort „ADHS“ kommt in der App-Oberfläche und in der Datenbank nicht vor. Für Kinder schalten die Eltern. Bei Jugendlichen ab 16 können die Eltern das Konto auf „entscheidet selbst“ stellen, dann bestimmt die Person selbst, und die Eltern sehen den Stand nicht mehr. Vor dem Start habe ich eine Datenschutz-Folgenabschätzung gemacht.
 
 ## Was noch offen ist
 
