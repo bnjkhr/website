@@ -14,17 +14,17 @@ heroImageCreditUrl: "https://unsplash.com/photos/wBenc1bRgGI"
 translationOf: "familymanager-adventskalender-lifetime-tuerchen"
 ---
 
-From 1 to 24 December there is an advent calendar at [familymanager.pro/advent](https://familymanager.pro/advent). Every day one door opens, at a time nobody knows in advance. It falls somewhere between 8 am and 9 pm. Behind doors 1 to 23 there is exactly **one lifetime for €39** instead of the regular €89.99. That saves you €50.99. First come, first served.
+From 1 to 24 December there is an advent calendar at [familymanager.pro/advent](https://www.familymanager.pro/advent). Every day one door opens, at a time nobody knows in advance. It falls somewhere between 8 am and 9 pm. Behind doors 1 to 23 there is exactly **one lifetime for €39** instead of the regular €89.99. That saves you €50.99. First come, first served.
 
 ## How it works
 
 - **One door per day.** It opens at a random time between 8 am and 9 pm that nobody knows beforehand.
 - **Exactly one lifetime per door.** Once it is gone, it is gone. The next day brings the next one.
 - **You pay on the web through Stripe.** The lifetime then also applies in the iPhone app.
-- **You can take part if you are signed in,** your email address is confirmed and your account is older than 24 hours.
+- **You can take part as a parent if you are signed in,** your email address is confirmed and your account is older than 24 hours.
 - **If you have an Apple subscription,** you cancel it yourself. I end Stripe subscriptions automatically and refund the remainder pro rata.
 
-The full terms are at [familymanager.pro/advent/bedingungen](https://familymanager.pro/advent/bedingungen) (in German).
+The full terms are at [familymanager.pro/advent/bedingungen](https://www.familymanager.pro/advent/bedingungen) (in German).
 
 ## Worth a look even without a lifetime
 
@@ -43,14 +43,14 @@ The time is random so that it is not always the same early birds or bots who win
 
 ## Draw behind door 24
 
-Behind door 24 I am raffling 3 lifetimes. You can enter from 1 December until 24 December before 6 pm, at [familymanager.pro/advent](https://familymanager.pro/advent). It is free and has nothing to do with a purchase, there is one entry per household, and your account must be older than 24 hours. The draw runs automatically on 24 December at 6 pm, and the winners get an email.
+Behind door 24 I am raffling 3 lifetimes. You can enter from 1 December until 24 December before 6 pm, at [familymanager.pro/advent](https://www.familymanager.pro/advent). It is free and has nothing to do with a purchase. You can enter as a parent with a confirmed email address, your account must be older than 24 hours, and there is one entry per household. Child accounts cannot take part. The draw runs automatically on 24 December at 6 pm, and the winners get an email.
 
 ## Gifting to other families
 
-From 1 December, you can give up to three other families one month of Premium in the iPhone app under **More → Gift a family** (German UI: Mehr → Familie beschenken).
+From 1 December, parents can give up to three other families one month of Premium in the iPhone app under **Organize → Gift a family** (German UI: Organisation → Familie beschenken). This needs app version 3.0.4 or newer, so update the app beforehand.
 
 ## Take part
 
-Visit [familymanager.pro/advent](https://familymanager.pro/advent) on 1 December. The page has a share button if you want to tell someone about it.
+Visit [familymanager.pro/advent](https://www.familymanager.pro/advent) on 1 December. The page has a share button if you want to tell someone about it.
 
 To be there for the first door you need an account with a confirmed email address that is older than 24 hours. If you do not have one yet, create it the week before.

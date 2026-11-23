@@ -15,17 +15,17 @@ newsletterSubject: "Der FamilyManager-Adventskalender startet am 1. Dezember"
 newsletterPreview: "23 Lifetimes, jeden Tag eine Chance, und für alle kleine Familien-Extras."
 ---
 
-Vom 1. bis 24. Dezember gibt es auf [familymanager.pro/advent](https://familymanager.pro/advent) einen Adventskalender. Jeden Tag öffnet sich ein Türchen, und zwar zu einer Uhrzeit, die vorher niemand kennt. Sie liegt irgendwo zwischen 8 und 21 Uhr. Hinter den Türchen 1 bis 23 liegt jeweils genau **eine Lifetime für 39 €** statt regulär 89,99 €. Du sparst also 50,99 €. Wer zuerst kommt, bekommt sie.
+Vom 1. bis 24. Dezember gibt es auf [familymanager.pro/advent](https://www.familymanager.pro/advent) einen Adventskalender. Jeden Tag öffnet sich ein Türchen, und zwar zu einer Uhrzeit, die vorher niemand kennt. Sie liegt irgendwo zwischen 8 und 21 Uhr. Hinter den Türchen 1 bis 23 liegt jeweils genau **eine Lifetime für 39 €** statt regulär 89,99 €. Du sparst also 50,99 €. Wer zuerst kommt, bekommt sie.
 
 ## Wie es funktioniert
 
 - **Ein Türchen pro Tag.** Es öffnet zu einer zufälligen Uhrzeit zwischen 8 und 21 Uhr, die vorher niemand kennt.
 - **Genau eine Lifetime pro Türchen.** Ist sie weg, ist sie weg. Am nächsten Tag gibt es die nächste.
 - **Bezahlt wird im Web über Stripe.** Die Lifetime gilt danach auch in der iPhone-App.
-- **Teilnehmen kannst du, wenn du angemeldet bist,** deine E-Mail-Adresse bestätigt ist und dein Konto älter als 24 Stunden ist.
+- **Teilnehmen kannst du als Elternteil, wenn du angemeldet bist,** deine E-Mail-Adresse bestätigt ist und dein Konto älter als 24 Stunden ist.
 - **Hast du ein Apple-Abo,** kündigst du es selbst. Stripe-Abos beende ich automatisch und erstatte den Rest anteilig.
 
-Die vollständigen Teilnahmebedingungen stehen unter [familymanager.pro/advent/bedingungen](https://familymanager.pro/advent/bedingungen).
+Die vollständigen Teilnahmebedingungen stehen unter [familymanager.pro/advent/bedingungen](https://www.familymanager.pro/advent/bedingungen).
 
 ## Auch ohne Lifetime lohnt sich der Blick
 
@@ -44,14 +44,14 @@ Die Uhrzeit ist zufällig, damit nicht immer dieselben Frühaufsteher oder Bots 
 
 ## Verlosung hinter Türchen 24
 
-Hinter Türchen 24 verlose ich 3 Lifetimes. Eintragen kannst du dich vom 1. Dezember bis zum 24. Dezember vor 18 Uhr, auf [familymanager.pro/advent](https://familymanager.pro/advent). Das ist kostenlos und hat nichts mit einem Kauf zu tun, pro Haushalt gibt es ein Los, dein Konto muss älter als 24 Stunden sein. Die Ziehung läuft automatisch am 24. Dezember um 18 Uhr, die Gewinner bekommen eine Mail.
+Hinter Türchen 24 verlose ich 3 Lifetimes. Eintragen kannst du dich vom 1. Dezember bis zum 24. Dezember vor 18 Uhr, auf [familymanager.pro/advent](https://www.familymanager.pro/advent). Das ist kostenlos und hat nichts mit einem Kauf zu tun. Mitmachen kannst du als Elternteil mit bestätigter E-Mail-Adresse, dein Konto muss älter als 24 Stunden sein, und pro Haushalt gibt es ein Los. Kinderkonten können nicht teilnehmen. Die Ziehung läuft automatisch am 24. Dezember um 18 Uhr, die Gewinner bekommen eine Mail.
 
 ## Familien beschenken
 
-Ab 1. Dezember kannst du in der iPhone-App unter **Mehr → Familie beschenken** bis zu drei anderen Familien einen Monat Premium schenken.
+Ab 1. Dezember können Eltern in der iPhone-App unter **Organisation → Familie beschenken** bis zu drei anderen Familien einen Monat Premium schenken. Dafür brauchst du die App-Version 3.0.4 oder neuer, aktualisiere die App also vorher.
 
 ## Mitmachen
 
-Schau am 1. Dezember auf [familymanager.pro/advent](https://familymanager.pro/advent) vorbei. Auf der Seite gibt es einen Teilen-Knopf, falls du jemandem davon erzählen möchtest.
+Schau am 1. Dezember auf [familymanager.pro/advent](https://www.familymanager.pro/advent) vorbei. Auf der Seite gibt es einen Teilen-Knopf, falls du jemandem davon erzählen möchtest.
 
 Damit du beim ersten Türchen dabei sein kannst, brauchst du ein Konto mit bestätigter E-Mail-Adresse, das älter als 24 Stunden ist. Falls du noch keins hast, leg es am besten schon in der Woche vorher an.
