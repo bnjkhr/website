@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { createHmac } from "node:crypto";
 import test from "node:test";
 import {
   CONSENT_VERSION,
@@ -60,8 +61,15 @@ async function withConfiguredApi(routes, run, extraEnvironment = {}) {
   globalThis.fetch = async (url, options = {}) => {
     const method = options.method || "GET";
     const path = decodeURIComponent(new URL(url).pathname);
-    calls.push({ method, path, body: options.body ? JSON.parse(options.body) : undefined });
-    const [status, payload] = routes[`${method} ${path}`] || [200, {}];
+    const call = {
+      method,
+      path,
+      body: options.body ? JSON.parse(options.body) : undefined,
+      idempotencyKey: new Headers(options.headers).get("Idempotency-Key"),
+    };
+    calls.push(call);
+    const route = routes[`${method} ${path}`];
+    const [status, payload] = (typeof route === "function" ? route(call) : route) || [200, {}];
     return new Response(JSON.stringify(payload), {
       status,
       headers: { "Content-Type": "application/json" },
@@ -419,6 +427,71 @@ test("confirming an existing contact re-subscribes it with consent evidence", as
   });
 });
 
+test("the confirmation link does not reveal the address", () => {
+  const token = createConfirmationToken(email, secret);
+  const readable = [token, ...token.split(".").map((part) => Buffer.from(part, "base64url").toString("latin1"))];
+  assert.ok(!readable.some((text) => text.includes(email) || text.includes("example.de")));
+  assert.equal(verifyConfirmationToken(token, secret).email, email);
+});
+
+// Links, die vor der Umstellung verschickt wurden, sind nur signiert und 48 Stunden gültig.
+test("a link signed in the previous format still confirms", () => {
+  const now = Math.floor(Date.now() / 1000);
+  const payload = Buffer.from(JSON.stringify({ email, issuedAt: now, expiresAt: now + 60, consentVersion: CONSENT_VERSION })).toString("base64url");
+  const token = `${payload}.${createHmac("sha256", secret).update(payload).digest("base64url")}`;
+  assert.equal(verifyConfirmationToken(token, secret).email, email);
+  assert.equal(verifyConfirmationToken(`${token}x`, secret), null);
+});
+
+test("a form token is not a confirmation token", () => {
+  assert.equal(verifyConfirmationToken(createFormToken(secret), secret), null);
+});
+
+const existingContact = (properties) => ({
+  [`GET /contacts/${email}`]: [200, { object: "contact", id: "contact-1", email, unsubscribed: true, properties }],
+});
+const confirmedAtProperty = (time) => ({ consent_confirmed_at: { type: "string", value: new Date(time).toISOString() } });
+
+test("a used link does not subscribe again after unsubscribing", async () => {
+  const token = createConfirmationToken(email, secret, Date.now() - 60_000);
+  await withConfiguredApi(existingContact(confirmedAtProperty(Date.now() - 30_000)), async (calls) => {
+    const response = await callHandler(confirmHandler, { method: "POST", body: { token } });
+
+    assert.equal(response.statusCode, 200);
+    assert.match(JSON.parse(response.body).title, /schon verwendet/);
+    assert.deepEqual(calls.map((call) => call.method), ["GET"]);
+  });
+});
+
+test("a link issued after the last confirmation subscribes again", async () => {
+  const token = createConfirmationToken(email, secret, Date.now() - 60_000);
+  await withConfiguredApi(existingContact(confirmedAtProperty(Date.now() - 86_400_000)), async (calls) => {
+    const response = await callHandler(confirmHandler, { method: "POST", body: { token } });
+
+    assert.equal(response.statusCode, 200);
+    const updates = calls.filter((call) => call.method === "PATCH" && call.path === `/contacts/${email}`);
+    assert.equal(updates[0].body.unsubscribed, false);
+    // Der letzte Schreibvorgang trägt den vollständigen Nachweis, auch falls Resend Eigenschaften ersetzt.
+    assert.deepEqual(Object.keys(updates.at(-1).body.properties).sort(), ["consent_confirmed_at", "consent_requested_at", "consent_version"]);
+    assert.equal(calls.at(-1), updates.at(-1), "the confirmation time marks the link as used, so it comes last");
+  });
+});
+
+// Ein halber Durchlauf darf niemanden anmelden und den Link nicht verbrauchen: Anmeldung und
+// Nachweis gehen deshalb gemeinsam in einem letzten Schreibvorgang raus.
+test("a failed step changes nothing about the subscription and leaves the link usable", async () => {
+  await withConfiguredApi({
+    ...existingContact({}),
+    [`POST /contacts/${email}/segments/segment-test`]: [500, { name: "application_error", message: "boom" }],
+  }, async (calls) => {
+    const token = createConfirmationToken(email, secret);
+    const response = await callHandler(confirmHandler, { method: "POST", body: { token } });
+
+    assert.equal(response.statusCode, 502);
+    assert.ok(!calls.some((call) => call.method === "PATCH" && call.path === `/contacts/${email}`));
+  });
+});
+
 test("confirmation endpoint only allows GET and POST", async () => {
   const response = await callHandler(confirmHandler, { method: "PUT" });
 
@@ -501,6 +574,37 @@ test("contact form reports a failed Resend delivery", async () => {
   await withConfiguredApi({ "POST /emails": [500, { name: "application_error", message: "boom" }] }, async () => {
     const response = await callHandler(contactHandler, contactRequest(contactBody()));
     assert.equal(response.statusCode, 502);
+  });
+});
+
+// Resend nimmt einen Idempotenz-Schlüssel nur für eine Nachricht an.
+function resendKeyStore() {
+  const bodies = new Map();
+  return (call) => {
+    const body = JSON.stringify(call.body);
+    if (call.idempotencyKey && bodies.has(call.idempotencyKey) && bodies.get(call.idempotencyKey) !== body) {
+      return [409, { statusCode: 409, name: "invalid_idempotent_request", message: "Key already used." }];
+    }
+    bodies.set(call.idempotencyKey, body);
+    return [200, { id: "mail" }];
+  };
+}
+
+test("contact form sends at most three messages per hour, whoever writes", async (t) => {
+  t.mock.timers.enable({ apis: ["Date"], now: Date.parse("2026-11-25T10:20:00Z") });
+  await withConfiguredApi({ "POST /emails": resendKeyStore() }, async (calls) => {
+    const write = (n, lang) => callHandler(contactHandler, contactRequest(contactBody({ email: `a${n}@example.de`, message: `Nachricht ${n}`, lang })));
+    for (const n of [1, 2, 3]) assert.equal((await write(n)).statusCode, 200, `message ${n}`);
+
+    const fourth = await write(4);
+    assert.equal(fourth.statusCode, 429);
+    assert.match(JSON.parse(fourth.body).message, /zu viele Nachrichten/);
+    assert.equal(fourth.headers["Retry-After"], String(40 * 60));
+    assert.match(JSON.parse((await write(5, "en")).body).message, /Too many messages/);
+    assert.ok(calls.every((call) => call.idempotencyKey), "every message is sent under a limited key");
+
+    t.mock.timers.setTime(Date.parse("2026-11-25T11:00:01Z"));
+    assert.equal((await write(6)).statusCode, 200);
   });
 });
 

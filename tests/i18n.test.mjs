@@ -112,7 +112,7 @@ test("security headers in vercel.json stay in place", () => {
   assert.equal(rule.source, "/(.*)");
   const headers = Object.fromEntries(rule.headers.map(({ key, value }) => [key, value]));
   assert.match(headers["Content-Security-Policy"], /frame-ancestors 'none'/);
-  assert.match(headers["Content-Security-Policy"], /script-src 'self' 'unsafe-inline' https:\/\/challenges\.cloudflare\.com/);
+  assert.match(headers["Content-Security-Policy"], /script-src 'self' https:\/\/challenges\.cloudflare\.com;/);
   assert.equal(headers["X-Frame-Options"], "DENY");
   assert.equal(headers["X-Content-Type-Options"], "nosniff");
 });

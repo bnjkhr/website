@@ -76,8 +76,12 @@ export default async function handler(req, res) {
   if (existing.error && !isNotFound(existing.error)) return fail("contact lookup", existing.error);
 
   if (existing.data) {
-    const updated = await resend.contacts.update(contact);
-    if (updated.error) return fail("contact update", updated.error);
+    // A link works once. Without this check it would undo a later unsubscribe.
+    const lastConfirmed = Date.parse(existing.data.properties?.consent_confirmed_at?.value);
+    if (lastConfirmed >= confirmation.issuedAt * 1000) {
+      reply(200, { title: t.usedTitle, message: t.usedMessage });
+      return;
+    }
 
     const segment = await resend.contacts.segments.add({ email: confirmation.email, segmentId });
     if (segment.error && !isAlreadyAssigned(segment.error)) return fail("segment assignment", segment.error);
@@ -86,6 +90,11 @@ export default async function handler(req, res) {
       const topic = await resend.contacts.topics.update({ email: confirmation.email, topics });
       if (topic.error) return fail("topic opt-in", topic.error);
     }
+
+    // Written last and in one piece: resubscribing and the proof of consent belong together,
+    // and the proof marks the link as used, so a failed step above can be retried.
+    const updated = await resend.contacts.update(contact);
+    if (updated.error) return fail("contact update", updated.error);
   } else {
     const created = await resend.contacts.create({ ...contact, segments: [{ id: segmentId }], topics });
     if (created.error) return fail("contact creation", created.error);
