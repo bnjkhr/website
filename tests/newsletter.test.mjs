@@ -471,7 +471,8 @@ test("a link issued after the last confirmation subscribes again", async () => {
     assert.equal(response.statusCode, 200);
     const updates = calls.filter((call) => call.method === "PATCH" && call.path === `/contacts/${email}`);
     assert.equal(updates[0].body.unsubscribed, false);
-    assert.ok(updates.at(-1).body.properties.consent_confirmed_at);
+    // Der letzte Schreibvorgang trägt den vollständigen Nachweis, auch falls Resend Eigenschaften ersetzt.
+    assert.deepEqual(Object.keys(updates.at(-1).body.properties).sort(), ["consent_confirmed_at", "consent_requested_at", "consent_version"]);
     assert.equal(calls.at(-1), updates.at(-1), "the confirmation time marks the link as used, so it comes last");
   });
 });

@@ -83,7 +83,7 @@ export default async function handler(req, res) {
       return;
     }
 
-    const { consent_confirmed_at: confirmedAtValue, ...requested } = contact.properties;
+    const { consent_confirmed_at: _, ...requested } = contact.properties;
     const updated = await resend.contacts.update({ ...contact, properties: requested });
     if (updated.error) return fail("contact update", updated.error);
 
@@ -96,10 +96,7 @@ export default async function handler(req, res) {
     }
 
     // Written last: it marks the link as used, so a failed step above can be retried.
-    const recorded = await resend.contacts.update({
-      email: confirmation.email,
-      properties: { consent_confirmed_at: confirmedAtValue },
-    });
+    const recorded = await resend.contacts.update({ email: confirmation.email, properties: contact.properties });
     if (recorded.error) return fail("consent record", recorded.error);
   } else {
     const created = await resend.contacts.create({ ...contact, segments: [{ id: segmentId }], topics });

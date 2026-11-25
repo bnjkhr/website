@@ -6,8 +6,8 @@ import { pathToFileURL } from "node:url";
 import { inflateSync } from "node:zlib";
 
 const GPS_TAG = 0x8825; // Verweis vom ersten Verzeichnis eines EXIF-Blocks auf die Standortdaten
-const CHECKED = /\.(jpe?g|png|webp|gif|svg)$/i;
-const UNSUPPORTED = /\.(heic|heif|tiff?|avif|mov|mp4|m4v)$/i;
+const CHECKED = /\.(jpe?g|jfif|png|webp|gif|svg)$/i;
+const UNSUPPORTED = /\.(heic|heif|tiff?|dng|avif|mov|mp4|m4v|webm)$/i;
 const SKIPPED_DIRS = new Set(["node_modules", "dist", ".git", ".astro", ".vercel", ".worktrees", ".claude", ".playwright-mcp"]);
 const TIFF_START = /^(II\*\0|MM\0\*)/;
 const XMP_LOCATION = /GPSLatitude|GPSLongitude/;
@@ -46,7 +46,9 @@ function checkBytes(bytes) {
 function checkPngText(type, data) {
   const keyEnd = data.indexOf(0);
   let text;
-  if (type === "zTXt") {
+  if (type === "tEXt") {
+    text = data.subarray(keyEnd + 1);
+  } else if (type === "zTXt") {
     text = inflateSync(data.subarray(keyEnd + 2));
   } else {
     // iTXt: Schlüssel, Kompressionsflag, Methode, Sprache, übersetzter Schlüssel, Text
@@ -67,7 +69,7 @@ function checkPng(bytes) {
     const data = bytes.subarray(at + 8, at + 8 + length);
     let problem = null;
     if (type === "eXIf") problem = checkTiff(data);
-    else if (type === "zTXt" || type === "iTXt") {
+    else if (type === "tEXt" || type === "zTXt" || type === "iTXt") {
       try {
         problem = checkPngText(type, data);
       } catch {
