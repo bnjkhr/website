@@ -477,8 +477,9 @@ test("a link issued after the last confirmation subscribes again", async () => {
   });
 });
 
-// Sonst gälte der Link nach einem halben Durchlauf als verbraucht.
-test("a failed step leaves the link usable", async () => {
+// Ein halber Durchlauf darf niemanden anmelden und den Link nicht verbrauchen: Anmeldung und
+// Nachweis gehen deshalb gemeinsam in einem letzten Schreibvorgang raus.
+test("a failed step changes nothing about the subscription and leaves the link usable", async () => {
   await withConfiguredApi({
     ...existingContact({}),
     [`POST /contacts/${email}/segments/segment-test`]: [500, { name: "application_error", message: "boom" }],
@@ -487,7 +488,7 @@ test("a failed step leaves the link usable", async () => {
     const response = await callHandler(confirmHandler, { method: "POST", body: { token } });
 
     assert.equal(response.statusCode, 502);
-    assert.ok(!calls.some((call) => call.body?.properties?.consent_confirmed_at));
+    assert.ok(!calls.some((call) => call.method === "PATCH" && call.path === `/contacts/${email}`));
   });
 });
 
