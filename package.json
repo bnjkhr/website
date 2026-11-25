@@ -5,13 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro check && astro build",
+    "build": "node scripts/check-images.mjs && astro check && astro build",
     "preview": "astro preview",
     "check": "astro check",
     "gen:redirects": "node scripts/gen-lang-redirects.mjs",
     "newsletter:draft": "node --env-file-if-exists=.env.local scripts/create-newsletter-draft.mjs",
     "newsletter:setup": "node --env-file-if-exists=.env.local scripts/setup-newsletter.mjs",
-    "test": "node --test tests/newsletter.test.mjs tests/i18n.test.mjs && npm run build && sh tests/site-build.sh && node --test tests/no-plain-email.test.mjs"
+    "test": "node --test tests/newsletter.test.mjs tests/i18n.test.mjs tests/check-images.test.mjs && npm run build && sh tests/site-build.sh && node --test tests/no-plain-email.test.mjs"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.19",
