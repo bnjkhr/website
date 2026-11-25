@@ -2,6 +2,7 @@ import { Resend } from "resend";
 import {
   emailHash,
   escapeHtml,
+  IDEMPOTENCY_KEY_TAKEN,
   isValidEmail,
   normalizeEmail,
   parseBody,
@@ -22,14 +23,13 @@ const MAX_MESSAGE = 5000;
 // newsletter confirmations share.
 const HOURLY_LIMIT = 3;
 const HOUR_MS = 3_600_000;
-const SLOT_TAKEN = new Set(["invalid_idempotent_request", "concurrent_idempotent_requests"]);
 
 async function sendWithinLimit(resend, mail) {
   const hour = Math.floor(Date.now() / HOUR_MS);
   for (let slot = 0; slot < HOURLY_LIMIT; slot++) {
     const idempotencyKey = `contact-${process.env.VERCEL_ENV || "local"}-${hour}-${slot}`;
     const { error } = await resend.emails.send(mail, { idempotencyKey });
-    if (!SLOT_TAKEN.has(error?.name)) return { error };
+    if (!IDEMPOTENCY_KEY_TAKEN.has(error?.name)) return { error };
   }
   return { limited: true, retryAfterSeconds: Math.ceil(((hour + 1) * HOUR_MS - Date.now()) / 1000) };
 }

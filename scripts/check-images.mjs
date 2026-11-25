@@ -2,7 +2,7 @@
 // deshalb zählt jedes Bild, nicht nur das unter public/. Werte werden nie ausgegeben.
 import { readFileSync, readdirSync } from "node:fs";
 import { join, relative } from "node:path";
-import { pathToFileURL } from "node:url";
+import { fileURLToPath } from "node:url";
 import { inflateSync } from "node:zlib";
 
 const GPS_TAG = 0x8825; // Verweis vom ersten Verzeichnis eines EXIF-Blocks auf die Standortdaten
@@ -44,6 +44,14 @@ function checkBytes(bytes) {
 
 // PNG speichert Text auch komprimiert; ImageMagick legt EXIF dort hexkodiert ab.
 function checkPngText(type, data) {
+  try {
+    return checkBytes(readPngText(type, data));
+  } catch {
+    return UNREADABLE;
+  }
+}
+
+function readPngText(type, data) {
   const keyEnd = data.indexOf(0);
   let text;
   if (type === "tEXt") {
@@ -57,9 +65,9 @@ function checkPngText(type, data) {
     text = data.subarray(data.indexOf(0, languageEnd + 1) + 1);
     if (compressed) text = inflateSync(text);
   }
-  if (!data.toString("latin1", 0, keyEnd).startsWith("Raw profile type")) return checkBytes(text);
+  if (!data.toString("latin1", 0, keyEnd).startsWith("Raw profile type")) return text;
   const hex = text.toString("latin1").trim().split("\n").slice(2).join("");
-  return checkBytes(Buffer.from(hex, "hex"));
+  return Buffer.from(hex, "hex");
 }
 
 function checkPng(bytes) {
@@ -69,13 +77,7 @@ function checkPng(bytes) {
     const data = bytes.subarray(at + 8, at + 8 + length);
     let problem = null;
     if (type === "eXIf") problem = checkTiff(data);
-    else if (type === "tEXt" || type === "zTXt" || type === "iTXt") {
-      try {
-        problem = checkPngText(type, data);
-      } catch {
-        problem = UNREADABLE;
-      }
-    }
+    else if (type === "tEXt" || type === "zTXt" || type === "iTXt") problem = checkPngText(type, data);
     if (problem) return problem;
     at += 12 + length;
   }
@@ -126,7 +128,7 @@ function* files(dir) {
   }
 }
 
-if (import.meta.url === pathToFileURL(process.argv[1] ?? "").href) {
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const root = process.argv[2] ?? ".";
   let checked = 0;
   const problems = [];

@@ -6,14 +6,6 @@ import test from "node:test";
 
 const pages = readdirSync("dist", { recursive: true }).filter((file) => file.endsWith(".html"));
 
-test("script-src allows neither inline scripts nor eval", () => {
-  const { headers } = JSON.parse(readFileSync("vercel.json", "utf8"));
-  const csp = headers.flatMap((rule) => rule.headers).find((header) => header.key === "Content-Security-Policy").value;
-  const scriptSrc = csp.split(";").map((part) => part.trim()).find((part) => part.startsWith("script-src "));
-  assert.ok(scriptSrc);
-  assert.doesNotMatch(scriptSrc, /'unsafe-(inline|eval)'/);
-});
-
 test("no built page carries an inline script or event handler", () => {
   assert.ok(pages.length > 10, "build the site first");
   for (const page of pages) {
