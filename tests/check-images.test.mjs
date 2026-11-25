@@ -86,6 +86,17 @@ test("rejects location data in a hex-encoded PNG profile", () => {
   assert.ok(findProblem("a.png", png("zTXt", chunk)));
 });
 
+test("rejects an uncompressed hex-encoded PNG profile", () => {
+  const profile = `\nexif\n      32\n${exif(tiff(GPS)).toString("hex")}\n`;
+  assert.ok(findProblem("a.png", png("tEXt", Buffer.from(`Raw profile type exif\0${profile}`, "latin1"))));
+  assert.equal(findProblem("a.png", png("tEXt", Buffer.from("Software\0Pixelmator", "latin1"))), null);
+});
+
+test("treats .jfif like JPEG and refuses raw and web video files", () => {
+  assert.ok(findProblem("a.jfif", jpeg(exif(tiff(GPS)))));
+  for (const name of ["a.dng", "a.webm"]) assert.ok(findProblem(name, Buffer.alloc(8)), name);
+});
+
 test("rejects location data in an image embedded in an SVG", () => {
   const data = jpeg(exif(tiff(GPS))).toString("base64");
   assert.ok(findProblem("a.svg", Buffer.from(`<svg><image href="data:image/jpeg;base64,${data}"/></svg>`)));
