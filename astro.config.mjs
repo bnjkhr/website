@@ -28,6 +28,8 @@ for (const { de, en } of pairs) {
 export default defineConfig({
   site: SITE,
   output: "static",
+  // Auch kleine Skripte als Datei ausliefern: Die CSP erlaubt keine Inline-Skripte.
+  vite: { build: { assetsInlineLimit: 0 } },
   integrations: [
     sitemap({
       i18n: { defaultLocale: "de", locales: { de: "de-DE", en: "en-US" } },
