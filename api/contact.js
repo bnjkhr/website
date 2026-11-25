@@ -17,6 +17,22 @@ const TOPICS = {
 };
 const MAX_NAME = 100;
 const MAX_MESSAGE = 5000;
+// Across all senders and function instances: Resend accepts each idempotency key for one
+// message only, so the keys below cap the inbox and the daily sending quota, which the
+// newsletter confirmations share.
+const HOURLY_LIMIT = 3;
+const HOUR_MS = 3_600_000;
+const SLOT_TAKEN = new Set(["invalid_idempotent_request", "concurrent_idempotent_requests"]);
+
+async function sendWithinLimit(resend, mail) {
+  const hour = Math.floor(Date.now() / HOUR_MS);
+  for (let slot = 0; slot < HOURLY_LIMIT; slot++) {
+    const idempotencyKey = `contact-${process.env.VERCEL_ENV || "local"}-${hour}-${slot}`;
+    const { error } = await resend.emails.send(mail, { idempotencyKey });
+    if (!SLOT_TAKEN.has(error?.name)) return { error };
+  }
+  return { limited: true, retryAfterSeconds: Math.ceil(((hour + 1) * HOUR_MS - Date.now()) / 1000) };
+}
 
 async function passesTurnstile(secret, response, req) {
   if (typeof response !== "string" || !response) return false;
@@ -123,7 +139,7 @@ export default async function handler(req, res) {
   const to = process.env.CONTACT_TO || `mail${at}benkohler.de`;
   const from = process.env.CONTACT_FROM || `Ben Kohler Website <website${at}benkohler.de>`;
   const resend = new Resend(apiKey);
-  const { error } = await resend.emails.send({
+  const { error, limited, retryAfterSeconds } = await sendWithinLimit(resend, {
     from,
     to,
     replyTo: email,
@@ -137,6 +153,13 @@ export default async function handler(req, res) {
       `<pre style="white-space:pre-wrap;word-wrap:break-word;font-family:inherit">${escapeHtml(message)}</pre>`,
     ].join(""),
   });
+
+  if (limited) {
+    logContact("warn", "hourly-limit", req, email);
+    res.setHeader("Retry-After", String(retryAfterSeconds));
+    reply(429, { message: t.contact.limited });
+    return;
+  }
 
   if (error) {
     logContact("error", "resend-failed", req, email);
