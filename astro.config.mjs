@@ -29,7 +29,8 @@ export default defineConfig({
   site: SITE,
   output: "static",
   // Auch kleine Skripte als Datei ausliefern: Die CSP erlaubt keine Inline-Skripte.
-  vite: { build: { assetsInlineLimit: 0 } },
+  // Für CSS bleibt es bei der Voreinstellung (`undefined`), Inline-Styles sind erlaubt.
+  vite: { build: { assetsInlineLimit: (file) => (file.endsWith(".css") ? undefined : false) } },
   integrations: [
     sitemap({
       i18n: { defaultLocale: "de", locales: { de: "de-DE", en: "en-US" } },

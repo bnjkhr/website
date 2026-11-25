@@ -3,6 +3,7 @@ import {
   createConfirmationToken,
   emailHash,
   escapeHtml,
+  IDEMPOTENCY_KEY_TAKEN,
   isValidEmail,
   normalizeEmail,
   parseBody,
@@ -12,9 +13,8 @@ import {
 import { messages, requestLang } from "../lib/i18n.js";
 
 // The idempotency key allows one confirmation mail per address per day. A repeated
-// signup carries a fresh token, so Resend rejects the reused key – the earlier mail
-// from this day is still valid, so the signup counts as sent.
-const ALREADY_SENT_ERRORS = new Set(["invalid_idempotent_request", "concurrent_idempotent_requests"]);
+// signup carries a fresh token, so Resend rejects the reused key and the signup counts
+// as sent. The earlier mail's link only works if it has not been used yet.
 const ONE_DAY_MS = 86_400_000;
 
 async function passesTurnstile(secret, response, req) {
@@ -132,7 +132,7 @@ export default async function handler(req, res) {
     idempotencyKey: `newsletter-confirm-${emailHash(email)}-${Math.floor(Date.now() / ONE_DAY_MS)}`,
   });
 
-  if (error && !ALREADY_SENT_ERRORS.has(error.name)) {
+  if (error && !IDEMPOTENCY_KEY_TAKEN.has(error.name)) {
     logSignup("error", "resend-failed", req, email);
     console.error("Newsletter confirmation email failed", { name: error.name, message: error.message });
     reply(502, { message: t.subscribe.sendFailed });
