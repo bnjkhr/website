@@ -184,6 +184,42 @@
       ]
     },
     {
+      "source": "/blog/familienapp-fuer-kinder-mit-adhs/",
+      "destination": "/en/blog/a-family-app-for-children-with-adhd/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    },
+    {
+      "source": "/blog/familienapp-fuer-kinder-mit-adhs",
+      "destination": "/en/blog/a-family-app-for-children-with-adhd/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    },
+    {
       "source": "/blog/ein-eigener-ort-fuer-updates/",
       "destination": "/en/blog/a-home-for-updates/",
       "statusCode": 307,
@@ -384,6 +420,42 @@
     {
       "source": "/blog/ki-app-bauen-ist-mehr-als-ein-prompt",
       "destination": "/en/blog/building-an-app-with-ai-takes-more-than-a-prompt/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    },
+    {
+      "source": "/blog/jeden-mittwoch-ein-update-mein-neuer-release-rhythmus/",
+      "destination": "/en/blog/every-wednesday-an-update-my-new-release-rhythm/",
+      "statusCode": 307,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^en.*"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        }
+      ]
+    },
+    {
+      "source": "/blog/jeden-mittwoch-ein-update-mein-neuer-release-rhythmus",
+      "destination": "/en/blog/every-wednesday-an-update-my-new-release-rhythm/",
       "statusCode": 307,
       "has": [
         {
